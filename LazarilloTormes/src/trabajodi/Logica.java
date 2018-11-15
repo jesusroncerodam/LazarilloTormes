@@ -62,6 +62,7 @@ public class Logica {
 
     public synchronized void juegoClick(Component componente) {
          gestionFichero();
+          test();
         if(primeraJuego){//si se ejecuta laguna accion
             juego.gestionarContador("empezar");
             primeraJuego=false;
@@ -191,7 +192,24 @@ public class Logica {
             }
         }
     public void test(){
+        ArrayList historial=new ArrayList<Historial>();
+        //String nombre, ImageIcon imagen, int tiempo, int movimientos
+        historial.add(new Historial("-", 20, 10));
+        historial.add(new Historial("-", 50, 15));
+        historial.add(new Historial("-", 20, 15));
+        historial.add(new Historial("-", 2, 10));
+        historial.add(new Historial("-", 50, 18));
         
+        for (Object object : historial) {
+            System.out.println(object.toString()+"");
+        }
+        Collections.sort(historial);
+        System.out.println("----");
+        for (Object object : historial) {
+            System.out.println(object.toString()+"");
+        }
+
+
     }
     public int Comparator(Historial hist1,Historial hist2){
         if(hist1.getMovimientos()==hist2.getMovimientos()){
