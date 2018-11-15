@@ -63,7 +63,7 @@ public class Logica {
            
 
     public synchronized void juegoClick(Component componente) {
-        gestionFichero();
+        //gestionFichero();
         //test();
         //mostrarFichero();
         //sdg();
