@@ -146,6 +146,10 @@ public class Carta extends JLabel {
        bloquear=true;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
 
     //ocultar
     //es igual

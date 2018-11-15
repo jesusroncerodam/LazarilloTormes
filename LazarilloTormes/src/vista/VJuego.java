@@ -235,10 +235,11 @@ public class VJuego extends JPanel {
      });
      }
      */
+    final int AJUSTE_GIF=0;
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Image img = new ImageIcon("src/img/fondo2.gif").getImage();
+        Image img = new ImageIcon("src/img/fondo.gif").getImage();
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
     }
     
@@ -253,7 +254,11 @@ public class VJuego extends JPanel {
     public void girar(int i){
         carta.get(i).animar();
     }
-    public void mismaImagen(int i,int j){
-       //  carta.get(i).
+    public boolean mismaImagen(int i,int j){
+        return (carta.get(i).getUrl().equals( carta.get(j).getUrl()));
+    }
+    public void bloquearImagenes(int i, int j){
+        carta.get(i).bloquear();
+        carta.get(i).bloquear();
     }
 }

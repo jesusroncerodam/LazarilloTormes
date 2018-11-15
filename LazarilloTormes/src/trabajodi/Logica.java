@@ -80,17 +80,18 @@ public class Logica {
             
 
             if(vuelta!=-1){//si es dif de  -1 hay 2 visibles
-                
-                
-                Timer timer=new java.util.Timer();
-                TimerTask tarea =new TimerTask() {
-                @Override
-                public void run() {
-                    juego.girar(cartaAct);
-                    juego.girar(vuelta);
-                }};
-                timer.schedule(tarea, 4000);
-                
+                if(juego.mismaImagen(vuelta, cartaAct)){//si las cartas que hay son =
+                    juego.bloquearImagenes(vuelta, cartaAct);
+                }else{
+                    Timer timer=new java.util.Timer();
+                    TimerTask tarea =new TimerTask() {
+                    @Override
+                    public void run() {
+                        juego.girar(cartaAct);
+                        juego.girar(vuelta);
+                    }};
+                    timer.schedule(tarea, 4000);
+                }
             }
         }
     }

@@ -82,5 +82,11 @@ public class ContrJuego implements MouseListener, KeyListener {
     public int algunaVisible(){
         return vista.algunaVisible();
     }
+    public boolean mismaImagen(int i,int j){
+        return vista.mismaImagen(i,j);
+    }
+     public void bloquearImagenes(int i, int j){
+        vista.bloquearImagenes(i, j);
+    }
 
 }
