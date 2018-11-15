@@ -235,6 +235,7 @@ public class VJuego extends JPanel {
      });
      }
      */
+    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Image img = new ImageIcon("src/img/fondo.gif").getImage();
