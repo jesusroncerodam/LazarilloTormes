@@ -71,7 +71,7 @@ public class Vista {
     public void generarVista() {
         ventana = new JFrame("Memorion");
         ventana.setMaximumSize(new Dimension(1924, 1047));
-        ventana.setSize(600, 600);
+        //ventana.setSize(600, 600);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -85,7 +85,7 @@ public class Vista {
      @param tiempo entero que indica el tiempo que va a tardar
      */
     private synchronized void cargarSplash(String logo, String fondo, int tiempo) {
-                ventana.setVisible(true);
+        ventana.setSize(600, 600);
 
         splash = new VistaSplash(logo, fondo, tiempo, fuente, this);
         ventana.setMinimumSize(splash.getMinimumSize());//asignamos el tamaño minimo para la ventana
@@ -113,7 +113,7 @@ public class Vista {
             Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
         }
         ventana.remove(splash);
-        ventana.repaint();
+        //ventana.repaint();
         splash = null;
 
         // vDialogoMod.cargar();
@@ -134,13 +134,8 @@ public class Vista {
      // DOCUMENTACIÓN EN PROCESO
      */
     public void ingresoDatos() {
-        ventana.setSize(1000, 800);
+       
         String aux[] = new String[6];
-        /*
-         for(int i=0;i<aux.length;i++){
-         aux[i]="src/img/carta.jpg";
-         }
-         */
         aux[0] = "src/img/carta.jpg";
         aux[1] = "src/img/2.jpg";
         aux[2] = "src/img/carga2.jpg";
@@ -149,7 +144,8 @@ public class Vista {
         aux[5] = "src/img/flecha.png";
         //   aux[6]="src/img/flecha.png";
         vJuego.generar(aux);
-                cargarSplash("/img/logotrini.png", "/img/carga.jpg", 1);
+        cargarSplash("/img/logotrini.png", "/img/carga.jpg", 1);
+         ventana.setSize(1000, 800);        
         ventana.add(vJuego);
 
         ventana.setVisible(true);
