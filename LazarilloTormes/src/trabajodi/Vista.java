@@ -95,14 +95,6 @@ public class Vista {
         } catch (InterruptedException ex) {
             Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
         }
-        // splash.empezarAnimaciones();
-        /*
-         try {
-         wait();
-         } catch (InterruptedException ex) {
-         Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         */
     }
 
 
