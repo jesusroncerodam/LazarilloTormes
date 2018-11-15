@@ -27,6 +27,7 @@ public class ContrJuego implements MouseListener, KeyListener {
     public ContrJuego(VJuego vista, Logica logica) {
         this.vista = vista;
         this.logica = logica;
+        this.logica.asignarContrJuego(this);
     }
 
 
@@ -74,6 +75,12 @@ public class ContrJuego implements MouseListener, KeyListener {
     public void keyReleased(KeyEvent e) {
 
         System.out.println(e);
+    }
+    public void girar(int i){
+        vista.girar(i);
+    }
+    public int algunaVisible(){
+        return vista.algunaVisible();
     }
 
 }

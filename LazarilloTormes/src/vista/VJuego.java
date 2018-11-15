@@ -107,13 +107,13 @@ public class VJuego extends JPanel {
             carta.add(new Carta(rutas[i]));
         }
 
-        //para cada carta asignamos el mismo id
-        for (int i = 0, j = 0; i < carta.size(); j++) {
-            carta.get(i).setName("" + j + "" + i);
-            i++;
-            carta.get(i).setName("" + j + "" + i);
-            i++;
-        }
+//        //para cada carta asignamos el mismo id
+//        for (int i = 0, j = 0; i < carta.size(); j++) {
+//            carta.get(i).setName("" + i/* + "-" + i*/);
+//            i++;
+//            carta.get(i).setName("" + i /*+ "-" + i*/);
+//            i++;
+//        }
 
         //creamos el panel donde estarán las cartas
         JPanel cartas = new JPanel();
@@ -125,7 +125,10 @@ public class VJuego extends JPanel {
 
         //deshordenamos las cartas
         Collections.shuffle(carta);
-
+        
+        for (int i = 0; i < carta.size(); i++) {
+             carta.get(i).setName("" + i);
+        }
         //añadimos todas las cartas y les ponemos escuchador
         for (int i = 0; i < carta.size(); i++) {
             cartas.add(carta.get(i));
@@ -236,8 +239,20 @@ public class VJuego extends JPanel {
         super.paintComponent(g);
         Image img = new ImageIcon("src/img/fondo.gif").getImage();
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
-
-
-
+    }
+    
+    public int algunaVisible(){
+        for(int i=0;i<carta.size(); i++) {
+            if(carta.get(i).getIcon()==null){
+                return i;
+            }
+        }
+        return -1;
+    }
+    public void girar(int i){
+        carta.get(i).animar();
+    }
+    public void mismaImagen(int i,int j){
+        
     }
 }

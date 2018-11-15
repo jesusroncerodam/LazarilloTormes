@@ -21,6 +21,13 @@ public class Logica {
     public Logica() {
     }
     
+    public void asignarContrJuego(ContrJuego juego){
+        this.juego=juego;
+    }
+    
+    public void Menus(String accion){
+        
+    }
     /*
      // CONTROLADOR VISTA JUEGO
      // CONTROLADOR VISTA JUEGO
@@ -39,6 +46,12 @@ public class Logica {
                 case "playPause":
                     
                     break;
+                case "guardar":
+                    
+                    break;
+                case "continuar":
+                    
+                    break;
                 default:
                     System.out.println(accion);
                     //llamar a la de los menuses
@@ -48,8 +61,20 @@ public class Logica {
             
             
             
-        }else if(componente instanceof JLabel){
+        }else if(componente instanceof JLabel){//defaultIcon=src/img/cartas/vuelta.png
+            JLabel a=(JLabel) componente;
+            int vuelta;
+            System.out.println(a.getName());
             System.out.println("label");
+            //comprobar si hay alguna mas del reves
+            vuelta=juego.algunaVisible();
+            
+            //girar carta
+            juego.girar(Integer.parseInt(a.getName()));
+            
+            if(vuelta==-1){//si es = a -1 no hay ninguna visible
+                
+            }
         }
     }
     public void juegokey() {

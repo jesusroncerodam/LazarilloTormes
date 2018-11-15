@@ -39,6 +39,7 @@ public class Carta extends JLabel {
     public Carta(String url) {
         this.setBorder(borde);//Border(borde);
         this.url = url;
+        sale=false;
         vuelta = new ImageIcon("src/img/cartas/vuelta.png");//cambiarTamano(new ImageIcon("src/img/cartas/vuelta.png"),100,300);
         //carta=cambiarTamano(new ImageIcon("src/img/cartas/vuelta.png"),100,100);
         this.setIcon(vuelta);
@@ -53,14 +54,18 @@ public class Carta extends JLabel {
         g.drawImage(aux.getImage(), 1, 1, null);
         super.paint(g);
     }
+    
+    public void animar(){
+        if(!sale){
+            animarSalir();
+        }else{
+            animarEntrar();
+        }
+    }
 
-
-    /**
-
-     */
     public void animarSalir() {
-        System.out.println("icono=" + vuelta.getIconHeight() + " " + vuelta.getIconWidth());
-        System.out.println("contenedor=" + this.getHeight() + " " + this.getWidth());
+        //System.out.println("icono=" + vuelta.getIconHeight() + " " + vuelta.getIconWidth());
+       // System.out.println("contenedor=" + this.getHeight() + " " + this.getWidth());
         // this.setMaximumSize(new Dimension(this.getWidth(), getHeight()));
         altura = vuelta.getIconHeight();
         ancho = vuelta.getIconWidth();
@@ -102,9 +107,9 @@ public class Carta extends JLabel {
      Le asigna la imagen a las cartas
      */
     public void ponerImagen() {
-        System.out.println(altura + " " + ancho);
+        //System.out.println(altura + " " + ancho);
         if (altura > 0 && ancho > 0 && altura < vuelta.getIconHeight() && ancho < vuelta.getIconWidth()) {
-            System.out.println("poniendo img");
+        //    System.out.println("poniendo img");
             this.setIcon(cambiarTamano(new ImageIcon("src/img/cartas/vuelta.png"), ancho, altura));
         } else {
             if (sale) {
@@ -120,7 +125,7 @@ public class Carta extends JLabel {
 
     public void actualizarTamaño() {
         // if(!sale){
-        System.out.println("acctualiz" + this.getWidth() + "----" + this.getHeight());
+       // System.out.println("acctualiz" + this.getWidth() + "----" + this.getHeight());
 //            carta=cambiarTamano(new ImageIcon(url), this.getWidth(), this.getHeight());
 //            this.setIcon(carta);
         // }
