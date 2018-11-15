@@ -57,7 +57,11 @@ public class Vista {
 
         // vDialogoMod=new VDialogoMod(logica);
         ventana.setVisible(true);
+/*<<<<<<< HEAD
+        ingresoDatos() ;
+=======*/
         ingresoDatos();
+//>>>>>>> ad0184bed14d41c598565ef42fdd4ec2eb7c1c99
     }
 
 
@@ -67,7 +71,7 @@ public class Vista {
     public void generarVista() {
         ventana = new JFrame("Memorion");
         ventana.setMaximumSize(new Dimension(1924, 1047));
-        ventana.setSize(600, 600);
+        //ventana.setSize(600, 600);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -81,6 +85,8 @@ public class Vista {
      @param tiempo entero que indica el tiempo que va a tardar
      */
     private synchronized void cargarSplash(String logo, String fondo, int tiempo) {
+        ventana.setSize(600, 600);
+
         splash = new VistaSplash(logo, fondo, tiempo, fuente, this);
         ventana.setMinimumSize(splash.getMinimumSize());//asignamos el tamaño minimo para la ventana
         ventana.add(splash);
@@ -91,14 +97,6 @@ public class Vista {
         } catch (InterruptedException ex) {
             Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
         }
-        // splash.empezarAnimaciones();
-        /*
-         try {
-         wait();
-         } catch (InterruptedException ex) {
-         Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         */
     }
 
 
@@ -115,15 +113,15 @@ public class Vista {
             Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
         }
         ventana.remove(splash);
-        ventana.repaint();
+        //ventana.repaint();
         splash = null;
 
         // vDialogoMod.cargar();
         // ingresoDatos();
-        ventana.repaint();
+        //ventana.repaint();
 
         //ventana.add(vDialogoMod);
-        ventana.setVisible(true);
+       // ventana.setVisible(true);
     }
 
 
@@ -136,15 +134,8 @@ public class Vista {
      // DOCUMENTACIÓN EN PROCESO
      */
     public void ingresoDatos() {
-        cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
-        ventana.setVisible(true);
-        ventana.setSize(1000, 800);
+       
         String aux[] = new String[6];
-        /*
-         for(int i=0;i<aux.length;i++){
-         aux[i]="src/img/carta.jpg";
-         }
-         */
         aux[0] = "src/img/carta.jpg";
         aux[1] = "src/img/2.jpg";
         aux[2] = "src/img/carga2.jpg";
@@ -153,7 +144,10 @@ public class Vista {
         aux[5] = "src/img/flecha.png";
         //   aux[6]="src/img/flecha.png";
         vJuego.generar(aux);
+        cargarSplash("/img/logotrini.png", "/img/carga.jpg", 1);
+        ventana.setSize(1000, 800);        
         ventana.add(vJuego);
-        ventana.setVisible(true);
+
+        ventana.repaint();
     }
 }

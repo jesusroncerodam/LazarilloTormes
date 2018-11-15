@@ -32,8 +32,11 @@ public class ContrJuego implements MouseListener, KeyListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println(e.getComponent().getName());
-        vista.algo();
+        /*System.out.println(e.getComponent().getName());
+        System.out.println(e.getComponent());*/
+        logica.juegoClick(e.getComponent());
+        
+        //vista.algo();
     }
 
 
