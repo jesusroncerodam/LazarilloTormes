@@ -7,6 +7,15 @@ package trabajodi;
 
 import controladores.ContrJuego;
 import java.awt.Component;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -24,6 +33,7 @@ public class Logica {
     private boolean primeraJuego,animacionC;
     private Timer timer;
     private  int vuelta,cartaAct;
+    private final String FICHERO="estadisticas.txt";
     
     public Logica() {
     }
@@ -51,6 +61,7 @@ public class Logica {
            
 
     public synchronized void juegoClick(Component componente) {
+         gestionFichero();
         if(primeraJuego){//si se ejecuta laguna accion
             juego.gestionarContador("empezar");
             primeraJuego=false;
@@ -64,8 +75,8 @@ public class Logica {
                     juego.gestionarContador(accion);
                     break; 
                     
-                case "continuar":
-                    //guardar los datos
+                case "continuar"://guardar los datos
+                    guardarDatos();
                     break;
                     
                 case "guardar":
@@ -118,19 +129,107 @@ public class Logica {
                             timer=null;
                             animacionC=false;
                         }};
-                        timer.schedule(tarea, 2000);
+                        timer.schedule(tarea, 1000);
                     }
                 }
             }else{
                 System.out.println("jfbsj");
             }
-        
         }
+    }
+    private void guardarDatos(){
+        //nombre//ya lo tengo 
+        //imagen //ya lo tengo
+        //movimientos
+        juego.getContMov();
+        //tiempo
+        juego.getContadorSeg();
+        
     }
     
     public void juegokey() {
-
+        
     }
+    
+    private void gestionFichero(){
+        crearFichero();
+    }
+    //        fichero.delete();
+
+    private void crearFichero(){
+        try{
+            File archivo = new File(FICHERO);
+            System.out.println(archivo.getAbsoluteFile());
+            if(!archivo.exists()){
+                FileWriter escritor=new FileWriter(archivo,true);
+                escritor.write("Directorio de almacenamiento de estadistica");
+                escritor.close();
+            }
+        }catch(Exception e){
+        System.out.println("Error al escribir");//Si existe un problema al escribir cae aqui
+        }
+    }
+    
+    public void leer() {
+    //Creamos un String que va a contener todo el texto del archivo
+            String texto = "";
+
+            try {
+    //Creamos un archivo FileReader que obtiene lo que tenga el archivo
+                FileReader lector = new FileReader(FICHERO);
+
+    //El contenido de lector se guarda en un BufferedReader
+                BufferedReader contenido = new BufferedReader(lector);
+
+    //Con el siguiente ciclo extraemos todo el contenido del objeto "contenido" y lo mostramos
+                while ((texto = contenido.readLine()) != null) {
+                    System.out.println(texto);
+                }
+            } //Si se causa un error al leer cae aqui
+            catch (Exception e) {
+                System.out.println("Error al leer");
+            }
+        }
+    public void test(){
+        
+    }
+    public int Comparator(Historial hist1,Historial hist2){
+        if(hist1.getMovimientos()==hist2.getMovimientos()){
+            return hist1.getTiempo()-hist2.getTiempo();
+        }
+        return hist2.getMovimientos()-hist1.getMovimientos();
+    }   
+/*
+    }
+    /*
+    help clss
+    tein buf
+    autonum orden
+    eliminar array
+
+
+    instance ordenrar
+    arrayls interfaz
+    abst addobj
+
+
+
+
+
+
+
+
+    busfic sigfic
+    mosfic auxfic
+    insoacfic actfic
+    visfic arrdecl
+    arrordenum arrbus
+    arrbus arrayud
+    arrorclas arrorclas
+    arrcodrep arrcodrep
+
+    try*/
+            
 
     /*
      // CONTROLADOR VISTA CARGA

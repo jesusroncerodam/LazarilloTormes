@@ -20,9 +20,7 @@ import javax.swing.border.Border;
 
 
 /**
- System.out.println(vuelta.getIconHeight()+" uig
- "+vuelta.getIconWidth());vuelta.getIconHeight();
- 212 uig 134
+
  @author Guille
  */
 public class Carta extends JLabel {
@@ -31,7 +29,7 @@ public class Carta extends JLabel {
     private String url;
     private final Border borde = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.blue, 2), BorderFactory.createLoweredBevelBorder());
     final int WIDTH_DEF, HEIHT_DEF;
-    private final int ANCHOMAX = 100, ALTOMAX = 100;
+ //   private final int ANCHOMAX = 100, ALTOMAX = 100;
     int altura, ancho;
     private boolean sale;
     private Timer timer;
@@ -59,7 +57,7 @@ public class Carta extends JLabel {
 
     public void paint(Graphics g) {
         //imagen de fondo, la carta
-        g.drawImage(aux.getImage(), 1, 1, null);
+        g.drawImage(aux.getImage(), 0, 0, null);
         super.paint(g);
     }
     
@@ -95,7 +93,7 @@ public class Carta extends JLabel {
         if (timer != null) {
             timer.stop();
         }
-        timer = new Timer(5, new ActionListener() {
+        timer = new Timer(2, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (sale) {
@@ -113,9 +111,7 @@ public class Carta extends JLabel {
     }
 
 
-    /**
-     Le asigna la imagen a las cartas
-     */
+    
     public void ponerImagen() {
         //System.out.println(altura + " " + ancho);
         if (altura > 0 && ancho > 0 && altura < vuelta.getIconHeight() && ancho < vuelta.getIconWidth()) {
@@ -132,15 +128,6 @@ public class Carta extends JLabel {
         this.updateUI();
     }
 
-
-    public void actualizarTamaño() {
-        // if(!sale){
-       // System.out.println("acctualiz" + this.getWidth() + "----" + this.getHeight());
-//            carta=cambiarTamano(new ImageIcon(url), this.getWidth(), this.getHeight());
-//            this.setIcon(carta);
-        // }
-    }
-
     public boolean isSale() {
         if(bloquear){//bloquear variable que desactiva el giro de la carta de nuevo 
             return false;
@@ -149,21 +136,16 @@ public class Carta extends JLabel {
     }
 
     public void bloquear() {
-        this.setIcon(cambiarTamano(aux,WIDTH_DEF,HEIHT_DEF));
         bloquear=true;
+        repaint();
+        this.setIcon(aux);//cambiarTamano(aux,WIDTH_DEF,HEIHT_DEF));
     }
 
     public String getUrl() {
         return url;
     }
-
-    /*public static int getActivadas() {
-        return activadas;
-    }*/
-
-
-    //ocultar
-    //es igual
+    
+    
     /**
      Modifica el tamaño de las imagenes
 

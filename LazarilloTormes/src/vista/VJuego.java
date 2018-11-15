@@ -272,7 +272,6 @@ public class VJuego extends JPanel {
                 
             case "pausa":
             case "pause":
-                System.out.println("parada");
                 tReloj.stop();
                 break;
                 
@@ -313,8 +312,16 @@ public class VJuego extends JPanel {
         lMovimientos.setText("Movimientos: " + contMov);
     }
     public boolean isFin(){
-        System.out.println("carta.size()"+carta.size()+"   desactivadas "+desactivadas+"   =========="+(carta.size()>desactivadas));
+        //System.out.println("carta.size()"+carta.size()+"   desactivadas "+desactivadas+"   =========="+(carta.size()>desactivadas));
         return carta.size()>desactivadas;
-       //Carta.getActivadas();
     }
+
+    public int getContadorSeg() {
+        return contadorSeg;
+    }
+
+    public int getContMov() {
+        return contMov;
+    }
+    
 }
