@@ -86,7 +86,6 @@ public class Vista {
      */
     private synchronized void cargarSplash(String logo, String fondo, int tiempo) {
         ventana.setSize(600, 600);
-
         splash = new VistaSplash(logo, fondo, tiempo, fuente, this);
         ventana.setMinimumSize(splash.getMinimumSize());//asignamos el tamaño minimo para la ventana
         ventana.add(splash);
