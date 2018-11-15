@@ -134,7 +134,7 @@ public class Logica {
     }
 
 
-    public void dormir(int tiempo){
+    public synchronized void dormir(int tiempo){
         try {
             Thread.sleep(tiempo*1000);
         } catch (InterruptedException ex) {
