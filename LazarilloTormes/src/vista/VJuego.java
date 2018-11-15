@@ -245,13 +245,13 @@ public class VJuego extends JPanel {
     public void cambiarEstadoBoton(String boton,boolean estado){
         switch (boton) {
             case "continuar":
-                bContinuar.setEnabled(estado);
+                bContinuar.setEnabled(!estado);
                 break;
             case "guardar":
-                bGuardar.setEnabled(estado);
+                bGuardar.setEnabled(!estado);
                 break;
             case "playPause":
-                bPausaPlay.setEnabled(estado);
+                bPausaPlay.setEnabled(!estado);
                 break;
             default:
                 System.out.println("error cambiarEstadoBoton"+boton);
@@ -311,6 +311,7 @@ public class VJuego extends JPanel {
         lMovimientos.setText("Movimientos: " + contMov);
     }
     public boolean isFin(){
+        System.out.println("carta.size()"+carta.size()+"   desactivadas "+desactivadas+"   =========="+(carta.size()>desactivadas));
         return carta.size()>desactivadas;
        //Carta.getActivadas();
     }

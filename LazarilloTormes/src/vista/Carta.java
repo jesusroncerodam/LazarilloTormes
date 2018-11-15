@@ -93,7 +93,7 @@ public class Carta extends JLabel {
         if (timer != null) {
             timer.stop();
         }
-        timer = new Timer(10, new ActionListener() {
+        timer = new Timer(5, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (sale) {

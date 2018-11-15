@@ -93,6 +93,7 @@ public class Logica {
                     //=-1;                    vuelta=-1;
 
                     if(!juego.isFin()){//si es el fin
+                        System.out.println("fdjkgbnjkdfsfdhgbdjkhfsgbjkdfsgnkj.bdfgkjlh.,mdkgj,mbsdjkgbdfkldnsbjklbgnj");
                         juego.gestionarContador("pausa");
                         //cambiamos los estados de los botones 
                         juego.cambiarEstadoBoton("guardar", false);
@@ -110,7 +111,7 @@ public class Logica {
                         timer=null;
                         animacionC=false;
                     }};
-                    timer.schedule(tarea, 4000);
+                    timer.schedule(tarea, 2000);
                 }
             }
             }else{
