@@ -65,7 +65,7 @@ public class VJuego extends JPanel {
         //generamos las cartas
         asignarLabels();
         //this.add(new Button("wsfjwenjgdbsjk"),BorderLayout.WEST);
-        pausa();
+        playPause();
         guardar();
         continuar();
 
@@ -159,7 +159,7 @@ public class VJuego extends JPanel {
     }
 
 
-    private void pausa() {
+    private void playPause() {
         bPausaPlay = new JButton(new ImageIcon("src/img/playPause.png"));
         bPausaPlay.setContentAreaFilled(false);
         bPausaPlay.setBorder(null);
@@ -169,6 +169,7 @@ public class VJuego extends JPanel {
         constrain.weighty = 0.5;
         this.add(bPausaPlay, constrain);
 
+        bPausaPlay.setActionCommand("playPause");
         bPausaPlay.addKeyListener(controlador);
         bPausaPlay.addMouseListener(controlador);
     }
@@ -184,6 +185,7 @@ public class VJuego extends JPanel {
         constrain.weighty = 0.5;
         this.add(bContinuar, constrain);
 
+        bContinuar.setActionCommand("continuar");
         bContinuar.addKeyListener(controlador);
         bContinuar.addMouseListener(controlador);
     }
@@ -206,8 +208,6 @@ public class VJuego extends JPanel {
 
     //auxiliar, para probar
     boolean a = true;
-
-
     public void algo() {
         if (a) {
             carta.get(3).animarSalir();

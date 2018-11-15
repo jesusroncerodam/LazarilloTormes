@@ -145,9 +145,9 @@ public class Vista {
         //   aux[6]="src/img/flecha.png";
         vJuego.generar(aux);
         cargarSplash("/img/logotrini.png", "/img/carga.jpg", 1);
-         ventana.setSize(1000, 800);        
+        ventana.setSize(1000, 800);        
         ventana.add(vJuego);
 
-        ventana.setVisible(true);
+        ventana.repaint();
     }
 }

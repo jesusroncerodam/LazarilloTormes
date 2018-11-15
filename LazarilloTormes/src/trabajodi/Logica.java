@@ -34,8 +34,17 @@ public class Logica {
      */
     public void juegoClick(Component componente) {
         if(componente instanceof JButton){
+            String accion=((JButton) componente).getActionCommand();
+            switch (accion) {
+                case "playPause":
+                    
+                    break;
+                default:
+                    System.out.println(accion);
+                    //llamar a la de los menuses
+            }
            // switch
-            System.out.println( ((JButton) componente).getActionCommand());
+            System.out.println( );
             
             
             
