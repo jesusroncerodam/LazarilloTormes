@@ -8,6 +8,7 @@ package vista;
 
 import controladores.ContrJuego;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -98,9 +99,10 @@ public class VJuego extends JPanel {
         constrain.fill = GridBagConstraints.NONE;
 
     }
-
+ JPanel cartas ;
 
     private void generarCartas(String[] rutas) {
+        int HGAP=20, VGAP=5;
         carta = new ArrayList();
         //asignamos la misma ruta a 2 carta
         for (int i = 0; i < rutas.length; i++) {
@@ -108,22 +110,18 @@ public class VJuego extends JPanel {
             carta.add(new Carta(rutas[i]));
         }
 
-//        //para cada carta asignamos el mismo id
-//        for (int i = 0, j = 0; i < carta.size(); j++) {
-//            carta.get(i).setName("" + i/* + "-" + i*/);
-//            i++;
-//            carta.get(i).setName("" + i /*+ "-" + i*/);
-//            i++;
-//        }
-
         //creamos el panel donde estarán las cartas
-        JPanel cartas = new JPanel();
+         cartas = new JPanel();
+        
         cartas.setOpaque(false);
         //cartas.setSize((100+10)*4,(100+8)*2);
         //asignamos un layout a las cartas
         int cuadrado = (int) Math.sqrt(carta.size());
-        cartas.setLayout(new GridLayout(cuadrado, cuadrado, 20, 5));
-
+        //616,height=337]
+        //[width=616,height=508] 6+
+        //[width=584,height=647] 8
+        //cartas.setMinimumSize(new Dimension(616,647));
+        cartas.setLayout(new GridLayout(cuadrado, cuadrado, HGAP, VGAP));
         //deshordenamos las cartas
         Collections.shuffle(carta);
         
@@ -141,10 +139,11 @@ public class VJuego extends JPanel {
         constrain.gridy = 1; // El área de texto empieza en la fila cero
         constrain.gridwidth = 2; // El área de texto ocupa dos columnas.
         constrain.gridheight = 1; // El área de texto ocupa 2 filas.
-        //constrain.fill= GridBagConstraints.HORIZONTAL;
+        constrain.fill= GridBagConstraints.NONE;
         // constrain.anchor=   GridBagConstraints.LINE_END;
         constrain.weighty = 0.0;
         this.add(cartas, constrain);
+
     }
 
 
@@ -265,13 +264,15 @@ public class VJuego extends JPanel {
         }
         switch (accion.toLowerCase()) {
             case "empezar":
-            case "continuar":
+            case "play":
             case "reanudar":
                 tReloj.setRepeats(true);
                 tReloj.start();
                 break;
                 
             case "pausa":
+            case "pause":
+                System.out.println("parada");
                 tReloj.stop();
                 break;
                 
@@ -288,6 +289,7 @@ public class VJuego extends JPanel {
         }
     }
     public int algunaVisible(){
+        System.out.println(cartas.getSize());
         for(int i=0;i<carta.size(); i++) {
             if(carta.get(i).isSale()){
                 return i;

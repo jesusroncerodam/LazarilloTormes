@@ -30,7 +30,7 @@ public class Carta extends JLabel {
     private ImageIcon aux, vuelta;
     private String url;
     private final Border borde = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.blue, 2), BorderFactory.createLoweredBevelBorder());
-
+    final int WIDTH_DEF, HEIHT_DEF;
     private final int ANCHOMAX = 100, ALTOMAX = 100;
     int altura, ancho;
     private boolean sale;
@@ -46,7 +46,9 @@ public class Carta extends JLabel {
         sale=false;
         vuelta = new ImageIcon("src/img/cartas/vuelta.png");//cambiarTamano(new ImageIcon("src/img/cartas/vuelta.png"),100,300);
         this.setSize(vuelta.getIconWidth(),vuelta.getIconHeight());
-        this.setMinimumSize(new Dimension(vuelta.getIconWidth(),vuelta.getIconHeight()));
+        WIDTH_DEF=vuelta.getIconWidth();
+        HEIHT_DEF=vuelta.getIconHeight();
+      //  this.setMinimumSize(new Dimension(,));
         //carta=cambiarTamano(new ImageIcon("src/img/cartas/vuelta.png"),100,100);
         this.setIcon(vuelta);
         // aux=cambiarTamano(new ImageIcon("src/img/logotrini.png"),100,100);
@@ -147,7 +149,7 @@ public class Carta extends JLabel {
     }
 
     public void bloquear() {
-        this.setIcon(aux);
+        this.setIcon(cambiarTamano(aux,WIDTH_DEF,HEIHT_DEF));
         bloquear=true;
     }
 

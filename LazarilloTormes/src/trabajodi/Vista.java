@@ -130,17 +130,19 @@ public class Vista {
      */
     public void ingresoDatos() {
        
-        String aux[] = new String[6];
+        String aux[] = new String[4];
         aux[0] = "src/img/carta.jpg";
         aux[1] = "src/img/2.jpg";
         aux[2] = "src/img/carga2.jpg";
         aux[3] = "src/img/flecha.png";
-        aux[4] = "src/img/flecha.png";
-        aux[5] = "src/img/flecha.png";
-        //   aux[6]="src/img/flecha.png";
+       // aux[4] = "src/img/flecha.png";
+        //aux[5] = "src/img/flecha.png";
+         // aux[6]="src/img/flecha.png";
+           //         aux[7]="src/img/flecha.png";
+
         vJuego.generar(aux);
         cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
-        ventana.setSize(1000, 800);        
+        ventana.setSize(1000, 1000);        
         ventana.add(vJuego);
 
         ventana.repaint();
