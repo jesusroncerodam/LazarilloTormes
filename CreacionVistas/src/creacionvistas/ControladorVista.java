@@ -12,4 +12,10 @@ package creacionvistas;
  */
 class ControladorVista {
 
+    Vista vista;
+
+
+    public ControladorVista(Vista vista) {
+        this.vista = vista;
+    }
 }
