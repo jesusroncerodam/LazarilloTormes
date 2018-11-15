@@ -22,6 +22,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import trabajodi.Logica;
+import trabajodi.Metodos;
 
 
 /**
@@ -33,6 +34,7 @@ public class VDialogoMod extends JPanel {
     private ContrDialogoMod controlador;
     private JButton atras;
     ImageIcon flecha;
+    Metodos metodo;
 
 
     public VDialogoMod(Logica logica) {
@@ -48,7 +50,7 @@ public class VDialogoMod extends JPanel {
 
     private void generarBoton() {
         atras = new JButton();
-        flecha = imagenEspejo("/img/flecha.png");
+        //flecha = metodo.imagenEspejo("/img/flecha.png");
 
         atras.setIcon(flecha);
         atras.setContentAreaFilled(false);
@@ -87,41 +89,4 @@ public class VDialogoMod extends JPanel {
         timer.setRepeats(true);
     }
 
-
-    private ImageIcon imagenEspejo(String ruta) {
-        //BufferedImage for source image
-        BufferedImage simg = null;
-        //File object
-        File f = null;
-
-        //read source image file
-        try {
-            f = new File("src" + ruta);//necesita la carpera src para enontrar la ruta
-            simg = ImageIO.read(f);
-        } catch (IOException e) {
-            System.out.println("Error: " + e);
-        }
-
-        //guardamos los tamaños de la imagen
-        int width = simg.getWidth();
-        int height = simg.getHeight();
-
-        //Creamos el BufferedImage con las simensiones de la imagen
-        BufferedImage mimg = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-
-        //Creamos la imagen "espejo"
-        for (int y = 0; y < height; y++) {
-            for (int lx = 0, rx = width - 1; lx < width; lx++, rx--) {
-                //lx starts from the left side of the image
-                //rx starts from the right side of the image
-                //get source pixel value
-                int p = simg.getRGB(lx, y);
-                //set mirror image pixel value - both left and right
-                //mimg.setRGB(lx, y, p);
-                mimg.setRGB(rx, y, p);
-            }
-        }
-
-        return new ImageIcon(mimg.getScaledInstance(mimg.getWidth(), mimg.getHeight(), SCALE_SMOOTH));
-    }
 }
