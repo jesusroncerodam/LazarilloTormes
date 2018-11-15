@@ -7,6 +7,8 @@ package trabajodi;
 
 import controladores.ContrJuego;
 import java.awt.Component;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -71,12 +73,15 @@ public class Logica {
             
             //girar carta
             juego.girar(Integer.parseInt(a.getName()));
-            
-            if(vuelta==-1){//si es = a -1 no hay ninguna visible
-                
+            System.out.println(vuelta);
+            if(vuelta!=-1){//si es dif de  -1 hay 2 visibles
+                dormir(2);
+                juego.girar(Integer.parseInt(a.getName()));
+                juego.girar(vuelta);
             }
         }
     }
+    
     public void juegokey() {
 
     }
@@ -127,5 +132,11 @@ public class Logica {
     }
 
 
-    
+    public void dormir(int tiempo){
+        try {
+            Thread.sleep(tiempo*100);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
