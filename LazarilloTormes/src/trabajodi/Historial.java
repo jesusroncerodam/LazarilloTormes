@@ -12,12 +12,13 @@ import javax.swing.ImageIcon;
  * @author Guille
  */
 public class Historial implements Comparable<Historial>{
-    private String nombre;
-//    private ImageIcon imagen;
+    private String nombre,url;
+   // private ImageIcon imagen;
     private int tiempo,movimientos;
 
-    public Historial(String nombre, /*ImageIcon imagen,*/ int tiempo, int movimientos) {
+    public Historial(int movimientos,int tiempo,String url,String nombre) {
         this.nombre = nombre;
+        this.url=url;
        // this.imagen = imagen;
         this.tiempo = tiempo;
         this.movimientos = movimientos;
@@ -26,10 +27,17 @@ public class Historial implements Comparable<Historial>{
     public String getNombre() {
         return nombre;
     }
-    public String toString(){
-        return nombre+" "+movimientos+" "+tiempo;
+    public String leer(){
+        return "Movimientos: "+movimientos+" Tiempo: "+tiempo+"Imagen "+url+"Nombre: "+nombre+"";
     }
-//
+
+    public String getUrl() {
+        return url;
+    }
+    @Override
+    public String toString(){
+        return movimientos+";"+tiempo+";"+url+";"+nombre;//"Movimientos: "+movimientos+" Tiempo: "+tiempo+"Imagen "+url+"Nombre: "+nombre+"";
+    }
 //    public ImageIcon getImagen() {
 //        return imagen;
 //    }

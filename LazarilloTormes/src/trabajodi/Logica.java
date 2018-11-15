@@ -10,12 +10,14 @@ import java.awt.Component;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -33,7 +35,7 @@ public class Logica {
     private boolean primeraJuego,animacionC;
     private Timer timer;
     private  int vuelta,cartaAct;
-    private final String FICHERO="estadisticas.txt";
+    private final String FICHERO="estadisticas.txt",PRIMERA_LINEA="Directorio de almacenamiento de estadistica\n";
     
     public Logica() {
     }
@@ -61,8 +63,10 @@ public class Logica {
            
 
     public synchronized void juegoClick(Component componente) {
-         gestionFichero();
-          test();
+        gestionFichero();
+        //test();
+        //mostrarFichero();
+        //sdg();
         if(primeraJuego){//si se ejecuta laguna accion
             juego.gestionarContador("empezar");
             primeraJuego=false;
@@ -152,29 +156,40 @@ public class Logica {
         
     }
     
-    private void gestionFichero(){
-        crearFichero();
+    private void gestionFichero(Historial historialNuevo){
+        ArrayList<Historial> historial;
+        //nos aseguramos que existe un fichero
+        crearFichero(true);
+        //añadimos el contenido del fichero a un array
+        historial= pasarFicheroAArray();
+        //añadimos los nuevos valores 
+        historial.add(historialNuevo);
+        //ordenamos el arraylist
+        Collections.sort(historial);
+        //lo escribimos en el fichero
+        pasarAFichero(historial);
     }
     //        fichero.delete();
 
-    private void crearFichero(){
+    private void crearFichero(boolean mantenerFichero){
         try{
             File archivo = new File(FICHERO);
             System.out.println(archivo.getAbsoluteFile());
             if(!archivo.exists()){
-                FileWriter escritor=new FileWriter(archivo,true);
-                escritor.write("Directorio de almacenamiento de estadistica");
+                FileWriter escritor=new FileWriter(archivo,mantenerFichero);//true no sobrescribe
+                escritor.write(PRIMERA_LINEA);
                 escritor.close();
             }
         }catch(Exception e){
-        System.out.println("Error al escribir");//Si existe un problema al escribir cae aqui
+            System.out.println("Error al escribir");//Si existe un problema al escribir cae aqui
         }
     }
     
-    public void leer() {
+    public void mostrarFichero() {
     //Creamos un String que va a contener todo el texto del archivo
             String texto = "";
-
+            System.out.println("ficheroooooo");
+            System.out.println("================================");
             try {
     //Creamos un archivo FileReader que obtiene lo que tenga el archivo
                 FileReader lector = new FileReader(FICHERO);
@@ -191,15 +206,17 @@ public class Logica {
                 System.out.println("Error al leer");
             }
         }
+    
     public void test(){
         ArrayList historial=new ArrayList<Historial>();
         //String nombre, ImageIcon imagen, int tiempo, int movimientos
-        historial.add(new Historial("-", 20, 10));
-        historial.add(new Historial("-", 50, 15));
-        historial.add(new Historial("-", 20, 15));
-        historial.add(new Historial("-", 2, 10));
-        historial.add(new Historial("-", 50, 18));
-        
+        historial.add(new Historial( 20, 10,"url","em"));
+        historial.add(new Historial( 50, 15,"url","am"));
+        historial.add(new Historial( 20, 15,"url","om"));
+        historial.add(new Historial( 2, 10,"url","ma"));
+        historial.add(new Historial(50, 18,"url","me"));
+        pasarAFichero(historial);
+        /*
         for (Object object : historial) {
             System.out.println(object.toString()+"");
         }
@@ -207,16 +224,44 @@ public class Logica {
         System.out.println("----");
         for (Object object : historial) {
             System.out.println(object.toString()+"");
-        }
-
-
+        }*/
     }
-    public int Comparator(Historial hist1,Historial hist2){
-        if(hist1.getMovimientos()==hist2.getMovimientos()){
-            return hist1.getTiempo()-hist2.getTiempo();
+    
+    public ArrayList<Historial> pasarFicheroAArray(){//Retorna el contenido del fichero en el array
+        String linea;
+        String[] lineas;
+        ArrayList<Historial> historial=new ArrayList();
+        try {
+            FileReader f = new FileReader(FICHERO);
+            BufferedReader b = new BufferedReader(f);
+            b.readLine();//ignoramos la 1º linea
+            while((linea = b.readLine())!=null) {
+                lineas=linea.split(";");//movimientos;tiempo;imagen;nombre
+                historial.add(new Historial(Integer.parseInt(lineas[0]), Integer.parseInt(lineas[1]), lineas[2], lineas[3]));
+            }
+            b.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return hist2.getMovimientos()-hist1.getMovimientos();
-    }   
+        return historial;
+    }
+    
+    public void pasarAFichero(ArrayList<Historial> historial){//coge el arrayList y lo escribe en el fichero
+        try {
+            FileWriter fichero = new FileWriter(FICHERO,false);
+            fichero.write(PRIMERA_LINEA);
+            for (Historial historiales : historial) {
+                fichero.write(historiales.toString() + "\n");
+            }
+            fichero.close();
+
+        } catch (Exception ex) {
+            System.out.println("Mensaje de la excepción: " + ex.getMessage());
+        }
+        
+    }
 /*
     }
     /*

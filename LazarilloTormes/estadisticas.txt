@@ -1,1 +1,6 @@
-ghuahdfs
+Directorio de almacenamiento de estadistica
+20;10;url;em
+50;15;url;am
+20;15;url;om
+2;10;url;ma
+50;18;url;me
