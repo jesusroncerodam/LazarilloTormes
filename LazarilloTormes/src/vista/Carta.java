@@ -131,6 +131,10 @@ public class Carta extends JLabel {
         // }
     }
 
+    public boolean isSale() {
+        return sale;
+    }
+
 
     //ocultar
     //es igual

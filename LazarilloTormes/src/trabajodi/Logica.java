@@ -66,17 +66,19 @@ public class Logica {
         }else if(componente instanceof JLabel){//defaultIcon=src/img/cartas/vuelta.png
             JLabel a=(JLabel) componente;
             int vuelta;
-            System.out.println(a.getName());
+            int cartaAct=Integer.parseInt(a.getName());
+            System.out.println("aaaa"+cartaAct);
             System.out.println("label");
             //comprobar si hay alguna mas del reves
             vuelta=juego.algunaVisible();
             
             //girar carta
-            juego.girar(Integer.parseInt(a.getName()));
-            System.out.println(vuelta);
+            juego.girar(cartaAct);
+            System.out.println("vuelta=>"+vuelta);
             if(vuelta!=-1){//si es dif de  -1 hay 2 visibles
                 dormir(2);
-                juego.girar(Integer.parseInt(a.getName()));
+                System.out.println("entro");
+                juego.girar(cartaAct);
                 juego.girar(vuelta);
             }
         }
@@ -132,9 +134,9 @@ public class Logica {
     }
 
 
-    public void dormir(int tiempo){
+    public synchronized void dormir(int tiempo){
         try {
-            Thread.sleep(tiempo*100);
+            Thread.sleep(tiempo*1000);
         } catch (InterruptedException ex) {
             Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -244,7 +244,7 @@ public class VJuego extends JPanel {
     
     public int algunaVisible(){
         for(int i=0;i<carta.size(); i++) {
-            if(carta.get(i).getIcon()==null){
+            if(carta.get(i).isSale()){
                 return i;
             }
         }
