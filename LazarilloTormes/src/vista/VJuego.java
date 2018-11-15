@@ -254,6 +254,6 @@ public class VJuego extends JPanel {
         carta.get(i).animar();
     }
     public void mismaImagen(int i,int j){
-        
+       //  carta.get(i).
     }
 }

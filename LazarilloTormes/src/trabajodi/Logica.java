@@ -7,6 +7,7 @@ package trabajodi;
 
 import controladores.ContrJuego;
 import java.awt.Component;
+import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -76,12 +77,20 @@ public class Logica {
             //girar carta
             juego.girar(cartaAct);
             System.out.println("vuelta=>"+vuelta);
-            TimerTask
+            
+
             if(vuelta!=-1){//si es dif de  -1 hay 2 visibles
-                dormir(2);
-                System.out.println("entro");
-                juego.girar(cartaAct);
-                juego.girar(vuelta);
+                
+                
+                Timer timer=new java.util.Timer();
+                TimerTask tarea =new TimerTask() {
+                @Override
+                public void run() {
+                    juego.girar(cartaAct);
+                    juego.girar(vuelta);
+                }};
+                timer.schedule(tarea, 4000);
+                
             }
         }
     }

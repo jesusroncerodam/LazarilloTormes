@@ -34,10 +34,12 @@ public class Carta extends JLabel {
     int altura, ancho;
     private boolean sale;
     private Timer timer;
+    private boolean bloquear;
 
 
     public Carta(String url) {
-        this.setBorder(borde);//Border(borde);
+        bloquear=false;
+        this.setBorder(borde);
         this.url = url;
         sale=false;
         vuelta = new ImageIcon("src/img/cartas/vuelta.png");//cambiarTamano(new ImageIcon("src/img/cartas/vuelta.png"),100,300);
@@ -56,10 +58,12 @@ public class Carta extends JLabel {
     }
     
     public void animar(){
-        if(!sale){
-            animarSalir();
-        }else{
-            animarEntrar();
+        if(!bloquear){
+            if(!sale){
+                animarSalir();
+            }else{
+                animarEntrar();
+            }
         }
     }
 
@@ -132,7 +136,14 @@ public class Carta extends JLabel {
     }
 
     public boolean isSale() {
+        if(bloquear){//bloquear variable que desactiva el giro de la carta de nuevo 
+            return bloquear;
+        }
         return sale;
+    }
+
+    public void bloquear() {
+       bloquear=true;
     }
 
 
