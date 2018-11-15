@@ -85,6 +85,8 @@ public class Vista {
      @param tiempo entero que indica el tiempo que va a tardar
      */
     private synchronized void cargarSplash(String logo, String fondo, int tiempo) {
+                ventana.setVisible(true);
+
         splash = new VistaSplash(logo, fondo, tiempo, fuente, this);
         ventana.setMinimumSize(splash.getMinimumSize());//asignamos el tamaño minimo para la ventana
         ventana.add(splash);
@@ -116,10 +118,10 @@ public class Vista {
 
         // vDialogoMod.cargar();
         // ingresoDatos();
-        ventana.repaint();
+        //ventana.repaint();
 
         //ventana.add(vDialogoMod);
-        ventana.setVisible(true);
+       // ventana.setVisible(true);
     }
 
 
@@ -132,8 +134,6 @@ public class Vista {
      // DOCUMENTACIÓN EN PROCESO
      */
     public void ingresoDatos() {
-        cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
-        ventana.setVisible(true);
         ventana.setSize(1000, 800);
         String aux[] = new String[6];
         /*
@@ -149,7 +149,9 @@ public class Vista {
         aux[5] = "src/img/flecha.png";
         //   aux[6]="src/img/flecha.png";
         vJuego.generar(aux);
+                cargarSplash("/img/logotrini.png", "/img/carga.jpg", 1);
         ventana.add(vJuego);
+
         ventana.setVisible(true);
     }
 }
