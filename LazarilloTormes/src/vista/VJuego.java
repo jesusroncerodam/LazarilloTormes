@@ -41,7 +41,7 @@ public class VJuego extends JPanel {
     private Timer tReloj;
     private JLabel lMovimientos, lReloj;
     private JButton bPausaPlay, bGuardar, bContinuar;
-    GridBagConstraints constrain;
+    private GridBagConstraints constrain;
 
 
     public VJuego(Logica logica) {
@@ -157,8 +157,6 @@ public class VJuego extends JPanel {
                 repaint();
             }
         });
-        tReloj.setRepeats(true);
-        tReloj.start();
     }
 
 
@@ -187,7 +185,7 @@ public class VJuego extends JPanel {
         constrain.fill = GridBagConstraints.HORIZONTAL;
         constrain.weighty = 0.5;
         this.add(bContinuar, constrain);
-
+        cambiarEstadoContinuar();
         bContinuar.setActionCommand("continuar");
         bContinuar.addKeyListener(controlador);
         bContinuar.addMouseListener(controlador);
@@ -235,7 +233,6 @@ public class VJuego extends JPanel {
      });
      }
      */
-    final int AJUSTE_GIF=0;
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -243,6 +240,38 @@ public class VJuego extends JPanel {
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
     }
     
+    
+    public void cambiarEstadoContinuar(){
+        bContinuar.setEnabled(!bContinuar.isEnabled());
+    }
+    public void gestionarContador(String accion){
+        if(tReloj==null){
+            empezarReloj();
+        }
+        switch (accion.toLowerCase()) {
+            case "empezar":
+            case "continuar":
+            case "reanudar":
+                tReloj.setRepeats(true);
+                tReloj.start();
+                break;
+                
+            case "pausa":
+                tReloj.stop();
+                break;
+                
+            case "playpause":
+                if(tReloj.isRunning()){
+                    tReloj.stop();
+                }else
+                    tReloj.start();
+                tReloj.setRepeats(true);
+                break;
+                
+            default:
+                System.out.println("error gestionar contador"+accion.toLowerCase());
+        }
+    }
     public int algunaVisible(){
         for(int i=0;i<carta.size(); i++) {
             if(carta.get(i).isSale()){
@@ -260,5 +289,12 @@ public class VJuego extends JPanel {
     public void bloquearImagenes(int i, int j){
         carta.get(i).bloquear();
         carta.get(i).bloquear();
+    }
+    public void movimiento(){
+        contMov++;
+        lMovimientos.setText("Movimientos: " + contMov);
+    }
+    public void isFin(){
+        Carta.getActivadas();
     }
 }

@@ -73,8 +73,12 @@ public class ContrJuego implements MouseListener, KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-
         System.out.println(e);
+    }
+    
+    
+    public void gestionarContador(String accion){
+        vista.gestionarContador(accion);
     }
     public void girar(int i){
         vista.girar(i);
@@ -85,8 +89,10 @@ public class ContrJuego implements MouseListener, KeyListener {
     public boolean mismaImagen(int i,int j){
         return vista.mismaImagen(i,j);
     }
-     public void bloquearImagenes(int i, int j){
+    public void bloquearImagenes(int i, int j){
         vista.bloquearImagenes(i, j);
     }
-
+    public void movimiento(){
+        vista.movimiento();
+    }
 }

@@ -35,6 +35,7 @@ public class Carta extends JLabel {
     private boolean sale;
     private Timer timer;
     private boolean bloquear;
+    private static int activadas;
 
 
     public Carta(String url) {
@@ -148,6 +149,10 @@ public class Carta extends JLabel {
 
     public String getUrl() {
         return url;
+    }
+
+    public static int getActivadas() {
+        return activadas;
     }
 
 

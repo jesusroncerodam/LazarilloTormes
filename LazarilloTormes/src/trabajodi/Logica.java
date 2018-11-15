@@ -21,12 +21,13 @@ import javax.swing.JLabel;
  */
 public class Logica {
     private ContrJuego juego;
-    
+    private boolean primeraJuego;
     public Logica() {
     }
     
     public void asignarContrJuego(ContrJuego juego){
         this.juego=juego;
+        primeraJuego=true;
     }
     
     public void Menus(String accion){
@@ -44,16 +45,18 @@ public class Logica {
      // CONTROLADOR VISTA JUEGO
      */
     public void juegoClick(Component componente) {
+        if(primeraJuego){
+            juego.gestionarContador("empezar");
+            primeraJuego=false;
+        }
         if(componente instanceof JButton){
             String accion=((JButton) componente).getActionCommand();
             switch (accion) {
                 case "playPause":
-                    
+                case "continuar":
+                    juego.gestionarContador(accion);
                     break;
                 case "guardar":
-                    
-                    break;
-                case "continuar":
                     
                     break;
                 default:
@@ -61,7 +64,6 @@ public class Logica {
                     //llamar a la de los menuses
             }
            // switch
-            System.out.println( );
             
             
             
@@ -69,19 +71,19 @@ public class Logica {
             JLabel a=(JLabel) componente;
             int vuelta;
             int cartaAct=Integer.parseInt(a.getName());
-            System.out.println("aaaa"+cartaAct);
-            System.out.println("label");
+            
+            juego.movimiento();//se realiza 1 movimiento, sumamos 1 al contador
             //comprobar si hay alguna mas del reves
             vuelta=juego.algunaVisible();
             
             //girar carta
             juego.girar(cartaAct);
-            System.out.println("vuelta=>"+vuelta);
             
 
             if(vuelta!=-1){//si es dif de  -1 hay 2 visibles
                 if(juego.mismaImagen(vuelta, cartaAct)){//si las cartas que hay son =
                     juego.bloquearImagenes(vuelta, cartaAct);
+                    if(fiasfj)
                 }else{
                     Timer timer=new java.util.Timer();
                     TimerTask tarea =new TimerTask() {
