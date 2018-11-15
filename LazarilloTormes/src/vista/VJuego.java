@@ -37,7 +37,7 @@ public class VJuego extends JPanel {
     private ContrJuego controlador;
     //private Carta[] carta;
     private ArrayList<Carta> carta;
-    private int contadorSeg, contMov;
+    private int contadorSeg, contMov,desactivadas;
     private Timer tReloj;
     private JLabel lMovimientos, lReloj;
     private JButton bPausaPlay, bGuardar, bContinuar;
@@ -50,6 +50,7 @@ public class VJuego extends JPanel {
 
 
     public void generar(String[] rutas) {
+        desactivadas=0;
         this.setOpaque(true);
         this.setFocusable(true);
         this.requestFocus();
@@ -185,7 +186,7 @@ public class VJuego extends JPanel {
         constrain.fill = GridBagConstraints.HORIZONTAL;
         constrain.weighty = 0.5;
         this.add(bContinuar, constrain);
-        cambiarEstadoContinuar();
+        cambiarEstadoBoton("continuar", false);
         bContinuar.setActionCommand("continuar");
         bContinuar.addKeyListener(controlador);
         bContinuar.addMouseListener(controlador);
@@ -241,7 +242,21 @@ public class VJuego extends JPanel {
     }
     
     
-    public void cambiarEstadoContinuar(){
+    public void cambiarEstadoBoton(String boton,boolean estado){
+        switch (boton) {
+            case "continuar":
+                bContinuar.setEnabled(estado);
+                break;
+            case "guardar":
+                bGuardar.setEnabled(estado);
+                break;
+            case "playPause":
+                bPausaPlay.setEnabled(estado);
+                break;
+            default:
+                System.out.println("error cambiarEstadoBoton"+boton);
+                
+        }
         bContinuar.setEnabled(!bContinuar.isEnabled());
     }
     public void gestionarContador(String accion){
@@ -288,13 +303,15 @@ public class VJuego extends JPanel {
     }
     public void bloquearImagenes(int i, int j){
         carta.get(i).bloquear();
-        carta.get(i).bloquear();
+        carta.get(j).bloquear();
+        desactivadas+=2;
     }
     public void movimiento(){
         contMov++;
         lMovimientos.setText("Movimientos: " + contMov);
     }
-    public void isFin(){
-        Carta.getActivadas();
+    public boolean isFin(){
+        return carta.size()>desactivadas;
+       //Carta.getActivadas();
     }
 }

@@ -7,6 +7,7 @@ package vista;
 
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -35,7 +36,7 @@ public class Carta extends JLabel {
     private boolean sale;
     private Timer timer;
     private boolean bloquear;
-    private static int activadas;
+
 
 
     public Carta(String url) {
@@ -44,6 +45,8 @@ public class Carta extends JLabel {
         this.url = url;
         sale=false;
         vuelta = new ImageIcon("src/img/cartas/vuelta.png");//cambiarTamano(new ImageIcon("src/img/cartas/vuelta.png"),100,300);
+        this.setSize(vuelta.getIconWidth(),vuelta.getIconHeight());
+        this.setMinimumSize(new Dimension(vuelta.getIconWidth(),vuelta.getIconHeight()));
         //carta=cambiarTamano(new ImageIcon("src/img/cartas/vuelta.png"),100,100);
         this.setIcon(vuelta);
         // aux=cambiarTamano(new ImageIcon("src/img/logotrini.png"),100,100);
@@ -138,22 +141,23 @@ public class Carta extends JLabel {
 
     public boolean isSale() {
         if(bloquear){//bloquear variable que desactiva el giro de la carta de nuevo 
-            return bloquear;
+            return false;
         }
-        return sale;
+        return sale;//=true si no esta
     }
 
     public void bloquear() {
-       bloquear=true;
+        this.setIcon(aux);
+        bloquear=true;
     }
 
     public String getUrl() {
         return url;
     }
 
-    public static int getActivadas() {
+    /*public static int getActivadas() {
         return activadas;
-    }
+    }*/
 
 
     //ocultar

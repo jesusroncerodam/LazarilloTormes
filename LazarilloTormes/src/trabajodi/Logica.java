@@ -21,13 +21,16 @@ import javax.swing.JLabel;
  */
 public class Logica {
     private ContrJuego juego;
-    private boolean primeraJuego;
+    private boolean primeraJuego,animacionC;
+    private Timer timer;
+    
     public Logica() {
     }
     
     public void asignarContrJuego(ContrJuego juego){
         this.juego=juego;
         primeraJuego=true;
+        animacionC=false;
     }
     
     public void Menus(String accion){
@@ -44,7 +47,7 @@ public class Logica {
      // CONTROLADOR VISTA JUEGO
      // CONTROLADOR VISTA JUEGO
      */
-    public void juegoClick(Component componente) {
+    public synchronized void juegoClick(Component componente) {
         if(primeraJuego){
             juego.gestionarContador("empezar");
             primeraJuego=false;
@@ -68,33 +71,52 @@ public class Logica {
             
             
         }else if(componente instanceof JLabel){//defaultIcon=src/img/cartas/vuelta.png
+            
+            if(timer==null && !animacionC ){
             JLabel a=(JLabel) componente;
-            int vuelta;
+            int vuelta=juego.algunaVisible();
             int cartaAct=Integer.parseInt(a.getName());
             
             juego.movimiento();//se realiza 1 movimiento, sumamos 1 al contador
             //comprobar si hay alguna mas del reves
-            vuelta=juego.algunaVisible();
+            //vuelta=juego.algunaVisible();
             
             //girar carta
             juego.girar(cartaAct);
             
-
+                System.out.println("clikc en"+cartaAct);
+                System.out.println(" la qu etiene vuelta"+vuelta);
             if(vuelta!=-1){//si es dif de  -1 hay 2 visibles
                 if(juego.mismaImagen(vuelta, cartaAct)){//si las cartas que hay son =
+                    System.out.println("bloqueamos "+vuelta+" y "+cartaAct);
                     juego.bloquearImagenes(vuelta, cartaAct);
-                    if(fiasfj)
+                    //=-1;                    vuelta=-1;
+
+                    if(!juego.isFin()){//si es el fin
+                        juego.gestionarContador("pausa");
+                        //cambiamos los estados de los botones 
+                        juego.cambiarEstadoBoton("guardar", false);
+                        juego.cambiarEstadoBoton("playPause", false);
+                        juego.cambiarEstadoBoton("continuar", true);
+                    }
                 }else{
-                    Timer timer=new java.util.Timer();
+                    animacionC=true;
+                    timer=new java.util.Timer();
                     TimerTask tarea =new TimerTask() {
                     @Override
                     public void run() {
                         juego.girar(cartaAct);
                         juego.girar(vuelta);
+                        timer=null;
+                        animacionC=false;
                     }};
                     timer.schedule(tarea, 4000);
                 }
             }
+            }else{
+                System.out.println("jfbsj");
+            }
+        
         }
     }
     

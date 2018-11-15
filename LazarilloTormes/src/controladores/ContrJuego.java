@@ -95,4 +95,11 @@ public class ContrJuego implements MouseListener, KeyListener {
     public void movimiento(){
         vista.movimiento();
     }
+    public boolean isFin(){
+        return vista.isFin();
+       //Carta.getActivadas();
+    }
+    public void cambiarEstadoBoton(String boton,boolean estado){
+        vista.cambiarEstadoBoton(boton, estado);
+    }
 }
