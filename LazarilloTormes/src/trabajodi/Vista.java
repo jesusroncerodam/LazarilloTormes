@@ -57,7 +57,8 @@ public class Vista {
 
         // vDialogoMod=new VDialogoMod(logica);
         ventana.setVisible(true);
-        ingresoDatos();
+        //ingresoDatos();
+        estadisticas();
     }
 
 
@@ -144,6 +145,15 @@ public class Vista {
         cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
         ventana.setSize(1000, 1000);        
         ventana.add(vJuego);
+
+        ventana.repaint();
+    }
+    public void estadisticas() {
+
+        vLista.generar();
+        cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
+        ventana.setSize(1000, 1000);        
+        ventana.add(vLista);
 
         ventana.repaint();
     }
