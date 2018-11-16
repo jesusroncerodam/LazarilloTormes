@@ -261,39 +261,12 @@ public class Logica {
             System.out.println("Mensaje de la excepción: " + ex.getMessage());
         }
         
-    }
-/*
-    }
-    /*
-    help clss
-    tein buf
-    autonum orden
-    eliminar array
+}
 
-
-    instance ordenrar
-    arrayls interfaz
-    abst addobj
-
-
-
-
-
-
-
-
-    busfic sigfic
-    mosfic auxfic
-    insoacfic actfic
-    visfic arrdecl
-    arrordenum arrbus
-    arrbus arrayud
-    arrorclas arrorclas
-    arrcodrep arrcodrep
-
-    try*/
             
-
+    public ArrayList datosFichero(){
+        return pasarFicheroAArray();
+    }
     /*
      // CONTROLADOR VISTA CARGA
      // CONTROLADOR VISTA CARGA

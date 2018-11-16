@@ -6,6 +6,7 @@
 package controladores;
 
 
+import java.util.ArrayList;
 import vista.VLista;
 import trabajodi.Logica;
 
@@ -23,6 +24,9 @@ public class ContrLista {
     public ContrLista(VLista vista, Logica logica) {
         this.vista = vista;
         this.logica = logica;
+    }
+    public ArrayList datosFichero(){
+        return logica.pasarFicheroAArray();
     }
 
 }
