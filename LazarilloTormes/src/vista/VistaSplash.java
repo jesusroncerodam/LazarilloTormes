@@ -35,7 +35,7 @@ public class VistaSplash extends JPanel{
     private Vista vista;
     private final int TAM_WH_IMG = 200, TAM_HE_IMG = 200, MAX_WIDTH = 285, MAX_HEIGHT = 462;
     private Timer timerImg, timerBar;
-    private int grados, valorP, cont, tam, tiempo;
+    private int grados, valorP, cont, tamX,tamY, tiempo;
     private Image imagen, imagenFondo;
     private JProgressBar progreso;
     private JLabel jTexto;
@@ -77,15 +77,15 @@ public class VistaSplash extends JPanel{
         crearObjetos(rutaImg, rutaFondo, tiempo, font, vista);
     }
 
-
     /**
-     Metodo genera todos los objetos de la clase.
-     evita reescribir el codigo
-     @param rutaImg   ruta desde el main a la imagen que rota
-     @param rutaFondo ruta desde el fondo a la imagen de fondo
-     @param tiempo    en segundos, tiempo hasta completar el progreso
-     @param font      fuente de las letras
-     @param vista     vista padre
+     * Metodo genera todos los objetos de la clase.
+     * evita reescribir el codigo
+     * 
+     * @param rutaImg   ruta desde el main a la imagen que rota
+     * @param rutaFondo ruta desde el fondo a la imagen de fondo
+     * @param tiempo    en segundos, tiempo hasta completar el progreso
+     * @param font  fuente de las letras
+     * @param vista     vista padre
      */
     private void crearObjetos(String rutaImg, String rutaFondo, int tiempo, Font font, Vista vista) {
         this.vista = vista;
@@ -94,7 +94,8 @@ public class VistaSplash extends JPanel{
         this.tiempo = (tiempo * 1000) / 100;//pasamos a milisegundos y dividimos entre 100 para calcular cada cuanto se mueve el Jprogressbar
         cont = 0; //inicializamos los datos a "defecto" en el "constructor"
         grados = 0;
-        tam = getWidth() + getHeight();
+        tamX = getWidth();
+        tamY=getHeight();
         imagen = new ImageIcon(this.getClass().getResource(rutaImg)).getImage();
         imagenFondo = new ImageIcon(this.getClass().getResource(rutaFondo)).getImage();
         this.setLayout(new GridLayout(3, 1));//asignamos el layout
@@ -104,9 +105,8 @@ public class VistaSplash extends JPanel{
         progresBar();
     }
 
-
     /**
-     Metodo encargado de crear, asignar y añadir el Jlabel
+     * Metodo encargado de crear, asignar y añadir el Jlabel
      */
     private void crearJlabel() {
         jTexto = new JLabel(textos[0], JLabel.CENTER);//asignamos el 1 texto y lo centramos
@@ -117,7 +117,7 @@ public class VistaSplash extends JPanel{
 
 
     /**
-     Metodo encargado de crear, asignar y añadir el Jprogressbar
+     * Metodo encargado de crear, asignar y añadir el Jprogressbar
      */
     private void progresBar() {
         progreso = new JProgressBar();//creamos el JProgress
@@ -134,7 +134,7 @@ public class VistaSplash extends JPanel{
 
 
     /**
-     Colocamos los elementos en relacion/aspecto para que no se malformen
+     * Colocamos los elementos en relacion/aspecto para que no se malformen
      */
     private void colocarElementos() {
         /*
@@ -142,12 +142,13 @@ public class VistaSplash extends JPanel{
          //PONER DOS VARIABLES ANCH Y ALTO
          //
          */
-        if (tam != getWidth() + getHeight()) {//cuando el anacho y alto no sea el guardado
+        if (tamX != getWidth() || tamY != getHeight()) {//cuando el anacho y alto no sea el guardado
             progreso.setSize((getWidth() * progreso.getWidth()) / ((progreso.getX() * 2) + progreso.getWidth()), getHeight() / 30);//realizamos reglas de 3
             progreso.setFont(font.deriveFont((float) (15 * getWidth()) / 580));//regla de 3 con respecto al tamaño de la letra del Jprogressbar
             jTexto.setFont(font.deriveFont((float) (font.getSize() * getWidth()) / 580));//regla de 3 con respecto al tamaño de la letra del JLabel
             //progreso.setLocation((getWidth()-progreso.getWidth())/3, 0);
-            tam = getWidth() + getHeight();//guardamos el tamaño
+            tamX = getWidth();//guardamos el tamaño
+            tamY = getHeight();
         }
     }
 
@@ -175,9 +176,10 @@ public class VistaSplash extends JPanel{
     }
 
 
+
     /**
-     Metodo encargado de ir rellenndo el progreso, paso a paso y
-     asignar los textos de progreso
+     * Metodo encargado de ir rellenndo el progreso, paso a paso y
+     * asignar los textos de progreso
      */
     private void rellenarProgreso() {
         if (valorP <= 100) {//mientras que el valor del progreso sea menor de 100
@@ -189,7 +191,6 @@ public class VistaSplash extends JPanel{
             }
             progreso.setValue(valorP); //asignamos el valor del del progressbar
             valorP += 1;//sumamos uno al progreso
-
         } else {//si ya ha llegado a 100 paramos la ejecucion, y llamamos a la vista avisandola de esto
             //paramos los contadores
             timerImg.stop();
@@ -202,8 +203,8 @@ public class VistaSplash extends JPanel{
 
 
     /**
-     Encargado de crear y empezar la anumacion,
-     empieza a girar la imagen y añade valores al contador
+     * Encargado de crear y empezar la anumacion,
+     * empieza a girar la imagen y añade valores al contador
      */
     public void empezarAnimaciones() {
         timerImg = new Timer(tiempo / 5, new ActionListener() {//tiempo/5 para que sea respectivo junto al tiempo
@@ -228,10 +229,10 @@ public class VistaSplash extends JPanel{
         timerImg.setRepeats(true);
     }
 
-
+    
     /**
-     tamaño minimo para que la ventana se vea correctamente
-     @return Dimension
+     * tamaño minimo para que la ventana se vea correctamente
+     * @return Dimension
      */
     public Dimension getMinimumSize() {
         return new Dimension(MAX_WIDTH, MAX_HEIGHT);
