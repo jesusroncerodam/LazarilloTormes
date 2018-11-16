@@ -33,9 +33,8 @@ import trabajodi.Logica;
 public class VJuego extends JPanel {
 
     private Font fuente = new Font("Agency FB", Font.BOLD, 40);
-
+    private final int HGAP=20, VGAP=5;
     private ContrJuego controlador;
-    //private Carta[] carta;
     private ArrayList<Carta> carta;
     private int contadorSeg, contMov,desactivadas;
     private Timer tReloj;
@@ -43,12 +42,19 @@ public class VJuego extends JPanel {
     private JButton bPausaPlay, bGuardar, bContinuar;
     private GridBagConstraints constrain;
 
-
+    /**
+     *  Constructor, solo se asigna la logica, el resto se genera llamando al metodo
+     * generar
+     * @param logica 
+     */
     public VJuego(Logica logica) {
         controlador = new ContrJuego(this, logica);
     }
 
-
+    /**
+     * Encargado de generar toda la, variables, ect.
+     * @param rutas 
+     */
     public void generar(String[] rutas) {
         desactivadas=0;
         this.setOpaque(true);
@@ -60,48 +66,54 @@ public class VJuego extends JPanel {
         // constrain.weightx=1;
         //  constrain.fill = GridBagConstraints.BOTH;
         constrain.anchor = GridBagConstraints.CENTER;
-        //resize();
-
         this.setLayout(new GridBagLayout());
-        //generamos las cartas
+        
+        //asignamos los labels de tiempo y movimientos
         asignarLabels();
-        //this.add(new Button("wsfjwenjgdbsjk"),BorderLayout.WEST);
+        
+        //generamos los botones
         playPause();
         guardar();
         continuar();
-
-        //  this.add(ba,BorderLayout.EAST);
+        
+        //generamos las cartas
         generarCartas(rutas);
     }
 
-
+    /**
+     * Asignamos los labels, tanto el de  movimientos como el temporizador
+     */
     private void asignarLabels() {
+        //contador de movimientos
         contMov = 0;
         lMovimientos = new JLabel("Movimientos: " + contMov);
         lMovimientos.setFont(fuente);
+        //lMovimientos.setForeground(new Color(74, 110, 242));///////////////////////////////////////////////////////////////////////////////////////////////////////////CAMBIAR COLOR, PONER VARIABLE
         constrain.gridx = 0;
         constrain.gridy = 0;
         constrain.fill = GridBagConstraints.BOTH;
         this.add(lMovimientos, constrain);
 
+        //contador segundos
         contadorSeg = 0;
         ImageIcon imgReloj = new ImageIcon("src/img/reloj.png");
         lReloj = new JLabel("" + contadorSeg, imgReloj, JLabel.CENTER);
         System.out.println(imgReloj.getIconWidth());
-        lReloj.setIconTextGap((int) (-imgReloj.getIconWidth() / 1.6));
+        lReloj.setIconTextGap((int) (-imgReloj.getIconWidth() / 1.6));//si no hacemos esto, el texto saldría a la derecha de la imagen, no encima
         lReloj.setFont(fuente);
-        lReloj.setForeground(new Color(74, 110, 242));
-
+        lReloj.setForeground(new Color(74, 110, 242));///////////////////////////////////////////////////////////////////////////////////////////////////////////CAMBIAR COLOR, PONER VARIABLE
         constrain.gridx = 2;
         constrain.gridy = 0;
         this.add(lReloj, constrain);
         constrain.fill = GridBagConstraints.NONE;
 
     }
- JPanel cartas ;
-
+    
+    /**
+     * Creamos, asignamos y mostramos las images
+     * @param rutas Array de string que cotiene las rutas de las imagenes
+     */
     private void generarCartas(String[] rutas) {
-        int HGAP=20, VGAP=5;
         carta = new ArrayList();
         //asignamos la misma ruta a 2 carta
         for (int i = 0; i < rutas.length; i++) {
@@ -110,55 +122,50 @@ public class VJuego extends JPanel {
         }
 
         //creamos el panel donde estarán las cartas
-         cartas = new JPanel();
+        JPanel cartas = new JPanel();
         
         cartas.setOpaque(false);
-        //cartas.setSize((100+10)*4,(100+8)*2);
         //asignamos un layout a las cartas
         int cuadrado = (int) Math.sqrt(carta.size());
-        //616,height=337]
-        //[width=616,height=508] 6+
-        //[width=584,height=647] 8
-        //cartas.setMinimumSize(new Dimension(616,647));
         cartas.setLayout(new GridLayout(cuadrado, cuadrado, HGAP, VGAP));
-        //deshordenamos las cartas
+        //deshordenamos las cartas asi estan colocadas de manera aleatoria
         Collections.shuffle(carta);
-        
+        //asignamos el indice al nombre de las cartas
         for (int i = 0; i < carta.size(); i++) {
              carta.get(i).setName("" + i);
         }
-        //añadimos todas las cartas y les ponemos escuchador
+        //anadimos todas las cartas y les ponemos escuchador
         for (int i = 0; i < carta.size(); i++) {
             cartas.add(carta.get(i));
             carta.get(i).addMouseListener(controlador);
         }
-        //cartas.setVisible(true);
-        //cartas.setBackground(Color.red);
-        constrain.gridx = 0; // El área de texto empieza en la columna cero.
-        constrain.gridy = 1; // El área de texto empieza en la fila cero
+        constrain.gridx = 0; // El área de texto empieza en la columna 0.
+        constrain.gridy = 1; // El área de texto empieza en la fila 1
         constrain.gridwidth = 2; // El área de texto ocupa dos columnas.
-        constrain.gridheight = 1; // El área de texto ocupa 2 filas.
+        constrain.gridheight = 1; // El área de texto ocupa 1 filas.
         constrain.fill= GridBagConstraints.NONE;
-        // constrain.anchor=   GridBagConstraints.LINE_END;
         constrain.weighty = 0.0;
         this.add(cartas, constrain);
-
     }
 
-
+    /**
+     * Encargado de iniciar el contador 
+     */
     private void empezarReloj() {
         tReloj = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 contadorSeg++;
                 lReloj.setText("" + contadorSeg);
-                //poner si pasa de una cifra se coloque bien, 10 100 1000....
+                //poner si pasa de una cifra se coloque bien, 10 100 1000..../////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 repaint();
             }
         });
     }
 
-
+    /**
+     * Encargado de generay asignar el JButon de PlayYpause
+     */
     private void playPause() {
         bPausaPlay = new JButton(new ImageIcon("src/img/playPause.png"));
         bPausaPlay.setContentAreaFilled(false);
@@ -174,7 +181,9 @@ public class VJuego extends JPanel {
         bPausaPlay.addMouseListener(controlador);
     }
 
-
+    /**
+     * Encargado de generay asignar el JButon de continuar
+     */
     private void continuar() {
         bContinuar = new JButton(new ImageIcon("src/img/flechaRect.png"));
         bContinuar.setContentAreaFilled(false);
@@ -190,7 +199,9 @@ public class VJuego extends JPanel {
         bContinuar.addMouseListener(controlador);
     }
 
-
+    /**
+     * Encargado de generay asignar el JButon de guardar
+     */
     private void guardar() {
         bGuardar = new JButton(new ImageIcon("src/img/save.png"));
         bGuardar.setContentAreaFilled(false);
@@ -205,19 +216,11 @@ public class VJuego extends JPanel {
         bGuardar.addKeyListener(controlador);
         bGuardar.addMouseListener(controlador);
     }
-
-    //auxiliar, para probar
-    boolean a = true;
-    public void algo() {
-        if (a) {
-            carta.get(3).animarSalir();
-            a = false;
-        } else {
-            carta.get(3).animarEntrar();
-            a = true;
-        }
-    }
     
+    /**
+     * Pintamos el Fondo
+     * @param g paint
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -273,7 +276,6 @@ public class VJuego extends JPanel {
         }
     }
     public int algunaVisible(){
-        System.out.println(cartas.getSize());
         for(int i=0;i<carta.size(); i++) {
             if(carta.get(i).isSale()){
                 return i;
