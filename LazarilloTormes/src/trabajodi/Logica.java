@@ -266,13 +266,13 @@ public class Logica {
             
     public String[] ficheroAArray(){
         String linea;
-        String[] lineas = null;
+        ArrayList<String> lineas = new ArrayList();
         try {
             FileReader f = new FileReader(FICHERO);
             BufferedReader b = new BufferedReader(f);
             b.readLine();//ignoramos la 1º linea
             while((linea = b.readLine())!=null) {
-                lineas=linea.split(";");//movimientos;tiempo;imagen;nombre
+                lineas.add(""+linea);//movimientos;tiempo;imagen;nombre
             }
             b.close();
         } catch (FileNotFoundException ex) {
@@ -280,7 +280,11 @@ public class Logica {
         } catch (IOException ex) {
             Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return lineas;
+        for (String linea1 : lineas) {
+            System.out.println(linea1);
+        }
+        System.out.println("==========================");
+        return (String[]) lineas.toArray(new String[lineas.size()]);
     }
     /*
      // CONTROLADOR VISTA CARGA

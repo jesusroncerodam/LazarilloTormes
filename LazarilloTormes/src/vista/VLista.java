@@ -42,10 +42,11 @@ public class VLista extends JPanel{
     }
     public void generar(){ 
         recogerDatos();
-
+        
          modelo = new DefaultTableModel(datos.length,NOMBRE_COLUMNAS.length);
         tabla = new JTable(modelo);
         cabecera();
+        ingesarDatos();
         /*
         //Document modelo=new Document
         taDatos=new JTextPane();
@@ -65,25 +66,37 @@ public class VLista extends JPanel{
         }
     }
     public void ingesarDatos(){
-        String[] campos;
-        Object[] columna=new Object[NOMBRE_COLUMNAS.length];
+        Object[][] columna=new Object[datos.length][NOMBRE_COLUMNAS.length];
+        String[] elementos=null;
         for (int i = 0; i < datos.length; i++) {
-            campos=datos[i].split(";");
-            for (int j = 0; j < campos.length; j++) {
-               /* if(j==2){
-                    columna[j]=new ImageIcon(campos[2]); 
-                }else*/
-                    columna[j]=datos[i];
+            elementos=datos[i].split(";");
+            System.out.println("==============");
+            
+            for (int j = 0; j < elementos.length; j++) {
+                switch (j) {
+                    case 0://posicion
+                        columna[i][j]=new Integer(i);
+                        break;
+                    case 1://imagen
+                        columna[i][j]=new ImageIcon(elementos[i]); 
+                        break;
+                    case 2://nombre
+                        columna[i][j]=elementos[i];
+                        break;
+                    case 3://mov
+                        columna[i][j]=new Integer(elementos[j]);
+                        break;
+                    case 4:
+                        columna[i][j]=new Integer(elementos[j]);
+                        break;
+                    default:
+                        System.out.println("error "+j);
+                }
+                //movimientos;tiempo;imagen;nombre
             }
-            añadirColumna(campos);
         }
-        int i=0;//provisional
-        //movimientos;tiempo;imagen;nombre
-        
-       // ImageIcon imagen=new ImageIcon(campos[2]); //campos 2 es la url donde essta la imagen
-        
-        
-    }
+      }
+    
     public void añadirColumna(Object[] columna){
         modelo.addRow(columna);
     }
@@ -115,3 +128,22 @@ public class VLista extends JPanel{
     }
 
 }
+ /*String[] campos;
+        Object[] columna=new Object[NOMBRE_COLUMNAS.length];
+        for (int i = 0; i < datos.length; i++) {
+            campos=datos[i].split(";");
+            System.out.println(datos.toString());
+            for (int j = 0; j < campos.length; j++) {
+                System.out.println(datos[j]);
+                if(j==2){
+                    columna[j]=new ImageIcon(campos[2]); 
+                }else
+                    columna[j]=datos[j];
+            }
+            añadirColumna(campos);
+        }*/
+        //int i=0;//provisional
+        //movimientos;tiempo;imagen;nombre
+        
+       // ImageIcon imagen=new ImageIcon(campos[2]); //campos 2 es la url donde essta la imagen
+    
