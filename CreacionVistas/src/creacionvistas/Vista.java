@@ -2,8 +2,11 @@ package creacionvistas;
 
 
 import java.awt.Color;
+import java.awt.TextField;
 import java.util.Random;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -17,7 +20,10 @@ public class Vista extends JFrame {
     ControladorVista controladorVista;
 
     private JPanel panel1;
-    private final int ANCHOMARCO = 400, ALTOMARCO = 500;
+    private final int ANCHOMARCO = 500, ALTOMARCO = 500;
+    private JLabel labelNombre, labelApodo;
+    private TextField campoNombre;
+    private JButton flechaAtrás, avanzarPagina;
 
 
     public Vista() {
@@ -38,6 +44,13 @@ public class Vista extends JFrame {
 
     public void crearElementos() {
         panel1 = new JPanel();
+        labelNombre = new JLabel();
+        labelApodo = new JLabel();
+        campoNombre = new TextField();
+        
+        flechaAtrás = new JButton();
+        avanzarPagina = new JButton();
+        
 
     }
 
