@@ -8,7 +8,6 @@ package vista;
 
 import controladores.ContrJuego;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -311,3 +310,16 @@ public class VJuego extends JPanel {
     }
     
 }
+/*
+     private void resize(){
+     this.addComponentListener(new java.awt.event.ComponentAdapter() {
+     public void componentResized(java.awt.event.ComponentEvent evt) {
+     System.out.println(evt.getComponent());
+     for (Carta carta1 : carta) {
+     System.out.println(getWidth()+"---"+getHeight());
+     carta1.actualizarTamaño();
+     }
+     }
+     });
+     }
+     */
