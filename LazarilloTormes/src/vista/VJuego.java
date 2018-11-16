@@ -193,7 +193,7 @@ public class VJuego extends JPanel {
         constrain.fill = GridBagConstraints.HORIZONTAL;
         constrain.weighty = 0.5;
         this.add(bContinuar, constrain);
-        cambiarEstadoBoton("continuar", false);
+        cambiarEstadoBoton("continuar", true);
         bContinuar.setActionCommand("continuar");
         bContinuar.addKeyListener(controlador);
         bContinuar.addMouseListener(controlador);
@@ -228,7 +228,12 @@ public class VJuego extends JPanel {
         g.drawImage(img, 0, 0, getWidth(), getHeight()+5, this);
     }
     
-    
+    /**
+     * Cambia el estado del boton, activado o desactivado
+     * 
+     * @param boton String, texto, corresponde al boton 
+     * @param estado booleano, pone el estado de este boton
+     */
     public void cambiarEstadoBoton(String boton,boolean estado){
         switch (boton) {
             case "continuar":
@@ -242,10 +247,13 @@ public class VJuego extends JPanel {
                 break;
             default:
                 System.out.println("error cambiarEstadoBoton"+boton);
-                
         }
-        bContinuar.setEnabled(!bContinuar.isEnabled());
     }
+    
+    /**
+     * Empieza crea o pausa el contador del timepo
+     * @param accion String a realizar
+     */
     public void gestionarContador(String accion){
         if(tReloj==null){
             empezarReloj();
@@ -275,6 +283,12 @@ public class VJuego extends JPanel {
                 System.out.println("error gestionar contador"+accion.toLowerCase());
         }
     }
+    
+    /**
+     * Retorna el entero que esta visible y sin bloquear, es decir el que este sin
+     * su pareja ya asignada, -1 si no encuentra a nadie
+     * @return int valor de carta viible sin bloquear, -1 si no lo encuentra
+     */
     public int algunaVisible(){
         for(int i=0;i<carta.size(); i++) {
             if(carta.get(i).isSale()){
@@ -283,23 +297,50 @@ public class VJuego extends JPanel {
         }
         return -1;
     }
+    
+    /**
+     * Anima la imagen la gira mostrando el fondo
+     * @param i int, indice del arraylist de las cartas
+     */
     public void girar(int i){
         carta.get(i).animar();
     }
+    
+    /**
+     * retorna si al imagen que ha hecho click apunta la imagen al la misma 
+     * imagrn (si tiene la misma ruta)
+     * @param i indice de 1 carta a comparar
+     * @param j indice de 2 carta a comparar
+     * @return boolean, si son las mismsa imagen
+     */
     public boolean mismaImagen(int i,int j){
         return (carta.get(i).getUrl().equals( carta.get(j).getUrl()));
     }
+    
+    /**
+     * bloquea pareja de  imagenes para que no se puedan volver a girar y asi no 
+     * se muestren en al busar umagenes, tambien suma 2 a las cartas descativadas
+     * @param i indice del array de la carta a bloquear
+     * @param j indice del array de la carta a bloquear
+     */
     public void bloquearImagenes(int i, int j){
         carta.get(i).bloquear();
         carta.get(j).bloquear();
         desactivadas+=2;
     }
+    /**
+     * Añade un movimiento al contador de movimientos
+     */
     public void movimiento(){
         contMov++;
         lMovimientos.setText("Movimientos: " + contMov);
     }
+    /**
+     * retornas la partida finalizo
+     * @return booleano, true si aun no termino
+     */
     public boolean isFin(){
-        //System.out.println("carta.size()"+carta.size()+"   desactivadas "+desactivadas+"   =========="+(carta.size()>desactivadas));
+        System.out.println(carta.size()>desactivadas);
         return carta.size()>desactivadas;
     }
 
