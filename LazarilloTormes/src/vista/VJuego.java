@@ -218,26 +218,12 @@ public class VJuego extends JPanel {
             a = true;
         }
     }
-
-
-    /*
-     private void resize(){
-     this.addComponentListener(new java.awt.event.ComponentAdapter() {
-     public void componentResized(java.awt.event.ComponentEvent evt) {
-     System.out.println(evt.getComponent());
-     for (Carta carta1 : carta) {
-     System.out.println(getWidth()+"---"+getHeight());
-     carta1.actualizarTamaño();
-     }
-     }
-     });
-     }
-     */
+    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Image img = new ImageIcon("src/img/fondo2.gif").getImage();
-        g.drawImage(img, 0, 0, getWidth(), getHeight()+50, this);
+        g.drawImage(img, 0, 0, getWidth(), getHeight()+5, this);
     }
     
     

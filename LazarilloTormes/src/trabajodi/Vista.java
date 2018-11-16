@@ -55,7 +55,6 @@ public class Vista {
         vMenu = new VMenu(logica);
         //no ponemos splash ya que no necesita logica
 
-        // vDialogoMod=new VDialogoMod(logica);
         ventana.setVisible(true);
         ingresoDatos();
        // estadisticas();
@@ -71,63 +70,48 @@ public class Vista {
         //ventana.setSize(600, 600);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
-
+    
     /**
-     Método para generar la pantalla de carga, se le pasan las strings del logo
-     y del fondo para crear las imagenes, así como el tiempo que queremos que
-     dure la animación
-     @param logo   cadena de texto con la ruta a la imagen del logo
-     @param fondo  cadena de texto con la ruta a la imagen de fondo
-     @param tiempo entero que indica el tiempo que va a tardar
+     * Método para generar la pantalla de carga, se le pasan las strings del logo
+     * y del fondo para crear las imagenes, así como el tiempo que queremos que
+     * dure la animación
+     * Metodo genera la pantalla Splash,
+     * @param logo  Strig,ruta de la imagen que da vueltas
+     * @param fondo String, ruta de la imagen que es asignada en el fondo
+     * @param tiempo Int, Tiempo en segundos, indica la duracion del splash.
      */
     private synchronized void cargarSplash(String logo, String fondo, int tiempo) {
-        ventana.setSize(600, 600);
         splash = new VistaSplash(logo, fondo, tiempo, fuente, this);
         ventana.setMinimumSize(splash.getMinimumSize());//asignamos el tamaño minimo para la ventana
         ventana.add(splash);
         ventana.setVisible(true);
         splash.empezarAnimaciones();
         try {
-            wait();
+            wait();//dormimos la ejecucion de este hilo, termina cuando se llame a splashTermina
         } catch (InterruptedException ex) {
             Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-
     /**
-     Método que finaliza la ejecución de la vista de carga, además, establece el
-     splash a nulo para ahorrar espacio en memoria, elimina la ventana de carga,
-     y vuelve a pintar la ventana para que se ejecute la nueva vista
+     * Método que finaliza la ejecución de la vista de carga, además,notificando
+     * al hilo principal que estaba en "wait", duerme la ejecucion durante 0.5
+     * segundos para no mostrar un cambio brusco, establece el splash a nulo para
+     * ahorrar espacio en memoria y elimina la ventana de carg.
      */
     public synchronized void splashTermina() {
-        notifyAll();
+        notifyAll();//notificamos al hilo de ejecucion
         try {
-            Thread.sleep(10);
+            Thread.sleep(500);//lo dormimos un segundo para que el cambio no sea brusco
         } catch (InterruptedException ex) {
             Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ventana.remove(splash);
-        //ventana.repaint();
-        splash = null;
-
-        // vDialogoMod.cargar();
-        // ingresoDatos();
-        //ventana.repaint();
-
-        //ventana.add(vDialogoMod);
-       // ventana.setVisible(true);
+        ventana.remove(splash);//lo quitamos de la vusta para que no de errores
+        splash = null;//eliminamos el objeto, ya no lo necesitamos mas 
     }
 
 
     /**
-     // DOCUMENTACIÓN EN PROCESO
-     // DOCUMENTACIÓN EN PROCESO
-     // DOCUMENTACIÓN EN PROCESO
-     // DOCUMENTACIÓN EN PROCESO
-     // DOCUMENTACIÓN EN PROCESO
-     // DOCUMENTACIÓN EN PROCESO
      */
     public void ingresoDatos() {
        
@@ -142,12 +126,16 @@ public class Vista {
         aux[7]="src/img/flecha.png";
 
         vJuego.generar(aux);
-        cargarSplash("/img/logotrini.png", "/img/carga.jpg", 3);
+        cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
         ventana.setSize(1000, 1000);        
         ventana.add(vJuego);
 
         ventana.repaint();
     }
+    
+    /**
+     * 
+     */
     public void estadisticas() {
 
         vLista.generar();
