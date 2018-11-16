@@ -57,8 +57,8 @@ public class Vista {
 
         // vDialogoMod=new VDialogoMod(logica);
         ventana.setVisible(true);
-        //ingresoDatos();
-        estadisticas();
+        ingresoDatos();
+       // estadisticas();
     }
 
 
@@ -131,18 +131,18 @@ public class Vista {
      */
     public void ingresoDatos() {
        
-        String aux[] = new String[4];
+        String aux[] = new String[8];
         aux[0] = "src/img/carta.jpg";
         aux[1] = "src/img/2.jpg";
         aux[2] = "src/img/carga2.jpg";
         aux[3] = "src/img/flecha.png";
-       // aux[4] = "src/img/flecha.png";
-        //aux[5] = "src/img/flecha.png";
-         // aux[6]="src/img/flecha.png";
-           //         aux[7]="src/img/flecha.png";
+        aux[4] = "src/img/flecha.png";
+        aux[5] = "src/img/flecha.png";
+        aux[6]="src/img/flecha.png";
+        aux[7]="src/img/flecha.png";
 
         vJuego.generar(aux);
-        cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
+        cargarSplash("/img/logotrini.png", "/img/carga.jpg", 3);
         ventana.setSize(1000, 1000);        
         ventana.add(vJuego);
 

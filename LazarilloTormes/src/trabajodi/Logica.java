@@ -94,6 +94,13 @@ public class Logica {
             }
             
         }else if(componente instanceof JLabel){//si es un JLabel
+            //si esta en pause no mueve carta
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
             if( !animacionC ){
                 JLabel a=(JLabel) componente;
                 vuelta=juego.algunaVisible();

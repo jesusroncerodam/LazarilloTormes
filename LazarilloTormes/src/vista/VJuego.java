@@ -236,8 +236,8 @@ public class VJuego extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Image img = new ImageIcon("src/img/fondo.gif").getImage();
-        g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+        Image img = new ImageIcon("src/img/fondo2.gif").getImage();
+        g.drawImage(img, 0, 0, getWidth(), getHeight()+50, this);
     }
     
     
