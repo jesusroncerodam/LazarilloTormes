@@ -7,6 +7,8 @@ package vista;
 
 
 import controladores.ContrLista;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.TextArea;
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
@@ -30,6 +33,7 @@ import trabajodi.Logica;
 public class VLista extends JPanel{
     private final String[] NOMBRE_COLUMNAS = {"Nº","Image","Name","Mov.","Time"};
     private String[] datos;
+    Object[][] columna;
     JTable tabla ;
     DefaultTableModel modelo;
     private ContrLista controlador;
@@ -42,16 +46,25 @@ public class VLista extends JPanel{
     }
     public void generar(){ 
         recogerDatos();
-        
-         modelo = new DefaultTableModel(datos.length,NOMBRE_COLUMNAS.length);
-        tabla = new JTable(modelo);
-        cabecera();
         ingesarDatos();
+        
+        modelo = new DefaultTableModel(columna,NOMBRE_COLUMNAS);
+        tabla = new JTable(modelo);
+        tabla.setPreferredScrollableViewportSize(new Dimension(250, 100));
+        JScrollPane scrollPane = new JScrollPane(tabla);
+        this.add(scrollPane);
+
+      //  getContentPane().add(scrollPane, BorderLayout.CENTER);
+        //cabecera();
         /*
         //Document modelo=new Document
         taDatos=new JTextPane();
         attrs = new SimpleAttributeSet();
 
+        modelo = new DefaultTableModel(datos.length,NOMBRE_COLUMNAS.length);
+        tabla = new JTable(modelo);
+        cabecera();
+        
         taDatos.setEditable(false);
         taDatos.setAutoscrolls(true);
         //taDatos.set
@@ -65,34 +78,31 @@ public class VLista extends JPanel{
             modelo.addColumn(col);
         }
     }
-    public void ingesarDatos(){
-        Object[][] columna=new Object[datos.length][NOMBRE_COLUMNAS.length];
-        String[] elementos=null;
+    public void ingesarDatos(){//{"Nº","Image","Name","Mov.","Time"};
+        columna=new Object[datos.length][NOMBRE_COLUMNAS.length];
+        String[] elementos;
         for (int i = 0; i < datos.length; i++) {
             elementos=datos[i].split(";");
-            System.out.println("==============");
-            
-            for (int j = 0; j < elementos.length; j++) {
-                switch (j) {
-                    case 0://posicion
-                        columna[i][j]=new Integer(i);
+            columna[i][0]=new Integer(i+1);
+            for (int j = 0,k=1; j < elementos.length; j++,k++) {//movimientos;tiempo;imagen;nombre
+                //System.out.println(elementos[j]+" -i"+i+" -j"+j);
+                switch (j) {    
+                    case 0://movimientos
+                        //lo colocamos en el array
+                        columna[i][3]=new ImageIcon(elementos[j]); 
                         break;
-                    case 1://imagen
-                        columna[i][j]=new ImageIcon(elementos[i]); 
+                    case 1://tiempo                        
+                        columna[i][4]=elementos[j];
                         break;
-                    case 2://nombre
-                        columna[i][j]=elementos[i];
+                    case 2://imagen
+                        columna[i][1]=new ImageIcon("./"+elementos[j]); //new Integer(elementos[j]);
                         break;
-                    case 3://mov
-                        columna[i][j]=new Integer(elementos[j]);
-                        break;
-                    case 4:
-                        columna[i][j]=new Integer(elementos[j]);
+                    case 3://nombre               
+                        columna[i][2]=elementos[j];//new Integer(elementos[j]);
                         break;
                     default:
                         System.out.println("error "+j);
                 }
-                //movimientos;tiempo;imagen;nombre
             }
         }
       }
