@@ -63,13 +63,14 @@ public class VistaSplash extends JPanel{
 
 
     /**
-     Constructor Crea una vista splash
-     extiende de JPanel
-     @param rutaImg   ruta desde el main a la imagen que rota
-     @param rutaFondo ruta desde el fondo a la imagen de fondo
-     @param tiempo    en segundos, tiempo hasta completar el progreso
-     @param font      fuente de las letras
-     @param textos    array de String , contiene los mensajes de accion
+     *  Constructor Crea una vista splash
+     *  extiende de JPanel
+     * @param rutaImg   ruta desde el main a la imagen que rota
+     * @param rutaFondo     ruta desde el fondo a la imagen de fondo
+     * @param tiempo    tiempo hasta completar el progreso
+     * @param font  fuente de las letras
+     * @param textos    array de String, Mensajes de estado
+     * @param vista  vista a la que llama al terminar la ejecucion
      */
     public VistaSplash(String rutaImg, String rutaFondo, int tiempo, Font font, String[] textos, Vista vista) {
         this.textos = textos;
