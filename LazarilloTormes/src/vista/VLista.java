@@ -11,6 +11,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.TextArea;
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,7 +21,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.text.Document;
 import javax.swing.text.SimpleAttributeSet;
 import trabajodi.Logica;
@@ -50,6 +53,13 @@ public class VLista extends JPanel{
         
         modelo = new DefaultTableModel(columna,NOMBRE_COLUMNAS);
         tabla = new JTable(modelo);
+        tabla.getColumnModel().getColumn(1).setCellRenderer(new ImageRenderer("/img/2.jpg"));
+//        System.out.println(tabla.getColumnCount());
+//        File f=new File("src/img/carta.jpg");
+//        System.out.println(f.getAbsoluteFile());
+//        tabla.getColumnModel().getColumn(4).setCellRenderer((TableCellRenderer) new ImageIcon(getClass().getResource("src/img/carta.jpg")));//new ImageIcon("src/img/carta.jpg")
+                //new ImageIcon(getClass().getResource(iconName)); 
+ 
         tabla.setPreferredScrollableViewportSize(new Dimension(250, 100));
         JScrollPane scrollPane = new JScrollPane(tabla);
         this.add(scrollPane);
@@ -95,7 +105,7 @@ public class VLista extends JPanel{
                         columna[i][4]=elementos[j];
                         break;
                     case 2://imagen
-                        columna[i][1]=new ImageIcon("./"+elementos[j]); //new Integer(elementos[j]);
+                        columna[i][1]=new ImageIcon(getClass().getResource("/img/2.jpg"));//new JLabel(new ImageIcon(elementos[j])); //new Integer(elementos[j]);
                         break;
                     case 3://nombre               
                         columna[i][2]=elementos[j];//new Integer(elementos[j]);
@@ -138,6 +148,13 @@ public class VLista extends JPanel{
     }
 
 }
+class ImageRenderer extends DefaultTableCellRenderer {
+        ImageIcon icon = null;
+
+        ImageRenderer(String iconName) {
+            icon = new ImageIcon(getClass().getResource(iconName));
+        }
+  }
  /*String[] campos;
         Object[] columna=new Object[NOMBRE_COLUMNAS.length];
         for (int i = 0; i < datos.length; i++) {
