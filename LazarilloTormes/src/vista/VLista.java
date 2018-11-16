@@ -28,7 +28,10 @@ import trabajodi.Logica;
  @author Guille
  */
 public class VLista extends JPanel{
-
+    private final String[] columnNames = {"Nº","Image","Name","Mov.","Time"};
+    private String[] datos;
+    JTable tabla ;
+    DefaultTableModel modelo;
     private ContrLista controlador;
     private JTextPane taDatos;
     private JButton atras;
@@ -38,9 +41,11 @@ public class VLista extends JPanel{
         controlador = new ContrLista(this, logica);
     }
     public void generar(){ 
-        DefaultTableModel modelo = new DefaultTableModel();
-        JTable tabla = new JTable(modelo);
-         recogerDatos();
+        recogerDatos();
+
+         modelo = new DefaultTableModel(datos.length,columnNames.length);
+        tabla = new JTable(modelo);
+        cabecera();
         /*
         //Document modelo=new Document
         taDatos=new JTextPane();
@@ -54,13 +59,17 @@ public class VLista extends JPanel{
         this.add(taDatos);*/
     }
     public void cabecera(){
-        String[] columnNames = {"Nº","Image","Name","Mov.","Time"};
+        modelo.addRow(columnNames);
+    }
+    public void ingesarDatos(){
+        //movimientos;tiempo;imagen;nombre
+        
+        modelo.addRow(datos);
     }
     public void recogerDatos(){
-        ArrayList datos=controlador.datosFichero();
-        for (Object dato : datos) {
-            System.out.println(dato.toString());
-        }
+        /*ArrayList datos=controlador.datosFichero();
+        datos.toArray();*/
+        datos=controlador.datosFichero();
         
     }
     public void insertar(){

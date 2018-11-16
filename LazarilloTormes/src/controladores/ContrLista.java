@@ -25,8 +25,8 @@ public class ContrLista {
         this.vista = vista;
         this.logica = logica;
     }
-    public ArrayList datosFichero(){
-        return logica.pasarFicheroAArray();
+    public String[] datosFichero(){
+        return logica.ficheroAArray();
     }
 
 }

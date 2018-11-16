@@ -264,8 +264,23 @@ public class Logica {
 }
 
             
-    public ArrayList datosFichero(){
-        return pasarFicheroAArray();
+    public String[] ficheroAArray(){
+        String linea;
+        String[] lineas = null;
+        try {
+            FileReader f = new FileReader(FICHERO);
+            BufferedReader b = new BufferedReader(f);
+            b.readLine();//ignoramos la 1º linea
+            while((linea = b.readLine())!=null) {
+                lineas=linea.split(";");//movimientos;tiempo;imagen;nombre
+            }
+            b.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lineas;
     }
     /*
      // CONTROLADOR VISTA CARGA
