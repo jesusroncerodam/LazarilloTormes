@@ -28,7 +28,7 @@ import trabajodi.Logica;
  @author Guille
  */
 public class VLista extends JPanel{
-    private final String[] columnNames = {"Nº","Image","Name","Mov.","Time"};
+    private final String[] NOMBRE_COLUMNAS = {"Nº","Image","Name","Mov.","Time"};
     private String[] datos;
     JTable tabla ;
     DefaultTableModel modelo;
@@ -43,7 +43,7 @@ public class VLista extends JPanel{
     public void generar(){ 
         recogerDatos();
 
-         modelo = new DefaultTableModel(datos.length,columnNames.length);
+         modelo = new DefaultTableModel(datos.length,NOMBRE_COLUMNAS.length);
         tabla = new JTable(modelo);
         cabecera();
         /*
@@ -57,14 +57,35 @@ public class VLista extends JPanel{
         insertar();
 
         this.add(taDatos);*/
+        this.add(tabla);
     }
     public void cabecera(){
-        modelo.addRow(columnNames);
+        for (String col : NOMBRE_COLUMNAS) {
+            modelo.addColumn(col);
+        }
     }
     public void ingesarDatos(){
+        String[] campos;
+        Object[] columna=new Object[NOMBRE_COLUMNAS.length];
+        for (int i = 0; i < datos.length; i++) {
+            campos=datos[i].split(";");
+            for (int j = 0; j < campos.length; j++) {
+               /* if(j==2){
+                    columna[j]=new ImageIcon(campos[2]); 
+                }else*/
+                    columna[j]=datos[i];
+            }
+            añadirColumna(campos);
+        }
+        int i=0;//provisional
         //movimientos;tiempo;imagen;nombre
         
-        modelo.addRow(datos);
+       // ImageIcon imagen=new ImageIcon(campos[2]); //campos 2 es la url donde essta la imagen
+        
+        
+    }
+    public void añadirColumna(Object[] columna){
+        modelo.addRow(columna);
     }
     public void recogerDatos(){
         /*ArrayList datos=controlador.datosFichero();
