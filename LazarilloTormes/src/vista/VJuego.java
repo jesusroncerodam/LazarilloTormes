@@ -343,7 +343,6 @@ public class VJuego extends JPanel {
      * @return booleano, true si aun no termino
      */
     public boolean isFin(){
-        System.out.println(carta.size()>desactivadas);
         return carta.size()>desactivadas;
     }
 

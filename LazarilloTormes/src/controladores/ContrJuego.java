@@ -23,9 +23,9 @@ public class ContrJuego implements MouseListener, KeyListener {
     private Logica logica;
 
     /**
-     * const
-     * @param vista
-     * @param logica 
+     * Construcyor de Controlador del juego se asigna la vista y la logca
+     * @param vista vista a la que se refiere, para poder comunicarse con ella
+     * @param logica logica a la que se refiere para comunicarse
      */
     public ContrJuego(VJuego vista, Logica logica) {
         this.vista = vista;
@@ -43,11 +43,7 @@ public class ContrJuego implements MouseListener, KeyListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        /*System.out.println(e.getComponent().getName());
-        System.out.println(e.getComponent());*/
         logica.juegoClick(e.getComponent());
-        
-        //vista.algo();
     }
 
 
@@ -87,36 +83,79 @@ public class ContrJuego implements MouseListener, KeyListener {
     }
     
     
+    /**
+     * Comunicacion de logica a vista, manda una accion sobre el contador de tiempo
+     * @param accion 
+     */
     public void gestionarContador(String accion){
         vista.gestionarContador(accion);
     }
+    /**
+     * Comunicacion de logica a vista, hace animar una imagen , que entre o que salga
+     * @param i indice a girar
+     */
     public void girar(int i){
         vista.girar(i);
     }
+    /**
+     * Comunicacion de logica a vista, retorna si hay alguna carta que no este bloqueda
+     * y que este visible
+     * @return indice de la carta, -1 en caso de que no tenga ninguna visible
+     */
     public int algunaVisible(){
         return vista.algunaVisible();
     }
+    /**
+     * Comunicacion de logica a vista, compara si las imagenes son las mismas
+     * @param i indice de la carta a comparar
+     * @param j indice de la carta a comparar
+     * @return boolean true en caso de que sean la misma carta
+     */
     public boolean mismaImagen(int i,int j){
         return vista.mismaImagen(i,j);
     }
+    /**
+     * Comunicacion de logica a vista, bloquea la imagen para que no se poducan 
+     * mas animaciones ni cuente esa imagen para hacer click en ella
+     * @param i indice de la carta a bloquear
+     * @param j indice de la carta a bloquear
+     */
     public void bloquearImagenes(int i, int j){
         vista.bloquearImagenes(i, j);
     }
+    /**
+     * Comunicacion de logica a vista, suma uno al contador de movimientos
+     * y lo muestra
+     */
     public void movimiento(){
         vista.movimiento();
     }
+    /**
+     * Comunicacion de logica a vista, retorna si el juego a terminado
+     * @return boolean false si es el fin del juego
+     */
     public boolean isFin(){
         return vista.isFin();
-       //Carta.getActivadas();
     }
+    /**
+     * Comunicacion de logica a vista, cambia el estado de un boton, lo habilita o desabilita
+     * @param boton String nombre del boton a cambiar el estado
+     * @param estado boolean, estado a cambiar
+     */
     public void cambiarEstadoBoton(String boton,boolean estado){
         vista.cambiarEstadoBoton(boton, estado);
     }
-    
+    /**
+     * Comunicacion de logica a vista, retorna los segundos actualess
+     * @return int seguntos
+     */
     public int getContadorSeg() {
         return vista.getContadorSeg();
     }
-
+    /**
+     * Comunicacion de logica a vista, retorna los movimientos actuales
+     * @return int movimiento
+     */
     public int getContMov() {
         return  vista.getContMov();
     }
