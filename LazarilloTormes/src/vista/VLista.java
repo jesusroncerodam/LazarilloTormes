@@ -22,6 +22,7 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.util.ArrayList;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -31,6 +32,8 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SpringLayout;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -69,34 +72,43 @@ public class VLista extends JPanel{
     }
     public void a(){//{"Nº","Image","Name","Mov.","Time"};
         
-        //JPanel lista=new JPanel(new GridLayout( datos.length,1,0,2));
-        
-         JPanel lista=new JPanel(new GridLayout( datos.length,1,0,2));
-        lista.setBackground(Color.red);
+        JPanel lista=new JPanel(new GridLayout(datos.length+1,1,0,2));//+1 por la primera columna, por el "encabezado
+        lista.setBackground(Color.white);
         String[] elementos;
+        JPanel primeraFila =new JPanel(new GridLayout(1, NOMBRE_COLUMNAS.length+1));
+        primeraFila.add(new JLabel());
+        for (int i = 0; i < NOMBRE_COLUMNAS.length; i++) {
+            JLabel a =new JLabel(NOMBRE_COLUMNAS[i]);
+            a.setBackground(Color.red);
+            if(i==4)
+                a=new JLabel(cambiarTamano(new ImageIcon("src/img/reloj.png"), 20, 20),SwingConstants.LEFT);
+            primeraFila.add(a);
+        }
+        
+        lista.add(primeraFila);
         for (int i = 0; i < datos.length; i++) {
-            JPanel fila =new JPanel();
+            JPanel fila =new JPanel(new GridLayout(1, NOMBRE_COLUMNAS.length+1));
             elementos=datos[i].split(";");
+            fila.add(new JLabel());
             fila.add(new JLabel(""+i));
-            for (int j = 0,k=1; j < elementos.length; j++,k++) {//movimientos;tiempo;imagen;nombre
+            for (int j = 0; j < elementos.length; j++) {//movimientos0;tiempo1;imagen2;nombre3
                 //System.out.println(elementos[j]+" -i"+i+" -j"+j);
                 switch (j) {    
-                    case 0://movimientos
-                        //lo colocamos en el array
-                        fila.add(new JLabel(new ImageIcon(elementos[j])));
+                    case 0://imagen, en el array es la pos 2
+                        JLabel b=new JLabel(cambiarTamano(new ImageIcon(elementos[2]), 20, 20),SwingConstants.LEFT);
+                        fila.add(b);
                         //columna[i][3]=new ImageIcon(elementos[j]); 
                         break;
-                    case 1://tiempo                        
-                        fila.add(new JLabel(elementos[j]));
+                    case 1://nombre, en el array es la pos 3
+                        fila.add(new JLabel(elementos[3]));
                         //columna[i][4]=elementos[j];
                         break;
-                    case 2://imagen
-                        fila.add(new JLabel(elementos[j]));
+                    case 2://movimientos, en el array es la pos 0
+                        fila.add(new JLabel(elementos[0]));
                         //columna[i][1]=new ImageIcon(getClass().getResource("/img/2.jpg"));//new JLabel(new ImageIcon(elementos[j])); //new Integer(elementos[j]);
                         break;
-                    case 3://nombre      
-                                                fila.add(new JLabel(elementos[j]));
-
+                    case 3://tiempo, en el array es la pos 1
+                        fila.add(new JLabel(elementos[1]));
                         //columna[i][2]=elementos[j];//new Integer(elementos[j]);
                         break;
                     default:
@@ -107,12 +119,13 @@ public class VLista extends JPanel{
         }
         this.setBorder(LineBorder.createBlackLineBorder());
         lista.setBorder(LineBorder.createBlackLineBorder());
-        JScrollPane scrollPane = new JScrollPane(lista,   ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setPreferredSize(new Dimension(500, 500));
+        JScrollPane scroll = new JScrollPane(lista,   ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scroll.setPreferredSize(new Dimension(500, 500));
+        loc.fill= GridBagConstraints.BOTH;
         loc.gridx = 0;
         loc.gridy = 1;
         loc.weighty = 1;
-        this.add(scrollPane, loc);
+        this.add(scroll, loc);
       }
      
      public void recogerDatos(){

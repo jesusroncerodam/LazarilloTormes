@@ -1,5 +1,5 @@
 Directorio de almacenamiento de estadistica
-20;10;src/img/carta.jpg;em
+20;10;src/img/carta.jpg;em3rer
 50;15;src/img/carta.jpg;am
 20;15;src/img/carta.jpg;om
 2;10;src/img/carta.jpg;ma
