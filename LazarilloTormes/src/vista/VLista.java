@@ -12,6 +12,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -55,6 +56,7 @@ import trabajodi.Logica;
  */
 public class VLista extends JPanel{
     private final String[] NOMBRE_COLUMNAS = {"Nº","Image","Name","Mov.","Time"};
+    private final Color COLOR_LETRAS=Color.white;
     private String[] datos;
     Object[][] columna;
     JTable tabla ;
@@ -79,7 +81,7 @@ public class VLista extends JPanel{
     }
     public void a(){//{"Nº","Image","Name","Mov.","Time"};
         
-        JPanel lista=new JPanel(new GridLayout(datos.length+1,1,0,2));//+1 por la primera columna, por el "encabezado
+        JPanel lista=new JPanel(new GridLayout(datos.length+1,1,0,0));//+1 por la primera columna, por el "encabezado
         lista.setBackground(Color.white);
         String[] elementos;
         lista.setOpaque(false);
@@ -87,12 +89,12 @@ public class VLista extends JPanel{
         primeraFila.add(new JLabel());
         for (int i = 0; i < NOMBRE_COLUMNAS.length; i++) {
             JLabel a =new JLabel(NOMBRE_COLUMNAS[i]);
-            a.setBackground(Color.red);
+            a.setForeground(COLOR_LETRAS);
             if(i==4)
-                a=new JLabel(cambiarTamano(new ImageIcon("src/img/reloj.png"), 20, 20),SwingConstants.LEFT);
+                a=new JLabel(cambiarTamano(new ImageIcon("src/img/relojWH.png"), 20, 20),SwingConstants.LEFT);
             primeraFila.add(a);
         }
-        primeraFila.setBackground(new Color(47, 92, 255,50));
+        primeraFila.setBackground(new Color(47, 92, 255,200));
         //primeraFila.setBorder(LineBorder.createBlackLineBorder());
         lista.add(primeraFila);
         for (int i = 0; i < datos.length; i++) {
@@ -101,8 +103,9 @@ public class VLista extends JPanel{
             fila.add(new JLabel());
             fila.add(new JLabel(""+i));//47, 92, 255
             if(i%2!=0){
-                fila.setBackground(new Color(99, 132, 252,20));
-            }
+                fila.setBackground(new Color(255, 255, 255,200));
+            }else
+                 fila.setBackground(new Color(99, 132, 252,200));
             for (int j = 0; j < elementos.length; j++) {//movimientos0;tiempo1;imagen2;nombre3
                 //System.out.println(elementos[j]+" -i"+i+" -j"+j);
                 switch (j) {    
@@ -132,19 +135,17 @@ public class VLista extends JPanel{
         //this.setBorder(LineBorder.createBlackLineBorder());
         //lista.setBorder(LineBorder.createBlackLineBorder());
         JScrollPane scroll = new JScrollPane(lista,   ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estadisticas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
-        //UIManager.put("ScrollBar.thumb", new ColorUIResource(Color.black));
-        System.out.println(scroll.getUI());
-       // scroll.setUI(scroll.getUI().));
-        //JButton cornerButton = new JButton("#");
-        //scroll.setCorner(JScrollPane.UPPER_LEFT_CORNER, cornerButton);
+        scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estadisticas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12),COLOR_LETRAS));
         scroll.setPreferredSize(new Dimension(500, 500));
         loc.fill= GridBagConstraints.BOTH;
         loc.gridx = 0;
         loc.gridy = 0;
         loc.weighty = 2;
         loc.weightx = 2;
-        loc.insets = new Insets(10,10,10,10);  
+        loc.insets = new Insets(50,25,25,25);  
+        lista.setOpaque(false);
+        scroll.setOpaque(false);
+        scroll.getViewport().setOpaque(false);
         this.add(scroll, loc);
         crearBoton();
       }
@@ -175,6 +176,11 @@ public class VLista extends JPanel{
         return icono;
     }
     
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Image img = new ImageIcon("src/img/fondo2.jpg").getImage();
+        g.drawImage(img, 0, 0, getWidth(), getHeight()+5, this);
+    }
     
     
     
