@@ -109,49 +109,10 @@ public class VLista extends JPanel{
         lista.setBorder(LineBorder.createBlackLineBorder());
         JScrollPane scrollPane = new JScrollPane(lista,   ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setPreferredSize(new Dimension(500, 500));
-        // Add panel to frame
         loc.gridx = 0;
         loc.gridy = 1;
         loc.weighty = 1;
         this.add(scrollPane, loc);
-        this.setVisible(true);
-        //lista.setPreferredSize(new Dimension(400,400));
-     /*  JScrollPane scroll=new JScrollPane(lista, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scroll.setAutoscrolls(true);
-        scroll.setPreferredSize(new Dimension(1000,500));
-
-        scroll.setViewportView(this);
-        //scroll.setPreferredSize(new Dimension(400,100));
-        //lista.setPreferredSize(new Dimension(400, 400));
-        lista.setBackground(Color.white);*/
-    //    JScrollPane scrollPane = new JScrollPane(lista);
-      //  scrollPane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-        //scrollPane.setBounds(50, 30, 300, 50);
-       
-        //JScrollPane scroll=new javax.swing.JScrollPane(lista);//lista,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        //scroll.createVerticalScrollBar();
-      //  scroll.
-        //jScrollPane2.setViewportView(lista);
-
-        
-        //jScrollPane2.setBounds(0, 0, 410, 300);
-       // jScrollPane2.setViewportView(lista);
-        
-        loc.gridx = 0; // El área de texto empieza en la columna 0.
-        loc.gridy = 0; // El área de texto empieza en la fila 1
-        loc.gridwidth = 2; // El área de texto ocupa dos columnas.
-        loc.gridheight = 2; // El área de texto ocupa 1 filas.
-        loc.fill= GridBagConstraints.NONE; //para que no se expanda
-        loc.weighty = 0.0;//`no deje espacio en el eje Y
-       // this.add(lista,loc);
-         loc.gridx = 2; // El área de texto empieza en la columna 0.
-        loc.gridy = 0; // El área de texto empieza en la fila 1
-        loc.gridwidth = 1; // El área de texto ocupa dos columnas.
-        loc.gridheight = 0; // El área de texto ocupa 1 filas.
-        loc.fill= GridBagConstraints.NONE; //para que no se expanda
-        loc.weighty = 0.0;//`no deje espacio en el eje Y
-        //this.add(scroll,loc);
-        
       }
      
      public void recogerDatos(){
