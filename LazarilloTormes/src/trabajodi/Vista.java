@@ -142,7 +142,7 @@ public class Vista {
         cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
         ventana.setSize(600, 600);        
         ventana.add(vLista);
-
+        ventana.setVisible(true);
         ventana.repaint();
     }
 }
