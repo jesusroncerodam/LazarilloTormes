@@ -152,6 +152,8 @@ public class Vista {
         eliminarVistas();
         switch (vista) {
             case "":
+                ventana.setMenuBar(vMenu);
+                //se genera el menu correspondientevMenu.
                 //cargamos vista
                 break;
             default:
