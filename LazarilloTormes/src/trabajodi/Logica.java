@@ -65,22 +65,22 @@ public class Logica {
      // CONTROLADOR VISTA JUEGO
      */
            
-
+    /**
+     * Encargado de gestionar las acciones de de mouseListener del controlador 
+     * del juego, aqui se gestionaran toda la logica
+     * @param componente 
+     */
     public synchronized void juegoClick(Component componente) {
-        //gestionFichero();
-        //test();
-        //mostrarFichero();
-        //sdg();
-        if(primeraJuego){//si se ejecuta laguna accion
+        //si se ejecuta laguna accion  comienza el contador
+        if(primeraJuego){
             juego.gestionarContador("empezar");
-            primeraJuego=false;
+            primeraJuego=false;//ya no es la 1 accion del juego
         }
         
         if(componente instanceof JButton){//si es un boton
-            String accion=((JButton) componente).getActionCommand();
+            String accion=((JButton) componente).getActionCommand();//guardamos la accion del boton
             switch (accion) {
                 case "playPause":
-                    System.out.println(accion);
                     juego.gestionarContador(accion);
                     break; 
                     
@@ -89,70 +89,59 @@ public class Logica {
                     break;
                     
                 case "guardar":
-                    System.out.println("dkbfjsdab");
+                    System.out.println("en creaccion");
                     break;
                     
                 default:
-                    System.out.println(accion);
-                    //llamar a la de los menuses
+                    System.out.println("error juegoClick opcion no esperada: "+accion);
             }
             
-        }else if(componente instanceof JLabel){//si es un JLabel
-            //si esta en pause no mueve carta
-                    //
-                    //
-                    //
-                    //
-                    //
-                    //
-            if( !animacionC ){
-                JLabel a=(JLabel) componente;
-                vuelta=juego.algunaVisible();
-                cartaAct=Integer.parseInt(a.getName());
-                if(vuelta==cartaAct){//comprobamos que no tenga hecho click en la misma imagen
-                    vuelta=-1;
+        }else if(componente instanceof JLabel){//si es un JLabel, 
+            if(!animacionC){//mientras que no tengamos ninguna animacion en progreso
+                JLabel jlComponente=(JLabel) componente;
+                
+                vuelta=juego.algunaVisible();//antes de mover la carta actual miramos si hay alguna carta visible
+                cartaAct=Integer.parseInt(jlComponente.getName());//opbtenemos el indice del array de la carta que ss hizo click
+                
+                if(vuelta==cartaAct){//comprobamos que no tenga hecho click en la misma imagen 2 veces
+                    vuelta=-1;//si es asi la carta que se dio la vuelta no existe, para la logica
                 }
                 juego.movimiento();//se realiza 1 movimiento, sumamos 1 al contador
-                //comprobar si hay alguna mas del reves
-                //vuelta=juego.algunaVisible();
 
-                //girar carta
-                juego.girar(cartaAct);
+                juego.girar(cartaAct);//gira mos la carta que se hizo click
+                
+                if(vuelta!=-1){//si es diferente de  -1 hay 2 visibles
+                    if(juego.mismaImagen(vuelta, cartaAct)){//si las cartas que hay son iguales
+                        
+                        juego.bloquearImagenes(vuelta, cartaAct);//bloqueamos la imagen, para que no se puedan mover mas
 
-                    System.out.println(""+cartaAct);
-                    System.out.print(" "+vuelta);
-                if(vuelta!=-1){//si es dif de  -1 hay 2 visibles
-                    if(juego.mismaImagen(vuelta, cartaAct)){//si las cartas que hay son =
-                        System.out.println("bloqueamos "+vuelta+" y "+cartaAct);
-                        juego.bloquearImagenes(vuelta, cartaAct);
-                        //=-1;                    vuelta=-1;
-
-                        if(!juego.isFin()){//si es el fin
+                        if(!juego.isFin()){//si es el fin del juego(Si a termiando)
                             juego.gestionarContador("pausa");
                             //cambiamos los estados de los botones 
                             juego.cambiarEstadoBoton("guardar", false);
                             juego.cambiarEstadoBoton("playPause", false);
                             juego.cambiarEstadoBoton("continuar", true);
                         }
-                    }else{
-                        animacionC=true;
-                        timer=new java.util.Timer();
-                        TimerTask tarea =new TimerTask() {
-                        @Override
-                        public void run() {
-                            juego.girar(cartaAct);
-                            juego.girar(vuelta);
-                            timer=null;
-                            animacionC=false;
+                        
+                    }else{//si las cartas que tenemos no son iguales las giramos
+                        animacionC=true;//ponermos que existe una animacion en progreso
+                        timer=new java.util.Timer();//cremos el timer para crear una animacion
+                        TimerTask tarea =new TimerTask() {//creamos un timerTask, que se ejecutara en x segundos
+                            @Override
+                            public void run() {
+                                juego.girar(cartaAct);//girampos la carta actual 
+                                juego.girar(vuelta);//girampos la que esta visble
+                                timer=null;//eliminamos el timer
+                                animacionC=false;//marcamos  que el timer termino
                         }};
-                        timer.schedule(tarea, 1000);
+                        //asignamos que se mueva en estos seguntos para que no cambie de golpe , para que la animacion sea mas suave
+                        timer.schedule(tarea, 1000);// decimos al timer que ejecute el TimeTask en los seguntos
                     }
                 }
-            }else{
-                System.out.println("jfbsj");
             }
         }
     }
+    
     private void guardarDatos(){
         //nombre//ya lo tengo 
         //imagen //ya lo tengo
