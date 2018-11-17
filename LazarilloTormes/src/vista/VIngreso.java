@@ -7,6 +7,7 @@ package vista;
 
 
 import controladores.ContrIngreso;
+import javax.swing.JPanel;
 import trabajodi.Logica;
 
 
@@ -14,7 +15,7 @@ import trabajodi.Logica;
 
  @author Guille
  */
-public class VIngreso {
+public class VIngreso extends JPanel{
 
     private ContrIngreso controlador;
 

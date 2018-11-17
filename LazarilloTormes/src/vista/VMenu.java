@@ -7,6 +7,7 @@ package vista;
 
 
 import controladores.ContrMenu;
+import java.awt.MenuBar;
 import trabajodi.Logica;
 
 
@@ -14,7 +15,7 @@ import trabajodi.Logica;
 
  @author Guille
  */
-public class VMenu {
+public class VMenu extends MenuBar  {
 
     private ContrMenu controlador;
 

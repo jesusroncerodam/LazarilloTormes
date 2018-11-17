@@ -7,6 +7,7 @@ package vista;
 
 
 import controladores.ContrCarga;
+import javax.swing.JPanel;
 import trabajodi.Logica;
 
 
@@ -14,7 +15,7 @@ import trabajodi.Logica;
 
  @author Guille
  */
-public class VCarga {
+public class VCarga extends JPanel{
 
     private ContrCarga controlador;
 
