@@ -134,14 +134,23 @@ public class Carta extends JLabel {
     }
 
 
-    
+    /**
+     * Lo llama el timer, coloca la imagen  Mientras que la imagen este entre 
+     * las orquillas del tamaño siendo este el minimo 0 y el maximo el tamaño
+     * de la imagen de imgVuelta
+     * En el caso de que se saliese de estas orquillas, si la imagen estaba saliendo
+     * la quita y si la imgen estaba entrando la asigna por defecto; siempre
+     * que se sale de las oquillas para el timer, puesto que termino la animacion
+     * 
+     * Siempte actualiza la carta para que los cambios sean visibles
+     */
     private void ponerImagen() {
         if(altura>0 && ancho>0 && altura<imgVuelta.getIconHeight() && ancho<imgVuelta.getIconWidth()){
-            this.setIcon(cambiarTamano(new ImageIcon("src/img/cartas/vuelta.png"), ancho, altura));//"src/img/cartas/vuelta.png"
+            this.setIcon(cambiarTamano(new ImageIcon("src/img/cartas/vuelta.png"), ancho, altura));//"src/img/cartas/vuelta.png"/////////////////////////////////////////////////////////////////
         }else{
-            if (sale) {
+            if(sale){
                 setIcon(null);
-            } else {
+            }else{
                 setIcon(imgVuelta);
             }
             timer.stop();
@@ -149,6 +158,12 @@ public class Carta extends JLabel {
         this.updateUI();
     }
 
+    /**
+     * Manda si esta carta esta activada, si se ve la imgen de la carta
+     * Si esta bloqueada retornara false puesto que esta carta ya no tiene
+     * acciones posibles de animacion.
+     * @return booleano -false si no esta visible o si esta bloqueada
+     */
     public boolean isSale() {
         if(bloquear){//bloquear variable que desactiva el giro de la carta de nuevo 
             return false;
@@ -156,12 +171,21 @@ public class Carta extends JLabel {
         return sale;//=true si no esta
     }
 
+    /**
+     * Bloquea la imagen esto significa que cuando se ejecute este metodo la carta 
+     * no se podrá mover de nuevo (si la carta se bloquea significa que encontro la
+     * pareja)
+     */
     public void bloquear() {
         bloquear=true;
+        this.setIcon(imgCarta);
         repaint();
-        this.setIcon(imgCarta);//cambiarTamano(imgCarta,WIDTH_DEF,HEIHT_DEF));
     }
-
+    
+    /**
+     * Retorna la direccion de la carta
+     * @return String direccio de la imagen
+     */
     public String getUrl() {
         return url;
     }
