@@ -43,7 +43,7 @@ public class VJuego extends JPanel {
     private GridBagConstraints constrain;
 
     /**
-     *  Constructor, solo se asigna la logica, el resto se genera llamando al metodo
+     * Constructor, solo se asigna la logica, el resto se genera llamando al metodo
      * generar
      * @param logica 
      */
@@ -52,15 +52,19 @@ public class VJuego extends JPanel {
     }
 
     /**
-     * Encargado de generar toda la, variables, ect.
-     * @param rutas 
+     * Encargado de generar un juego nuevo, inicialiA todas las variables y
+     * controladores
+     * @param rutas Array de String, direccion de todas las imagenes de cartas
      */
     public void generar(String[] rutas) {
+        controlador.asignarControlador();//asignamos el controlador a la logica
         desactivadas=0;
+        
         this.setOpaque(true);
         this.setFocusable(true);
         this.requestFocus();
         this.addKeyListener(controlador);
+        
         constrain = new GridBagConstraints();
         constrain.weighty = 0.5; //para que se estiren las columnas
         // constrain.weightx=1;
@@ -115,27 +119,26 @@ public class VJuego extends JPanel {
      */
     private void generarCartas(String[] rutas) {
         carta = new ArrayList();
-        //asignamos la misma ruta a 2 carta
-        for (int i = 0; i < rutas.length; i++) {
+        
+        for (int i = 0; i < rutas.length; i++) { //asignamos la misma ruta a 2 carta
             carta.add(new Carta(rutas[i]));
             carta.add(new Carta(rutas[i]));
         }
 
-        //creamos el panel donde estarán las cartas
-        JPanel cartas = new JPanel();
+        JPanel cartas = new JPanel();//creamos el panel donde estarán las cartas
+        cartas.setOpaque(false);//fondo transparente para que se vea el fondo
         
-        cartas.setOpaque(false);
-        //asignamos un layout a las cartas
-        int cuadrado = (int) Math.sqrt(carta.size());
-        cartas.setLayout(new GridLayout(cuadrado, cuadrado, HGAP, VGAP));
-        //deshordenamos las cartas asi estan colocadas de manera aleatoria
-        Collections.shuffle(carta);
-        //asignamos el indice al nombre de las cartas
-        for (int i = 0; i < carta.size(); i++) {
+        
+        int cuadrado = (int) Math.sqrt(carta.size());//la raiz da lugar a unas fulas respectivas 
+        cartas.setLayout(new GridLayout(cuadrado, cuadrado, HGAP, VGAP));//asignamos un layout a las cartas
+        
+        Collections.shuffle(carta);//deshordenamos las cartas asi estan colocadas de manera aleatoria
+        
+        for (int i = 0; i < carta.size(); i++) {//asignamos el indice al nombre de las cartas
              carta.get(i).setName("" + i);
         }
-        //anadimos todas las cartas y les ponemos escuchador
-        for (int i = 0; i < carta.size(); i++) {
+        
+        for (int i = 0; i < carta.size(); i++) {//anadimos todas las cartas y les ponemos escuchador
             cartas.add(carta.get(i));
             carta.get(i).addMouseListener(controlador);
         }
@@ -143,8 +146,8 @@ public class VJuego extends JPanel {
         constrain.gridy = 1; // El área de texto empieza en la fila 1
         constrain.gridwidth = 2; // El área de texto ocupa dos columnas.
         constrain.gridheight = 1; // El área de texto ocupa 1 filas.
-        constrain.fill= GridBagConstraints.NONE;
-        constrain.weighty = 0.0;
+        constrain.fill= GridBagConstraints.NONE; //para que no se expanda
+        constrain.weighty = 0.0;//`no deje espacio en el eje Y
         this.add(cartas, constrain);
     }
 
@@ -164,7 +167,7 @@ public class VJuego extends JPanel {
     }
 
     /**
-     * Encargado de generay asignar el JButon de PlayYpause
+     * Encargado de generar y asignar el JButon de PlayYpause
      */
     private void playPause() {
         bPausaPlay = new JButton(new ImageIcon("src/img/playPause.png"));
@@ -182,7 +185,7 @@ public class VJuego extends JPanel {
     }
 
     /**
-     * Encargado de generay asignar el JButon de continuar
+     * Encargado de generar y asignar el JButon de continuar
      */
     private void continuar() {
         bContinuar = new JButton(new ImageIcon("src/img/flechaRect.png"));
@@ -200,7 +203,7 @@ public class VJuego extends JPanel {
     }
 
     /**
-     * Encargado de generay asignar el JButon de guardar
+     * Encargado de generar y asignar el JButon de guardar
      */
     private void guardar() {
         bGuardar = new JButton(new ImageIcon("src/img/save.png"));

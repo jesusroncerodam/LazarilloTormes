@@ -19,14 +19,24 @@ import trabajodi.Logica;
  @author Guille
  */
 public class ContrJuego implements MouseListener, KeyListener {
-
     private VJuego vista;
     private Logica logica;
 
-
+    /**
+     * const
+     * @param vista
+     * @param logica 
+     */
     public ContrJuego(VJuego vista, Logica logica) {
         this.vista = vista;
         this.logica = logica;
+    }
+    
+    /**
+     * Encargado de mandar a la logica la referencia del controlador para poder
+     * comunicarse con la vista a través de esta
+     */
+    public void asignarControlador(){
         this.logica.asignarContrJuego(this);
     }
 

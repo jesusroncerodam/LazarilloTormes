@@ -40,6 +40,10 @@ public class Logica {
     public Logica() {
     }
     
+    /**
+     * asinamos el controlador de Juego y incicializamos valores a un juego por defecto
+     * @param juego ContrJuego encargado de la comunicacion con el juego
+     */
     public void asignarContrJuego(ContrJuego juego){
         this.juego=juego;
         primeraJuego=true;
