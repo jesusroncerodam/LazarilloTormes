@@ -16,6 +16,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.TextArea;
 import java.awt.event.MouseEvent;
@@ -134,18 +135,36 @@ public class VLista extends JPanel{
         scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estadisticas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         //UIManager.put("ScrollBar.thumb", new ColorUIResource(Color.black));
         System.out.println(scroll.getUI());
-        scroll.setUI(new WindowsScrollPaneUI());
+       // scroll.setUI(scroll.getUI().));
         //JButton cornerButton = new JButton("#");
         //scroll.setCorner(JScrollPane.UPPER_LEFT_CORNER, cornerButton);
         scroll.setPreferredSize(new Dimension(500, 500));
         loc.fill= GridBagConstraints.BOTH;
         loc.gridx = 0;
-        loc.gridy = 1;
-        loc.weighty = 1;
+        loc.gridy = 0;
+        loc.weighty = 2;
+        loc.weightx = 2;
+        loc.insets = new Insets(10,10,10,10);  
         this.add(scroll, loc);
+        crearBoton();
       }
-     
-     public void recogerDatos(){
+    
+    public void crearBoton(){
+        JButton bVistaMenu=new JButton();
+        bVistaMenu.setIcon(new ImageIcon("src/img/atras.png"));
+        loc.fill= GridBagConstraints.NONE;
+        loc.gridx = 0;
+        loc.gridy = 2;
+        loc.weighty = 0;
+        loc.weightx = 0;
+        loc.ipadx=100;
+        loc.anchor=GridBagConstraints.LINE_START;
+        loc.insets = new Insets(10,10,10,10);  
+        loc.weightx=1.0;
+        this.add(bVistaMenu, loc);
+    }
+    
+    public void recogerDatos(){
         datos=controlador.datosFichero();
         
     }

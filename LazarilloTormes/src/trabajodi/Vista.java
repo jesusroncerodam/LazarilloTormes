@@ -145,4 +145,16 @@ public class Vista {
         ventana.setVisible(true);
         ventana.repaint();
     }
+    
+    
+    public void cambiarVista(String vista){
+        //eliminamos todas las vistas
+        switch (vista) {
+            case "-":
+                //cargamos vista
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }
 }
