@@ -149,12 +149,20 @@ public class Vista {
     
     public void cambiarVista(String vista){
         //eliminamos todas las vistas
+        eliminarVistas();
         switch (vista) {
-            case "-":
+            case "":
                 //cargamos vista
                 break;
             default:
                 throw new AssertionError();
         }
     }
+    /**
+     * Elimina todas las vistas o paneles añadidos 
+     */
+    public void eliminarVistas(){
+        
+    }
+    
 }
