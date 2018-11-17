@@ -261,7 +261,7 @@ public class Logica {
             System.out.println("Mensaje de la excepción: " + ex.getMessage());
         }
         
-}
+    }
 
             
     public String[] ficheroAArray(){
