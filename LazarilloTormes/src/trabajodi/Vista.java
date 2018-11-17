@@ -55,8 +55,8 @@ public class Vista {
         //no ponemos splash ya que no necesita logica
         
         ventana.setVisible(true);
-        ingresoDatos();
-       // estadisticas();
+       // ingresoDatos();
+        estadisticas();
     }
 
 
@@ -140,7 +140,7 @@ public class Vista {
 
         vLista.generar();
         cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
-        ventana.setSize(1000, 1000);        
+        ventana.setSize(600, 600);        
         ventana.add(vLista);
 
         ventana.repaint();

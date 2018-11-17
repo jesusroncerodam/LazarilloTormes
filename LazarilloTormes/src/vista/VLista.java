@@ -8,7 +8,9 @@ package vista;
 
 import controladores.ContrLista;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.TextArea;
 import java.io.File;
@@ -49,11 +51,80 @@ public class VLista extends JPanel{
     }
     public void generar(){ 
         recogerDatos();
+      a();
+    }
+    public void a(){//{"Nº","Image","Name","Mov.","Time"};
+        
+        JPanel lista=new JPanel(new GridLayout( datos.length,1,0,2));
+        
+
+        lista.setBackground(Color.red);
+        String[] elementos;
+        for (int i = 0; i < datos.length; i++) {
+            JPanel fila =new JPanel();
+            elementos=datos[i].split(";");
+            fila.add(new JLabel(""+i));
+            for (int j = 0,k=1; j < elementos.length; j++,k++) {//movimientos;tiempo;imagen;nombre
+                //System.out.println(elementos[j]+" -i"+i+" -j"+j);
+                switch (j) {    
+                    case 0://movimientos
+                        //lo colocamos en el array
+                        fila.add(new JLabel(new ImageIcon(elementos[j])));
+                        //columna[i][3]=new ImageIcon(elementos[j]); 
+                        break;
+                    case 1://tiempo                        
+                        fila.add(new JLabel(elementos[j]));
+                        //columna[i][4]=elementos[j];
+                        break;
+                    case 2://imagen
+                        fila.add(new JLabel(elementos[j]));
+                        //columna[i][1]=new ImageIcon(getClass().getResource("/img/2.jpg"));//new JLabel(new ImageIcon(elementos[j])); //new Integer(elementos[j]);
+                        break;
+                    case 3://nombre      
+                                                fila.add(new JLabel(elementos[j]));
+
+                        //columna[i][2]=elementos[j];//new Integer(elementos[j]);
+                        break;
+                    default:
+                        System.out.println("error "+j);
+                }
+            }
+            lista.add(fila);
+        }
+        JScrollPane jScrollPane2=new javax.swing.JScrollPane();//lista,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        jScrollPane2.setViewportView(lista);
+        
+        lista.setAutoscrolls(true);
+        //jScrollPane2.setBounds(0, 0, 410, 300);
+       // jScrollPane2.setViewportView(lista);
+
+        this.add(lista);
+      }
+     
+     public void recogerDatos(){
+        datos=controlador.datosFichero();
+        
+    }
+    public ImageIcon cambiarTamano(ImageIcon icono, int anchoImagen, int altoImagen) {
+        Image imagen = icono.getImage();
+        Image reescalada = imagen.getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH);
+        icono = new ImageIcon(reescalada);
+        return icono;
+    }
+    
+    
+    
+    
+    
+    
+    
+    public void test(){
+        recogerDatos();
         ingesarDatos();
         
         modelo = new DefaultTableModel(columna,NOMBRE_COLUMNAS);
         tabla = new JTable(modelo);
-        tabla.getColumnModel().getColumn(1).setCellRenderer(new ImageRenderer("/img/2.jpg"));
 //        System.out.println(tabla.getColumnCount());
 //        File f=new File("src/img/carta.jpg");
 //        System.out.println(f.getAbsoluteFile());
@@ -115,16 +186,9 @@ public class VLista extends JPanel{
                 }
             }
         }
-      }
-    
+    }
     public void añadirColumna(Object[] columna){
         modelo.addRow(columna);
-    }
-    public void recogerDatos(){
-        /*ArrayList datos=controlador.datosFichero();
-        datos.toArray();*/
-        datos=controlador.datosFichero();
-        
     }
     public void insertar(){
         JLabel pos,img,nombre,mov,tiempo;
@@ -140,21 +204,10 @@ public class VLista extends JPanel{
        taDatos.add(mov);
        taDatos.add(tiempo);
     }
-    public ImageIcon cambiarTamano(ImageIcon icono, int anchoImagen, int altoImagen) {
-        Image imagen = icono.getImage();
-        Image reescalada = imagen.getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH);
-        icono = new ImageIcon(reescalada);
-        return icono;
-    }
+   
 
 }
-class ImageRenderer extends DefaultTableCellRenderer {
-        ImageIcon icon = null;
 
-        ImageRenderer(String iconName) {
-            icon = new ImageIcon(getClass().getResource(iconName));
-        }
-  }
  /*String[] campos;
         Object[] columna=new Object[NOMBRE_COLUMNAS.length];
         for (int i = 0; i < datos.length; i++) {
