@@ -6,6 +6,8 @@
 package controladores;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import vista.VMenu;
 import trabajodi.Logica;
 
@@ -14,7 +16,7 @@ import trabajodi.Logica;
 
  @author Guille
  */
-public class ContrMenu {
+public class ContrMenu implements ActionListener{
 
     private Logica logica;
     private VMenu vista;
@@ -23,6 +25,11 @@ public class ContrMenu {
     public ContrMenu(Logica logica, VMenu vista) {
         this.logica = logica;
         this.vista = vista;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 
 }

@@ -55,6 +55,9 @@ public class Vista {
         //no ponemos splash ya que no necesita logica
         
         ventana.setVisible(true);
+        //temporal
+        ventana.setMenuBar(vMenu);
+
        // ingresoDatos();
         estadisticas();
     }
