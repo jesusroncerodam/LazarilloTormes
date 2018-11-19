@@ -13,6 +13,7 @@ import java.awt.MenuItem;
 import java.awt.MenuShortcut;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -72,13 +73,13 @@ public class VMenu extends JMenuBar  {
     
     private void generarMenuArchivo(){
         archivo=new JMenu("Archivo");
-        atras = new JMenuItem("A text-only menu item",
-                         KeyEvent.VK_T);
-        atras.setAccelerator(KeyStroke.getKeyStroke(
-                KeyEvent.VK_1, ActionEvent.ALT_MASK));
-        //atras.getAccessibleContext().setAccessibleDescription(
-       // "This doesn't really do anything");
+        atras = new JMenuItem("Go back",new ImageIcon("src/img/equis.png"));
+        
+        atras.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
+        //no va lo de abaajo
+            //atras.getAccessibleContext().setAccessibleDescription("This doesn't really do anything");
         archivo.add(atras);
+        salir=new JMenuItem("Exit",new ImageIcon("src/img/equis.png"));
         this.add(archivo);
     }
 }
