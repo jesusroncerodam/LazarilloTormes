@@ -78,7 +78,7 @@ public class VJuego extends JPanel implements Serializable {
         
         //generamos los botones
         playPause();
-        guardar();
+//        guardar();
         continuar();
         
         //generamos las cartas
@@ -219,20 +219,20 @@ public class VJuego extends JPanel implements Serializable {
     /**
      * Encargado de generar y asignar el JButon de guardar
      */
-    private void guardar() {
-        bGuardar = new JButton(new ImageIcon("src/img/save.png"));
-        bGuardar.setContentAreaFilled(false);
-        bGuardar.setBorder(null);
-        bGuardar.setActionCommand("guardar");
-        constrain.gridx=1;
-        constrain.gridy=2;
-        constrain.fill= GridBagConstraints.HORIZONTAL;
-        constrain.weighty = 0.5;
-        this.add(bGuardar, constrain);
-
-        bGuardar.addKeyListener(controlador);
-        bGuardar.addMouseListener(controlador);
-    }
+//    private void guardar() {
+//        bGuardar = new JButton(new ImageIcon("src/img/save.png"));
+//        bGuardar.setContentAreaFilled(false);
+//        bGuardar.setBorder(null);
+//        bGuardar.setActionCommand("guardar");
+//        constrain.gridx=1;
+//        constrain.gridy=2;
+//        constrain.fill= GridBagConstraints.HORIZONTAL;
+//        constrain.weighty = 0.5;
+//        this.add(bGuardar, constrain);
+//
+//        bGuardar.addKeyListener(controlador);
+//        bGuardar.addMouseListener(controlador);
+//    }
     
     /**
      * Pintamos el Fondo

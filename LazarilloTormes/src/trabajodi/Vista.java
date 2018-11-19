@@ -23,6 +23,7 @@ import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import vista.VPrincipal;
 
 
 /**
@@ -40,6 +41,7 @@ public class Vista {
     private VJuego vJuego;
     private VLista vLista;
     private VMenu vMenu;
+    private VPrincipal vPrincipal;
     private VistaSplash splash;
 
 
@@ -53,6 +55,7 @@ public class Vista {
         generarVista();
         //creamos todas las vistas mandandole la logica
         vCarga = new VCarga(logica);
+        vPrincipal=new VPrincipal(logica);
         vDialogoMod = new VDialogoMod(logica);
         vIngreso = new VIngreso(logica);
         vJuego = new VJuego(logica);
@@ -64,8 +67,9 @@ public class Vista {
         //temporal
         ventana.setJMenuBar(vMenu);
 
-       ingresoDatos();
+       //ingresoDatos();
         //estadisticas();
+        principal();
     }
 
 
@@ -118,10 +122,7 @@ public class Vista {
         ventana.remove(splash);//lo quitamos de la vusta para que no de errores
         splash = null;//eliminamos el objeto, ya no lo necesitamos mas 
     }
-
-
-    /**
-     */
+    
     public void ingresoDatos() {
        
         String aux[] = new String[8];
@@ -141,6 +142,16 @@ public class Vista {
 
         ventana.repaint();
     }
+    
+    public void principal(){
+        
+        vPrincipal.generar();
+        cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
+        ventana.setSize(1000, 800);  
+        ventana.add(vPrincipal);
+        ventana.repaint();
+    }
+    
     
     /**
      * 

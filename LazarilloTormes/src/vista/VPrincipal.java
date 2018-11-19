@@ -6,18 +6,22 @@
 package vista;
 
 import controladores.ContrPrinipal;
+import javax.swing.JLabel;
 import trabajodi.Logica;
 
 /**
  *
  * @author Guille
  */
-public class VPrincipal {
+public class VPrincipal extends JLabel{
     
     private ContrPrinipal controlador;
 
 
     public VPrincipal(Logica logica) {
         controlador = new ContrPrinipal(logica,this );
+    }
+    public void generar(){
+        
     }
 }
