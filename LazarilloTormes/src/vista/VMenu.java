@@ -11,7 +11,12 @@ import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
 import java.awt.MenuShortcut;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
 import trabajodi.Logica;
 
 
@@ -19,10 +24,11 @@ import trabajodi.Logica;
 
  @author Guille
  */
-public class VMenu extends MenuBar  {
+public class VMenu extends JMenuBar  {
 
     private ContrMenu controlador;
-
+    private JMenu archivo,partida,ajustes,irA,mover;
+    private JMenuItem atras,salir;//temporalk aqui , a lo mejor en el futuro se pueden eleminar de aqui
 
     public VMenu(Logica logica) {
         controlador = new ContrMenu(logica, this);
@@ -30,8 +36,8 @@ public class VMenu extends MenuBar  {
     }
 
     public void generar(){
-        
-        MenuItem A1=new MenuItem("Salir",(new MenuShortcut(KeyEvent.getExtendedKeyCodeForChar('1'), false)));
+        generarMenuArchivo();
+        /*MenuItem A1=new MenuItem("Salir",(new MenuShortcut(KeyEvent.getExtendedKeyCodeForChar('1'), false)));
         Menu menuV1=new Menu("Ajustes");
         menuV1.add(A1);
         
@@ -59,8 +65,20 @@ public class VMenu extends MenuBar  {
             menuBar.add(menuV2);
 
             
-        this.add(menuV1);
+        this.add(menuV1);*/
         
         //ventana.setMenuBar(menuBar);
+    }
+    
+    private void generarMenuArchivo(){
+        archivo=new JMenu("Archivo");
+        atras = new JMenuItem("A text-only menu item",
+                         KeyEvent.VK_T);
+        atras.setAccelerator(KeyStroke.getKeyStroke(
+                KeyEvent.VK_1, ActionEvent.ALT_MASK));
+        //atras.getAccessibleContext().setAccessibleDescription(
+       // "This doesn't really do anything");
+        archivo.add(atras);
+        this.add(archivo);
     }
 }

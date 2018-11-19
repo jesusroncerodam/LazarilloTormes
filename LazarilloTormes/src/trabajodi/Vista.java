@@ -56,7 +56,7 @@ public class Vista {
         
         ventana.setVisible(true);
         //temporal
-        ventana.setMenuBar(vMenu);
+        ventana.setJMenuBar(vMenu);
 
        ingresoDatos();
         //estadisticas();
@@ -155,7 +155,7 @@ public class Vista {
         eliminarVistas();
         switch (vista) {
             case "":
-                ventana.setMenuBar(vMenu);
+                //ventana.setMenuBar(vMenu);
                 //se genera el menu correspondientevMenu.
                 //cargamos vista
                 break;
