@@ -58,8 +58,8 @@ public class Vista {
         //temporal
         ventana.setMenuBar(vMenu);
 
-       // ingresoDatos();
-        estadisticas();
+       ingresoDatos();
+        //estadisticas();
     }
 
 

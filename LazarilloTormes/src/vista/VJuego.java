@@ -103,10 +103,8 @@ public class VJuego extends JPanel {
 
         //contador segundos
         contadorSeg = 0;
-        //tiempo =new Date();
-        SimpleDateFormat a=new SimpleDateFormat("mm:ss")
         ImageIcon imgReloj = new ImageIcon("src/img/reloj.png");
-        lReloj = new JLabel("" + contadorSeg, imgReloj, JLabel.CENTER);
+        lReloj = new JLabel("00:" + contadorSeg, imgReloj, JLabel.CENTER);
         System.out.println(imgReloj.getIconWidth());
         lReloj.setIconTextGap((int) (-imgReloj.getIconWidth() / 1.6));//si no hacemos esto, el texto saldría a la derecha de la imagen, no encima
         lReloj.setFont(fuente);
@@ -164,7 +162,20 @@ public class VJuego extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 contadorSeg++;
-                lReloj.setText("" + contadorSeg);
+                int minutos= contadorSeg/60;
+                int seg= contadorSeg%60;
+                String tiempo="00:"+contadorSeg;
+                if(minutos<10){
+                    tiempo="0"+minutos+":";
+                }else{
+                    tiempo=minutos+":";
+                }
+                if(seg<10){
+                    tiempo+="0"+seg;
+                }else{
+                    tiempo+=seg;
+                }
+                lReloj.setText(tiempo);
                 //poner si pasa de una cifra se coloque bien, 10 100 1000..../////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 repaint();
             }
