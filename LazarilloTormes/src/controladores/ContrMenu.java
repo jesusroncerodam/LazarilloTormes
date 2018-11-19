@@ -29,7 +29,12 @@ public class ContrMenu implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if(e.getActionCommand().equals("guardar")){
+            vista.guardar();
+        }
+        if(e.getActionCommand().equals("cargar")){
+            vista.cargar();
+        }
     }
 
 }

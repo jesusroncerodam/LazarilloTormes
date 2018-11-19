@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -20,7 +21,7 @@ import javax.swing.border.Border;
 
  @author Guille
  */
-public class Carta extends JLabel {
+public class Carta extends JLabel implements Serializable{
 
     private ImageIcon imgCarta, imgVuelta;
     private String url;

@@ -22,6 +22,7 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.KeyStroke;
 import trabajodi.Logica;
+import trabajodi.Vista;
 
 
 /**
@@ -29,7 +30,8 @@ import trabajodi.Logica;
  @author Guille
  */
 public class VMenu extends JMenuBar  {
-
+    
+    private Vista vista;
     private ContrMenu controlador;
     private JMenu 
             archivo,
@@ -40,8 +42,9 @@ public class VMenu extends JMenuBar  {
             //cargarPartida;
     private JMenuItem atras,salir;//temporalk aqui , a lo mejor en el futuro se pueden eleminar de aqui
 
-    public VMenu(Logica logica) {
+    public VMenu(Logica logica,Vista vista) {
         controlador = new ContrMenu(logica, this);
+        this.vista=vista;
         generar();
         
     }
@@ -87,10 +90,15 @@ public class VMenu extends JMenuBar  {
         partida.addSeparator();
         
         JMenuItem guardarPartida=new JMenuItem("Save game");
+        guardarPartida.addActionListener(controlador);
+        guardarPartida.setActionCommand("guardar");
         partida.add(guardarPartida);
         
         //cargarPartida=new JMenu("Load game");
         JMenuItem cargarPartida=new JMenuItem("Load game");
+        
+        cargarPartida.addActionListener(controlador);
+        cargarPartida.setActionCommand("cargar");
         partida.add(cargarPartida);
         
         this.add(partida);
@@ -115,5 +123,11 @@ public class VMenu extends JMenuBar  {
         Image reescalada = imagen.getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH);
         icono = new ImageIcon(reescalada);
         return icono;
+    }
+    public void guardar(){
+        vista.guardar();
+    }
+    public void cargar(){
+        vista.cargar();
     }
 }

@@ -14,6 +14,12 @@ import vista.VMenu;
 import vista.VistaSplash;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -51,7 +57,7 @@ public class Vista {
         vIngreso = new VIngreso(logica);
         vJuego = new VJuego(logica);
         vLista = new VLista(logica);
-        vMenu = new VMenu(logica);
+        vMenu = new VMenu(logica,this);
         //no ponemos splash ya que no necesita logica
         
         ventana.setVisible(true);
@@ -167,6 +173,52 @@ public class Vista {
      * Elimina todas las vistas o paneles añadidos 
      */
     public void eliminarVistas(){
+        for (int i = 0; i <  ventana.getComponentCount(); i++) {
+            ventana.remove(i);
+        }
+        ventana.removeAll();
+        vJuego.eliminarElementos();
+    }
+    public void guardar(){
+        try {
+            //Creamos un flujo de salida al disco
+            FileOutputStream fileOut = new FileOutputStream("juego.obj");
+            //Vinculamos el flujo de salida de objetos con el fichero
+            ObjectOutputStream salida=new ObjectOutputStream(fileOut);
+            //escribimos el objeto
+            salida.writeObject(vJuego);
+            //cerramos el flujo
+            salida.close();
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
+    }
+    public void cargar(){
+        //System.out.println("ewdkjhgbekj");
+        eliminarVistas();
+        
+        //FileInputStream fileIn=null;
+        try {
+            //Creamos un flujo de entrada desde el disco
+            FileInputStream fileIn = new FileInputStream("juego.obj");
+            //Vinculamos la referencia al disco con nuestro flujo de entrada
+            ObjectInputStream entrada=new ObjectInputStream(fileIn);
+            //Cargamos el objeto y hacemos el casting del tipo que es
+            VJuego vJuegoo=(VJuego)entrada.readObject();
+            ventana.add(vJuegoo);
+            ventana.repaint();
+            ventana.setVisible(true);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     

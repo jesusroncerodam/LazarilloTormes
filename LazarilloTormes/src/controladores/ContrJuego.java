@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.Serializable;
 import vista.VJuego;
 import trabajodi.Logica;
 
@@ -18,7 +19,7 @@ import trabajodi.Logica;
 
  @author Guille
  */
-public class ContrJuego implements MouseListener, KeyListener {
+public class ContrJuego implements MouseListener, KeyListener,Serializable{
     private VJuego vista;
     private Logica logica;
 
@@ -43,7 +44,7 @@ public class ContrJuego implements MouseListener, KeyListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        vista.eliminarElementos();
+        //vista.eliminarElementos();
         logica.juegoClick(e.getComponent());
     }
 

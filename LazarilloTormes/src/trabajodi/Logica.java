@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -30,7 +31,7 @@ import javax.swing.JLabel;
 
  @author Guille
  */
-public class Logica {
+public class Logica implements Serializable{
     private ContrJuego juego;
     private boolean primeraJuego,animacionC;
     private Timer timer;

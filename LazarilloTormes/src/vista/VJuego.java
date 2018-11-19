@@ -16,8 +16,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.ImageIcon;
@@ -32,7 +31,7 @@ import trabajodi.Logica;
 
  @author Guille
  */
-public class VJuego extends JPanel {
+public class VJuego extends JPanel implements Serializable {
 
     private Font fuente = new Font("Agency FB", Font.BOLD, 40);
     private final int HGAP=20, VGAP=5;
