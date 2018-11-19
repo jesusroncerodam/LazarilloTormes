@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JSeparator;
 import javax.swing.KeyStroke;
 import trabajodi.Logica;
 
@@ -72,14 +73,23 @@ public class VMenu extends JMenuBar  {
     }
     
     private void generarMenuArchivo(){
-        archivo=new JMenu("Archivo");
-        atras = new JMenuItem("Go back",new ImageIcon("src/img/equis.png"));
+        archivo=new JMenu("Archive");
         
+        atras = new JMenuItem("Go back",new ImageIcon("src/img/back.png"));
         atras.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
         //no va lo de abaajo
-            //atras.getAccessibleContext().setAccessibleDescription("This doesn't really do anything");
+            //atras.getAccessibleContext().setAccessibleDescription("dfuhfhijdksgbjk");
         archivo.add(atras);
+                
+        archivo.addSeparator();//(separador);
+        
         salir=new JMenuItem("Exit",new ImageIcon("src/img/equis.png"));
+        
+        archivo.add(salir);
+        
         this.add(archivo);
+    }
+    private void generarPartida(){
+        
     }
 }

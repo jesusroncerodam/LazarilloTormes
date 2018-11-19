@@ -36,7 +36,6 @@ public class VJuego extends JPanel {
 
     private Font fuente = new Font("Agency FB", Font.BOLD, 40);
     private final int HGAP=20, VGAP=5;
-    private Date tiempo;
     private ContrJuego controlador;
     private ArrayList<Carta> carta;
     private int contadorSeg, contMov,desactivadas;

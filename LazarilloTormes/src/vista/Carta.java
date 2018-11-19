@@ -30,7 +30,7 @@ public class Carta extends JLabel {
     private Timer timer;
     private boolean bloquear;
     
-    private final String VUELTA_IMAGEN="src/img/cartas/imgVuelta.png";
+    private final String VUELTA_IMAGEN="src/img/cartas/vuelta.png";
     private final int WIDTH_DEF, HEIHT_DEF,TIEMPO_ANIMACION=2;
 
 
@@ -40,7 +40,7 @@ public class Carta extends JLabel {
      */
     public Carta(String url) {
         this.setBorder(borde);//ponemos un borde
-        imgVuelta = new ImageIcon("src/img/cartas/vuelta.png");//("src/img/cartas/vuelta.png");////////////////////////////////////////////////////////ERROR SI SE LE PONE LA LOICALIZACION POR VARIABLE NO VA
+        imgVuelta = new ImageIcon(VUELTA_IMAGEN);
         this.setSize(imgVuelta.getIconWidth(),imgVuelta.getIconHeight());//la imagen de "imgVuelta" da las dimensiones
         this.setIcon(imgVuelta);//asignamos como icono la imagen de imgVuelta
         imgCarta = cambiarTamano(new ImageIcon(url), imgVuelta.getIconWidth(), imgVuelta.getIconHeight());//asignamos un tamaño a la carta, para que esta se vea con las mismas 
@@ -146,7 +146,7 @@ public class Carta extends JLabel {
      */
     private void ponerImagen() {
         if(altura>0 && ancho>0 && altura<imgVuelta.getIconHeight() && ancho<imgVuelta.getIconWidth()){
-            this.setIcon(cambiarTamano(new ImageIcon("src/img/cartas/vuelta.png"), ancho, altura));//"src/img/cartas/vuelta.png"/////////////////////////////////////////////////////////////////
+            this.setIcon(cambiarTamano(new ImageIcon(VUELTA_IMAGEN), ancho, altura));
         }else{
             if(sale){
                 setIcon(null);
