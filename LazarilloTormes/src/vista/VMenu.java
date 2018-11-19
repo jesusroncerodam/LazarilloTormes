@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.KeyStroke;
 import trabajodi.Logica;
@@ -42,42 +43,13 @@ public class VMenu extends JMenuBar  {
     public VMenu(Logica logica) {
         controlador = new ContrMenu(logica, this);
         generar();
-        generarPartida();
+        
     }
 
     public void generar(){
         generarMenuArchivo();
-        /*MenuItem A1=new MenuItem("Salir",(new MenuShortcut(KeyEvent.getExtendedKeyCodeForChar('1'), false)));
-        Menu menuV1=new Menu("Ajustes");
-        menuV1.add(A1);
-        
-        
-            MenuItem B1=new MenuItem("Sonido",(new MenuShortcut(KeyEvent.getExtendedKeyCodeForChar('1'), false)));
-            MenuItem B2=new MenuItem("Atras",(new MenuShortcut(KeyEvent.getExtendedKeyCodeForChar('2'), true)));
-            MenuItem C1=new MenuItem("Sonido",(new MenuShortcut(KeyEvent.getExtendedKeyCodeForChar('2'), false)));
-            A1.addActionListener(controlador);
-            A1.setActionCommand("Salir");
-            //A2.addActionListener(controlador);
-            //A2.setActionCommand("atras1");
-            B1.addActionListener(controlador);
-            B1.setActionCommand("alante2");
-            B2.addActionListener(controlador);
-            B2.setActionCommand("atras2");
-
-
-           // menuV1.add(A2);
-
-            Menu menuV2=new Menu("Vehiculo 2");
-            menuV2.add(B1);
-            menuV2.add(B2);
-
-            MenuBar menuBar=new MenuBar();
-            menuBar.add(menuV2);
-
-            
-        this.add(menuV1);*/
-        
-        //ventana.setMenuBar(menuBar);
+        generarPartida();
+        ajustes();
     }
     
     private void generarMenuArchivo(){
@@ -85,8 +57,7 @@ public class VMenu extends JMenuBar  {
         
         atras = new JMenuItem("Go back",new ImageIcon("src/img/back.png"));
         atras.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
-        //no va lo de abaajo
-            //atras.getAccessibleContext().setAccessibleDescription("dfuhfhijdksgbjk");
+        
         archivo.add(atras);
                 
         archivo.addSeparator();//(separador);
@@ -125,8 +96,10 @@ public class VMenu extends JMenuBar  {
         this.add(partida);
     }
     private void ajustes(){
-        ajustes=new JMenu("Game");
-
+        ajustes=new JMenu("Settings");
+        JRadioButtonMenuItem sonido= new JRadioButtonMenuItem("Sound", true);
+        ajustes.add(sonido);
+        this.add(ajustes);
     }
     
     /**

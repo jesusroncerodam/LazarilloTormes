@@ -132,9 +132,7 @@ public class VLista extends JPanel{
             }
             lista.add(fila);
         }
-        //this.setBorder(LineBorder.createBlackLineBorder());
-        //lista.setBorder(LineBorder.createBlackLineBorder());
-        JScrollPane scroll = new JScrollPane(lista,   ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        JScrollPane scroll = new JScrollPane(lista,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estadisticas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12),COLOR_LETRAS));
         scroll.setPreferredSize(new Dimension(500, 500));
         loc.fill= GridBagConstraints.BOTH;
