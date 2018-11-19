@@ -7,6 +7,7 @@ package vista;
 
 
 import controladores.ContrMenu;
+import java.awt.Image;
 import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
@@ -29,12 +30,19 @@ import trabajodi.Logica;
 public class VMenu extends JMenuBar  {
 
     private ContrMenu controlador;
-    private JMenu archivo,partida,ajustes,irA,mover;
+    private JMenu 
+            archivo,
+            partida,
+            ajustes,
+            irA,
+            mover;
+            //cargarPartida;
     private JMenuItem atras,salir;//temporalk aqui , a lo mejor en el futuro se pueden eleminar de aqui
 
     public VMenu(Logica logica) {
         controlador = new ContrMenu(logica, this);
         generar();
+        generarPartida();
     }
 
     public void generar(){
@@ -82,7 +90,8 @@ public class VMenu extends JMenuBar  {
         archivo.add(atras);
                 
         archivo.addSeparator();//(separador);
-        
+        archivo.addSeparator();
+
         salir=new JMenuItem("Exit",new ImageIcon("src/img/equis.png"));
         
         archivo.add(salir);
@@ -90,6 +99,48 @@ public class VMenu extends JMenuBar  {
         this.add(archivo);
     }
     private void generarPartida(){
+        partida=new JMenu("Game");
         
+        JMenu submenu=new JMenu("New Game");
+            JMenuItem partidaRapida=new JMenuItem("Quick game");
+            submenu.add(partidaRapida);
+            
+            JMenuItem partidaPersonalizada=new JMenuItem("Custom game");
+            submenu.add(partidaPersonalizada);
+        partida.add(submenu);
+        
+        JMenuItem pausaPlay=new JMenuItem("Pause/Play",cambiarTamano(new ImageIcon("src/img/playPause.png"),20,20));//poner imahgen en pequeño 20px
+        partida.add(pausaPlay);
+        
+        partida.addSeparator();
+        partida.addSeparator();
+        
+        JMenuItem guardarPartida=new JMenuItem("Save game");
+        partida.add(guardarPartida);
+        
+        //cargarPartida=new JMenu("Load game");
+        JMenuItem cargarPartida=new JMenuItem("Load game");
+        partida.add(cargarPartida);
+        
+        this.add(partida);
+    }
+    private void ajustes(){
+        ajustes=new JMenu("Game");
+
+    }
+    
+    /**
+     Modifica el tamaño de las imagenes
+
+     @param icono
+     @param anchoImagen
+     @param altoImagen
+     @return
+     */
+    public ImageIcon cambiarTamano(ImageIcon icono, int anchoImagen, int altoImagen) {
+        Image imagen = icono.getImage();
+        Image reescalada = imagen.getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH);
+        icono = new ImageIcon(reescalada);
+        return icono;
     }
 }
