@@ -5,13 +5,14 @@
  */
 package trabajodi;
 
+import java.io.Serializable;
 import javax.swing.ImageIcon;
 
 /**
  *
  * @author Guille
  */
-public class Historial implements Comparable<Historial>{
+public class Historial implements Comparable<Historial>, Serializable{
     private String nombre,url;
    // private ImageIcon imagen;
     private int tiempo,movimientos;

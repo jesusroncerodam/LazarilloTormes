@@ -8,10 +8,6 @@ package vista;
 
 import controladores.ContrMenu;
 import java.awt.Image;
-import java.awt.Menu;
-import java.awt.MenuBar;
-import java.awt.MenuItem;
-import java.awt.MenuShortcut;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
@@ -19,7 +15,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
-import javax.swing.JSeparator;
 import javax.swing.KeyStroke;
 import trabajodi.Logica;
 import trabajodi.Vista;
