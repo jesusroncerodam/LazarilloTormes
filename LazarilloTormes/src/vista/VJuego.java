@@ -368,6 +368,11 @@ public class VJuego extends JPanel {
     public int getContMov() {
         return contMov;
     }
+    public void eliminarElementos(){
+        for (int i = 0; i <  this.getComponentCount(); i++) {
+            remove(i);
+        }
+    }
     
 }
 /*

@@ -43,6 +43,7 @@ public class ContrJuego implements MouseListener, KeyListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        vista.eliminarElementos();
         logica.juegoClick(e.getComponent());
     }
 
