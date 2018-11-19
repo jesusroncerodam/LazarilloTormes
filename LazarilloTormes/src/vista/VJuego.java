@@ -16,6 +16,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.ImageIcon;
@@ -34,6 +36,7 @@ public class VJuego extends JPanel {
 
     private Font fuente = new Font("Agency FB", Font.BOLD, 40);
     private final int HGAP=20, VGAP=5;
+    private Date tiempo;
     private ContrJuego controlador;
     private ArrayList<Carta> carta;
     private int contadorSeg, contMov,desactivadas;
@@ -100,6 +103,8 @@ public class VJuego extends JPanel {
 
         //contador segundos
         contadorSeg = 0;
+        //tiempo =new Date();
+        SimpleDateFormat a=new SimpleDateFormat("mm:ss")
         ImageIcon imgReloj = new ImageIcon("src/img/reloj.png");
         lReloj = new JLabel("" + contadorSeg, imgReloj, JLabel.CENTER);
         System.out.println(imgReloj.getIconWidth());
