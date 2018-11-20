@@ -25,7 +25,7 @@ public class VPrincipal extends JLabel {
     private ContrPrinipal controlador;
     private GridBagConstraints constrain;
     private JButton bNuevaPartida, bEstadisticas, bCargarPartida, bDialogoModal;
-
+    private ImageIcon fondo=new ImageIcon(this.getClass().getResource("/img/fondoPrinc.jpg"));
 
     public VPrincipal(Logica logica) {
         controlador = new ContrPrinipal(logica, this);
@@ -76,7 +76,6 @@ repaint();
     }//fondoPrinc.jpg
      public void paint(Graphics g) {
         super.paint(g);//borramos la imagen anterior
-
-        g.drawImage( new ImageIcon(this.getClass().getResource("/img/fondoPrinc.jpg")).getImage(), 0,0, getWidth(), getHeight(), null);
+        g.drawImage( fondo.getImage(), 0,0, getWidth(), getHeight(), null);
     }
 }

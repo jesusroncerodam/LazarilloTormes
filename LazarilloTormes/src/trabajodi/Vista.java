@@ -148,7 +148,6 @@ public class Vista {
         cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
         ventana.setSize(1000, 800);  
         ventana.add(vPrincipal);
-        
         ventana.repaint();
     }
     
