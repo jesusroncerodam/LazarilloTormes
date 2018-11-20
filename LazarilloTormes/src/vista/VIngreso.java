@@ -15,7 +15,7 @@ import trabajodi.Logica;
 
  @author Guille
  */
-public class VIngreso extends JPanel{
+public class VIngreso extends JPanel {
 
     private ContrIngreso controlador;
 

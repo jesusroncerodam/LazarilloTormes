@@ -2,8 +2,12 @@ package creacionvistas;
 
 
 import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.TextField;
 import java.util.Random;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,6 +28,9 @@ public class Vista extends JFrame {
     private JLabel labelNombre, labelApodo;
     private TextField campoNombre;
     private JButton flechaAtrás, avanzarPagina;
+    private GridBagConstraints constrain;
+
+    ImageIcon imagenFlecha = new ImageIcon("src/img/flecha.png");
 
 
     public Vista() {
@@ -44,14 +51,18 @@ public class Vista extends JFrame {
 
     public void crearElementos() {
         panel1 = new JPanel();
+
         labelNombre = new JLabel();
         labelApodo = new JLabel();
         campoNombre = new TextField();
-        
-        flechaAtrás = new JButton();
-        avanzarPagina = new JButton();
-        
 
+        flechaAtrás = new JButton(imagenFlecha);
+        avanzarPagina = new JButton();
+
+        constrain.gridx = 2;
+        constrain.gridy = 2;
+        constrain.fill = GridBagConstraints.HORIZONTAL;
+        constrain.weighty = 0.5;
     }
 
 
@@ -61,6 +72,11 @@ public class Vista extends JFrame {
     public void anadirElementos() {
         add(panel1);
 
+        panel1.add(labelNombre, constrain);
+        panel1.add(labelApodo);
+        panel1.add(campoNombre);
+        panel1.add(flechaAtrás);
+        panel1.add(avanzarPagina);
     }
 
 
@@ -68,8 +84,6 @@ public class Vista extends JFrame {
      Asigno las posiciones a los elementos
      */
     public void posicionElementos() {
-        panel1.setLayout(null);
-        panel1.setBounds(0, 0, ANCHOMARCO - 6, ALTOMARCO - 29);
 
     }
 
@@ -79,7 +93,6 @@ public class Vista extends JFrame {
      */
     public void estiloElementos() {
         panel1.setBackground(colorAleatorio());
-
     }
 
 
@@ -87,9 +100,7 @@ public class Vista extends JFrame {
      Le asigna la forma al marco
      */
     public void formaMarco() {
-        //setIconImage(imagenFlecha.getImage());
-        //setTitle("Titulo 1");
-        setLayout(null);
+        setLayout(new GridBagLayout());
         setResizable(false);
         setBounds(550, 150, ANCHOMARCO, ALTOMARCO);
         setVisible(true);
@@ -101,10 +112,8 @@ public class Vista extends JFrame {
      Añade y crea el controlador de la vista
      */
     public void anadirControladores() {
-        panel1.setName("panelMarco1");
 
         controladorVista = new ControladorVista(this);
-
     }
 
 
@@ -120,4 +129,31 @@ public class Vista extends JFrame {
         Color color = new Color(red, green, blue);
         return color;
     }
+
+
+    /**
+     Modifica el tamaño de los iconos
+
+     @param icono
+     @param anchoImagen
+     @param altoImagen
+     @return
+     */
+    public ImageIcon cambiarTamano(ImageIcon icono, int anchoImagen, int altoImagen) {
+        return new ImageIcon(icono.getImage().getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH));
+    }
+
+
+    /**
+     Modifica el tamaño de las imagenes
+
+     @param icono
+     @param anchoImagen
+     @param altoImagen
+     @return
+     */
+    public Image cambiarTamano(Image icono, int anchoImagen, int altoImagen) {
+        return icono.getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH);
+    }
+
 }
