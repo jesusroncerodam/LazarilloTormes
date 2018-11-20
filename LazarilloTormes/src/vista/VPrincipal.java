@@ -34,56 +34,77 @@ public class VPrincipal extends JLabel {
 
 
     public void generar() {
-        this.setOpaque(true);
+        this.setOpaque(false);
         this.setFocusable(true);
         this.requestFocus();
 
         constrain = new GridBagConstraints();
-        constrain.weighty = 0.5; //para que se estiren las columnas
+        
+       constrain.weighty = 0.5; //para que se estiren las columnas
         // constrain.weightx=1;
-        //  constrain.fill = GridBagConstraints.BOTH;
-        constrain.anchor = GridBagConstraints.CENTER;
+         // constrain.fill = GridBagConstraints.BOTH;
+       // constrain.anchor = GridBagConstraints.CENTER;
         this.setLayout(new GridBagLayout());
+        
+        btnPartida();
         btnCargarPartida();
         btnEstadisticas();
-        btnPartida();
         btnDialogModal();
-        //setVisible(true);
+        repaint();
     }
 
 
     private void btnPartida() {
-        bNuevaPartida = new JButton("Nueva partida");
+        bNuevaPartida = new JButton("New Game");
         constrain.gridx = 0; // El área de texto empieza en la columna 0.
         constrain.gridy = 1; // El área de texto empieza en la fila 1
-        constrain.gridwidth = 2; // El área de texto ocupa dos columnas.
-        constrain.gridheight = 1; // El área de texto ocupa 1 filas.
+      //  constrain.gridwidth = 1; // El área de texto ocupa dos columnas.
+      //  constrain.gridheight = 1; // El área de texto ocupa 1 filas.
         constrain.fill = GridBagConstraints.NONE; //para que no se expanda
-        constrain.weighty = 0.0;//`no deje espacio en el eje Y
+        //constrain.weighty = 0.0;//`no deje espacio en el eje Y
         this.add(bNuevaPartida, constrain);
     }
 
 
     private void btnEstadisticas() {
         bEstadisticas = new JButton("Estadisticas");
-        this.add(bEstadisticas);
+        constrain.gridx = 2; // El área de texto empieza en la columna 0.
+        constrain.gridy = 2; // El área de texto empieza en la fila 1
+        constrain.gridwidth = 1; // El área de texto ocupa dos columnas.
+        constrain.gridheight = 1; // El área de texto ocupa 1 filas.
+        constrain.fill = GridBagConstraints.NONE; //para que no se expanda
+        constrain.weighty = 0.0;//`no deje espacio en el eje Y
+        this.add(bEstadisticas,constrain);
     }
 
 
     private void btnCargarPartida() {
         bCargarPartida = new JButton("Cargar Partida");
-        this.add(bCargarPartida);
+        constrain.gridx = 1; // El área de texto empieza en la columna 0.
+        constrain.gridy = 2; // El área de texto empieza en la fila 1
+        constrain.gridwidth = 1; // El área de texto ocupa dos columnas.
+        constrain.gridheight = 1; // El área de texto ocupa 1 filas.
+        constrain.fill = GridBagConstraints.NONE; //para que no se expanda
+        constrain.weighty = 0.0;//`no deje espacio en el eje Y
+        this.add(bCargarPartida,constrain);
     }
 
 
     private void btnDialogModal() {
         bDialogoModal = new JButton("Dialogo Modal");
-        this.add(bDialogoModal);
+        constrain.gridx = 3; // El área de texto empieza en la columna 0.
+        constrain.gridy = 1; // El área de texto empieza en la fila 1
+        constrain.gridwidth = 1; // El área de texto ocupa dos columnas.
+        constrain.gridheight = 1; // El área de texto ocupa 1 filas.
+        constrain.fill = GridBagConstraints.NONE; //para que no se expanda
+        constrain.weighty = 0.0;//`no deje espacio en el eje Y
+        this.add(bDialogoModal,constrain);
     }//fondoPrinc.jpg
 
 
     public void paint(Graphics g) {
-        super.paint(g);//borramos la imagen anterior
+      
         g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), null);
+          super.paint(g);//borramos la imagen anterior
     }
 }
