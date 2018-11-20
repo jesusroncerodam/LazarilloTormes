@@ -59,27 +59,24 @@ public class VLista extends JPanel {
     private final String[] NOMBRE_COLUMNAS = {"Nº", "Image", "Name", "Mov.", "Time"};
     private final Color COLOR_LETRAS = Color.white;
     private String[] datos;
-    Object[][] columna;
-    JTable tabla;
-    DefaultTableModel modelo;
+  
     private ContrLista controlador;
-    private JTextPane taDatos;
     private JButton atras;
-    SimpleAttributeSet attrs;
     GridBagConstraints loc;
 
 
     // scroll;
     public VLista(Logica logica) {
-        this.setLayout(new GridBagLayout());
-        loc = new GridBagConstraints();
-        loc.weighty = 0.5;
-        loc.anchor = GridBagConstraints.CENTER;
+        
         controlador = new ContrLista(this, logica);
     }
 
 
     public void generar() {
+        this.setLayout(new GridBagLayout());
+        loc = new GridBagConstraints();
+        loc.weighty = 0.5;
+        loc.anchor = GridBagConstraints.CENTER;
         this.setBackground(Color.blue);
         recogerDatos();
         a();
@@ -175,6 +172,7 @@ public class VLista extends JPanel {
 
 
     public void recogerDatos() {
+        
         datos = controlador.datosFichero();
 
     }

@@ -184,9 +184,11 @@ public class VistaSplash extends JPanel {
      */
     private void rellenarProgreso() {
         if (valorP <= 100) {//mientras que el valor del progreso sea menor de 100
+            System.out.println(valorP);
             if (cont < textos.length) {//mientras que el contador sea menor que el array de mensajes
                 if (valorP % (100 / textos.length) == 0) {//esta operacion divide el progreso y muestra los mensajes en funcion de el tamaño del array de mensajes
                     jTexto.setText(textos[cont]);//asignamos el texto 
+
                     cont++;//sumamos al contador, (hemos pasado de mensaje)
                 }
             }
@@ -196,6 +198,7 @@ public class VistaSplash extends JPanel {
             //paramos los contadores
             timerImg.stop();
             timerBar.stop();
+            System.out.println("stop");
             removeAll();
             //  notifyAll();
             vista.splashTermina();

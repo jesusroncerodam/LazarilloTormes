@@ -7,7 +7,9 @@ package trabajodi;
 
 
 import controladores.ContrJuego;
+import controladores.ContrPrinipal;
 import java.awt.Component;
+import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -32,6 +34,7 @@ import javax.swing.JLabel;
 public class Logica implements Serializable {
 
     private ContrJuego juego;
+    private ContrPrinipal principal;
     private boolean primeraJuego, animacionC;
     private Timer timer;
     private int vuelta, cartaAct;
@@ -64,18 +67,6 @@ public class Logica implements Serializable {
 
     }
 
-
-    /*
-     * // CONTROLADOR VISTA JUEGO
-     * // CONTROLADOR VISTA JUEGO
-     * // CONTROLADOR VISTA JUEGO
-     * // CONTROLADOR VISTA JUEGO
-     * // CONTROLADOR VISTA JUEGO
-     * // CONTROLADOR VISTA JUEGO
-     * // CONTROLADOR VISTA JUEGO
-     * // CONTROLADOR VISTA JUEGO
-     * // CONTROLADOR VISTA JUEGO
-     */
     /**
      * Encargado de gestionar las acciones de de mouseListener del controlador
      * del juego, aqui se gestionaran toda la logica
@@ -274,7 +265,6 @@ public class Logica implements Serializable {
                 fichero.write(historiales.toString() + "\n");
             }
             fichero.close();
-
         } catch (Exception ex) {
             System.out.println("Mensaje de la excepción: " + ex.getMessage());
         }
@@ -302,7 +292,7 @@ public class Logica implements Serializable {
             System.out.println(linea1);
         }
         System.out.println("==========================");
-        return (String[]) lineas.toArray(new String[lineas.size()]);
+        return lineas.toArray(new String[lineas.size()]);
     }
 
 
@@ -351,12 +341,35 @@ public class Logica implements Serializable {
 
     }
 
-
-    public synchronized void dormir(int tiempo) {
-        try {
-            Thread.sleep(tiempo * 1000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
+    
+    public void asignarContrPrincipal(ContrPrinipal principal) {
+        this.principal = principal;
+    }
+    
+    public void principalClick(String boton,int pulsos){
+        
+        switch (boton.replaceAll(" ", "").toLowerCase()) {
+            case "newgame":
+                System.out.println("1");
+                break;
+            case "loadgame":
+                
+                System.out.println("2");
+                break;
+            case "stats":
+                principal.cambiarDeVista("lista");
+                System.out.println("3");
+                break;
+            case "aboutus":
+                
+                System.out.println("4");
+                break;
+            case "":
+                
+                System.out.println("5");
+                break;
+            default:
+                throw new AssertionError();
         }
     }
 }

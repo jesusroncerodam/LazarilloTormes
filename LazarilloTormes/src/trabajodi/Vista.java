@@ -55,7 +55,7 @@ public class Vista {
         generarVista();
         //creamos todas las vistas mandandole la logica
         vCarga = new VCarga(logica);
-        vPrincipal = new VPrincipal(logica);
+        vPrincipal = new VPrincipal(logica,this);
         vDialogoMod = new VDialogoMod(logica);
         vIngreso = new VIngreso(logica);
         vJuego = new VJuego(logica);
@@ -68,7 +68,7 @@ public class Vista {
         ventana.setJMenuBar(vMenu);
 
         //ingresoDatos();
-        //  estadisticas();
+          //estadisticas();
         principal();
     }
 
@@ -118,13 +118,15 @@ public class Vista {
      */
     public synchronized void splashTermina() {
         notifyAll();//notificamos al hilo de ejecucion
+        System.out.println("=======================================");
+        System.out.println("notifiiis");
         try {
             Thread.sleep(500);//lo dormimos un segundo para que el cambio no sea brusco
         } catch (InterruptedException ex) {
             Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
         }
         ventana.remove(splash);//lo quitamos de la vusta para que no de errores
-        splash = null;//eliminamos el objeto, ya no lo necesitamos mas 
+     //   splash = null;//eliminamos el objeto, ya no lo necesitamos mas 
     }
 
 
@@ -151,34 +153,51 @@ public class Vista {
 
     public void principal() {
         vPrincipal.generar();
-        cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
+        //cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
         ventana.setSize(1000, 800);
         ventana.add(vPrincipal);
-        ventana.repaint();
+        ventana.setVisible(true);
     }
 
 
     /**
      *
      */
+    
     public void estadisticas() {
         vLista.generar();
-        cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
+        System.out.println("generao cargabdi sspl");
+        cargarSplash("/img/logotrini.png", "/img/carga.jpg", 2);
+        System.out.println("paso");
         ventana.setSize(600, 600);
         ventana.add(vLista);
         ventana.setVisible(true);
-        ventana.repaint();
+       // ventana.repaint();
     }
+
 
 
     public void cambiarVista(String vista) {
         //eliminamos todas las vistas
         eliminarVistas();
+     
         switch (vista) {
-            case "":
+            case "principal":
+                principal();
                 //ventana.setMenuBar(vMenu);
                 //se genera el menu correspondientevMenu.
                 //cargamos vista
+                break;
+            case "ingresodatos":
+                break;
+            case "juego":
+                
+                break;
+            case "lista":
+                System.out.println("sf");
+                estadisticas();
+                break;
+            case "dialogomodal":
                 break;
             default:
                 throw new AssertionError();
@@ -190,11 +209,9 @@ public class Vista {
      * Elimina todas las vistas o paneles añadidos
      */
     public void eliminarVistas() {
-        for (int i = 0; i < ventana.getComponentCount(); i++) {
-            ventana.remove(i);
-        }
-        ventana.removeAll();
-        vJuego.eliminarElementos();
+        ventana.remove(vPrincipal);
+        //ventana.removeAll();
+        //vJuego.eliminarElementos();
     }
 
 
