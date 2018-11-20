@@ -43,7 +43,6 @@ public class VPrincipal extends JLabel {
         //  constrain.fill = GridBagConstraints.BOTH;
         constrain.anchor = GridBagConstraints.CENTER;
         this.setLayout(new GridBagLayout());
-repaint();
         btnCargarPartida();
         btnEstadisticas();
         btnPartida();
@@ -54,7 +53,13 @@ repaint();
 
     private void btnPartida() {
         bNuevaPartida = new JButton("Nueva partida");
-        this.add(bNuevaPartida);
+        constrain.gridx = 0; // El área de texto empieza en la columna 0.
+        constrain.gridy = 1; // El área de texto empieza en la fila 1
+        constrain.gridwidth = 2; // El área de texto ocupa dos columnas.
+        constrain.gridheight = 1; // El área de texto ocupa 1 filas.
+        constrain.fill= GridBagConstraints.NONE; //para que no se expanda
+        constrain.weighty = 0.0;//`no deje espacio en el eje Y
+        this.add(bNuevaPartida,constrain);
     }
 
 
