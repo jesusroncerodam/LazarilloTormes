@@ -42,15 +42,19 @@ public class VPrincipal extends JLabel{
         btnDialogModal();
     }
     private void btnPartida(){
-        
+        bNuevaPartida = new JButton("Nueva partida");
+        this.add(bNuevaPartida);
     }
     private void btnEstadisticas(){
-        
+        bEstadisticas = new JButton("Estadisticas");
+        this.add(bEstadisticas);
     }
     private void btnCargarPartida(){
-        
+        bCargarPartida = new JButton("Cargar Partida");
+        this.add(bCargarPartida);
     }
     private void btnDialogModal(){
-        
+        bDialogoModal = new JButton("Dialogo Modal");
+        this.add(bDialogoModal);
     }
 }

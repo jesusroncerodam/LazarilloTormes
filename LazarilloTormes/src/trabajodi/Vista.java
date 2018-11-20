@@ -67,9 +67,9 @@ public class Vista {
         //temporal
         ventana.setJMenuBar(vMenu);
 
-       //ingresoDatos();
+       ingresoDatos();
         //estadisticas();
-        principal();
+       // principal();
     }
 
 
@@ -211,17 +211,20 @@ public class Vista {
     public void cargar(){
         //System.out.println("ewdkjhgbekj");
         eliminarVistas();
-        
+        System.out.println("antes try");
         //FileInputStream fileIn=null;
         try {
+            System.out.println("despues try");
             //Creamos un flujo de entrada desde el disco
             FileInputStream fileIn = new FileInputStream("juego.obj");
             //Vinculamos la referencia al disco con nuestro flujo de entrada
+            System.out.println("despues file");
             ObjectInputStream entrada=new ObjectInputStream(fileIn);
             //Cargamos el objeto y hacemos el casting del tipo que es
             VJuego vJuegoo=(VJuego)entrada.readObject();
+            System.out.println("despues cast");
             ventana.add(vJuegoo);
-            ventana.repaint();
+            System.out.println("despues añadir");
             ventana.setVisible(true);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
@@ -231,6 +234,7 @@ public class Vista {
             Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        System.out.println("holas");
     }
     
 }
