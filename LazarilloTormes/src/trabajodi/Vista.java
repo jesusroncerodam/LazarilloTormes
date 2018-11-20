@@ -24,6 +24,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import vista.VPrincipal;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -68,7 +70,7 @@ public class Vista {
         ventana.setJMenuBar(vMenu);
 
         //ingresoDatos();
-          //estadisticas();
+         // estadisticas();
         principal();
     }
 
@@ -95,17 +97,21 @@ public class Vista {
      * @param tiempo Int, Tiempo en segundos, indica la duracion del splash.
      */
     private synchronized void cargarSplash(String logo, String fondo, int tiempo) {
-        ventana.setSize(600, 600);
+       ventana.setSize(600, 600);
         splash = new VistaSplash(logo, fondo, tiempo, fuente, this);
-        ventana.setMinimumSize(splash.getMinimumSize());//asignamos el tamaño minimo para la ventana
+        splash.setAutoscrolls(true);
         ventana.add(splash);
+
+        ventana.setMinimumSize(splash.getMinimumSize());//asignamos el tamaño minimo para la ventana
         ventana.setVisible(true);
+        
         splash.empezarAnimaciones();
-        try {
-            wait();//dormimos la ejecucion de este hilo, termina cuando se llame a splashTermina
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //splashTermina();
+//        try {
+//            wait();//dormimos la ejecucion de este hilo, termina cuando se llame a splashTermina
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
 
@@ -117,16 +123,18 @@ public class Vista {
      * ahorrar espacio en memoria y elimina la ventana de carg.
      */
     public synchronized void splashTermina() {
-        notifyAll();//notificamos al hilo de ejecucion
-        System.out.println("=======================================");
-        System.out.println("notifiiis");
-        try {
-            Thread.sleep(500);//lo dormimos un segundo para que el cambio no sea brusco
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       // notifyAll();//notificamos al hilo de ejecucion
+
+       //while (splash.isEstado()) {      System.out.println(splash.isEstado());    }  
+
+//        try {
+//            Thread.sleep(500);//lo dormimos un segundo para que el cambio no sea brusco
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         ventana.remove(splash);//lo quitamos de la vusta para que no de errores
-     //   splash = null;//eliminamos el objeto, ya no lo necesitamos mas 
+        //splash = null;//eliminamos el objeto, ya no lo necesitamos mas 
+        ventana.repaint();
     }
 
 
@@ -153,10 +161,30 @@ public class Vista {
 
     public void principal() {
         vPrincipal.generar();
-        //cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
-        ventana.setSize(1000, 800);
+        cargarSplash("/img/logotrini.png", "/img/carga.jpg", 5);
+        Timer  timer = new Timer();
+
+    TimerTask task = new TimerTask() {
+        int tic=0;
+
+        @Override
+        public void run()
+        {
+            
+            if (tic%2==0)
+            System.out.println("TIC");
+            else
+            System.out.println("TOC");
+            tic++;
+        }
+        };
+        // Empezamos dentro de 10ms y luego lanzamos la tarea cada 1000ms
+    timer.schedule(task, 5500);
+    ventana.setSize(1000, 800);
         ventana.add(vPrincipal);
         ventana.setVisible(true);
+        
+        
     }
 
 

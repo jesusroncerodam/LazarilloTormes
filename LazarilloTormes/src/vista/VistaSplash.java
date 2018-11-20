@@ -16,6 +16,8 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.AffineTransform;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -41,6 +43,7 @@ public class VistaSplash extends JPanel {
     private JLabel jTexto;
     private String[] textos;
     private Font font;
+    private boolean estado;
 
 
     /**
@@ -89,6 +92,7 @@ public class VistaSplash extends JPanel {
      * @param vista     vista padre
      */
     private void crearObjetos(String rutaImg, String rutaFondo, int tiempo, Font font, Vista vista) {
+        estado=true;
         this.vista = vista;
         this.font = font;
         setOpaque(false);//si no lo ponemos, no se ve el fondo
@@ -182,7 +186,7 @@ public class VistaSplash extends JPanel {
      * Metodo encargado de ir rellenndo el progreso, paso a paso y
      * asignar los textos de progreso
      */
-    private void rellenarProgreso() {
+    private synchronized void rellenarProgreso() {
         if (valorP <= 100) {//mientras que el valor del progreso sea menor de 100
             System.out.println(valorP);
             if (cont < textos.length) {//mientras que el contador sea menor que el array de mensajes
@@ -200,8 +204,7 @@ public class VistaSplash extends JPanel {
             timerBar.stop();
             System.out.println("stop");
             removeAll();
-            //  notifyAll();
-            vista.splashTermina();
+            notify();
         }
     }
 
@@ -210,7 +213,7 @@ public class VistaSplash extends JPanel {
      * Encargado de crear y empezar la anumacion,
      * empieza a girar la imagen y añade valores al contador
      */
-    public void empezarAnimaciones() {
+    public synchronized void empezarAnimaciones() {
         timerImg = new Timer(tiempo / 5, new ActionListener() {//tiempo/5 para que sea respectivo junto al tiempo
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -231,6 +234,17 @@ public class VistaSplash extends JPanel {
         timerBar.setRepeats(true);
         timerImg.start();
         timerImg.setRepeats(true);
+        try {
+            wait();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(VistaSplash.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+            vista.splashTermina();
+    }
+
+    public boolean isEstado() {
+        return estado;
     }
 
 
