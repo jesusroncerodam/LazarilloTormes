@@ -67,9 +67,9 @@ public class Vista {
         //temporal
         ventana.setJMenuBar(vMenu);
 
-       ingresoDatos();
+       //ingresoDatos();
         //estadisticas();
-       // principal();
+        principal();
     }
 
 
@@ -144,7 +144,6 @@ public class Vista {
     }
     
     public void principal(){
-        
         vPrincipal.generar();
         cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
         ventana.setSize(1000, 800);  
@@ -157,7 +156,6 @@ public class Vista {
      * 
      */
     public void estadisticas() {
-
         vLista.generar();
         cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
         ventana.setSize(600, 600);        
@@ -190,6 +188,8 @@ public class Vista {
         ventana.removeAll();
         vJuego.eliminarElementos();
     }
+    
+    
     public void guardar(){
         try {
             //Creamos un flujo de salida al disco
@@ -205,12 +205,13 @@ public class Vista {
             Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        
+        }
     }
+    
+    
     public void cargar(){
         //System.out.println("ewdkjhgbekj");
-        eliminarVistas();
+        //eliminarVistas();
         System.out.println("antes try");
         //FileInputStream fileIn=null;
         try {
@@ -226,13 +227,12 @@ public class Vista {
             ventana.add(vJuegoo);
             System.out.println("despues añadir");
             ventana.setVisible(true);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            System.out.println("edfjn");
+            e.printStackTrace();
+         
         }
+        ventana.remove(vJuego);
         
         System.out.println("holas");
     }

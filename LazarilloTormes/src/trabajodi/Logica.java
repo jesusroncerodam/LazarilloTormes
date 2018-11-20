@@ -8,7 +8,6 @@ package trabajodi;
 import controladores.ContrJuego;
 import java.awt.Component;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -17,8 +16,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -49,6 +46,11 @@ public class Logica implements Serializable{
         this.juego=juego;
         primeraJuego=true;
         animacionC=false;
+    }
+
+    public void setPrimeraJuego() {
+        this.primeraJuego = true;
+        System.out.println("fjkdsbjk");
     }
     
     public void Menus(String accion){
@@ -157,19 +159,19 @@ public class Logica implements Serializable{
         
     }
     
-    private void gestionFichero(Historial historialNuevo){
-        ArrayList<Historial> historial;
-        //nos aseguramos que existe un fichero
-        crearFichero(true);
-        //añadimos el contenido del fichero a un array
-        historial= pasarFicheroAArray();
-        //añadimos los nuevos valores 
-        historial.add(historialNuevo);
-        //ordenamos el arraylist
-        Collections.sort(historial);
-        //lo escribimos en el fichero
-        pasarAFichero(historial);
-    }
+//    private void gestionFichero(Historial historialNuevo){
+//        ArrayList<Historial> historial;
+//        //nos aseguramos que existe un fichero
+//        crearFichero(true);
+//        //añadimos el contenido del fichero a un array
+//        historial= pasarFicheroAArray();
+//        //añadimos los nuevos valores 
+//        historial.add(historialNuevo);
+//        //ordenamos el arraylist
+//        Collections.sort(historial);
+//        //lo escribimos en el fichero
+//        pasarAFichero(historial);
+//    }
     //        fichero.delete();
 
     private void crearFichero(boolean mantenerFichero){

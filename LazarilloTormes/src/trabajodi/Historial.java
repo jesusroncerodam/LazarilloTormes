@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
  *
  * @author Guille
  */
-public class Historial implements Comparable<Historial>, Serializable{
+public class Historial implements /*Comparable<Historial>,*/ Serializable{
     private String nombre,url;
    // private ImageIcon imagen;
     private int tiempo,movimientos;
@@ -51,21 +51,21 @@ public class Historial implements Comparable<Historial>, Serializable{
         return movimientos;
     }
 
-    @Override
-    public int compareTo(Historial e) {
-        if(e.getMovimientos()>movimientos){
-            return -1;
-        }else if(e.getMovimientos()<movimientos){
-            return 0;
-        }else{
-            if(e.getTiempo()>tiempo){
-                return -1;
-            }else if(e.getTiempo()<tiempo){
-                return 0;
-            }else{
-                return 1;
-            }  
-        }    
-    }
+//    @Override
+//    public int compareTo(Historial e) {
+//        if(e.getMovimientos()>movimientos){
+//            return -1;
+//        }else if(e.getMovimientos()<movimientos){
+//            return 0;
+//        }else{
+//            if(e.getTiempo()>tiempo){
+//                return -1;
+//            }else if(e.getTiempo()<tiempo){
+//                return 0;
+//            }else{
+//                return 1;
+//            }  
+//        }    
+//    }
    
 }

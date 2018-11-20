@@ -30,6 +30,7 @@ public class ContrMenu implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("guardar")){
+            logica.setPrimeraJuego();
             vista.guardar();
         }
         if(e.getActionCommand().equals("cargar")){

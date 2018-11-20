@@ -13,7 +13,6 @@ import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
@@ -174,7 +173,7 @@ public class VJuego extends JPanel implements Serializable {
                     tiempo+=seg;
                 }
                 lReloj.setText(tiempo);
-                //poner si pasa de una cifra se coloque bien, 10 100 1000..../////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                System.out.println("hoildsjf"+tiempo);
                 repaint();
             }
         });
@@ -241,8 +240,8 @@ public class VJuego extends JPanel implements Serializable {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Image img = new ImageIcon("src/img/fondo2.gif").getImage();
-        g.drawImage(img, 0, 0, getWidth(), getHeight()+5, this);
+        ImageIcon img = new ImageIcon("src/img/fondo2.gif");
+        g.drawImage(img.getImage(), 0, 0, getWidth(), getHeight()+5, this);
     }
     
     /**
@@ -295,6 +294,7 @@ public class VJuego extends JPanel implements Serializable {
                     tReloj.start();
                 tReloj.setRepeats(true);
                 break;
+            
                 
             default:
                 System.out.println("error gestionar contador"+accion.toLowerCase());
