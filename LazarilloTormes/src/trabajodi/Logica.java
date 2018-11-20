@@ -53,19 +53,14 @@ public class Logica implements Serializable {
         animacionC = false;
     }
 
-<<<<<<< HEAD
     public void setPrimeraJuego() {
         this.primeraJuego = true;
         System.out.println("fjkdsbjk");
     }
     
-    public void Menus(String accion){
-        
-=======
 
     public void Menus(String accion) {
 
->>>>>>> e89cc74f9a71a18b7eb986fc0d15b2734b6a5ff0
     }
 
 
@@ -174,7 +169,6 @@ public class Logica implements Serializable {
     public void juegokey() {
 
     }
-<<<<<<< HEAD
     
 //    private void gestionFichero(Historial historialNuevo){
 //        ArrayList<Historial> historial;
@@ -189,25 +183,6 @@ public class Logica implements Serializable {
 //        //lo escribimos en el fichero
 //        pasarAFichero(historial);
 //    }
-=======
-
-
-    private void gestionFichero(Historial historialNuevo) {
-        ArrayList<Historial> historial;
-        //nos aseguramos que existe un fichero
-        crearFichero(true);
-        //añadimos el contenido del fichero a un array
-        historial = pasarFicheroAArray();
-        //añadimos los nuevos valores 
-        historial.add(historialNuevo);
-        //ordenamos el arraylist
-        Collections.sort(historial);
-        //lo escribimos en el fichero
-        pasarAFichero(historial);
-    }
-
->>>>>>> e89cc74f9a71a18b7eb986fc0d15b2734b6a5ff0
-    //        fichero.delete();
 
     private void crearFichero(boolean mantenerFichero) {
         try {
