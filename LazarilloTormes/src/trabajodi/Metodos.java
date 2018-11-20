@@ -1,7 +1,7 @@
 /*
- To change this license header, choose License Headers in Project Properties.
- To change this template file, choose Tools | Templates
- and open the template in the editor.
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package trabajodi;
 
@@ -18,8 +18,8 @@ import javax.swing.ImageIcon;
 
 
 /**
-
- @author JesusClase
+ *
+ * @author JesusClase
  */
 public class Metodos {
 
@@ -62,8 +62,8 @@ public class Metodos {
 
 
     /**
-     Proporciona un color aleatorio para el panel
-     @return Devuelve un color
+     * Proporciona un color aleatorio para el panel
+     * @return Devuelve un color
      */
     public Color colorAleatorio() {
         Random aleatorio = new Random();
@@ -76,12 +76,12 @@ public class Metodos {
 
 
     /**
-     Modifica el tamaño de las imagenes
-
-     @param icono
-     @param anchoImagen
-     @param altoImagen
-     @return
+     * Modifica el tamaño de las imagenes
+     *
+     * @param icono
+     * @param anchoImagen
+     * @param altoImagen
+     * @return
      */
     public ImageIcon cambiarTamano(ImageIcon icono, int anchoImagen, int altoImagen) {
         Image imagen = icono.getImage();
@@ -92,12 +92,12 @@ public class Metodos {
 
 
     /**
-     Modifica el tamaño de las imagenes
-
-     @param icono
-     @param anchoImagen
-     @param altoImagen
-     @return
+     * Modifica el tamaño de las imagenes
+     *
+     * @param icono
+     * @param anchoImagen
+     * @param altoImagen
+     * @return
      */
     public Image cambiarTamano(Image icono, int anchoImagen, int altoImagen) {
         Image reescalada = icono.getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH);

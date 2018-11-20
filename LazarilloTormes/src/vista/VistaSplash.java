@@ -1,7 +1,7 @@
 /*
- To change this license header, choose License Headers in Project Properties.
- To change this template file, choose Tools | Templates
- and open the template in the editor.
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package vista;
 
@@ -27,31 +27,31 @@ import trabajodi.Vista;
 
 
 /**
-
- @author Guille
+ *
+ * @author Guille
  */
-public class VistaSplash extends JPanel{
+public class VistaSplash extends JPanel {
 
     private Vista vista;
     private final int TAM_WH_IMG = 200, TAM_HE_IMG = 200, MAX_WIDTH = 285, MAX_HEIGHT = 462;
     private Timer timerImg, timerBar;
-    private int grados, valorP, cont, tamX,tamY, tiempo;
+    private int grados, valorP, cont, tamX, tamY, tiempo;
     private Image imagen, imagenFondo;
     private JProgressBar progreso;
     private JLabel jTexto;
     private String[] textos;
     private Font font;
 
-    
+
     /**
      * Constructor Crea una vista splash
      * se asignan 3 mensajes por defectos,
      * extiende de JPanel
      * @param rutaImg   ruta desde el main a la imagen que rota
-     * @param rutaFondo     ruta desde el fondo a la imagen de fondo
+     * @param rutaFondo ruta desde el fondo a la imagen de fondo
      * @param tiempo    tiempo hasta completar el progreso
-     * @param font  fuente de las letras
-     * @param vista vista a la que llama al terminar la ejecucion
+     * @param font      fuente de las letras
+     * @param vista     vista a la que llama al terminar la ejecucion
      */
     public VistaSplash(String rutaImg, String rutaFondo, int tiempo, Font font, Vista vista) {
         textos = new String[3];
@@ -63,28 +63,29 @@ public class VistaSplash extends JPanel{
 
 
     /**
-     *  Constructor Crea una vista splash
-     *  extiende de JPanel
+     * Constructor Crea una vista splash
+     * extiende de JPanel
      * @param rutaImg   ruta desde el main a la imagen que rota
-     * @param rutaFondo     ruta desde el fondo a la imagen de fondo
+     * @param rutaFondo ruta desde el fondo a la imagen de fondo
      * @param tiempo    tiempo hasta completar el progreso
-     * @param font  fuente de las letras
+     * @param font      fuente de las letras
      * @param textos    array de String, Mensajes de estado
-     * @param vista  vista a la que llama al terminar la ejecucion
+     * @param vista     vista a la que llama al terminar la ejecucion
      */
     public VistaSplash(String rutaImg, String rutaFondo, int tiempo, Font font, String[] textos, Vista vista) {
         this.textos = textos;
         crearObjetos(rutaImg, rutaFondo, tiempo, font, vista);
     }
 
+
     /**
      * Metodo genera todos los objetos de la clase.
      * evita reescribir el codigo
-     * 
+     *
      * @param rutaImg   ruta desde el main a la imagen que rota
      * @param rutaFondo ruta desde el fondo a la imagen de fondo
      * @param tiempo    en segundos, tiempo hasta completar el progreso
-     * @param font  fuente de las letras
+     * @param font      fuente de las letras
      * @param vista     vista padre
      */
     private void crearObjetos(String rutaImg, String rutaFondo, int tiempo, Font font, Vista vista) {
@@ -95,7 +96,7 @@ public class VistaSplash extends JPanel{
         cont = 0; //inicializamos los datos a "defecto" en el "constructor"
         grados = 0;
         tamX = getWidth();
-        tamY=getHeight();
+        tamY = getHeight();
         imagen = new ImageIcon(this.getClass().getResource(rutaImg)).getImage();
         imagenFondo = new ImageIcon(this.getClass().getResource(rutaFondo)).getImage();
         this.setLayout(new GridLayout(3, 1));//asignamos el layout
@@ -104,6 +105,7 @@ public class VistaSplash extends JPanel{
         crearJlabel();
         progresBar();
     }
+
 
     /**
      * Metodo encargado de crear, asignar y añadir el Jlabel
@@ -138,9 +140,9 @@ public class VistaSplash extends JPanel{
      */
     private void colocarElementos() {
         /*
-         //
-         //PONER DOS VARIABLES ANCH Y ALTO
-         //
+         * //
+         * //PONER DOS VARIABLES ANCH Y ALTO
+         * //
          */
         if (tamX != getWidth() || tamY != getHeight()) {//cuando el anacho y alto no sea el guardado
             progreso.setSize((getWidth() * progreso.getWidth()) / ((progreso.getX() * 2) + progreso.getWidth()), getHeight() / 30);//realizamos reglas de 3
@@ -154,9 +156,10 @@ public class VistaSplash extends JPanel{
 
 
     /**
-     Sobrescribimos el metodo "paint" encargado de Pintar el fondo de pantalla y
-     hacer girar la imagen
-     @param g Graphics
+     * Sobrescribimos el metodo "paint" encargado de Pintar el fondo de pantalla
+     * y
+     * hacer girar la imagen
+     * @param g Graphics
      */
     @Override
     public void paint(Graphics g) {
@@ -174,7 +177,6 @@ public class VistaSplash extends JPanel{
         g.drawImage(imagen, x - (TAM_HE_IMG / 2), y - (TAM_WH_IMG / 2), TAM_WH_IMG, TAM_HE_IMG, null);//null ya que no necesitamos saber si la imagen a cambiado
         //super.paint(g);//posible easter egg, gira todo 
     }
-
 
 
     /**
@@ -229,7 +231,7 @@ public class VistaSplash extends JPanel{
         timerImg.setRepeats(true);
     }
 
-    
+
     /**
      * tamaño minimo para que la ventana se vea correctamente
      * @return Dimension

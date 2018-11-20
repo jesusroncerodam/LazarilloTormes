@@ -1,7 +1,7 @@
 /*
- To change this license header, choose License Headers in Project Properties.
- To change this template file, choose Tools | Templates
- and open the template in the editor.
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package trabajodi;
 
@@ -26,8 +26,8 @@ import javax.swing.JLabel;
 
 
 /**
-
- @author Guille
+ *
+ * @author Guille
  */
 public class Logica implements Serializable {
 
@@ -43,9 +43,9 @@ public class Logica implements Serializable {
 
 
     /**
-     asinamos el controlador de Juego y incicializamos valores a un juego por
-     defecto
-     @param juego ContrJuego encargado de la comunicacion con el juego
+     * asinamos el controlador de Juego y incicializamos valores a un juego por
+     * defecto
+     * @param juego ContrJuego encargado de la comunicacion con el juego
      */
     public void asignarContrJuego(ContrJuego juego) {
         this.juego = juego;
@@ -53,11 +53,12 @@ public class Logica implements Serializable {
         animacionC = false;
     }
 
+
     public void setPrimeraJuego() {
         this.primeraJuego = true;
         System.out.println("fjkdsbjk");
     }
-    
+
 
     public void Menus(String accion) {
 
@@ -65,21 +66,20 @@ public class Logica implements Serializable {
 
 
     /*
-     // CONTROLADOR VISTA JUEGO
-     // CONTROLADOR VISTA JUEGO
-     // CONTROLADOR VISTA JUEGO
-     // CONTROLADOR VISTA JUEGO
-     // CONTROLADOR VISTA JUEGO
-     // CONTROLADOR VISTA JUEGO
-     // CONTROLADOR VISTA JUEGO
-     // CONTROLADOR VISTA JUEGO
-     // CONTROLADOR VISTA JUEGO
+     * // CONTROLADOR VISTA JUEGO
+     * // CONTROLADOR VISTA JUEGO
+     * // CONTROLADOR VISTA JUEGO
+     * // CONTROLADOR VISTA JUEGO
+     * // CONTROLADOR VISTA JUEGO
+     * // CONTROLADOR VISTA JUEGO
+     * // CONTROLADOR VISTA JUEGO
+     * // CONTROLADOR VISTA JUEGO
+     * // CONTROLADOR VISTA JUEGO
      */
-
     /**
-     Encargado de gestionar las acciones de de mouseListener del controlador
-     del juego, aqui se gestionaran toda la logica
-     @param componente
+     * Encargado de gestionar las acciones de de mouseListener del controlador
+     * del juego, aqui se gestionaran toda la logica
+     * @param componente
      */
     public synchronized void juegoClick(Component componente) {
         //si se ejecuta laguna accion  comienza el contador
@@ -169,7 +169,7 @@ public class Logica implements Serializable {
     public void juegokey() {
 
     }
-    
+
 //    private void gestionFichero(Historial historialNuevo){
 //        ArrayList<Historial> historial;
 //        //nos aseguramos que existe un fichero
@@ -232,14 +232,14 @@ public class Logica implements Serializable {
         historial.add(new Historial(50, 18, "url", "me"));
         pasarAFichero(historial);
         /*
-         for (Object object : historial) {
-         System.out.println(object.toString()+"");
-         }
-         Collections.sort(historial);
-         System.out.println("----");
-         for (Object object : historial) {
-         System.out.println(object.toString()+"");
-         }
+         * for (Object object : historial) {
+         * System.out.println(object.toString()+"");
+         * }
+         * Collections.sort(historial);
+         * System.out.println("----");
+         * for (Object object : historial) {
+         * System.out.println(object.toString()+"");
+         * }
          */
     }
 
@@ -307,14 +307,14 @@ public class Logica implements Serializable {
 
 
     /*
-     // CONTROLADOR VISTA CARGA
-     // CONTROLADOR VISTA CARGA
-     // CONTROLADOR VISTA CARGA
-     // CONTROLADOR VISTA CARGA
-     // CONTROLADOR VISTA CARGA
-     // CONTROLADOR VISTA CARGA
-     // CONTROLADOR VISTA CARGA
-     // CONTROLADOR VISTA CARGA
+     * // CONTROLADOR VISTA CARGA
+     * // CONTROLADOR VISTA CARGA
+     * // CONTROLADOR VISTA CARGA
+     * // CONTROLADOR VISTA CARGA
+     * // CONTROLADOR VISTA CARGA
+     * // CONTROLADOR VISTA CARGA
+     * // CONTROLADOR VISTA CARGA
+     * // CONTROLADOR VISTA CARGA
      */
     public void nombre_metodo() {
 
@@ -322,14 +322,14 @@ public class Logica implements Serializable {
 
 
     /*
-     // CONTROLADOR VISTA DIALOGMOD
-     // CONTROLADOR VISTA DIALOGMOD
-     // CONTROLADOR VISTA DIALOGMOD
-     // CONTROLADOR VISTA DIALOGMOD
-     // CONTROLADOR VISTA DIALOGMOD
-     // CONTROLADOR VISTA DIALOGMOD
-     // CONTROLADOR VISTA DIALOGMOD
-     // CONTROLADOR VISTA DIALOGMOD
+     * // CONTROLADOR VISTA DIALOGMOD
+     * // CONTROLADOR VISTA DIALOGMOD
+     * // CONTROLADOR VISTA DIALOGMOD
+     * // CONTROLADOR VISTA DIALOGMOD
+     * // CONTROLADOR VISTA DIALOGMOD
+     * // CONTROLADOR VISTA DIALOGMOD
+     * // CONTROLADOR VISTA DIALOGMOD
+     * // CONTROLADOR VISTA DIALOGMOD
      */
     public void metodo1() {
 
@@ -337,15 +337,15 @@ public class Logica implements Serializable {
 
 
     /*
-     // CONTROLADOR VISTA INGRESO
-     // CONTROLADOR VISTA INGRESO
-     // CONTROLADOR VISTA INGRESO
-     // CONTROLADOR VISTA INGRESO
-     // CONTROLADOR VISTA INGRESO
-     // CONTROLADOR VISTA INGRESO
-     // CONTROLADOR VISTA INGRESO
-     // CONTROLADOR VISTA INGRESO
-     // CONTROLADOR VISTA INGRESO
+     * // CONTROLADOR VISTA INGRESO
+     * // CONTROLADOR VISTA INGRESO
+     * // CONTROLADOR VISTA INGRESO
+     * // CONTROLADOR VISTA INGRESO
+     * // CONTROLADOR VISTA INGRESO
+     * // CONTROLADOR VISTA INGRESO
+     * // CONTROLADOR VISTA INGRESO
+     * // CONTROLADOR VISTA INGRESO
+     * // CONTROLADOR VISTA INGRESO
      */
     public void metodo2() {
 

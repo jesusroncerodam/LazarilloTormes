@@ -1,7 +1,7 @@
 /*
- To change this license header, choose License Headers in Project Properties.
- To change this template file, choose Tools | Templates
- and open the template in the editor.
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package vista;
 
@@ -12,10 +12,10 @@ import trabajodi.Logica;
 
 
 /**
-
- @author Guille
+ *
+ * @author Guille
  */
-public class VCarga extends JPanel{
+public class VCarga extends JPanel {
 
     private ContrCarga controlador;
 

@@ -1,6 +1,6 @@
 /*
-Explicacion diagrma: los objetos (vistas)(JPnalel) se van añadiendo al 
-Jframe (ventana) para despues eliminarlos o no segun lo que se quiera hacer
+ * Explicacion diagrma: los objetos (vistas)(JPnalel) se van añadiendo al
+ * Jframe (ventana) para despues eliminarlos o no segun lo que se quiera hacer
  */
 package trabajodi;
 
@@ -27,8 +27,8 @@ import vista.VPrincipal;
 
 
 /**
-
- @author Guille
+ *
+ * @author Guille
  */
 public class Vista {
 
@@ -46,35 +46,35 @@ public class Vista {
 
 
     /**
-     Constructor principal de la vista, se ejecuta creando también la logica
-     para mandarsela por parámetro al resto de las vistas
-
-     @param logica clase logica para vincularla con todas las clases
+     * Constructor principal de la vista, se ejecuta creando también la logica
+     * para mandarsela por parámetro al resto de las vistas
+     *
+     * @param logica clase logica para vincularla con todas las clases
      */
     public Vista(Logica logica) {
         generarVista();
         //creamos todas las vistas mandandole la logica
         vCarga = new VCarga(logica);
-        vPrincipal=new VPrincipal(logica);
+        vPrincipal = new VPrincipal(logica);
         vDialogoMod = new VDialogoMod(logica);
         vIngreso = new VIngreso(logica);
         vJuego = new VJuego(logica);
         vLista = new VLista(logica);
-        vMenu = new VMenu(logica,this);
+        vMenu = new VMenu(logica, this);
         //no ponemos splash ya que no necesita logica
-        
+
         ventana.setVisible(true);
         //temporal
         ventana.setJMenuBar(vMenu);
 
-       //ingresoDatos();
-      //  estadisticas();
-       principal();
+        //ingresoDatos();
+        //  estadisticas();
+        principal();
     }
 
 
     /**
-     Agrupamos todas las acciones que realizamos sobre la ventana
+     * Agrupamos todas las acciones que realizamos sobre la ventana
      */
     public void generarVista() {
         ventana = new JFrame("Memorion");
@@ -82,18 +82,20 @@ public class Vista {
         //ventana.setSize(600, 600);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    
+
+
     /**
-     * Método para generar la pantalla de carga, se le pasan las strings del logo
+     * Método para generar la pantalla de carga, se le pasan las strings del
+     * logo
      * y del fondo para crear las imagenes, así como el tiempo que queremos que
      * dure la animación
      * Metodo genera la pantalla Splash,
-     * @param logo  Strig,ruta de la imagen que da vueltas
-     * @param fondo String, ruta de la imagen que es asignada en el fondo
+     * @param logo   Strig,ruta de la imagen que da vueltas
+     * @param fondo  String, ruta de la imagen que es asignada en el fondo
      * @param tiempo Int, Tiempo en segundos, indica la duracion del splash.
      */
     private synchronized void cargarSplash(String logo, String fondo, int tiempo) {
-        ventana.setSize(600,600);
+        ventana.setSize(600, 600);
         splash = new VistaSplash(logo, fondo, tiempo, fuente, this);
         ventana.setMinimumSize(splash.getMinimumSize());//asignamos el tamaño minimo para la ventana
         ventana.add(splash);
@@ -106,10 +108,12 @@ public class Vista {
         }
     }
 
+
     /**
      * Método que finaliza la ejecución de la vista de carga, además,notificando
      * al hilo principal que estaba en "wait", duerme la ejecucion durante 0.5
-     * segundos para no mostrar un cambio brusco, establece el splash a nulo para
+     * segundos para no mostrar un cambio brusco, establece el splash a nulo
+     * para
      * ahorrar espacio en memoria y elimina la ventana de carg.
      */
     public synchronized void splashTermina() {
@@ -122,9 +126,10 @@ public class Vista {
         ventana.remove(splash);//lo quitamos de la vusta para que no de errores
         splash = null;//eliminamos el objeto, ya no lo necesitamos mas 
     }
-    
+
+
     public void ingresoDatos() {
-       
+
         String aux[] = new String[8];
         aux[0] = "src/img/carta.jpg";
         aux[1] = "src/img/2.jpg";
@@ -132,40 +137,41 @@ public class Vista {
         aux[3] = "src/img/flecha.png";
         aux[4] = "src/img/flecha.png";
         aux[5] = "src/img/flecha.png";
-        aux[6]="src/img/flecha.png";
-        aux[7]="src/img/flecha.png";
+        aux[6] = "src/img/flecha.png";
+        aux[7] = "src/img/flecha.png";
 
         vJuego.generar(aux);
         cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
-        ventana.setSize(1000, 1000);        
+        ventana.setSize(1000, 1000);
         ventana.add(vJuego);
 
         ventana.repaint();
     }
-    
-    public void principal(){
+
+
+    public void principal() {
         vPrincipal.generar();
         cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
-        ventana.setSize(1000, 800);  
+        ventana.setSize(1000, 800);
         ventana.add(vPrincipal);
         ventana.repaint();
     }
-    
-    
+
+
     /**
-     * 
+     *
      */
     public void estadisticas() {
         vLista.generar();
         cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
-        ventana.setSize(600, 600);        
+        ventana.setSize(600, 600);
         ventana.add(vLista);
         ventana.setVisible(true);
         ventana.repaint();
     }
-    
-    
-    public void cambiarVista(String vista){
+
+
+    public void cambiarVista(String vista) {
         //eliminamos todas las vistas
         eliminarVistas();
         switch (vista) {
@@ -178,38 +184,40 @@ public class Vista {
                 throw new AssertionError();
         }
     }
+
+
     /**
-     * Elimina todas las vistas o paneles añadidos 
+     * Elimina todas las vistas o paneles añadidos
      */
-    public void eliminarVistas(){
-        for (int i = 0; i <  ventana.getComponentCount(); i++) {
+    public void eliminarVistas() {
+        for (int i = 0; i < ventana.getComponentCount(); i++) {
             ventana.remove(i);
         }
         ventana.removeAll();
         vJuego.eliminarElementos();
     }
-    
-    
-    public void guardar(){
+
+
+    public void guardar() {
         try {
             //Creamos un flujo de salida al disco
             FileOutputStream fileOut = new FileOutputStream("juego.obj");
             //Vinculamos el flujo de salida de objetos con el fichero
-            ObjectOutputStream salida=new ObjectOutputStream(fileOut);
+            ObjectOutputStream salida = new ObjectOutputStream(fileOut);
             //escribimos el objeto
             salida.writeObject(vJuego);
             //cerramos el flujo
             salida.close();
-            
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    public void cargar(){
+
+
+    public void cargar() {
         //System.out.println("ewdkjhgbekj");
         //eliminarVistas();
         System.out.println("antes try");
@@ -220,9 +228,9 @@ public class Vista {
             FileInputStream fileIn = new FileInputStream("juego.obj");
             //Vinculamos la referencia al disco con nuestro flujo de entrada
             System.out.println("despues file");
-            ObjectInputStream entrada=new ObjectInputStream(fileIn);
+            ObjectInputStream entrada = new ObjectInputStream(fileIn);
             //Cargamos el objeto y hacemos el casting del tipo que es
-            VJuego vJuegoo=(VJuego)entrada.readObject();
+            VJuego vJuegoo = (VJuego) entrada.readObject();
             System.out.println("despues cast");
             ventana.add(vJuegoo);
             System.out.println("despues añadir");
@@ -230,11 +238,11 @@ public class Vista {
         } catch (Exception e) {
             System.out.println("edfjn");
             e.printStackTrace();
-         
+
         }
         vJuego.setVisible(false);
-        
+
         System.out.println("holas");
     }
-    
+
 }

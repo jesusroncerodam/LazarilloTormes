@@ -1,7 +1,7 @@
 /*
- To change this license header, choose License Headers in Project Properties.
- To change this template file, choose Tools | Templates
- and open the template in the editor.
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package vista;
 
@@ -21,97 +21,104 @@ import trabajodi.Vista;
 
 
 /**
-
- @author Guille
+ *
+ * @author Guille
  */
-public class VMenu extends JMenuBar  {
-    
+public class VMenu extends JMenuBar {
+
     private Vista vista;
     private ContrMenu controlador;
-    private JMenu 
-            archivo,
+    private JMenu archivo,
             partida,
             ajustes,
             irA,
             mover;
-            //cargarPartida;
-    private JMenuItem atras,salir;//temporalk aqui , a lo mejor en el futuro se pueden eleminar de aqui
+    //cargarPartida;
+    private JMenuItem atras, salir;//temporalk aqui , a lo mejor en el futuro se pueden eleminar de aqui
 
-    public VMenu(Logica logica,Vista vista) {
+
+    public VMenu(Logica logica, Vista vista) {
         controlador = new ContrMenu(logica, this);
-        this.vista=vista;
+        this.vista = vista;
         generar();
-        
+
     }
 
-    public void generar(){
+
+    public void generar() {
         generarMenuArchivo();
         generarPartida();
         ajustes();
     }
-    
-    private void generarMenuArchivo(){
-        archivo=new JMenu("Archive");
-        
-        atras = new JMenuItem("Go back",new ImageIcon("src/img/back.png"));
+
+
+    private void generarMenuArchivo() {
+        archivo = new JMenu("Archive");
+
+        atras = new JMenuItem("Go back", new ImageIcon("src/img/back.png"));
         atras.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
-        
+
         archivo.add(atras);
-                
+
         archivo.addSeparator();//(separador);
         archivo.addSeparator();
 
-        salir=new JMenuItem("Exit",new ImageIcon("src/img/equis.png"));
-        
+        salir = new JMenuItem("Exit", new ImageIcon("src/img/equis.png"));
+
         archivo.add(salir);
-        
+
         this.add(archivo);
     }
-    private void generarPartida(){
-        partida=new JMenu("Game");
-        
-        JMenu submenu=new JMenu("New Game");
-            JMenuItem partidaRapida=new JMenuItem("Quick game");
-            submenu.add(partidaRapida);
-            
-            JMenuItem partidaPersonalizada=new JMenuItem("Custom game");
-            submenu.add(partidaPersonalizada);
+
+
+    private void generarPartida() {
+        partida = new JMenu("Game");
+
+        JMenu submenu = new JMenu("New Game");
+        JMenuItem partidaRapida = new JMenuItem("Quick game");
+        submenu.add(partidaRapida);
+
+        JMenuItem partidaPersonalizada = new JMenuItem("Custom game");
+        submenu.add(partidaPersonalizada);
         partida.add(submenu);
-        
-        JMenuItem pausaPlay=new JMenuItem("Pause/Play",cambiarTamano(new ImageIcon("src/img/playPause.png"),20,20));//poner imahgen en pequeño 20px
+
+        JMenuItem pausaPlay = new JMenuItem("Pause/Play", cambiarTamano(new ImageIcon("src/img/playPause.png"), 20, 20));//poner imahgen en pequeño 20px
         partida.add(pausaPlay);
-        
+
         partida.addSeparator();
         partida.addSeparator();
-        
-        JMenuItem guardarPartida=new JMenuItem("Save game");
+
+        JMenuItem guardarPartida = new JMenuItem("Save game");
         guardarPartida.addActionListener(controlador);
         guardarPartida.setActionCommand("guardar");
         partida.add(guardarPartida);
-        
+
         //cargarPartida=new JMenu("Load game");
-        JMenuItem cargarPartida=new JMenuItem("Load game");
-        
+        JMenuItem cargarPartida = new JMenuItem("Load game");
+
         cargarPartida.addActionListener(controlador);
         cargarPartida.setActionCommand("cargar");
         partida.add(cargarPartida);
-        
+
         this.add(partida);
     }
-    private void ajustes(){
-        ajustes=new JMenu("Settings");
-        JRadioButtonMenuItem sonido= new JRadioButtonMenuItem("Sound", true);
+
+
+    private void ajustes() {
+        ajustes = new JMenu("Settings");
+        JRadioButtonMenuItem sonido = new JRadioButtonMenuItem("Sound", true);
         ajustes.add(sonido);
         this.add(ajustes);
     }
-    
-    /**
-     Modifica el tamaño de las imagenes
 
-     @param icono
-     @param anchoImagen
-     @param altoImagen
-     @return
+
+    /**
+     * Modifica el tamaño de las imagenes
+     *
+     * @param icono
+     * @param anchoImagen
+     * @param altoImagen
+     * @return
      */
     public ImageIcon cambiarTamano(ImageIcon icono, int anchoImagen, int altoImagen) {
         Image imagen = icono.getImage();
@@ -119,10 +126,14 @@ public class VMenu extends JMenuBar  {
         icono = new ImageIcon(reescalada);
         return icono;
     }
-    public void guardar(){
+
+
+    public void guardar() {
         vista.guardar();
     }
-    public void cargar(){
+
+
+    public void cargar() {
         vista.cargar();
     }
 }

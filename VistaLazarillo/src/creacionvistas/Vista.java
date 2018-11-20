@@ -59,6 +59,7 @@ public class Vista extends JFrame {
         flechaAtrás = new JButton(imagenFlecha);
         avanzarPagina = new JButton();
 
+        constrain = new GridBagConstraints();
         constrain.gridx = 2;
         constrain.gridy = 2;
         constrain.fill = GridBagConstraints.HORIZONTAL;
@@ -70,9 +71,9 @@ public class Vista extends JFrame {
      Añade los elementos a la vista
      */
     public void anadirElementos() {
-        add(panel1);
+        add(panel1, constrain);
 
-        panel1.add(labelNombre, constrain);
+        panel1.add(labelNombre);
         panel1.add(labelApodo);
         panel1.add(campoNombre);
         panel1.add(flechaAtrás);

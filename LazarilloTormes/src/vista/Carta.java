@@ -1,5 +1,5 @@
 /**
- JLabel que se muesta , cada carta, gestina cuando se muee
+ * JLabel que se muesta , cada carta, gestina cuando se muee
  */
 package vista;
 
@@ -18,8 +18,8 @@ import javax.swing.border.Border;
 
 
 /**
-
- @author Guille
+ *
+ * @author Guille
  */
 public class Carta extends JLabel implements Serializable {
 
@@ -36,8 +36,8 @@ public class Carta extends JLabel implements Serializable {
 
 
     /**
-     Constructor de la Carta se le manda la localizacion de la carta
-     @param url
+     * Constructor de la Carta se le manda la localizacion de la carta
+     * @param url
      */
     public Carta(String url) {
         this.setBorder(borde);//ponemos un borde
@@ -56,9 +56,9 @@ public class Carta extends JLabel implements Serializable {
 
 
     /**
-     Pintamos el fondo , el fondo siempre estará pero dentra una imagen encima
-     o no , dependiendo del estado en el que se encuentre
-     @param g
+     * Pintamos el fondo , el fondo siempre estará pero dentra una imagen encima
+     * o no , dependiendo del estado en el que se encuentre
+     * @param g
      */
     public void paint(Graphics g) {
         //imagen de fondo, la carta
@@ -68,9 +68,9 @@ public class Carta extends JLabel implements Serializable {
 
 
     /**
-     Animamos la imagen, ya sea la anumacion de entrada o de salida, esto lo
-     controla la propia carta, anima simpre que se pueda, si la carta esta
-     bloqueada no va a animar
+     * Animamos la imagen, ya sea la anumacion de entrada o de salida, esto lo
+     * controla la propia carta, anima simpre que se pueda, si la carta esta
+     * bloqueada no va a animar
      */
     public void animar() {
         if (!bloquear) {
@@ -84,9 +84,9 @@ public class Carta extends JLabel implements Serializable {
 
 
     /**
-     Comienza la animacion de salida, la imagen desaparece poco a poco
-     coge las dimensiones de la uimagen de vuelta y las almacena para ir
-     reduciendo poco a poco su tamaño
+     * Comienza la animacion de salida, la imagen desaparece poco a poco
+     * coge las dimensiones de la uimagen de vuelta y las almacena para ir
+     * reduciendo poco a poco su tamaño
      */
     private void animarSalir() {
         altura = imgVuelta.getIconHeight();
@@ -97,10 +97,10 @@ public class Carta extends JLabel implements Serializable {
 
 
     /**
-     Comienza la animacion de entrar, la imagen va apareciendo poco a poco
-     se asigna un icono para que lo aumente con un tamaño minimo puesto que
-     si esta en animarEntrar antes a hecho la animoacion de salir y la imagen
-     sería null
+     * Comienza la animacion de entrar, la imagen va apareciendo poco a poco
+     * se asigna un icono para que lo aumente con un tamaño minimo puesto que
+     * si esta en animarEntrar antes a hecho la animoacion de salir y la imagen
+     * sería null
      */
     private void animarEntrar() {
         this.setIcon(cambiarTamano((ImageIcon) imgVuelta, 2, 2));
@@ -110,13 +110,14 @@ public class Carta extends JLabel implements Serializable {
 
 
     /**
-     Casigna el timer , si hay una animacion en progreso, la pausa y crea una
-     Esta hecho para que no entre en bucle cuando haces click en la isma imagen
-     mas de una vez mientras estaba apareciendo; Cuando asigna el timer
-     dependiendo
-     de el estado de sale, si esta en animacion entrar o anumacion salir,
-     aumentara o
-     disminuira el tamano de la imagen
+     * Casigna el timer , si hay una animacion en progreso, la pausa y crea una
+     * Esta hecho para que no entre en bucle cuando haces click en la isma
+     * imagen
+     * mas de una vez mientras estaba apareciendo; Cuando asigna el timer
+     * dependiendo
+     * de el estado de sale, si esta en animacion entrar o anumacion salir,
+     * aumentara o
+     * disminuira el tamano de la imagen
      */
     private void empezar() {
         if (timer != null) {//si existe un timer lo paramos, evitamos tener 2 timer,
@@ -143,15 +144,15 @@ public class Carta extends JLabel implements Serializable {
 
 
     /**
-     Lo llama el timer, coloca la imagen Mientras que la imagen este entre
-     las orquillas del tamaño siendo este el minimo 0 y el maximo el tamaño
-     de la imagen de imgVuelta
-     En el caso de que se saliese de estas orquillas, si la imagen estaba
-     saliendo la quita y si la imgen estaba entrando la asigna por defecto;
-     siempre que se sale de las oquillas para el timer, puesto que termino la
-     animacion
-
-     Siempte actualiza la carta para que los cambios sean visibles
+     * Lo llama el timer, coloca la imagen Mientras que la imagen este entre
+     * las orquillas del tamaño siendo este el minimo 0 y el maximo el tamaño
+     * de la imagen de imgVuelta
+     * En el caso de que se saliese de estas orquillas, si la imagen estaba
+     * saliendo la quita y si la imgen estaba entrando la asigna por defecto;
+     * siempre que se sale de las oquillas para el timer, puesto que termino la
+     * animacion
+     *
+     * Siempte actualiza la carta para que los cambios sean visibles
      */
     private void ponerImagen() {
         if (altura > 0 && ancho > 0 && altura < imgVuelta.getIconHeight() && ancho < imgVuelta.getIconWidth()) {
@@ -169,10 +170,10 @@ public class Carta extends JLabel implements Serializable {
 
 
     /**
-     Manda si esta carta esta activada, si se ve la imgen de la carta
-     Si esta bloqueada retornara false puesto que esta carta ya no tiene
-     acciones posibles de animacion.
-     @return booleano -false si no esta visible o si esta bloqueada
+     * Manda si esta carta esta activada, si se ve la imgen de la carta
+     * Si esta bloqueada retornara false puesto que esta carta ya no tiene
+     * acciones posibles de animacion.
+     * @return booleano -false si no esta visible o si esta bloqueada
      */
     public boolean isSale() {
         if (bloquear) {//bloquear variable que desactiva el giro de la carta de nuevo 
@@ -183,9 +184,10 @@ public class Carta extends JLabel implements Serializable {
 
 
     /**
-     Bloquea la imagen esto significa que cuando se ejecute este metodo la carta
-     no se podrá mover de nuevo (si la carta se bloquea significa que encontro
-     la pareja)
+     * Bloquea la imagen esto significa que cuando se ejecute este metodo la
+     * carta
+     * no se podrá mover de nuevo (si la carta se bloquea significa que encontro
+     * la pareja)
      */
     public void bloquear() {
         bloquear = true;
@@ -195,8 +197,8 @@ public class Carta extends JLabel implements Serializable {
 
 
     /**
-     Retorna la direccion de la carta
-     @return String direccio de la imagen
+     * Retorna la direccion de la carta
+     * @return String direccio de la imagen
      */
     public String getUrl() {
         return url;
@@ -204,12 +206,12 @@ public class Carta extends JLabel implements Serializable {
 
 
     /**
-     Modifica el tamaño de las imagenes
-
-     @param icono       se pasa por parametro el icono a reescalar
-     @param anchoImagen establece el ancho de la imagen
-     @param altoImagen  establece el alto de la imagen
-     @return devuelve un ImageIcon que se asigna ya reescalado al original
+     * Modifica el tamaño de las imagenes
+     *
+     * @param icono       se pasa por parametro el icono a reescalar
+     * @param anchoImagen establece el ancho de la imagen
+     * @param altoImagen  establece el alto de la imagen
+     * @return devuelve un ImageIcon que se asigna ya reescalado al original
      */
     public ImageIcon cambiarTamano(ImageIcon icono, int anchoImagen, int altoImagen) {
         Image imagen = icono.getImage();

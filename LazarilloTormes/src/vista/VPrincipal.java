@@ -1,7 +1,7 @@
 /*
- To change this license header, choose License Headers in Project Properties.
- To change this template file, choose Tools | Templates
- and open the template in the editor.
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package vista;
 
@@ -17,15 +17,16 @@ import trabajodi.Logica;
 
 
 /**
-
- @author Guille
+ *
+ * @author Guille
  */
 public class VPrincipal extends JLabel {
 
     private ContrPrinipal controlador;
     private GridBagConstraints constrain;
     private JButton bNuevaPartida, bEstadisticas, bCargarPartida, bDialogoModal;
-    private ImageIcon fondo=new ImageIcon(this.getClass().getResource("/img/fondoPrinc.jpg"));
+    private ImageIcon fondo = new ImageIcon(this.getClass().getResource("/img/fondoPrinc.jpg"));
+
 
     public VPrincipal(Logica logica) {
         controlador = new ContrPrinipal(logica, this);
@@ -57,9 +58,9 @@ public class VPrincipal extends JLabel {
         constrain.gridy = 1; // El área de texto empieza en la fila 1
         constrain.gridwidth = 2; // El área de texto ocupa dos columnas.
         constrain.gridheight = 1; // El área de texto ocupa 1 filas.
-        constrain.fill= GridBagConstraints.NONE; //para que no se expanda
+        constrain.fill = GridBagConstraints.NONE; //para que no se expanda
         constrain.weighty = 0.0;//`no deje espacio en el eje Y
-        this.add(bNuevaPartida,constrain);
+        this.add(bNuevaPartida, constrain);
     }
 
 
@@ -79,8 +80,10 @@ public class VPrincipal extends JLabel {
         bDialogoModal = new JButton("Dialogo Modal");
         this.add(bDialogoModal);
     }//fondoPrinc.jpg
-     public void paint(Graphics g) {
+
+
+    public void paint(Graphics g) {
         super.paint(g);//borramos la imagen anterior
-        g.drawImage( fondo.getImage(), 0,0, getWidth(), getHeight(), null);
+        g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), null);
     }
 }
