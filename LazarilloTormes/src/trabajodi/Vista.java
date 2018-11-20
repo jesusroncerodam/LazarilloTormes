@@ -232,7 +232,7 @@ public class Vista {
             e.printStackTrace();
          
         }
-        ventana.remove(vJuego);
+        vJuego.setVisible(false);
         
         System.out.println("holas");
     }
