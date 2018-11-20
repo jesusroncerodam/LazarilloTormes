@@ -157,8 +157,7 @@ public class VistaSplash extends JPanel {
 
     /**
      * Sobrescribimos el metodo "paint" encargado de Pintar el fondo de pantalla
-     * y
-     * hacer girar la imagen
+     * y hacer girar la imagen
      * @param g Graphics
      */
     @Override
