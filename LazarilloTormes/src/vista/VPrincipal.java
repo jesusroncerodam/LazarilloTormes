@@ -7,8 +7,10 @@ package vista;
 
 
 import controladores.ContrPrinipal;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import trabajodi.Logica;
@@ -41,11 +43,12 @@ public class VPrincipal extends JLabel {
         //  constrain.fill = GridBagConstraints.BOTH;
         constrain.anchor = GridBagConstraints.CENTER;
         this.setLayout(new GridBagLayout());
-
+repaint();
         btnCargarPartida();
         btnEstadisticas();
         btnPartida();
         btnDialogModal();
+        //setVisible(true);
     }
 
 
@@ -70,5 +73,10 @@ public class VPrincipal extends JLabel {
     private void btnDialogModal() {
         bDialogoModal = new JButton("Dialogo Modal");
         this.add(bDialogoModal);
+    }//fondoPrinc.jpg
+     public void paint(Graphics g) {
+        super.paint(g);//borramos la imagen anterior
+
+        g.drawImage( new ImageIcon(this.getClass().getResource("/img/fondoPrinc.jpg")).getImage(), 0,0, getWidth(), getHeight(), null);
     }
 }
