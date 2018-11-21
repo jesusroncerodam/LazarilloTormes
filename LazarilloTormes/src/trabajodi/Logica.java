@@ -415,17 +415,16 @@ public class Logica {
 
 
     public void guardarPartida() {
-        //int segundos, int movimientos, int vuelta, ArrayList<String> rutaGuardada, ArrayList<Boolean> cartaBloqueada
-        PartidaGuardada partida = new PartidaGuardada();
-      //  PartidaGuardada partida = new PartidaGuardada(juego.getContadorSeg(),juego.getContMov(),juego.algunaVisible(),);
         
-        partida.setRutaGuardada(juego.guardarUrlCarta());
-        partida.setCartaBloqueada(juego.guardarBloquearCarta());
-        partida.setSegundos(juego.getContadorSeg());
-        partida.setMovimientos(juego.getContMov());
-        partida.setVuelta(juego.algunaVisible());
-        //segundos,movimientos,vuelta;/
-        //partida.set
+        //int segundos, int movimientos, int vuelta, ArrayList<String> rutaGuardada, ArrayList<Boolean> cartaBloqueada
+        PartidaGuardada partida = new PartidaGuardada(juego.getContadorSeg(),juego.getContMov(),juego.algunaVisible(),juego.guardarUrlCarta(),juego.guardarBloquearCarta());
+        
+//        PartidaGuardada partida = new PartidaGuardada();
+//        partida.setRutaGuardada(juego.guardarUrlCarta());
+//        partida.setCartaBloqueada(juego.guardarBloquearCarta());
+//        partida.setSegundos(juego.getContadorSeg());
+//        partida.setMovimientos(juego.getContMov());
+//        partida.setVuelta(juego.algunaVisible());
         try {
             //Creamos un flujo de salida al disco
             FileOutputStream fileOut = new FileOutputStream("PartidaGuardada.obj");
@@ -442,19 +441,25 @@ public class Logica {
             Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     public void cargarPartida(){
+        PartidaGuardada partida=null;
         try {
             //Creamos un flujo de entrada desde el disco
-            FileInputStream fileIn = new FileInputStream("juego.obj");
+            FileInputStream fileIn = new FileInputStream("PartidaGuardada.obj");
             //Vinculamos la referencia al disco con nuestro flujo de entrada
             ObjectInputStream entrada = new ObjectInputStream(fileIn);
             //Cargamos el objeto y hacemos el casting del tipo que es
-            VJuego vJuegoo = (VJuego) entrada.readObject();
-        } catch (Exception e) {
-            System.out.println("edfjn");
-            e.printStackTrace();
-
+            partida = (PartidaGuardada) entrada.readObject();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
         }
+        rutas=partida.getRutaGuardada().toArray(new String[partida.getRutaGuardada().size()]);
+        //generamos la partida
     }
     
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

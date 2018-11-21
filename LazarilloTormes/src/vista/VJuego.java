@@ -60,7 +60,7 @@ public class VJuego extends JPanel {
      * controladores
      * @param rutas Array de String, direccion de todas las imagenes de cartas
      */
-    public void generar(boolean defecto) {
+    public void generar(boolean defecto){
         this.defecto=true;
         controlador.asignarControlador();//asignamos el controlador a la logica
         desactivadas = 0;
