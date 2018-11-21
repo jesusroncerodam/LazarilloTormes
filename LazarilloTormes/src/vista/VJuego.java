@@ -499,7 +499,7 @@ public class VJuego extends JPanel {
         continuar();
 
         //generamos las cartas
-        generarCartas();
+        generarCartas(false);
     }
 
 }
