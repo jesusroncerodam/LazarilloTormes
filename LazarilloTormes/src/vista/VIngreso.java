@@ -68,9 +68,6 @@ public class VIngreso extends JPanel {
 //        constrain.gridy = 1;
 //        constrain.weighty = 10;
 //        constrain.fill = GridBagConstraints.CENTER;
-        add(panel1, constrain);
-        panel1.setBackground(Color.red);
-
         add(labelNombre);
 
         add(labelApodo);

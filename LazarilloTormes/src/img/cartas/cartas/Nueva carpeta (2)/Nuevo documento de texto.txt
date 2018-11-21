@@ -1,0 +1,75 @@
+
+
+    
+    
+    public void test(){
+        recogerDatos();
+        ingesarDatos();
+        
+        modelo = new DefaultTableModel(columna,NOMBRE_COLUMNAS);
+        tabla = new JTable(modelo);
+//        System.out.println(tabla.getColumnCount());
+//        File f=new File("src/img/carta.jpg");
+//        System.out.println(f.getAbsoluteFile());
+//        tabla.getColumnModel().getColumn(4).setCellRenderer((TableCellRenderer) new ImageIcon(getClass().getResource("src/img/carta.jpg")));//new ImageIcon("src/img/carta.jpg")
+                //new ImageIcon(getClass().getResource(iconName)); 
+ 
+        tabla.setPreferredScrollableViewportSize(new Dimension(250, 100));
+        JScrollPane scrollPane = new JScrollPane(tabla);
+        this.add(scrollPane);
+
+        this.add(tabla);
+    }
+
+
+public void cabecera(){
+        for (String col : NOMBRE_COLUMNAS) {
+            modelo.addColumn(col);
+        }
+    }
+    public void ingesarDatos(){//{"Nº","Image","Name","Mov.","Time"};
+        columna=new Object[datos.length][NOMBRE_COLUMNAS.length];
+        String[] elementos;
+        for (int i = 0; i < datos.length; i++) {
+            elementos=datos[i].split(";");
+            columna[i][0]=new Integer(i+1);
+            for (int j = 0,k=1; j < elementos.length; j++,k++) {//movimientos;tiempo;imagen;nombre
+                //System.out.println(elementos[j]+" -i"+i+" -j"+j);
+                switch (j) {    
+                    case 0://movimientos
+                        //lo colocamos en el array
+                        columna[i][3]=new ImageIcon(elementos[j]); 
+                        break;
+                    case 1://tiempo                        
+                        columna[i][4]=elementos[j];
+                        break;
+                    case 2://imagen
+                        columna[i][1]=new ImageIcon(getClass().getResource("/img/2.jpg"));//new JLabel(new ImageIcon(elementos[j])); //new Integer(elementos[j]);
+                        break;
+                    case 3://nombre               
+                        columna[i][2]=elementos[j];//new Integer(elementos[j]);
+                        break;
+                    default:
+                        System.out.println("error "+j);
+                }
+            }
+        }
+    }
+    public void añadirColumna(Object[] columna){
+        modelo.addRow(columna);
+    }
+    public void insertar(){
+        JLabel pos,img,nombre,mov,tiempo;
+        pos=new JLabel("Nº");
+        img=new JLabel("img");
+        nombre=new JLabel("Name"); 
+        mov=new JLabel("Mov.");
+        tiempo=new JLabel(cambiarTamano(new ImageIcon("src/img/reloj.png"),10,10));
+          
+       taDatos.add(pos);
+       taDatos.add(img);
+       taDatos.add(nombre);
+       taDatos.add(mov);
+       taDatos.add(tiempo);
+    }
+   
