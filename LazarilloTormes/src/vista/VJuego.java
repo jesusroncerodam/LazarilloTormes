@@ -260,29 +260,6 @@ public class VJuego extends JPanel {
     }
 
 
-    /**
-     * Cambia el estado del boton, activado o desactivado
-     *
-     * @param boton  String, texto, corresponde al boton
-     * @param estado booleano, pone el estado de este boton
-     */
-    public void cambiarEstadoBoton(String boton, boolean estado) {
-        switch (boton) {
-            case "continuar":
-                bContinuar.setEnabled(!estado);
-                break;
-            case "guardar":
-                bGuardar.setEnabled(!estado);
-                break;
-            case "playPause":
-                bPausaPlay.setEnabled(!estado);
-                break;
-            default:
-                System.out.println("error cambiarEstadoBoton" + boton);
-        }
-    }
-
-
     /*
      * VIENE DE CONTROLADOR
      * VIENE DE CONTROLADOR
@@ -329,6 +306,15 @@ public class VJuego extends JPanel {
 
 
     /**
+     * Anima la imagen la gira mostrando el fondo
+     * @param i int, indice del arraylist de las cartas
+     */
+    public void girar(int i) {
+        carta.get(i).animar();
+    }
+
+
+    /**
      * Retorna el entero que esta visible y sin bloquear, es decir el que este
      * sin
      * su pareja ya asignada, -1 si no encuentra a nadie
@@ -341,15 +327,6 @@ public class VJuego extends JPanel {
             }
         }
         return -1;
-    }
-
-
-    /**
-     * Anima la imagen la gira mostrando el fondo
-     * @param i int, indice del arraylist de las cartas
-     */
-    public void girar(int i) {
-        carta.get(i).animar();
     }
 
 
@@ -397,6 +374,29 @@ public class VJuego extends JPanel {
     }
 
 
+    /**
+     * Cambia el estado del boton, activado o desactivado
+     *
+     * @param boton  String, texto, corresponde al boton
+     * @param estado booleano, pone el estado de este boton
+     */
+    public void cambiarEstadoBoton(String boton, boolean estado) {
+        switch (boton) {
+            case "continuar":
+                bContinuar.setEnabled(!estado);
+                break;
+            case "guardar":
+                bGuardar.setEnabled(!estado);
+                break;
+            case "playPause":
+                bPausaPlay.setEnabled(!estado);
+                break;
+            default:
+                System.out.println("error cambiarEstadoBoton" + boton);
+        }
+    }
+
+
     public int getContadorSeg() {
         return contadorSeg;
     }
@@ -406,12 +406,12 @@ public class VJuego extends JPanel {
         return contMov;
     }
 
-
 //    public void eliminarElementos() {
 //        for (int i = 0; i < this.getComponentCount(); i++) {
 //            remove(i);
 //        }
 //    }
+
     public ArrayList<String> guardarUrlCarta() {
         ArrayList<String> rutaGuardada = new ArrayList<String>();
         for (int i = 0; i < carta.size(); i++) {
@@ -430,6 +430,17 @@ public class VJuego extends JPanel {
         }
         return estadoCarta;
     }
+
+
+    /*
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     */
 
 
     public void cargarBloquear(ArrayList<Boolean> bloqueadas) {
