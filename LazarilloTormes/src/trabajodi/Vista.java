@@ -153,14 +153,25 @@ public class Vista {
     }
 
 
-    public void registro() {
+    /**
+     * Crea la vista de registro, que extiende de panel
+     */
+    public void crearRegistro() {
         System.out.println("Has entrado en el registro");
         ventana.setSize(600, 600);
-
+        ventana.add(vIngreso);
         ventana.setVisible(true);
     }
 
 
+    /**
+     *
+     *
+     *
+     *
+     * @param vista
+     * @param tiempo
+     */
     private void anadirVista(String vista, int tiempo) {
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
@@ -175,6 +186,10 @@ public class Vista {
                         break;
 
                     case "ingresodatos":
+
+                        System.out.print("INGRESO DATOS");
+
+                        crearRegistro();
 
                         break;
 
@@ -214,6 +229,9 @@ public class Vista {
                 break;
 
             case "ingresodatos":
+
+                vIngreso.generar();
+                //cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
 
                 break;
 

@@ -24,4 +24,8 @@ public class VIngreso extends JPanel {
         controlador = new ContrIngreso(this, logica);
     }
 
+
+    public void generar() {
+
+    }
 }

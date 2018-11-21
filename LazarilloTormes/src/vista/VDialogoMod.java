@@ -50,6 +50,11 @@ public class VDialogoMod extends JPanel {
     }
 
 
+    public void generar() {
+
+    }
+
+
     private void generarBoton() {
         atras = new JButton();
         //flecha = metodo.imagenEspejo("/img/flecha.png");
@@ -63,17 +68,16 @@ public class VDialogoMod extends JPanel {
     int grados = 0;
 
 
+    /**
+     * El null se utiliza ya que el ImageObserver se utiliza para comprobar si
+     * la imagen ha cambiado, cosa que en este caso no se necesita
+     * @param g
+     */
     @Override
     public void paint(Graphics g) {
 
-        AffineTransform affineTransform = new AffineTransform();
-        //rotate the image by 45 degrees 
-        affineTransform.rotate(Math.toRadians(grados), 100, 100);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(flecha.getImage(), affineTransform, null);
         g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), null);
 
-        super.paint(g2d); //To change body of generated methods, choose Tools | Templates.
     }
 
     Timer timer;
@@ -93,3 +97,21 @@ public class VDialogoMod extends JPanel {
     }
 
 }
+
+//
+// BufferedImage imagee;
+//    int grados = 0;
+//
+//
+//    @Override
+//    public void paint(Graphics g) {
+//
+//        AffineTransform affineTransform = new AffineTransform();
+//        //rotate the image by 45 degrees 
+//        affineTransform.rotate(Math.toRadians(grados), 100, 100);
+//        Graphics2D g2d = (Graphics2D) g;
+//        g2d.drawImage(flecha.getImage(), affineTransform, null);
+//        g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), null);
+//
+//        super.paint(g2d); //To change body of generated methods, choose Tools | Templates.
+//    }

@@ -151,7 +151,6 @@ public class VPrincipal extends JPanel {
 
 
     public void cambiarDeVista(String vista) {
-        //removeAll();
         vistaMain.cambiarVista(vista);
     }
 }
