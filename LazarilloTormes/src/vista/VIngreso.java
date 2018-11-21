@@ -31,11 +31,9 @@ public class VIngreso extends JPanel {
 
     private ContrIngreso controlador;
     private Metodos metodo;
-    private JPanel panel1;
-    private final int ANCHOMARCO = 500, ALTOMARCO = 500;
     private JLabel labelNombre, labelTema, labelDificultad;
     private TextField campoNombre;
-    private JButton botonFlechaAtrás, avanzarPagina;
+    private JButton botonFlechaAtrás, botonFlechaSiguiente;
     TextField nombre;
     JPanel tema1, tema2, tema3;
     JButton atras, adelante;
@@ -85,13 +83,12 @@ public class VIngreso extends JPanel {
 
 
     public void crearElementos() {
-        panel1 = new JPanel();
         tema1 = new JPanel();
         tema2 = new JPanel();
         tema3 = new JPanel();
 
         labelNombre = new JLabel("Nombre: ");
-        nombre = new TextField("Nombre");
+        campoNombre = new TextField("Nombre");
 
         labelTema = new JLabel("Tema");
         labelDificultad = new JLabel("Dificultad");
@@ -101,7 +98,8 @@ public class VIngreso extends JPanel {
         medio = new Checkbox("Medio", cbg, false);
         dificil = new Checkbox("Dificil", cbg, false);
 
-        adelante = new JButton();
+        botonFlechaAtrás = new JButton();
+        botonFlechaSiguiente = new JButton();
     }
 
 
@@ -114,33 +112,62 @@ public class VIngreso extends JPanel {
         constrain.gridy = 0;
 //        constrain.weighty = 10;
 //        constrain.fill = GridBagConstraints.CENTER;
-
         add(labelNombre, constrain);
 
-        constrain.gridx = 2;
+        constrain.gridx = 1;
         constrain.gridy = 0;
         add(campoNombre, constrain);
 
+        /*
+         * COLCOAR TEMA
+         */
+        constrain.gridx = 0;
+        constrain.gridy = 2;
+        add(labelTema, constrain);
+
+        constrain.gridx = 0;
+        constrain.gridy = 2;
+        add(tema1, constrain);
+
+        constrain.gridx = 0;
+        constrain.gridy = 2;
+        add(tema2, constrain);
+
+        constrain.gridx = 0;
+        constrain.gridy = 2;
+        add(tema3, constrain);
+
+        constrain.gridx = 0;
+        constrain.gridy = 2;
+        /*
+         * COLOCAR DIFICULTAD
+         */
+        constrain.gridx = 0;
+        constrain.gridy = 2;
+        add(labelDificultad, constrain);
+
+        constrain.gridx = 0;
+        constrain.gridy = 2;
+        add(facil, constrain);
+
+        constrain.gridx = 0;
+        constrain.gridy = 2;
+        add(medio, constrain);
+
+        constrain.gridx = 0;
+        constrain.gridy = 2;
+        add(dificil, constrain);
+
+        /*
+         * BOTONES
+         */
         constrain.gridx = 0;
         constrain.gridy = 2;
         add(botonFlechaAtrás, constrain);
 
-        add(labelNombre);
-        add(nombre);
-
-        add(labelTema);
-        add(tema1);
-        add(tema2);
-        add(tema3);
-
-        add(labelDificultad);
-        add(facil);
-        add(medio);
-        add(dificil);
-
         constrain.gridx = 2;
         constrain.gridy = 2;
-        add(adelante, constrain);
+        add(botonFlechaSiguiente, constrain);
     }
 
 
@@ -148,14 +175,12 @@ public class VIngreso extends JPanel {
      * Le asigno el estilo de letra y demás pijadas a los objetos
      */
     public void estiloElementos() {
-        panel1.setBackground(Color.gray);
-
         tema1.setBackground(Color.red);
         tema2.setBackground(Color.darkGray);
         tema3.setBackground(Color.green);
 
-        atras.setIcon(metodo.cambiarTamano(imagenFlecha, atras.getWidth(), atras.getHeight()));
-        adelante.setIcon(metodo.cambiarTamano(fondo, adelante.getWidth(), adelante.getHeight()));
+//        botonFlechaAtrás.setIcon(metodo.cambiarTamano(imagenFlecha, botonFlechaAtrás.getWidth(), botonFlechaAtrás.getHeight()));
+//        botonFlechaSiguiente.setIcon(metodo.cambiarTamano(imagenFlecha, botonFlechaSiguiente.getWidth(), botonFlechaSiguiente.getHeight()));
     }
 
 //        constrain = new GridBagConstraints();
