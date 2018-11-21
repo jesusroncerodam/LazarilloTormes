@@ -14,7 +14,6 @@ public class CreacionVistas {
      */
     public static void main(String[] args) {    //Codigo
 //        DialogoModal vista = new DialogoModal();
-//        VistaIntroduccionDcatos vista1 = new VistaIntroduccionDatos();
-        AAAAAAAAAAA aaa = new AAAAAAAAAAA();
+        VistaIntroduccionDatos vista1 = new VistaIntroduccionDatos();
     }
 }

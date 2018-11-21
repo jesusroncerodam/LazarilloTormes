@@ -7,6 +7,8 @@ package vista;
 
 
 import controladores.ContrIngreso;
+import java.awt.Checkbox;
+import java.awt.CheckboxGroup;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -31,16 +33,20 @@ public class VIngreso extends JPanel {
     private Metodos metodo;
     private JPanel panel1;
     private final int ANCHOMARCO = 500, ALTOMARCO = 500;
-    private JLabel labelNombre, labelApodo;
+    private JLabel labelNombre, labelTema, labelDificultad;
     private TextField campoNombre;
     private JButton botonFlechaAtrás, avanzarPagina;
+    TextField nombre;
+    JPanel tema1, tema2, tema3;
+    JButton atras, adelante;
+
+    private ImageIcon imagenFlecha = new ImageIcon(this.getClass().getResource("/img/flecha.png"));
+//    private ImageIcon fondo = new ImageIcon(this.getClass().getResource("src/imagenes/fondo.jpg"));
+    private Checkbox facil, medio, dificil;
     /*
      *
      *
      *
-     */
-    private ImageIcon imagenFlecha = new ImageIcon(this.getClass().getResource("/img/flecha.png"));
-    /**
      *
      *
      *
@@ -64,20 +70,45 @@ public class VIngreso extends JPanel {
 
         constrain = new GridBagConstraints();
         this.setLayout(new GridBagLayout());
+        constrain.anchor = GridBagConstraints.CENTER;
 
-        crearElementos();
+        crearVistaIntroduccionDatos();
         setVisible(true);
     }
 
 
+    public void crearVistaIntroduccionDatos() {
+        crearElementos();
+        anadirElementos();
+        estiloElementos();
+    }
+
+
     public void crearElementos() {
+        panel1 = new JPanel();
+        tema1 = new JPanel();
+        tema2 = new JPanel();
+        tema3 = new JPanel();
 
-        labelNombre = new JLabel();
-        labelApodo = new JLabel();
-        campoNombre = new TextField();
+        labelNombre = new JLabel("Nombre: ");
+        nombre = new TextField("Nombre");
 
-        botonFlechaAtrás = new JButton(imagenFlecha);
-        avanzarPagina = new JButton();
+        labelTema = new JLabel("Tema");
+        labelDificultad = new JLabel("Dificultad");
+        CheckboxGroup cbg = new CheckboxGroup();
+
+        facil = new Checkbox("Facil", cbg, true);
+        medio = new Checkbox("Medio", cbg, false);
+        dificil = new Checkbox("Dificil", cbg, false);
+
+        adelante = new JButton();
+    }
+
+
+    /**
+     * Añade los elementos a la vista
+     */
+    public void anadirElementos() {
 
         constrain.gridx = 0;
         constrain.gridy = 0;
@@ -86,10 +117,6 @@ public class VIngreso extends JPanel {
 
         add(labelNombre, constrain);
 
-        constrain.gridx = 1;
-        constrain.gridy = 0;
-        add(labelApodo, constrain);
-
         constrain.gridx = 2;
         constrain.gridy = 0;
         add(campoNombre, constrain);
@@ -97,6 +124,39 @@ public class VIngreso extends JPanel {
         constrain.gridx = 0;
         constrain.gridy = 2;
         add(botonFlechaAtrás, constrain);
+
+        add(labelNombre);
+        add(nombre);
+
+        add(labelTema);
+        add(tema1);
+        add(tema2);
+        add(tema3);
+
+        add(labelDificultad);
+        add(facil);
+        add(medio);
+        add(dificil);
+
+        constrain.gridx = 2;
+        constrain.gridy = 2;
+        add(adelante, constrain);
+    }
+
+
+    /**
+     * Le asigno el estilo de letra y demás pijadas a los objetos
+     */
+    public void estiloElementos() {
+        panel1.setBackground(Color.gray);
+
+        tema1.setBackground(Color.red);
+        tema2.setBackground(Color.darkGray);
+        tema3.setBackground(Color.green);
+
+        atras.setIcon(metodo.cambiarTamano(imagenFlecha, atras.getWidth(), atras.getHeight()));
+        adelante.setIcon(metodo.cambiarTamano(fondo, adelante.getWidth(), adelante.getHeight()));
+    }
 
 //        constrain = new GridBagConstraints();
 //        constrain.gridx = 1;
@@ -125,5 +185,4 @@ public class VIngreso extends JPanel {
 //        mainPanel.add(Box.createGlue(), gbc);
 //        add(mainPanel);
 //        pack();
-    }
 }

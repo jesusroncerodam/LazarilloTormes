@@ -98,6 +98,21 @@ public class VistaIntroduccionDatos extends JFrame {
 
 
     /**
+     * Le asigno el estilo de letra y demás pijadas a los objetos
+     */
+    public void estiloElementos() {
+        panel1.setBackground(Color.gray);
+
+        tema1.setBackground(Color.red);
+        tema2.setBackground(Color.darkGray);
+        tema3.setBackground(Color.green);
+
+        atras.setIcon(cambiarTamano(imagenFlecha, atras.getWidth(), atras.getHeight()));
+        adelante.setIcon(cambiarTamano(fondo, adelante.getWidth(), adelante.getHeight()));
+    }
+
+
+    /**
      * Asigno las posiciones a los elementos
      */
     public void posicionElementos() {
@@ -122,21 +137,6 @@ public class VistaIntroduccionDatos extends JFrame {
         add(atras);
         atras.setBounds(50, 350, 100, 50);
 
-    }
-
-
-    /**
-     * Le asigno el estilo de letra y demás pijadas a los objetos
-     */
-    public void estiloElementos() {
-        panel1.setBackground(Color.gray);
-
-        tema1.setBackground(Color.red);
-        tema2.setBackground(Color.darkGray);
-        tema3.setBackground(Color.green);
-
-        atras.setIcon(cambiarTamano(imagenFlecha, atras.getWidth(), atras.getHeight()));
-        adelante.setIcon(cambiarTamano(fondo, adelante.getWidth(), adelante.getHeight()));
     }
 
 
