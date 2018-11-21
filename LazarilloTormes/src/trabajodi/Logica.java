@@ -156,6 +156,15 @@ public class Logica {
     }
 
 
+    /*
+     * CONTROLADOR JUEGO
+     * CONTROLADOR JUEGO
+     * CONTROLADOR JUEGO
+     * CONTROLADOR JUEGO
+     * CONTROLADOR JUEGO
+     * CONTROLADOR JUEGO
+     * CONTROLADOR JUEGO
+     */
     public String[] obtenerRutasImg() {
         //inicializamos temporal
         rutas = new String[8];
