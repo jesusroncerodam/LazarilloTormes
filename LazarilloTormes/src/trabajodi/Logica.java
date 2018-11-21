@@ -43,6 +43,7 @@ public class Logica {
     private final String FICHERO = "estadisticas.txt", PRIMERA_LINEA = "Directorio de almacenamiento de estadistica\n";
     private String[] rutas;
 
+
     public Logica() {
     }
 
@@ -57,8 +58,9 @@ public class Logica {
         primeraJuego = true;
         animacionC = false;
     }
-    
-    public String[] obtenerRutasImg(){
+
+
+    public String[] obtenerRutasImg() {
         //inicializamos temporal
         rutas = new String[8];
         rutas[0] = "src/img/carta.jpg";
@@ -73,10 +75,12 @@ public class Logica {
         //rutas=null;
     }
 
+
     public void setPrimeraJuego() {
         this.primeraJuego = true;
         System.out.println("fjkdsbjk");
     }
+
 
     /**
      * Encargado de gestionar las acciones de de mouseListener del controlador
@@ -352,7 +356,9 @@ public class Logica {
 
     }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void guardarPartida(){
+
+
+    public void guardarPartida() {
         PartidaGuardada partida = new PartidaGuardada();
         partida.setRutaGuardada(juego.guardarUrlCarta());
         partida.setCartaBloqueada(juego.guardarBloquearCarta());
@@ -360,16 +366,20 @@ public class Logica {
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //controlador Estadisticas(vLista)
+
+
     public void asignarContrLista(ContrLista lista) {
         this.lista = lista;
     }
-    public void listaClick(Component componente){
-        if(componente instanceof JButton){
-            JButton bPulsado =(JButton) componente;
-            if(bPulsado.getToolTipText().equals("Go to main")){
+
+
+    public void listaClick(Component componente) {
+        if (componente instanceof JButton) {
+            JButton bPulsado = (JButton) componente;
+            if (bPulsado.getToolTipText().equals("Go to main")) {
                 lista.cambiarVista("principal");
             }
-        }else{
+        } else {
             System.out.println("evento no esperado en lista");
         }
     }
@@ -379,43 +389,50 @@ public class Logica {
     public void asignarContrPrincipal(ControladorPrincipal principal) {
         this.principal = principal;
     }
-    
-    
-    
+
+
     /*
-     * //    VISTA PRINCIPAL
-     * //    VISTA PRINCIPAL
-     * //    VISTA PRINCIPAL
-     * //    VISTA PRINCIPAL
-     * //    VISTA PRINCIPAL
-     * //    VISTA PRINCIPAL
-     * //    VISTA PRINCIPAL
-     * //    VISTA PRINCIPAL
+     * // VISTA PRINCIPAL
+     * // VISTA PRINCIPAL
+     * // VISTA PRINCIPAL
+     * // VISTA PRINCIPAL
+     * // VISTA PRINCIPAL
+     * // VISTA PRINCIPAL
+     * // VISTA PRINCIPAL
+     * // VISTA PRINCIPAL
      */
-    public void principalClick(String boton,int pulsos){
+    public void principalClick(String boton, int pulsos) {
         switch (boton.replaceAll(" ", "").toLowerCase()) {
             case "newgame":
-                
+
                 principal.cambiarDeVista("ingresodatos");
-                
+
                 System.out.println("1");
                 break;
+
             case "loadgame":
-                
+
                 System.out.println("2");
                 break;
+
             case "stats":
+                
                 principal.cambiarDeVista("lista");
                 System.out.println("3");
                 break;
+
             case "aboutus":
-                
+
+                principal.cambiarDeVista("aboutus");
+
                 System.out.println("4");
                 break;
+
             case "":
-                
+
                 System.out.println("5");
                 break;
+
             default:
                 throw new AssertionError();
         }

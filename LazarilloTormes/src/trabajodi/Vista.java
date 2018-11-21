@@ -202,10 +202,17 @@ public class Vista {
                         estadisticas();
                         break;
 
-                    case "dialogomodal":
+                    case "aboutus":
+                        
+                        System.out.print("ñalksjdfñlasjdfñlasjdfñlkjsadklsad");
+
+                        
                         break;
+
                     default:
+                        System.out.print(vista);
                         throw new AssertionError();
+
                 }
             }
         };
@@ -249,9 +256,12 @@ public class Vista {
                 //estadisticas();
                 break;
 
-            case "dialogomodal":
-
+            case "aboutus":
+                tiempo = 1;
+                vDialogoMod.generar();
+                cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                 break;
+
             default:
                 throw new AssertionError();
         }
