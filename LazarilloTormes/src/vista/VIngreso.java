@@ -155,7 +155,7 @@ public class VIngreso extends JPanel {
         tema3.setBackground(Color.green);
 
         atras.setIcon(metodo.cambiarTamano(imagenFlecha, atras.getWidth(), atras.getHeight()));
-        adelante.setIcon(metodo.cambiarTamano(fondo, adelante.getWidth(), adelante.getHeight()));
+        //adelante.setIcon(metodo.cambiarTamano(fondo, adelante.getWidth(), adelante.getHeight()));
     }
 
 //        constrain = new GridBagConstraints();
