@@ -232,7 +232,7 @@ public class Vista {
     public void cambiarVista(String vista) {
         //eliminamos todas las vistas
         eliminarVistas();
-        int tiempo = 2;
+        int tiempo = 1;
         switch (vista) {
             case "principal":
                 tiempo = 1;
@@ -253,13 +253,13 @@ public class Vista {
                 break;
 
             case "juego":
-                tiempo = 2;
+                tiempo = 1;
                 vJuego.generar(true);//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                 break;
 
             case "lista":
-                tiempo = 2;
+                tiempo = 1;
                 vLista.generar();
                 cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                 //estadisticas();

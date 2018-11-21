@@ -59,7 +59,7 @@ public class VDialogoMod extends JPanel {
 
     private void generarBoton() {
         atras = new JButton();
-        flecha = metodo.imagenEspejo("/img/flecha.png");
+//        flecha = metodo.imagenEspejo("/img/flecha.png");
 
         atras.setIcon(flecha);
         atras.setContentAreaFilled(false);
