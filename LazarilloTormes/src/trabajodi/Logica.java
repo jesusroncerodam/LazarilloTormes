@@ -396,7 +396,7 @@ public class Logica {
         switch (boton.replaceAll(" ", "").toLowerCase()) {
             case "newgame":
                 
-                principal.cambiarDeVista("newgame");
+                principal.cambiarDeVista("ingresodatos");
                 
                 System.out.println("1");
                 break;
