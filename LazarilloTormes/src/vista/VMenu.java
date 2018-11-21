@@ -129,11 +129,11 @@ public class VMenu extends JMenuBar {
 
 
     public void guardar() {
-        vista.guardar();
+        //vista.guardar();
     }
 
 
     public void cargar() {
-        vista.cargar();
+        //vista.cargar();
     }
 }
