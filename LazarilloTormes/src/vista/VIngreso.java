@@ -13,10 +13,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.TextField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import trabajodi.Logica;
@@ -31,36 +33,35 @@ public class VIngreso extends JPanel {
 
     private ContrIngreso controlador;
     private Metodos metodo = new Metodos();
+
     private JLabel labelNombre, labelTema, labelDificultad;
     private TextField campoNombre;
-    private JButton botonFlechaAtrás, botonFlechaSiguiente;
-    TextField nombre;
-    JPanel tema1, tema2, tema3;
-    JButton atras, adelante;
 
-    private ImageIcon imagenFlecha = new ImageIcon(this.getClass().getResource("/img/flecha.png"));
-    private ImageIcon fondoRegistro = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.jpg"));
-    private Checkbox facil, medio, dificil;
-    /*
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     */
+    private JPanel tema1, tema2, tema3;
+
+    private JCheckBox facil, medio, dificil;
+    private JButton botonFlechaAtrás, botonFlechaSiguiente;
+
     private GridBagConstraints constrain;
     private GridBagLayout gridLayout;
+    private ImageIcon imagenFlecha = new ImageIcon(this.getClass().getResource("/img/flecha.png"));
+    private ImageIcon fondoRegistro = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.jpg"));
 
 
-    /*
-     *
-     *
-     */
     public VIngreso(Logica logica) {
         controlador = new ContrIngreso(this, logica);
+    }
+
+
+    public void anadirescuchadores() {
+
+//        Controladores
+        tema1.addMouseListener(controlador);
+        tema2.addMouseListener(controlador);
+        tema3.addMouseListener(controlador);
+
+        botonFlechaAtrás.addMouseListener(controlador);
+        botonFlechaSiguiente.addMouseListener(controlador);
     }
 
 
@@ -73,12 +74,14 @@ public class VIngreso extends JPanel {
         constrain.anchor = GridBagConstraints.CENTER;
         constrain.weighty = 0.6; //para que se estiren las columnas
         constrain.weightx = 0.6; // El área de texto ocupa 1 filasa
-
         constrain.fill = GridBagConstraints.BOTH;
 
         crearElementos();
         anadirElementos();
         estiloElementos();
+
+        anadirescuchadores();
+
         setVisible(true);
     }
 
@@ -96,11 +99,15 @@ public class VIngreso extends JPanel {
         labelDificultad = new JLabel("Dificultad");
         CheckboxGroup cbg = new CheckboxGroup();
 
-        facil = new Checkbox("Facil", cbg, true);
-        medio = new Checkbox("Medio", cbg, false);
-        dificil = new Checkbox("Dificil", cbg, false);
+        facil = new JCheckBox("Facil", true);
+        medio = new JCheckBox("Medio", false);
+//        dificil = new JCheckBox("Dificil", cbg, false);
 
         imagenFlecha = metodo.cambiarTamano(imagenFlecha, 50, 50);
+
+        facil.setIcon(imagenFlecha);
+        medio.setIcon(imagenFlecha);
+
         botonFlechaAtrás = new JButton(imagenFlecha);
         botonFlechaSiguiente = new JButton();
     }
@@ -125,8 +132,12 @@ public class VIngreso extends JPanel {
         constrain.fill = GridBagConstraints.NONE;
 //        campoNombre.setPreferredSize(new Dimension(50, 50));
 //        campoNombre.setSize(50, 50);
-        constrain.insets = new Insets(50, 25, 25, 25);
+        constrain.insets = new Insets(25, 0, 25, 0);
+        constrain.anchor = GridBagConstraints.LINE_START;
+
         add(campoNombre, constrain);
+
+        constrain.anchor = GridBagConstraints.CENTER;
         constrain.fill = GridBagConstraints.BOTH;
         constrain.insets = new Insets(0, 0, 0, 0);
 
@@ -163,10 +174,10 @@ public class VIngreso extends JPanel {
         constrain.gridx = 2;
         constrain.gridy = 2;
         add(medio, constrain);
-
-        constrain.gridx = 3;
-        constrain.gridy = 2;
-        add(dificil, constrain);
+//
+//        constrain.gridx = 3;
+//        constrain.gridy = 2;
+//        add(dificil, constrain);
 
         /*
          * BOTONES

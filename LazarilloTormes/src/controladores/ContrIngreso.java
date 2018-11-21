@@ -6,6 +6,10 @@
 package controladores;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import vista.VIngreso;
 import trabajodi.Logica;
 
@@ -14,7 +18,7 @@ import trabajodi.Logica;
  *
  * @author Guille
  */
-public class ContrIngreso {
+public class ContrIngreso extends MouseAdapter {
 
     private VIngreso vista;
     private Logica logica;
@@ -23,6 +27,23 @@ public class ContrIngreso {
     public ContrIngreso(VIngreso vista, Logica logica) {
         this.vista = vista;
         this.logica = logica;
+    }
+
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        switch (e.getComponent().getName()) {
+            case "botonSalida":
+
+                break;
+
+            case "botonSiguiente":
+
+                break;
+
+            default:
+                System.err.println("\nOpcion no valida");
+        }
     }
 
 }

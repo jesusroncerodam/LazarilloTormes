@@ -203,7 +203,6 @@ public class Logica {
      *
      *
      */
-
     private void guardarDatos() {
         //nombre//ya lo tengo 
         //imagen //ya lo tengo
