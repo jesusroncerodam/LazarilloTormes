@@ -114,7 +114,8 @@ public class VIngreso extends JPanel {
     /*
      * Añade los elementos a la vista
      *
-     *
+     * loc.ipadx = 50;
+     * loc.anchor = GridBagConstraints.LINE_START;
      */
     public void anadirElementos() {
 
