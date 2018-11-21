@@ -16,14 +16,16 @@ public class PartidaGuardada implements Serializable{
     //private static int numeroPartida;
     private int segundos,movimientos,vuelta;//desactivadas;
     private ArrayList<String> rutaGuardada;
-    private ArrayList<Boolean> estadoCarta;
+    private ArrayList<Boolean> cartaBloqueada;
 
-    public PartidaGuardada(int segundos, int movimientos, int vuelta, ArrayList<String> rutaGuardada, ArrayList<Boolean> estadoCarta) {
+    public PartidaGuardada(int segundos, int movimientos, int vuelta, ArrayList<String> rutaGuardada, ArrayList<Boolean> cartaBloqueada) {
         this.segundos = segundos;
         this.movimientos = movimientos;
         this.vuelta = vuelta;
         this.rutaGuardada = rutaGuardada;
-        this.estadoCarta = estadoCarta;
+        this.cartaBloqueada = cartaBloqueada;
+    }
+    public PartidaGuardada(){
     }
 
     public int getSegundos() {
@@ -42,8 +44,8 @@ public class PartidaGuardada implements Serializable{
         return rutaGuardada;
     }
 
-    public ArrayList<Boolean> getEstadoCarta() {
-        return estadoCarta;
+    public ArrayList<Boolean> getCartaBloqueada() {
+        return cartaBloqueada;
     }
 
     
@@ -66,8 +68,8 @@ public class PartidaGuardada implements Serializable{
         this.rutaGuardada = rutaGuardada;
     }
 
-    public void setEstadoCarta(ArrayList<Boolean> estadoCarta) {
-        this.estadoCarta = estadoCarta;
+    public void setCartaBloqueada(ArrayList<Boolean> cartaBloqueada) {
+        this.cartaBloqueada = cartaBloqueada;
     }
     
     

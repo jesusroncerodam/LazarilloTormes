@@ -11,6 +11,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.Serializable;
+import java.util.ArrayList;
 import vista.VJuego;
 import trabajodi.Logica;
 
@@ -164,5 +165,12 @@ public class ContrJuego implements MouseListener, KeyListener{
     
     public String[] obtenerRutas(){
         return logica.obtenerRutasImg();
+    }
+    
+    public ArrayList<String> guardarUrlCarta(){
+        return vista.guardarUrlCarta();
+    }
+    public ArrayList<Boolean> guardarBloquearCarta(){
+        return vista.guardarBloquearCarta();
     }
 }
