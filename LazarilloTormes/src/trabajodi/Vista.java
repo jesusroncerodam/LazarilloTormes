@@ -101,7 +101,7 @@ public class Vista {
      * @param tiempo Int, Tiempo en segundos, indica la duracion del splash.
      */
     private synchronized void cargarSplash(String logo, String fondo, int tiempo) {
-       ventana.setSize(600, 600);
+        ventana.setSize(600, 600);
         splash = new VistaSplash(logo, fondo, tiempo, fuente, this);
         ventana.setMinimumSize(splash.getMinimumSize());//asignamos el tamaño minimo para la ventana
         
@@ -118,7 +118,7 @@ public class Vista {
      * para
      * ahorrar espacio en memoria y elimina la ventana de carg.
      */
-    public synchronized void splashTermina() {
+    public void splashTermina() {
         ventana.remove(splash);//lo quitamos de la vusta para que no de errores
         splash = null;//eliminamos el objeto, ya no lo necesitamos mas 
         ventana.repaint();
@@ -145,8 +145,7 @@ public class Vista {
     
     public void estadisticas() {
        // vLista.generar();
-        System.out.println("generao cargabdi sspl");
-        //cargarSplash("/img/logotrini.png", "/img/carga.jpg", 2);
+       //cargarSplash("/img/logotrini.png", "/img/carga.jpg", 2);
         System.out.println("paso");
         ventana.setSize(600, 600);
         ventana.add(vLista);
@@ -205,12 +204,12 @@ public class Vista {
                 
                 break;
             case "juego":
-                tiempo=3;
+                tiempo=2;
                 vJuego.generar(true);//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                 break;
             case "lista":
-                tiempo=4;
+                tiempo=2;
                 vLista.generar();
                 cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                 //estadisticas();
