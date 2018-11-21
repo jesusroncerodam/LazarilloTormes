@@ -443,7 +443,18 @@ public class Logica {
         }
     }
     public void cargarPartida(){
-        
+        try {
+            //Creamos un flujo de entrada desde el disco
+            FileInputStream fileIn = new FileInputStream("juego.obj");
+            //Vinculamos la referencia al disco con nuestro flujo de entrada
+            ObjectInputStream entrada = new ObjectInputStream(fileIn);
+            //Cargamos el objeto y hacemos el casting del tipo que es
+            VJuego vJuegoo = (VJuego) entrada.readObject();
+        } catch (Exception e) {
+            System.out.println("edfjn");
+            e.printStackTrace();
+
+        }
     }
     
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
