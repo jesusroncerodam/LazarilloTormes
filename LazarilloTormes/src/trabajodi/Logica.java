@@ -351,7 +351,10 @@ public class Logica {
     public void metodo2() {
 
     }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void guardarPartida(){
+        
+    }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //controlador Estadisticas(vLista)
     public void asignarContrLista(ContrLista lista) {
@@ -387,7 +390,6 @@ public class Logica {
      * //    VISTA PRINCIPAL
      */
     public void principalClick(String boton,int pulsos){
-        
         switch (boton.replaceAll(" ", "").toLowerCase()) {
             case "newgame":
                 
