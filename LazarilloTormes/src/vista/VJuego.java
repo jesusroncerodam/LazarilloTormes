@@ -41,7 +41,7 @@ public class VJuego extends JPanel {
     private JLabel lMovimientos, lReloj;
     private JButton bPausaPlay, bGuardar, bContinuar;
     private GridBagConstraints constrain;
-    
+
     private boolean defecto;
 
 
@@ -55,13 +55,14 @@ public class VJuego extends JPanel {
         controlador = new ContrJuego(this, logica);
     }
 
+
     /**
      * Encargado de generar un juego nuevo, inicialiA todas las variables y
      * controladores
      * @param rutas Array de String, direccion de todas las imagenes de cartas
      */
-    public void generar(boolean defecto){
-        this.defecto=true;
+    public void generar(boolean defecto) {
+        this.defecto = true;
         controlador.asignarControlador();//asignamos el controlador a la logica
         desactivadas = 0;
 
@@ -89,7 +90,9 @@ public class VJuego extends JPanel {
         generarCartas();
         guardarUrlCarta();
     }
-    private String[] obtenerRutas(){
+
+
+    private String[] obtenerRutas() {
         return controlador.obtenerRutas();
     }
 
@@ -129,7 +132,7 @@ public class VJuego extends JPanel {
      * @param rutas Array de string que cotiene las rutas de las imagenes
      */
     private void generarCartas() {
-        String[] rutas=obtenerRutas();
+        String[] rutas = obtenerRutas();
         carta = new ArrayList();
 
         for (int i = 0; i < rutas.length; i++) { //asignamos la misma ruta a 2 carta
@@ -142,10 +145,10 @@ public class VJuego extends JPanel {
 
         int cuadrado = (int) Math.sqrt(carta.size());//la raiz da lugar a unas fulas respectivas 
         cartas.setLayout(new GridLayout(cuadrado, cuadrado, HGAP, VGAP));//asignamos un layout a las cartas
-        
-        if(defecto)
-            Collections.shuffle(carta);//deshordenamos las cartas asi estan colocadas de manera aleatoria
 
+        if (defecto) {
+            Collections.shuffle(carta);//deshordenamos las cartas asi estan colocadas de manera aleatoria
+        }
         for (int i = 0; i < carta.size(); i++) {//asignamos el indice al nombre de las cartas
             carta.get(i).setName("" + i);
         }
@@ -172,21 +175,21 @@ public class VJuego extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 contadorSeg++;
-                int minutos = contadorSeg/60;
-                int seg = contadorSeg%60;
-                String tiempo = "00:"+contadorSeg;
-                if(minutos<10){
-                    tiempo = "0"+minutos+":";
-                }else{
-                    tiempo = minutos+":";
+                int minutos = contadorSeg / 60;
+                int seg = contadorSeg % 60;
+                String tiempo = "00:" + contadorSeg;
+                if (minutos < 10) {
+                    tiempo = "0" + minutos + ":";
+                } else {
+                    tiempo = minutos + ":";
                 }
-                if(seg < 10){
-                    tiempo +="0"+seg;
-                }else{
-                    tiempo +=seg;
+                if (seg < 10) {
+                    tiempo += "0" + seg;
+                } else {
+                    tiempo += seg;
                 }
                 lReloj.setText(tiempo);
-                System.out.println("hoildsjf"+tiempo);
+                System.out.println("hoildsjf" + tiempo);
                 repaint();
             }
         });
@@ -239,15 +242,17 @@ public class VJuego extends JPanel {
         bGuardar.setContentAreaFilled(false);
         bGuardar.setBorder(null);
         bGuardar.setActionCommand("guardar");
-        constrain.gridx=1;
-        constrain.gridy=2;
-        constrain.fill= GridBagConstraints.HORIZONTAL;
+        constrain.gridx = 1;
+        constrain.gridy = 2;
+        constrain.fill = GridBagConstraints.HORIZONTAL;
         constrain.weighty = 0.5;
         this.add(bGuardar, constrain);
 
         bGuardar.addKeyListener(controlador);
         bGuardar.addMouseListener(controlador);
     }
+
+
     /**
      * Pintamos el Fondo
      * @param g paint
@@ -283,6 +288,15 @@ public class VJuego extends JPanel {
     }
 
 
+    /*
+     * VIENE DE CONTROLADOR
+     * VIENE DE CONTROLADOR
+     * VIENE DE CONTROLADOR
+     * VIENE DE CONTROLADOR
+     * VIENE DE CONTROLADOR
+     * VIENE DE CONTROLADOR
+     * VIENE DE CONTROLADOR
+     */
     /**
      * Empieza crea o pausa el contador del timepo
      * @param accion String a realizar
@@ -403,52 +417,57 @@ public class VJuego extends JPanel {
 //            remove(i);
 //        }
 //    }
-    
-    
-    
-    
-    public ArrayList<String> guardarUrlCarta(){
-        ArrayList<String> rutaGuardada=new ArrayList<String>();
+    public ArrayList<String> guardarUrlCarta() {
+        ArrayList<String> rutaGuardada = new ArrayList<String>();
         for (int i = 0; i < carta.size(); i++) {
             rutaGuardada.add(carta.get(i).getUrl());
             //System.out.println(i+" ->"+carta.get(i).getUrl());
         }
         return rutaGuardada;
     }
-    public ArrayList<Boolean> guardarBloquearCarta(){
-        ArrayList<Boolean> estadoCarta=new ArrayList<Boolean>();
+
+
+    public ArrayList<Boolean> guardarBloquearCarta() {
+        ArrayList<Boolean> estadoCarta = new ArrayList<Boolean>();
         for (int i = 0; i < carta.size(); i++) {
             estadoCarta.add(carta.get(i).getBloquear());
             //System.out.println(i+" ->"+carta.get(i).getUrl());
         }
         return estadoCarta;
     }
-    
-    public void cargarBloquear(ArrayList<Boolean> bloqueadas){
+
+
+    public void cargarBloquear(ArrayList<Boolean> bloqueadas) {
         for (int i = 0; i < carta.size(); i++) {
-            if(bloqueadas.get(i))//si bloquear es true lo bloqueamos
+            if (bloqueadas.get(i))//si bloquear es true lo bloqueamos
+            {
                 carta.get(i).bloquear();
+            }
         }
     }
-    public void sdjkb(){
-        ArrayList<String> rutaGuardada=guardarUrlCarta();
-        ArrayList<Boolean> estadoCarta=guardarBloquearCarta();
-        int vuelta=algunaVisible();
-        if(vuelta!=-1){//si hay alguna
+
+
+    public void sdjkb() {
+        ArrayList<String> rutaGuardada = guardarUrlCarta();
+        ArrayList<Boolean> estadoCarta = guardarBloquearCarta();
+        int vuelta = algunaVisible();
+        if (vuelta != -1) {//si hay alguna
             //lo guardamos
-            
+
         }
-            
-     //   contadorSeg;
+
+        //   contadorSeg;
     }
+
+
     //guardar partida
     //datos:
     /*
-    desactivadas
-    contMov 
-    contadorSeg
-    
-    */
+     * desactivadas
+     * contMov
+     * contadorSeg
+     *
+     */
     public void generarGuardada() {
         controlador.asignarControlador();//se tiene que volver a generar
         desactivadas = 0;

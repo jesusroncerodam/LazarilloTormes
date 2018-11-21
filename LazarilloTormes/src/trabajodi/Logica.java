@@ -53,6 +53,18 @@ public class Logica {
     }
 
 
+    /*
+     * CONTROLADOR JUEGO
+     * CONTROLADOR JUEGO
+     * CONTROLADOR JUEGO
+     * CONTROLADOR JUEGO
+     * CONTROLADOR JUEGO
+     * CONTROLADOR JUEGO
+     * CONTROLADOR JUEGO
+     * CONTROLADOR JUEGO
+     * CONTROLADOR JUEGO
+     * CONTROLADOR JUEGO
+     */
     /**
      * asinamos el controlador de Juego y incicializamos valores a un juego por
      * defecto
@@ -62,27 +74,6 @@ public class Logica {
         this.juego = juego;
         primeraJuego = true;
         animacionC = false;
-    }
-
-
-    public String[] obtenerRutasImg() {
-        //inicializamos temporal
-        rutas = new String[8];
-        rutas[0] = "src/img/carta.jpg";
-        rutas[1] = "src/img/2.jpg";
-        rutas[2] = "src/img/carga2.jpg";
-        rutas[3] = "src/img/flecha.png";
-        rutas[4] = "src/img/flecha.png";
-        rutas[5] = "src/img/flecha.png";
-        rutas[6] = "src/img/flecha.png";
-        rutas[7] = "src/img/flecha.png";
-        return rutas;
-        //rutas=null;
-    }
-
-
-    public void setPrimeraJuego() {
-        this.primeraJuego = true;
     }
 
 
@@ -162,6 +153,27 @@ public class Logica {
                 }
             }
         }
+    }
+
+
+    public String[] obtenerRutasImg() {
+        //inicializamos temporal
+        rutas = new String[8];
+        rutas[0] = "src/img/carta.jpg";
+        rutas[1] = "src/img/2.jpg";
+        rutas[2] = "src/img/carga2.jpg";
+        rutas[3] = "src/img/flecha.png";
+        rutas[4] = "src/img/flecha.png";
+        rutas[5] = "src/img/flecha.png";
+        rutas[6] = "src/img/flecha.png";
+        rutas[7] = "src/img/flecha.png";
+        return rutas;
+        //rutas=null;
+    }
+
+
+    public void setPrimeraJuego() {
+        this.primeraJuego = true;
     }
 
 
@@ -359,8 +371,9 @@ public class Logica {
     public void metodo2() {
 
     }
+
     ///////////////////////////
-    
+
     public void guardar() {
         try {
             //Creamos un flujo de salida al disco
@@ -368,7 +381,7 @@ public class Logica {
             //Vinculamos el flujo de salida de objetos con el fichero
             ObjectOutputStream salida = new ObjectOutputStream(fileOut);
             //escribimos el objeto
-         //   salida.writeObject(vJuego);
+            //   salida.writeObject(vJuego);
             //cerramos el flujo
             salida.close();
 
@@ -395,7 +408,7 @@ public class Logica {
             //Cargamos el objeto y hacemos el casting del tipo que es
             VJuego vJuegoo = (VJuego) entrada.readObject();
             System.out.println("despues cast");
-          //  ventana.add(vJuegoo);
+            //  ventana.add(vJuegoo);
             System.out.println("despues añadir");
             //ventana.setVisible(true);
         } catch (Exception e) {
@@ -403,22 +416,18 @@ public class Logica {
             e.printStackTrace();
 
         }
-       // vJuego.setVisible(false);
+        // vJuego.setVisible(false);
 
         System.out.println("holas");
     }
-    
-    
-    
-    
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
     public void guardarPartida() {
-        
+
         //int segundos, int movimientos, int vuelta, ArrayList<String> rutaGuardada, ArrayList<Boolean> cartaBloqueada
-        PartidaGuardada partida = new PartidaGuardada(juego.getContadorSeg(),juego.getContMov(),juego.algunaVisible(),juego.guardarUrlCarta(),juego.guardarBloquearCarta());
-        
+        PartidaGuardada partida = new PartidaGuardada(juego.getContadorSeg(), juego.getContMov(), juego.algunaVisible(), juego.guardarUrlCarta(), juego.guardarBloquearCarta());
+
 //        PartidaGuardada partida = new PartidaGuardada();
 //        partida.setRutaGuardada(juego.guardarUrlCarta());
 //        partida.setCartaBloqueada(juego.guardarBloquearCarta());
@@ -441,9 +450,10 @@ public class Logica {
             Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void cargarPartida(){
-        PartidaGuardada partida=null;
+
+
+    public void cargarPartida() {
+        PartidaGuardada partida = null;
         try {
             //Creamos un flujo de entrada desde el disco
             FileInputStream fileIn = new FileInputStream("PartidaGuardada.obj");
@@ -458,13 +468,12 @@ public class Logica {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
         }
-        rutas=partida.getRutaGuardada().toArray(new String[partida.getRutaGuardada().size()]);
+        rutas = partida.getRutaGuardada().toArray(new String[partida.getRutaGuardada().size()]);
         //generamos la partida
     }
-    
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //controlador Estadisticas(vLista)
-
 
     public void asignarContrLista(ContrLista lista) {
         this.lista = lista;
@@ -514,7 +523,7 @@ public class Logica {
                 break;
 
             case "stats":
-                
+
                 principal.cambiarDeVista("lista");
                 System.out.println("3");
                 break;
