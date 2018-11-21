@@ -112,6 +112,10 @@ public class VJuego extends JPanel {
         ImageIcon imgReloj = new ImageIcon("src/img/reloj.png");
         lReloj = new JLabel("00:" + contadorSeg, imgReloj, JLabel.CENTER);
         System.out.println(imgReloj.getIconWidth());
+        /////////////////////////
+        
+//        bNuevaPartida.setHorizontalTextPosition(SwingConstants.CENTER);
+//        bNuevaPartida.setVerticalTextPosition(SwingConstants.CENTER);
         lReloj.setIconTextGap((int) (-imgReloj.getIconWidth() / 1.6));//si no hacemos esto, el texto saldría a la derecha de la imagen, no encima
         lReloj.setFont(fuente);
         lReloj.setForeground(new Color(74, 110, 242));///////////////////////////////////////////////////////////////////////////////////////////////////////////CAMBIAR COLOR, PONER VARIABLE
