@@ -61,7 +61,7 @@ public class Vista {
         vDialogoMod = new VDialogoMod(logica);
         vIngreso = new VIngreso(logica);
         vJuego = new VJuego(logica);
-        vLista = new VLista(logica);
+        vLista = new VLista(logica,this);
         vMenu = new VMenu(logica, this);
         //no ponemos splash ya que no necesita logica
 
@@ -104,7 +104,6 @@ public class Vista {
         
         ventana.add(splash);
         ventana.setVisible(true);
-        //ventana.repaint();
         splash.empezarAnimaciones();
     }
 
@@ -181,7 +180,7 @@ public class Vista {
                 }
                 
         }};
-        timer.schedule(task, tiempo*1000+500);
+        timer.schedule(task, tiempo*1000+100);
     }
 
 
@@ -191,7 +190,7 @@ public class Vista {
         int tiempo=0;
         switch (vista) {
             case "principal":
-                tiempo=5;
+                //tiempo=5;
                 vPrincipal.generar();
                 cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                 //principal();
@@ -203,12 +202,12 @@ public class Vista {
                 
                 break;
             case "juego":
-                tiempo=4;
+                //tiempo=4;
                 vJuego.generar();
                 cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                 break;
             case "lista":
-                tiempo=10;
+               // tiempo=10;
                 vLista.generar();
                 cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                 //estadisticas();

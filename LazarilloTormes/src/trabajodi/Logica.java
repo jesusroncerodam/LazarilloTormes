@@ -7,6 +7,7 @@ package trabajodi;
 
 
 import controladores.ContrJuego;
+import controladores.ContrLista;
 import controladores.ContrPrinipal;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
@@ -35,6 +36,7 @@ public class Logica implements Serializable {
 
     private ContrJuego juego;
     private ContrPrinipal principal;
+    private ContrLista lista;
     private boolean primeraJuego, animacionC;
     private Timer timer;
     private int vuelta, cartaAct;
@@ -350,7 +352,24 @@ public class Logica implements Serializable {
 
     }
 
-    
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //controlador Estadisticas(vLista)
+    public void asignarContrLista(ContrLista lista) {
+        this.lista = lista;
+    }
+    public void listaClick(Component componente){
+        if(componente instanceof JButton){
+            JButton bPulsado =(JButton) componente;
+            if(bPulsado.getToolTipText().equals("Go to main")){
+                
+            }
+        }else{
+            System.out.println("evento no esperado en lista");
+        }
+    }
+///
+
+
     public void asignarContrPrincipal(ContrPrinipal principal) {
         this.principal = principal;
     }

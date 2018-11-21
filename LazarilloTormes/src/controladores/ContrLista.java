@@ -6,6 +6,8 @@
 package controladores;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import vista.VLista;
 import trabajodi.Logica;
@@ -15,7 +17,7 @@ import trabajodi.Logica;
 
  @author Guille
  */
-public class ContrLista {
+public class ContrLista implements ActionListener{
 
     private VLista vista;
     private Logica logica;
@@ -27,6 +29,11 @@ public class ContrLista {
     }
     public String[] datosFichero(){
         return logica.ficheroAArray();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.out.println(e);
     }
 
 }

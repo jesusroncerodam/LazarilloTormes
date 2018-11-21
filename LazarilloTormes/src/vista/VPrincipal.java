@@ -145,7 +145,6 @@ public class VPrincipal extends JLabel {
           super.paint(g);//borramos la imagen anterior
     }
     public void cambiarDeVista(String vista){
-       
         vistaMain.cambiarVista(vista);
     }
 }

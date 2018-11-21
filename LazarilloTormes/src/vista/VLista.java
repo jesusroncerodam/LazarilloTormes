@@ -48,6 +48,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.text.Document;
 import javax.swing.text.SimpleAttributeSet;
 import trabajodi.Logica;
+import trabajodi.Vista;
 
 
 /**
@@ -59,15 +60,14 @@ public class VLista extends JPanel {
     private final String[] NOMBRE_COLUMNAS = {"Nº", "Image", "Name", "Mov.", "Time"};
     private final Color COLOR_LETRAS = Color.white;
     private String[] datos;
-  
+    private Vista vista;
     private ContrLista controlador;
     private JButton atras;
     GridBagConstraints loc;
 
 
-    // scroll;
-    public VLista(Logica logica) {
-        
+    public VLista(Logica logica,Vista vista) {
+        this.vista=vista;
         controlador = new ContrLista(this, logica);
     }
 
@@ -156,8 +156,10 @@ public class VLista extends JPanel {
 
 
     public void crearBoton() {
-        JButton bVistaMenu = new JButton();
-        bVistaMenu.setIcon(new ImageIcon("src/img/atras.png"));
+        JButton bAtras = new JButton();
+        bAtras.setIcon(new ImageIcon("src/img/atras.png"));
+        bAtras.addActionListener(controlador);
+        bAtras.setToolTipText("Go to main");
         loc.fill = GridBagConstraints.NONE;
         loc.gridx = 0;
         loc.gridy = 2;
@@ -167,14 +169,12 @@ public class VLista extends JPanel {
         loc.anchor = GridBagConstraints.LINE_START;
         loc.insets = new Insets(10, 10, 10, 10);
         loc.weightx = 1.0;
-        this.add(bVistaMenu, loc);
+        this.add(bAtras, loc);
     }
 
 
     public void recogerDatos() {
-        
         datos = controlador.datosFichero();
-
     }
 
 

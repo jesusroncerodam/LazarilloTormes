@@ -170,15 +170,15 @@ public class VJuego extends JPanel implements Serializable {
                 int minutos = contadorSeg / 60;
                 int seg = contadorSeg % 60;
                 String tiempo = "00:" + contadorSeg;
-                if (minutos < 10) {
-                    tiempo = "0" + minutos + ":";
-                } else {
-                    tiempo = minutos + ":";
+                if(minutos<10){
+                    tiempo = "0"+minutos+":";
+                }else{
+                    tiempo = minutos+":";
                 }
-                if (seg < 10) {
-                    tiempo += "0" + seg;
-                } else {
-                    tiempo += seg;
+                if(seg < 10){
+                    tiempo +="0"+seg;
+                }else{
+                    tiempo +=seg;
                 }
                 lReloj.setText(tiempo);
                 System.out.println("hoildsjf" + tiempo);
