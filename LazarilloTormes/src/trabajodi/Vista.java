@@ -72,7 +72,9 @@ public class Vista {
        // ingresoDatos();
          // estadisticas();
         //principal();
-        cambiarVista("principal");
+        //iniciarJuego();
+        
+        cambiarVista("juego");
     }
 
 
@@ -190,7 +192,7 @@ public class Vista {
         int tiempo=2;
         switch (vista) {
             case "principal":
-                //tiempo=5;
+                tiempo=2;
                 vPrincipal.generar();
                 cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                 //principal();
@@ -202,12 +204,12 @@ public class Vista {
                 
                 break;
             case "juego":
-                //tiempo=4;
-                vJuego.generar();
+                tiempo=3;
+                vJuego.generar(true);//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                 break;
             case "lista":
-               // tiempo=10;
+                tiempo=4;
                 vLista.generar();
                 cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                 //estadisticas();
@@ -228,11 +230,17 @@ public class Vista {
      */
     public void eliminarVistas() {
         ventana.remove(vPrincipal);
+        vPrincipal.removeAll();
         ventana.remove(vDialogoMod);
+        vDialogoMod.removeAll();
         ventana.remove(vIngreso);
+        vIngreso.removeAll();
         ventana.remove(vJuego);
+        vJuego.removeAll();
         ventana.remove(vLista);
+        vLista.removeAll();
         ventana.remove(vPrincipal);
+        vPrincipal.removeAll();
         //ventana.removeAll();
         //vJuego.eliminarElementos();
     }

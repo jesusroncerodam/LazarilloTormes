@@ -14,6 +14,7 @@ import java.awt.GridBagLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import trabajodi.Logica;
 import trabajodi.Vista;
@@ -23,7 +24,7 @@ import trabajodi.Vista;
  *
  * @author Guille
  */
-public class VPrincipal extends JLabel {
+public class VPrincipal extends JPanel{
     private Vista vistaMain; 
     private ContrPrinipal controlador;
     private GridBagConstraints constrain;
@@ -42,13 +43,12 @@ public class VPrincipal extends JLabel {
     public void generar() {
         this.setOpaque(false);
         this.setFocusable(true);
-        this.requestFocus();
 
         constrain = new GridBagConstraints();
         
          //constrain.fill = GridBagConstraints.BOTH;
-         constrain.anchor = GridBagConstraints.CENTER;
-       constrain.weighty = 1.0; //para que se estiren las columnas
+        constrain.anchor = GridBagConstraints.CENTER;
+        constrain.weighty = 1.0; //para que se estiren las columnas
        
         constrain.weightx= 1.0; // El área de texto ocupa 1 filas.
         this.setLayout(new GridBagLayout());
@@ -145,6 +145,7 @@ public class VPrincipal extends JLabel {
           super.paint(g);//borramos la imagen anterior
     }
     public void cambiarDeVista(String vista){
+        //removeAll();
         vistaMain.cambiarVista(vista);
     }
 }
