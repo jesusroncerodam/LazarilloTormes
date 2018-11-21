@@ -42,8 +42,6 @@ public class VJuego extends JPanel {
     private JButton bPausaPlay, bGuardar, bContinuar;
     private GridBagConstraints constrain;
 
-    private boolean defecto;
-
 
     /**
      * Constructor, solo se asigna la logica, el resto se genera llamando al
@@ -62,7 +60,6 @@ public class VJuego extends JPanel {
      * @param rutas Array de String, direccion de todas las imagenes de cartas
      */
     public void generar(boolean defecto) {
-        this.defecto = true;
         controlador.asignarControlador();//asignamos el controlador a la logica
         desactivadas = 0;
 
@@ -87,8 +84,7 @@ public class VJuego extends JPanel {
         continuar();
 
         //generamos las cartas
-        generarCartas();
-        guardarUrlCarta();
+        generarCartas(true);//pata que se deshordenen
     }
 
 
@@ -131,7 +127,7 @@ public class VJuego extends JPanel {
      * Creamos, asignamos y mostramos las images
      * @param rutas Array de string que cotiene las rutas de las imagenes
      */
-    private void generarCartas() {
+    private void generarCartas(boolean deshordenar) {
         String[] rutas = obtenerRutas();
         carta = new ArrayList();
 
@@ -145,10 +141,9 @@ public class VJuego extends JPanel {
 
         int cuadrado = (int) Math.sqrt(carta.size());//la raiz da lugar a unas fulas respectivas 
         cartas.setLayout(new GridLayout(cuadrado, cuadrado, HGAP, VGAP));//asignamos un layout a las cartas
+        if(deshordenar)
+           Collections.shuffle(carta);//deshordenamos las cartas asi estan colocadas de manera aleatoria
 
-        if (defecto) {
-            Collections.shuffle(carta);//deshordenamos las cartas asi estan colocadas de manera aleatoria
-        }
         for (int i = 0; i < carta.size(); i++) {//asignamos el indice al nombre de las cartas
             carta.get(i).setName("" + i);
         }
