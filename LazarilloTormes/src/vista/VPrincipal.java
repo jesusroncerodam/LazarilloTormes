@@ -13,7 +13,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import trabajodi.Logica;
@@ -142,7 +141,7 @@ public class VPrincipal extends JPanel{
 
     public void paint(Graphics g) {
         g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), null);
-          super.paint(g);//borramos la imagen anterior
+        super.paint(g);//borramos la imagen anterior
     }
     public void cambiarDeVista(String vista){
         //removeAll();
