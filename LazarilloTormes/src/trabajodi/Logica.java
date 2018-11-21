@@ -443,18 +443,23 @@ public class Logica {
         }
     }
     public void cargarPartida(){
+        PartidaGuardada partida;
         try {
             //Creamos un flujo de entrada desde el disco
-            FileInputStream fileIn = new FileInputStream("juego.obj");
+            FileInputStream fileIn = new FileInputStream("PartidaGuardada.obj");
             //Vinculamos la referencia al disco con nuestro flujo de entrada
             ObjectInputStream entrada = new ObjectInputStream(fileIn);
             //Cargamos el objeto y hacemos el casting del tipo que es
-            VJuego vJuegoo = (VJuego) entrada.readObject();
-        } catch (Exception e) {
-            System.out.println("edfjn");
-            e.printStackTrace();
-
+            partida = (PartidaGuardada) entrada.readObject();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
     }
     
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
