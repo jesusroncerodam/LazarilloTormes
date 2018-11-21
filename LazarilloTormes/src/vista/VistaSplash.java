@@ -143,11 +143,6 @@ public class VistaSplash extends JPanel {
      * Colocamos los elementos en relacion/aspecto para que no se malformen
      */
     private void colocarElementos() {
-        /*
-         * //
-         * //PONER DOS VARIABLES ANCH Y ALTO
-         * //
-         */
         if (tamX != getWidth() || tamY != getHeight()) {//cuando el anacho y alto no sea el guardado
             progreso.setSize((getWidth() * progreso.getWidth()) / ((progreso.getX() * 2) + progreso.getWidth()), getHeight() / 30);//realizamos reglas de 3
             progreso.setFont(font.deriveFont((float) (15 * getWidth()) / 580));//regla de 3 con respecto al tamaño de la letra del Jprogressbar

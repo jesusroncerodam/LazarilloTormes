@@ -229,6 +229,10 @@ public class Vista {
      */
     public void eliminarVistas() {
         ventana.remove(vPrincipal);
+        ventana.remove(vDialogoMod);
+        ventana.remove(vIngreso);
+        ventana.remove(vJuego);
+        ventana.remove(vLista);
         ventana.remove(vPrincipal);
         //ventana.removeAll();
         //vJuego.eliminarElementos();
