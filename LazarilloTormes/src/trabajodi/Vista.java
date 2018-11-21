@@ -69,9 +69,10 @@ public class Vista {
         //temporal
         ventana.setJMenuBar(vMenu);
 
-        //ingresoDatos();
+        ingresoDatos();
          // estadisticas();
-        principal();
+        //principal();
+        cambiarVista("principal");
     }
 
 
@@ -99,19 +100,12 @@ public class Vista {
     private synchronized void cargarSplash(String logo, String fondo, int tiempo) {
        ventana.setSize(600, 600);
         splash = new VistaSplash(logo, fondo, tiempo, fuente, this);
-        splash.setAutoscrolls(true);
-        ventana.add(splash);
-
         ventana.setMinimumSize(splash.getMinimumSize());//asignamos el tamaño minimo para la ventana
-        ventana.setVisible(true);
         
+        ventana.add(splash);
+        
+        ventana.repaint();
         splash.empezarAnimaciones();
-        //splashTermina();
-//        try {
-//            wait();//dormimos la ejecucion de este hilo, termina cuando se llame a splashTermina
-//        } catch (InterruptedException ex) {
-//            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
-//        }
     }
 
 
@@ -123,79 +117,34 @@ public class Vista {
      * ahorrar espacio en memoria y elimina la ventana de carg.
      */
     public synchronized void splashTermina() {
-       // notifyAll();//notificamos al hilo de ejecucion
-
-       //while (splash.isEstado()) {      System.out.println(splash.isEstado());    }  
-
-//        try {
-//            Thread.sleep(500);//lo dormimos un segundo para que el cambio no sea brusco
-//        } catch (InterruptedException ex) {
-//            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
-//        }
         ventana.remove(splash);//lo quitamos de la vusta para que no de errores
-        //splash = null;//eliminamos el objeto, ya no lo necesitamos mas 
+        splash = null;//eliminamos el objeto, ya no lo necesitamos mas 
         ventana.repaint();
     }
 
 
-    public void ingresoDatos() {
-
-        String aux[] = new String[8];
-        aux[0] = "src/img/carta.jpg";
-        aux[1] = "src/img/2.jpg";
-        aux[2] = "src/img/carga2.jpg";
-        aux[3] = "src/img/flecha.png";
-        aux[4] = "src/img/flecha.png";
-        aux[5] = "src/img/flecha.png";
-        aux[6] = "src/img/flecha.png";
-        aux[7] = "src/img/flecha.png";
-
-        vJuego.generar(aux);
-        cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
+    public void iniciarJuego() {
+        //vJuego.generar();
+        //cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
         ventana.setSize(1000, 1000);
         ventana.add(vJuego);
-
         ventana.repaint();
     }
 
 
     public void principal() {
-        vPrincipal.generar();
-        cargarSplash("/img/logotrini.png", "/img/carga.jpg", 5);
-        Timer  timer = new Timer();
-
-    TimerTask task = new TimerTask() {
-        int tic=0;
-
-        @Override
-        public void run()
-        {
-            
-            if (tic%2==0)
-            System.out.println("TIC");
-            else
-            System.out.println("TOC");
-            tic++;
-        }
-        };
-        // Empezamos dentro de 10ms y luego lanzamos la tarea cada 1000ms
-    timer.schedule(task, 5500);
-    ventana.setSize(1000, 800);
+       // vPrincipal.generar();
+        //cargarSplash("/img/logotrini.png", "/img/carga.jpg", 5);
+        
+        ventana.setSize(1000, 800);
         ventana.add(vPrincipal);
-        ventana.setVisible(true);
-        
-        
+        ventana.setVisible(true);   
     }
-
-
-    /**
-     *
-     */
     
     public void estadisticas() {
-        vLista.generar();
+       // vLista.generar();
         System.out.println("generao cargabdi sspl");
-        cargarSplash("/img/logotrini.png", "/img/carga.jpg", 2);
+        //cargarSplash("/img/logotrini.png", "/img/carga.jpg", 2);
         System.out.println("paso");
         ventana.setSize(600, 600);
         ventana.add(vLista);
@@ -203,33 +152,75 @@ public class Vista {
        // ventana.repaint();
     }
 
+    public void anadirVista(String vista,int tiempo){
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run(){
+                switch (vista) {
+                    case "principal":
+                        principal();
+                        //ventana.setMenuBar(vMenu);
+                        //se genera el menu correspondientevMenu.
+                        //cargamos vista
+                        break;
+                    case "ingresodatos":
+                        
+                        break;
+                    case "juego":
+                        //ajustar menubar quitar elementos
+                        iniciarJuego();
+                        break;
+                    case "lista":
+                        estadisticas();
+                        break;
+                    case "dialogomodal":
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
+                
+        }};
+        timer.schedule(task, tiempo*1000+500);
+    }
 
 
     public void cambiarVista(String vista) {
         //eliminamos todas las vistas
         eliminarVistas();
-     
+        int tiempo=0;
         switch (vista) {
             case "principal":
-                principal();
+                tiempo=5;
+                vPrincipal.generar();
+                cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
+                //principal();
                 //ventana.setMenuBar(vMenu);
                 //se genera el menu correspondientevMenu.
                 //cargamos vista
                 break;
             case "ingresodatos":
-                break;
-            case "juego":
                 
                 break;
+            case "juego":
+                tiempo=4;
+                vJuego.generar();
+                cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
+                break;
             case "lista":
-                System.out.println("sf");
-                estadisticas();
+                tiempo=10;
+                vLista.generar();
+                cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
+                //estadisticas();
                 break;
             case "dialogomodal":
+                
                 break;
             default:
                 throw new AssertionError();
         }
+        anadirVista(vista,tiempo);
+        
     }
 
 
@@ -237,6 +228,7 @@ public class Vista {
      * Elimina todas las vistas o paneles añadidos
      */
     public void eliminarVistas() {
+        ventana.remove(vPrincipal);
         ventana.remove(vPrincipal);
         //ventana.removeAll();
         //vJuego.eliminarElementos();

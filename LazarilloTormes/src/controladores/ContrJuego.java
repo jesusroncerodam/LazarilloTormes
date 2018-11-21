@@ -161,4 +161,8 @@ public class ContrJuego implements MouseListener, KeyListener,Serializable{
     public int getContMov() {
         return  vista.getContMov();
     }
+    
+    public String[] obtenerRutas(){
+        return logica.obtenerRutasImg();
+    }
 }

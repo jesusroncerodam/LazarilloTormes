@@ -39,7 +39,7 @@ public class Logica implements Serializable {
     private Timer timer;
     private int vuelta, cartaAct;
     private final String FICHERO = "estadisticas.txt", PRIMERA_LINEA = "Directorio de almacenamiento de estadistica\n";
-
+    private String[] rutas;
 
     public Logica() {
     }
@@ -55,16 +55,25 @@ public class Logica implements Serializable {
         primeraJuego = true;
         animacionC = false;
     }
-
+    
+    public String[] obtenerRutasImg(){
+        //inicializamos temporal
+        rutas = new String[8];
+        rutas[0] = "src/img/carta.jpg";
+        rutas[1] = "src/img/2.jpg";
+        rutas[2] = "src/img/carga2.jpg";
+        rutas[3] = "src/img/flecha.png";
+        rutas[4] = "src/img/flecha.png";
+        rutas[5] = "src/img/flecha.png";
+        rutas[6] = "src/img/flecha.png";
+        rutas[7] = "src/img/flecha.png";
+        return rutas;
+        //rutas=null;
+    }
 
     public void setPrimeraJuego() {
         this.primeraJuego = true;
         System.out.println("fjkdsbjk");
-    }
-
-
-    public void Menus(String accion) {
-
     }
 
     /**

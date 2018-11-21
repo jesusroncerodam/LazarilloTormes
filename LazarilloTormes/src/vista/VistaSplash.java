@@ -204,7 +204,7 @@ public class VistaSplash extends JPanel {
             timerBar.stop();
             System.out.println("stop");
             removeAll();
-            notify();
+            //notify();
         }
     }
 
@@ -234,13 +234,6 @@ public class VistaSplash extends JPanel {
         timerBar.setRepeats(true);
         timerImg.start();
         timerImg.setRepeats(true);
-        try {
-            wait();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(VistaSplash.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-            vista.splashTermina();
     }
 
     public boolean isEstado() {

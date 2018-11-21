@@ -53,13 +53,12 @@ public class VJuego extends JPanel implements Serializable {
         controlador = new ContrJuego(this, logica);
     }
 
-
     /**
      * Encargado de generar un juego nuevo, inicialiA todas las variables y
      * controladores
      * @param rutas Array de String, direccion de todas las imagenes de cartas
      */
-    public void generar(String[] rutas) {
+    public void generar() {
         controlador.asignarControlador();//asignamos el controlador a la logica
         desactivadas = 0;
 
@@ -80,11 +79,14 @@ public class VJuego extends JPanel implements Serializable {
 
         //generamos los botones
         playPause();
-//        guardar();
+        guardar();
         continuar();
 
         //generamos las cartas
-        generarCartas(rutas);
+        generarCartas();
+    }
+    private String[] obtenerRutas(){
+        return controlador.obtenerRutas();
     }
 
 
@@ -122,7 +124,8 @@ public class VJuego extends JPanel implements Serializable {
      * Creamos, asignamos y mostramos las images
      * @param rutas Array de string que cotiene las rutas de las imagenes
      */
-    private void generarCartas(String[] rutas) {
+    private void generarCartas() {
+        String[] rutas=obtenerRutas();
         carta = new ArrayList();
 
         for (int i = 0; i < rutas.length; i++) { //asignamos la misma ruta a 2 carta
@@ -226,20 +229,20 @@ public class VJuego extends JPanel implements Serializable {
     /**
      * Encargado de generar y asignar el JButon de guardar
      */
-//    private void guardar() {
-//        bGuardar = new JButton(new ImageIcon("src/img/save.png"));
-//        bGuardar.setContentAreaFilled(false);
-//        bGuardar.setBorder(null);
-//        bGuardar.setActionCommand("guardar");
-//        constrain.gridx=1;
-//        constrain.gridy=2;
-//        constrain.fill= GridBagConstraints.HORIZONTAL;
-//        constrain.weighty = 0.5;
-//        this.add(bGuardar, constrain);
-//
-//        bGuardar.addKeyListener(controlador);
-//        bGuardar.addMouseListener(controlador);
-//    }
+    private void guardar() {
+        bGuardar = new JButton(new ImageIcon("src/img/save.png"));
+        bGuardar.setContentAreaFilled(false);
+        bGuardar.setBorder(null);
+        bGuardar.setActionCommand("guardar");
+        constrain.gridx=1;
+        constrain.gridy=2;
+        constrain.fill= GridBagConstraints.HORIZONTAL;
+        constrain.weighty = 0.5;
+        this.add(bGuardar, constrain);
+
+        bGuardar.addKeyListener(controlador);
+        bGuardar.addMouseListener(controlador);
+    }
     /**
      * Pintamos el Fondo
      * @param g paint
