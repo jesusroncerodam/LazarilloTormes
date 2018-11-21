@@ -193,5 +193,4 @@ public class DialogoModal extends JFrame {
     public Image cambiarTamano(Image icono, int anchoImagen, int altoImagen) {
         return icono.getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH);
     }
-
 }

@@ -33,8 +33,10 @@ public class VDialogoMod extends JPanel {
 
     private ContrDialogoMod controlador;
     private JButton atras;
-    ImageIcon flecha;
-    Metodos metodo;
+    private ImageIcon flecha;
+    private Metodos metodo;
+
+    ImageIcon fondo = new ImageIcon("src/img/fondoRegistro.jpg");
 
 
     public VDialogoMod(Logica logica) {
@@ -69,6 +71,7 @@ public class VDialogoMod extends JPanel {
         affineTransform.rotate(Math.toRadians(grados), 100, 100);
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(flecha.getImage(), affineTransform, null);
+        g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), null);
 
         super.paint(g2d); //To change body of generated methods, choose Tools | Templates.
     }

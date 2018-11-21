@@ -8,7 +8,7 @@ package trabajodi;
 
 import controladores.ContrJuego;
 import controladores.ContrLista;
-import controladores.ContrPrinipal;
+import controladores.ControladorPrincipal;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
@@ -35,7 +35,7 @@ import javax.swing.JLabel;
 public class Logica {
 
     private ContrJuego juego;
-    private ContrPrinipal principal;
+    private ControladorPrincipal principal;
     private ContrLista lista;
     private boolean primeraJuego, animacionC;
     private Timer timer;
@@ -370,14 +370,29 @@ public class Logica {
 ///
 
 
-    public void asignarContrPrincipal(ContrPrinipal principal) {
+    public void asignarContrPrincipal(ControladorPrincipal principal) {
         this.principal = principal;
     }
     
+    
+    
+    /*
+     * //    VISTA PRINCIPAL
+     * //    VISTA PRINCIPAL
+     * //    VISTA PRINCIPAL
+     * //    VISTA PRINCIPAL
+     * //    VISTA PRINCIPAL
+     * //    VISTA PRINCIPAL
+     * //    VISTA PRINCIPAL
+     * //    VISTA PRINCIPAL
+     */
     public void principalClick(String boton,int pulsos){
         
         switch (boton.replaceAll(" ", "").toLowerCase()) {
             case "newgame":
+                
+                principal.cambiarDeVista("newgame");
+                
                 System.out.println("1");
                 break;
             case "loadgame":

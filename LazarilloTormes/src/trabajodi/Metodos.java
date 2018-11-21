@@ -76,7 +76,7 @@ public class Metodos {
 
 
     /**
-     * Modifica el tamaño de las imagenes
+     * Modifica el tamaño de los iconos
      *
      * @param icono
      * @param anchoImagen
@@ -84,23 +84,19 @@ public class Metodos {
      * @return
      */
     public ImageIcon cambiarTamano(ImageIcon icono, int anchoImagen, int altoImagen) {
-        Image imagen = icono.getImage();
-        Image reescalada = imagen.getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH);
-        icono = new ImageIcon(reescalada);
-        return icono;
+        return new ImageIcon(icono.getImage().getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH));
     }
 
 
     /**
      * Modifica el tamaño de las imagenes
      *
-     * @param icono
+     * @param imagen
      * @param anchoImagen
      * @param altoImagen
      * @return
      */
     public Image cambiarTamano(Image icono, int anchoImagen, int altoImagen) {
-        Image reescalada = icono.getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH);
-        return reescalada;
+        return icono.getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH);
     }
 }

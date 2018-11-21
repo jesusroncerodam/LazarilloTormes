@@ -66,8 +66,8 @@ public class VLista extends JPanel {
     private GridBagConstraints loc;
 
 
-    public VLista(Logica logica,Vista vista) {
-        this.vista=vista;
+    public VLista(Logica logica, Vista vista) {
+        this.vista = vista;
         controlador = new ContrLista(this, logica);
     }
 
@@ -157,7 +157,8 @@ public class VLista extends JPanel {
 
     public void crearBoton() {
         JButton bAtras = new JButton();
-        bAtras.setIcon(new ImageIcon("src/img/atras.png"));
+//        bAtras.setIcon(new ImageIcon("src/img/atras.png"));
+        bAtras.setIcon(new ImageIcon(this.getClass().getResource("/img/atras.png")));
         bAtras.addMouseListener(controlador);
         bAtras.setContentAreaFilled(false);
         bAtras.setBorder(null);
@@ -193,8 +194,9 @@ public class VLista extends JPanel {
         Image img = new ImageIcon("src/img/fondo2.jpg").getImage();
         g.drawImage(img, 0, 0, getWidth(), getHeight() + 5, this);
     }
-    
-    public void cambiarVista(String vistaACambiar){
+
+
+    public void cambiarVista(String vistaACambiar) {
         this.removeAll();
         vista.cambiarVista(vistaACambiar);
     }
