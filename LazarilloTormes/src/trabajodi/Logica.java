@@ -83,7 +83,6 @@ public class Logica {
 
     public void setPrimeraJuego() {
         this.primeraJuego = true;
-        System.out.println("fjkdsbjk");
     }
 
 
@@ -416,13 +415,37 @@ public class Logica {
 
 
     public void guardarPartida() {
+        //int segundos, int movimientos, int vuelta, ArrayList<String> rutaGuardada, ArrayList<Boolean> cartaBloqueada
         PartidaGuardada partida = new PartidaGuardada();
+      //  PartidaGuardada partida = new PartidaGuardada(juego.getContadorSeg(),juego.getContMov(),juego.algunaVisible(),);
+        
         partida.setRutaGuardada(juego.guardarUrlCarta());
         partida.setCartaBloqueada(juego.guardarBloquearCarta());
-     //   partida.se
+        partida.setSegundos(juego.getContadorSeg());
+        partida.setMovimientos(juego.getContMov());
+        partida.setVuelta(juego.algunaVisible());
         //segundos,movimientos,vuelta;/
         //partida.set
+        try {
+            //Creamos un flujo de salida al disco
+            FileOutputStream fileOut = new FileOutputStream("PartidaGuardada.obj");
+            //Vinculamos el flujo de salida de objetos con el fichero
+            ObjectOutputStream salida = new ObjectOutputStream(fileOut);
+            //escribimos el objeto
+            salida.writeObject(partida);
+            //cerramos el flujo
+            salida.close();
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+    public void cargarPartida(){
+        
+    }
+    
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //controlador Estadisticas(vLista)
 
