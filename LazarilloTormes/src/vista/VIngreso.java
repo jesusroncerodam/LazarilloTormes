@@ -29,27 +29,42 @@ public class VIngreso extends JPanel {
 
     private ContrIngreso controlador;
     private Metodos metodo;
-
-    private JFrame marco1;
-
     private JPanel panel1;
     private final int ANCHOMARCO = 500, ALTOMARCO = 500;
     private JLabel labelNombre, labelApodo;
     private TextField campoNombre;
     private JButton botonFlechaAtrás, avanzarPagina;
-
-    private GridBagConstraints constrain;
-    private GridBagLayout gridLayout = new GridBagLayout();
-
+    /*
+     *
+     *
+     *
+     */
     private ImageIcon imagenFlecha = new ImageIcon(this.getClass().getResource("/img/flecha.png"));
+    /**
+     *
+     *
+     *
+     *
+     *
+     */
+    private GridBagConstraints constrain;
+    private GridBagLayout gridLayout;
 
 
+    /*
+     *
+     *
+     */
     public VIngreso(Logica logica) {
         controlador = new ContrIngreso(this, logica);
     }
 
 
     public void generar() {
+
+        constrain = new GridBagConstraints();
+        this.setLayout(new GridBagLayout());
+
         crearElementos();
         setVisible(true);
     }
@@ -64,22 +79,25 @@ public class VIngreso extends JPanel {
         botonFlechaAtrás = new JButton(imagenFlecha);
         avanzarPagina = new JButton();
 
-//        constrain.gridx = 1;
-//        constrain.gridy = 1;
+        constrain.gridx = 0;
+        constrain.gridy = 0;
 //        constrain.weighty = 10;
 //        constrain.fill = GridBagConstraints.CENTER;
-        add(labelNombre);
 
-        add(labelApodo);
+        add(labelNombre, constrain);
 
-        add(campoNombre);
+        constrain.gridx = 1;
+        constrain.gridy = 0;
+        add(labelApodo, constrain);
 
-        add(botonFlechaAtrás);
+        constrain.gridx = 2;
+        constrain.gridy = 0;
+        add(campoNombre, constrain);
 
-        botonFlechaAtrás = new JButton();
-        add(botonFlechaAtrás);
-        botonFlechaAtrás.setBounds(50, 350, 100, 50);
-        labelNombre.setBounds(50, 50, 50, 50);
+        constrain.gridx = 0;
+        constrain.gridy = 2;
+        add(botonFlechaAtrás, constrain);
+
 //        constrain = new GridBagConstraints();
 //        constrain.gridx = 1;
 //        constrain.gridy = 1;
