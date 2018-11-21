@@ -12,10 +12,10 @@ package creacionvistas;
  */
 class ControladorVista {
 
-    Vista vista;
+    DialogoModal vista;
 
 
-    public ControladorVista(Vista vista) {
+    public ControladorVista(DialogoModal vista) {
         this.vista = vista;
     }
 }

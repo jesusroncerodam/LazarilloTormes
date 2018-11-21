@@ -187,7 +187,7 @@ public class Vista {
     public void cambiarVista(String vista) {
         //eliminamos todas las vistas
         eliminarVistas();
-        int tiempo=0;
+        int tiempo=2;
         switch (vista) {
             case "principal":
                 //tiempo=5;
