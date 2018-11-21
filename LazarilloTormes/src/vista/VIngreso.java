@@ -18,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import trabajodi.Logica;
+import trabajodi.Metodos;
 
 
 /**
@@ -27,6 +28,7 @@ import trabajodi.Logica;
 public class VIngreso extends JPanel {
 
     private ContrIngreso controlador;
+    private Metodos metodo;
 
 
     public VIngreso(Logica logica) {
@@ -52,7 +54,7 @@ public class VIngreso extends JPanel {
     private GridBagConstraints constrain;
     private GridBagLayout gridLayout = new GridBagLayout();
 
-    private ImageIcon imagenFlecha = new ImageIcon("src/img/flecha.png");
+    private ImageIcon imagenFlecha = new ImageIcon(this.getClass().getResource("/img/flecha.png"));
 
 
     public void crearElementos() {
@@ -112,17 +114,4 @@ public class VIngreso extends JPanel {
 //        add(mainPanel);
 //        pack();
     }
-
-    /**
-     * Proporciona un color aleatorio para el panel
-     * @return Devuelve un color
-     */
-//    public Color colorAleatorio() {
-//        Random aleatorio = new Random();
-//        int red = aleatorio.nextInt(255);
-//        int green = aleatorio.nextInt(255);
-//        int blue = aleatorio.nextInt(255);
-//        Color color = new Color(red, green, blue);
-//        return color;
-//    }
 }
