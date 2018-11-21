@@ -7,9 +7,14 @@ package vista;
 
 
 import controladores.ContrDialogoMod;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
 import static java.awt.Image.SCALE_SMOOTH;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.AffineTransform;
@@ -19,6 +24,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import trabajodi.Logica;
@@ -36,7 +43,7 @@ public class VDialogoMod extends JPanel {
     private ImageIcon flecha;
     private Metodos metodo;
 
-    ImageIcon fondo = new ImageIcon("src/img/fondoRegistro.jpg");
+    ImageIcon fondo = new ImageIcon(this.getClass().getResource("/img/fondoregistro.jpg"));
 
 
     public VDialogoMod(Logica logica) {
@@ -45,13 +52,14 @@ public class VDialogoMod extends JPanel {
 
 
     public void generar() {
+
         generarBoton();
     }
 
 
     private void generarBoton() {
         atras = new JButton();
-        //flecha = metodo.imagenEspejo("/img/flecha.png");
+        flecha = metodo.imagenEspejo("/img/flecha.png");
 
         atras.setIcon(flecha);
         atras.setContentAreaFilled(false);
@@ -70,6 +78,7 @@ public class VDialogoMod extends JPanel {
         super.paint(g);
         g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), null);
     }
+
 }
 
 //

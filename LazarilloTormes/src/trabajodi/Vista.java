@@ -165,6 +165,17 @@ public class Vista {
 
 
     /**
+     * Crea la vista para ver los desarrolladores
+     */
+    public void crearPantallaDesarrolladores() {
+        System.out.println("Has entrado en el registro");
+        ventana.setSize(600, 600);
+        ventana.add(vDialogoMod);
+        ventana.setVisible(true);
+    }
+
+
+    /**
      *
      *
      *
@@ -203,10 +214,7 @@ public class Vista {
                         break;
 
                     case "aboutus":
-                        
-                        System.out.print("ñalksjdfñlasjdfñlasjdfñlkjsadklsad");
-
-                        
+                        crearPantallaDesarrolladores();
                         break;
 
                     default:
@@ -289,6 +297,4 @@ public class Vista {
         //vJuego.eliminarElementos();
     }
 
-
-    
 }

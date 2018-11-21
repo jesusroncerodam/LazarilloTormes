@@ -158,18 +158,6 @@ public class DialogoModal extends JFrame {
 
 
     /**
-     * Proporciona un color aleatorio para el panel
-     * @return Devuelve un color
-     */
-//    public Color colorAleatorio() {
-//        Random aleatorio = new Random();
-//        int red = aleatorio.nextInt(255);
-//        int green = aleatorio.nextInt(255);
-//        int blue = aleatorio.nextInt(255);
-//        Color color = new Color(red, green, blue);
-//        return color;
-//    }
-    /**
      * Modifica el tamaño de los iconos
      *
      * @param icono
