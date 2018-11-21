@@ -10,16 +10,13 @@ import controladores.ContrIngreso;
 import java.awt.Checkbox;
 import java.awt.CheckboxGroup;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.Insets;
 import java.awt.TextField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import trabajodi.Logica;
@@ -27,9 +24,7 @@ import trabajodi.Metodos;
 
 
 /*
- *
  * @author Guille
- *
  *
  */
 public class VIngreso extends JPanel {

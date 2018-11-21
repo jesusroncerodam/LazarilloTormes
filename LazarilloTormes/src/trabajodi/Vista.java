@@ -229,6 +229,13 @@ public class Vista {
     }
 
 
+    /*
+     * VIENE DE VISTAPRINCIPAL
+     * VIENE DE VISTAPRINCIPAL
+     * VIENE DE VISTAPRINCIPAL
+     * VIENE DE VISTAPRINCIPAL
+     * VIENE DE VISTAPRINCIPAL
+     */
     public void cambiarVista(String vista) {
         //eliminamos todas las vistas
         eliminarVistas();

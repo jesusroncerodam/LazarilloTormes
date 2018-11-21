@@ -150,6 +150,13 @@ public class VPrincipal extends JPanel {
     }
 
 
+    /*
+     * CONTROLADOR VISTA PRINCIPAL
+     * CONTROLADOR VISTA PRINCIPAL
+     * CONTROLADOR VISTA PRINCIPAL
+     * CONTROLADOR VISTA PRINCIPAL
+     * CONTROLADOR VISTA PRINCIPAL
+     */
     public void cambiarDeVista(String vista) {
         vistaMain.cambiarVista(vista);
     }

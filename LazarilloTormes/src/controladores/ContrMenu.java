@@ -1,7 +1,7 @@
 /*
- To change this license header, choose License Headers in Project Properties.
- To change this template file, choose Tools | Templates
- and open the template in the editor.
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package controladores;
 
@@ -13,10 +13,10 @@ import trabajodi.Logica;
 
 
 /**
-
- @author Guille
+ *
+ * @author Guille
  */
-public class ContrMenu implements ActionListener{
+public class ContrMenu implements ActionListener {
 
     private Logica logica;
     private VMenu vista;
@@ -27,15 +27,15 @@ public class ContrMenu implements ActionListener{
         this.vista = vista;
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("guardar")){
+        if (e.getActionCommand().equals("guardar")) {
             logica.setPrimeraJuego();
             vista.guardar();
         }
-        if(e.getActionCommand().equals("cargar")){
+        if (e.getActionCommand().equals("cargar")) {
             vista.cargar();
         }
     }
-
 }

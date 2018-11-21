@@ -181,10 +181,28 @@ public class Logica {
     }
 
 
+    /*
+     * CONTROLADOR MENU
+     * CONTROLADOR MENU
+     * CONTROLADOR MENU
+     * CONTROLADOR MENU
+     * CONTROLADOR MENU
+     * CONTROLADOR MENU
+     * CONTROLADOR MENU
+     * CONTROLADOR MENU
+     */
     public void setPrimeraJuego() {
         this.primeraJuego = true;
     }
 
+
+    /*
+     *
+     *
+     *
+     *
+     *
+     */
 
     private void guardarDatos() {
         //nombre//ya lo tengo 
