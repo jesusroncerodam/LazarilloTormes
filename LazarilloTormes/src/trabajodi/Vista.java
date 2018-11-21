@@ -69,7 +69,7 @@ public class Vista {
         //temporal
         ventana.setJMenuBar(vMenu);
 
-        ingresoDatos();
+       // ingresoDatos();
          // estadisticas();
         //principal();
         cambiarVista("principal");
