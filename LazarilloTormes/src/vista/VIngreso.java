@@ -50,15 +50,12 @@ public class VIngreso extends JPanel {
 
 
     public void generar() {
-        //setLayout(null);
         crearElementos();
-
         setVisible(true);
     }
 
 
     public void crearElementos() {
-        panel1 = new JPanel();
 
         labelNombre = new JLabel();
         labelApodo = new JLabel();
