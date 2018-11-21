@@ -74,7 +74,8 @@ public class Vista {
         //principal();
         //iniciarJuego();
         
-        cambiarVista("juego");
+        //cambiarVista("juego");
+        cambiarVista("principal");
     }
 
 
