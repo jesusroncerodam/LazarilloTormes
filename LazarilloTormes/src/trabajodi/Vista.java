@@ -151,7 +151,7 @@ public class Vista {
        // ventana.repaint();
     }
 
-    public void anadirVista(String vista,int tiempo){
+    private void anadirVista(String vista,int tiempo){
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
             @Override

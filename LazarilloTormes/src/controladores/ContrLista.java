@@ -8,7 +8,10 @@ package controladores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.swing.JButton;
 import vista.VLista;
 import trabajodi.Logica;
 
@@ -17,23 +20,29 @@ import trabajodi.Logica;
 
  @author Guille
  */
-public class ContrLista implements ActionListener{
+public class ContrLista extends MouseAdapter{
 
     private VLista vista;
     private Logica logica;
-
-
     public ContrLista(VLista vista, Logica logica) {
         this.vista = vista;
         this.logica = logica;
     }
+    public void asignarControlador(){
+        logica.asignarContrLista(this);
+    }
     public String[] datosFichero(){
+        asignarControlador();//solo see realiza una vez
         return logica.ficheroAArray();
     }
-
+    
     @Override
-    public void actionPerformed(ActionEvent e) {
-        System.out.println(e);
+    public void mouseClicked(MouseEvent e) {
+        logica.listaClick(e.getComponent());
+    }
+    
+    public void cambiarVista(String vistaACambiar){
+        vista.cambiarVista(vistaACambiar);
     }
 
 }

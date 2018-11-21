@@ -361,7 +361,7 @@ public class Logica implements Serializable {
         if(componente instanceof JButton){
             JButton bPulsado =(JButton) componente;
             if(bPulsado.getToolTipText().equals("Go to main")){
-                
+                lista.cambiarVista("principal");
             }
         }else{
             System.out.println("evento no esperado en lista");
