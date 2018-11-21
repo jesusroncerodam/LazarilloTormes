@@ -28,19 +28,6 @@ public class VIngreso extends JPanel {
 
     private ContrIngreso controlador;
 
-
-    public VIngreso(Logica logica) {
-        controlador = new ContrIngreso(this, logica);
-    }
-
-
-    public void generar() {
-        setLayout(null);
-        crearElementos();
-
-        setVisible(true);
-    }
-
     private JFrame marco1;
 
     private JPanel panel1;
@@ -53,6 +40,19 @@ public class VIngreso extends JPanel {
     private GridBagLayout gridLayout = new GridBagLayout();
 
     private ImageIcon imagenFlecha = new ImageIcon("src/img/flecha.png");
+
+
+    public VIngreso(Logica logica) {
+        controlador = new ContrIngreso(this, logica);
+    }
+
+
+    public void generar() {
+        //setLayout(null);
+        crearElementos();
+
+        setVisible(true);
+    }
 
 
     public void crearElementos() {
