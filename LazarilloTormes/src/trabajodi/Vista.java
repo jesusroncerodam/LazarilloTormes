@@ -103,8 +103,8 @@ public class Vista {
         ventana.setMinimumSize(splash.getMinimumSize());//asignamos el tamaño minimo para la ventana
         
         ventana.add(splash);
-        
-        ventana.repaint();
+        ventana.setVisible(true);
+        //ventana.repaint();
         splash.empezarAnimaciones();
     }
 

@@ -197,8 +197,8 @@ public class VistaSplash extends JPanel {
             //paramos los contadores
             timerImg.stop();
             timerBar.stop();
-            System.out.println("stop");
             removeAll();
+            vista.splashTermina();
             //notify();
         }
     }
