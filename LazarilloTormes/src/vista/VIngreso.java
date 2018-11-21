@@ -26,12 +26,11 @@ public class VIngreso extends JPanel {
 
 
     public void generar() {
-        crearElementos();
-        anadirElementos();
-        posicionElementos();
-        estiloElementos();
-        formaMarco();
-        anadirControladores();
-
+//        crearElementos();
+//        anadirElementos();
+//        posicionElementos();
+//        estiloElementos();
+//        formaMarco();
+//        anadirControladores();
     }
 }

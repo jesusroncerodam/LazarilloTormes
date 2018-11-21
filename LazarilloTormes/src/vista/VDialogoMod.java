@@ -44,14 +44,8 @@ public class VDialogoMod extends JPanel {
     }
 
 
-    public void cargar() {
-        generarBoton();
-        girar();
-    }
-
-
     public void generar() {
-
+        generarBoton();
     }
 
 
@@ -64,8 +58,6 @@ public class VDialogoMod extends JPanel {
         atras.setBorderPainted(false);
         this.add(atras);
     }
-    BufferedImage imagee;
-    int grados = 0;
 
 
     /**
@@ -76,27 +68,8 @@ public class VDialogoMod extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-
         g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), null);
-
     }
-
-    Timer timer;
-
-
-    public void girar() {
-        timer = new Timer(500, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                grados += 10;
-                System.out.println("e");
-                repaint();
-            }
-        });
-        timer.start();
-        timer.setRepeats(true);
-    }
-
 }
 
 //
@@ -115,4 +88,19 @@ public class VDialogoMod extends JPanel {
 //        g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), null);
 //
 //        super.paint(g2d); //To change body of generated methods, choose Tools | Templates.
+//    }
+//   Timer timer;
+//
+//
+//    public void girar() {
+//        timer = new Timer(500, new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                grados += 10;
+//                System.out.println("e");
+//                repaint();
+//            }
+//        });
+//        timer.start();
+//        timer.setRepeats(true);
 //    }
