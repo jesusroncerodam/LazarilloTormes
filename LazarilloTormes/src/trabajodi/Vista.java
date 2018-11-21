@@ -100,11 +100,10 @@ public class Vista {
      * @param fondo  String, ruta de la imagen que es asignada en el fondo
      * @param tiempo Int, Tiempo en segundos, indica la duracion del splash.
      */
-    private synchronized void cargarSplash(String logo, String fondo, int tiempo) {
+    private void cargarSplash(String logo, String fondo, int tiempo) {
         ventana.setSize(600, 600);
         splash = new VistaSplash(logo, fondo, tiempo, fuente, this);
         ventana.setMinimumSize(splash.getMinimumSize());//asignamos el tamaño minimo para la ventana
-        
         ventana.add(splash);
         ventana.setVisible(true);
         splash.empezarAnimaciones();
