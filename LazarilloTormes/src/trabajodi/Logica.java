@@ -32,7 +32,7 @@ import javax.swing.JLabel;
  *
  * @author Guille
  */
-public class Logica implements Serializable {
+public class Logica {
 
     private ContrJuego juego;
     private ContrPrinipal principal;

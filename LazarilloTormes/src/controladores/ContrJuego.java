@@ -19,7 +19,7 @@ import trabajodi.Logica;
 
  @author Guille
  */
-public class ContrJuego implements MouseListener, KeyListener,Serializable{
+public class ContrJuego implements MouseListener, KeyListener{
     private VJuego vista;
     private Logica logica;
 

@@ -21,7 +21,7 @@ import javax.swing.border.Border;
  *
  * @author Guille
  */
-public class Carta extends JLabel implements Serializable {
+public class Carta extends JLabel {
 
     private ImageIcon imgCarta, imgVuelta;
     private String url;
@@ -202,6 +202,9 @@ public class Carta extends JLabel implements Serializable {
      */
     public String getUrl() {
         return url;
+    }
+    public boolean getBloquear(){
+        return bloquear;
     }
 
 

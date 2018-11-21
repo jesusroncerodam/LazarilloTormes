@@ -159,13 +159,15 @@ public class VLista extends JPanel {
         JButton bAtras = new JButton();
         bAtras.setIcon(new ImageIcon("src/img/atras.png"));
         bAtras.addMouseListener(controlador);
+        bAtras.setContentAreaFilled(false);
+        bAtras.setBorder(null);
         bAtras.setToolTipText("Go to main");
         loc.fill = GridBagConstraints.NONE;
         loc.gridx = 0;
         loc.gridy = 2;
         loc.weighty = 0;
         loc.weightx = 0;
-        loc.ipadx = 100;
+        loc.ipadx = 50;
         loc.anchor = GridBagConstraints.LINE_START;
         loc.insets = new Insets(10, 10, 10, 10);
         loc.weightx = 1.0;
