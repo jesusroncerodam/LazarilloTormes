@@ -10,9 +10,12 @@ import controladores.ContrIngreso;
 import java.awt.Checkbox;
 import java.awt.CheckboxGroup;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.TextField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,14 +26,16 @@ import trabajodi.Logica;
 import trabajodi.Metodos;
 
 
-/**
+/*
  *
  * @author Guille
+ *
+ *
  */
 public class VIngreso extends JPanel {
 
     private ContrIngreso controlador;
-    private Metodos metodo;
+    private Metodos metodo = new Metodos();
     private JLabel labelNombre, labelTema, labelDificultad;
     private TextField campoNombre;
     private JButton botonFlechaAtrás, botonFlechaSiguiente;
@@ -39,7 +44,7 @@ public class VIngreso extends JPanel {
     JButton atras, adelante;
 
     private ImageIcon imagenFlecha = new ImageIcon(this.getClass().getResource("/img/flecha.png"));
-//    private ImageIcon fondo = new ImageIcon(this.getClass().getResource("src/imagenes/fondo.jpg"));
+    private ImageIcon fondoRegistro = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.jpg"));
     private Checkbox facil, medio, dificil;
     /*
      *
@@ -65,32 +70,34 @@ public class VIngreso extends JPanel {
 
 
     public void generar() {
+        this.setOpaque(false);
 
         constrain = new GridBagConstraints();
         this.setLayout(new GridBagLayout());
-        constrain.anchor = GridBagConstraints.CENTER;
 
-        crearVistaIntroduccionDatos();
+        constrain.anchor = GridBagConstraints.CENTER;
+        constrain.weighty = 0.6; //para que se estiren las columnas
+        constrain.weightx = 0.6; // El área de texto ocupa 1 filasa
+
+        constrain.fill = GridBagConstraints.BOTH;
+
+        crearElementos();
+        anadirElementos();
+        estiloElementos();
         setVisible(true);
     }
 
 
-    public void crearVistaIntroduccionDatos() {
-        crearElementos();
-        anadirElementos();
-        estiloElementos();
-    }
-
-
     public void crearElementos() {
+
+        labelNombre = new JLabel("Nombre: ");
+        campoNombre = new TextField("Introduce tu nombre");
+
+        labelTema = new JLabel("Tema");
         tema1 = new JPanel();
         tema2 = new JPanel();
         tema3 = new JPanel();
 
-        labelNombre = new JLabel("Nombre: ");
-        campoNombre = new TextField("Nombre");
-
-        labelTema = new JLabel("Tema");
         labelDificultad = new JLabel("Dificultad");
         CheckboxGroup cbg = new CheckboxGroup();
 
@@ -98,13 +105,16 @@ public class VIngreso extends JPanel {
         medio = new Checkbox("Medio", cbg, false);
         dificil = new Checkbox("Dificil", cbg, false);
 
-        botonFlechaAtrás = new JButton();
+        imagenFlecha = metodo.cambiarTamano(imagenFlecha, 50, 50);
+        botonFlechaAtrás = new JButton(imagenFlecha);
         botonFlechaSiguiente = new JButton();
     }
 
 
-    /**
+    /*
      * Añade los elementos a la vista
+     *
+     *
      */
     public void anadirElementos() {
 
@@ -116,29 +126,33 @@ public class VIngreso extends JPanel {
 
         constrain.gridx = 1;
         constrain.gridy = 0;
+        constrain.fill = GridBagConstraints.NONE;
+//        campoNombre.setPreferredSize(new Dimension(50, 50));
+//        campoNombre.setSize(50, 50);
+        constrain.insets = new Insets(50, 25, 25, 25);
         add(campoNombre, constrain);
+        constrain.fill = GridBagConstraints.BOTH;
+        constrain.insets = new Insets(0, 0, 0, 0);
 
         /*
          * COLCOAR TEMA
          */
         constrain.gridx = 0;
-        constrain.gridy = 2;
+        constrain.gridy = 1;
         add(labelTema, constrain);
 
-        constrain.gridx = 0;
-        constrain.gridy = 2;
+        constrain.gridx = 1;
+        constrain.gridy = 1;
         add(tema1, constrain);
 
-        constrain.gridx = 0;
-        constrain.gridy = 2;
+        constrain.gridx = 2;
+        constrain.gridy = 1;
         add(tema2, constrain);
 
-        constrain.gridx = 0;
-        constrain.gridy = 2;
+        constrain.gridx = 3;
+        constrain.gridy = 1;
         add(tema3, constrain);
 
-        constrain.gridx = 0;
-        constrain.gridy = 2;
         /*
          * COLOCAR DIFICULTAD
          */
@@ -146,15 +160,15 @@ public class VIngreso extends JPanel {
         constrain.gridy = 2;
         add(labelDificultad, constrain);
 
-        constrain.gridx = 0;
+        constrain.gridx = 1;
         constrain.gridy = 2;
         add(facil, constrain);
 
-        constrain.gridx = 0;
+        constrain.gridx = 2;
         constrain.gridy = 2;
         add(medio, constrain);
 
-        constrain.gridx = 0;
+        constrain.gridx = 3;
         constrain.gridy = 2;
         add(dificil, constrain);
 
@@ -162,11 +176,10 @@ public class VIngreso extends JPanel {
          * BOTONES
          */
         constrain.gridx = 0;
-        constrain.gridy = 2;
+        constrain.gridy = 3;
         add(botonFlechaAtrás, constrain);
-
-        constrain.gridx = 2;
-        constrain.gridy = 2;
+        constrain.gridx = 3;
+        constrain.gridy = 3;
         add(botonFlechaSiguiente, constrain);
     }
 
@@ -181,6 +194,14 @@ public class VIngreso extends JPanel {
 
 //        botonFlechaAtrás.setIcon(metodo.cambiarTamano(imagenFlecha, botonFlechaAtrás.getWidth(), botonFlechaAtrás.getHeight()));
 //        botonFlechaSiguiente.setIcon(metodo.cambiarTamano(imagenFlecha, botonFlechaSiguiente.getWidth(), botonFlechaSiguiente.getHeight()));
+    }
+
+
+    @Override
+    public void paint(Graphics g) {
+
+        g.drawImage(fondoRegistro.getImage(), 0, 0, getWidth(), getHeight(), null);
+        super.paint(g);
     }
 
 //        constrain = new GridBagConstraints();
