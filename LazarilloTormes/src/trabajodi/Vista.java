@@ -181,7 +181,7 @@ public class Vista {
                 }
                 
         }};
-        timer.schedule(task, tiempo*1000+100);
+        timer.schedule(task, tiempo*1000+200);
     }
 
 
@@ -191,7 +191,7 @@ public class Vista {
         int tiempo=0;
         switch (vista) {
             case "principal":
-                tiempo=2;
+                tiempo=1;
                 vPrincipal.generar();
                 cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                 //principal();
