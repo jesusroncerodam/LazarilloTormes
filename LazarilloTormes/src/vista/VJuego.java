@@ -131,9 +131,13 @@ public class VJuego extends JPanel {
         String[] rutas = obtenerRutas();
         carta = new ArrayList();
 
-        for (int i = 0; i < rutas.length; i++) { //asignamos la misma ruta a 2 carta
-            carta.add(new Carta(rutas[i]));
-            carta.add(new Carta(rutas[i]));
+        if(deshordenar){
+            for (int i = 0; i < rutas.length; i++) { //asignamos la misma ruta a 2 carta
+                carta.add(new Carta(rutas[i]));
+                carta.add(new Carta(rutas[i]));
+            }
+        }else{
+            
         }
 
         JPanel cartas = new JPanel();//creamos el panel donde estarán las cartas
@@ -141,6 +145,7 @@ public class VJuego extends JPanel {
 
         int cuadrado = (int) Math.sqrt(carta.size());//la raiz da lugar a unas fulas respectivas 
         cartas.setLayout(new GridLayout(cuadrado, cuadrado, HGAP, VGAP));//asignamos un layout a las cartas
+        
         if(deshordenar)
            Collections.shuffle(carta);//deshordenamos las cartas asi estan colocadas de manera aleatoria
 
