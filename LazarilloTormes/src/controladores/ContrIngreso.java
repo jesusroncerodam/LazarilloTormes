@@ -50,6 +50,12 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
 
                 break;
 
+            case "labelDificultad":
+                System.out.print("ñaksjfñajsdfñlkajsfñlkasjkfdñljaskñfjklasdjfsd");
+
+                logica.cogerImagenSistema();
+                break;
+
             default:
                 System.err.println("\nOpcion no valida");
         }

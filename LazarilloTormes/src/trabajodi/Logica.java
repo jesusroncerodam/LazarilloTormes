@@ -30,7 +30,9 @@ import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import vista.VJuego;
 
 
@@ -159,9 +161,11 @@ public class Logica {
         }
     }
 
+
     public void juegokey() {
 
     }
+
 
     public String[] obtenerRutasImg() {
         //inicializamos temporal
@@ -189,11 +193,12 @@ public class Logica {
      * CONTROLADOR MENU
      * CONTROLADOR MENU
      */
-    
-    public void asignarMenu(ContrMenu menu){
-        this.menu=menu;
+    public void asignarMenu(ContrMenu menu) {
+        this.menu = menu;
     }
-    public void gestionarMenu(String accion){
+
+
+    public void gestionarMenu(String accion) {
         switch (accion) {
             case "cargar":
                 cargarPartida();
@@ -203,9 +208,11 @@ public class Logica {
                 guardarPartida();
                 break;
             default:
-                System.out.println("Valor no esperado en logica gestionarMenu: "+accion);
+                System.out.println("Valor no esperado en logica gestionarMenu: " + accion);
         }
     }
+
+
     private void guardarDatos() {
         //nombre//ya lo tengo 
         //imagen //ya lo tengo
@@ -215,7 +222,6 @@ public class Logica {
         juego.getContadorSeg();
 
     }
-
 
 
 //    private void gestionFichero(Historial historialNuevo){
@@ -231,7 +237,6 @@ public class Logica {
 //        //lo escribimos en el fichero
 //        pasarAFichero(historial);
 //    }
-
     private void crearFichero(boolean mantenerFichero) {
         try {
             File archivo = new File(FICHERO);
@@ -419,8 +424,6 @@ public class Logica {
     }
 
 
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void guardarPartida() {
 
@@ -467,56 +470,63 @@ public class Logica {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         rutas = partidaGuardada.getRutaGuardada().toArray(new String[partidaGuardada.getRutaGuardada().size()]);
         for (String ruta : rutas) {
-            System.out.println(ruta);   
+            System.out.println(ruta);
         }
         System.out.println("");
         System.out.println("");
-        System.out.println(partidaGuardada.getVuelta()+" seg"+partidaGuardada.getSegundos()+" mov"+partidaGuardada.getMovimientos());
+        System.out.println(partidaGuardada.getVuelta() + " seg" + partidaGuardada.getSegundos() + " mov" + partidaGuardada.getMovimientos());
         //generamos la partida
     }
-    public int obtenerGuardadDesact(){
-        int desactivadas=0;
-        ArrayList<Boolean> cartaBloqueada=partidaGuardada.getCartaBloqueada();
-        for(int i=0;i<cartaBloqueada.size();i++){
-            if(cartaBloqueada.get(i)){//si bloquear == true esta desactivada
+
+
+    public int obtenerGuardadDesact() {
+        int desactivadas = 0;
+        ArrayList<Boolean> cartaBloqueada = partidaGuardada.getCartaBloqueada();
+        for (int i = 0; i < cartaBloqueada.size(); i++) {
+            if (cartaBloqueada.get(i)) {//si bloquear == true esta desactivada
                 desactivadas++;
             }
         }
         return desactivadas;
     }
-    public void bloquearCartas(){
-        ArrayList<Boolean> cartaBloqueada=partidaGuardada.getCartaBloqueada();
-        for(int i=0;i<cartaBloqueada.size();i++){
-            if(cartaBloqueada.get(i)){//si bloquear == true esta desactivada
+
+
+    public void bloquearCartas() {
+        ArrayList<Boolean> cartaBloqueada = partidaGuardada.getCartaBloqueada();
+        for (int i = 0; i < cartaBloqueada.size(); i++) {
+            if (cartaBloqueada.get(i)) {//si bloquear == true esta desactivada
                 juego.bloquearUna(i);
                 //juego.girar(i);
             }
         }
     }
-    public int obtenerMovimientos(){
-        System.out.println("ewrwdgjbsg"+partidaGuardada.getMovimientos());
-        if( partidaGuardada.getVuelta()==-1)//si no hay ninguna carta dada la vuelta retornamos esto
+
+
+    public int obtenerMovimientos() {
+        System.out.println("ewrwdgjbsg" + partidaGuardada.getMovimientos());
+        if (partidaGuardada.getVuelta() == -1)//si no hay ninguna carta dada la vuelta retornamos esto
+        {
             return partidaGuardada.getMovimientos();
-        else{
+        } else {
             juego.girar(partidaGuardada.getVuelta());
-            return partidaGuardada.getMovimientos()-1;
+            return partidaGuardada.getMovimientos() - 1;
         }
     }
-    public int obtenerTiempo(){
+
+
+    public int obtenerTiempo() {
         return partidaGuardada.getSegundos();
     }
 //    public int obtenerVuelta(){
 //        return partidaGuardada.getVuelta();
 //    }
-    
-    
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //controlador Estadisticas(vLista)
-
     public void asignarContrLista(ContrLista lista) {
         this.lista = lista;
     }
@@ -584,5 +594,48 @@ public class Logica {
             default:
                 throw new AssertionError();
         }
+    }
+
+
+    /*
+     * COGER IMAGEN SISTEMA
+     * COGER IMAGEN SISTEMA
+     * COGER IMAGEN SISTEMA
+     * COGER IMAGEN SISTEMA
+     * COGER IMAGEN SISTEMA
+     * COGER IMAGEN SISTEMA
+     */
+    private JFileChooser archivoSeleccionado;
+    private FileNameExtensionFilter filtroArchivos;
+    private int resultado;
+    private String path;
+
+
+    /**
+     * Le asigna la ruta a una variable string y se la pasa por parametro al
+     * metodo que asigna la foto
+     */
+    public void cogerImagenSistema() {
+        selecionarYFiltrarArchivos();
+        if (resultado == JFileChooser.APPROVE_OPTION) {
+            path = archivoSeleccionado.getSelectedFile().getAbsolutePath();
+//            controlApp.vistaAppControlador.asignarFotoalBoton(path);
+        } else if (resultado == JFileChooser.CANCEL_OPTION) {
+            System.out.println("No has seleccionado ningun archivo");
+        }
+    }
+
+
+    /**
+     * Abre el explorador y filtra los archivos que aparecen cuando se abre el
+     * explorador
+     */
+    public void selecionarYFiltrarArchivos() {
+        archivoSeleccionado = new JFileChooser();
+        archivoSeleccionado.setCurrentDirectory(new File(System.getProperty("user.dir")));
+        filtroArchivos = new FileNameExtensionFilter(".jpg", ".gif", ".png");
+        archivoSeleccionado.addChoosableFileFilter(filtroArchivos);
+//        archivoSeleccionado.setFileFilter(filtroArchivos);
+        resultado = archivoSeleccionado.showSaveDialog(null);
     }
 }

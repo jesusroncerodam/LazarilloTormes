@@ -51,7 +51,8 @@ public class VIngreso extends JPanel {
     private JButton botonFlechaAtrás, botonFlechaSiguiente;
 
     private GridBagConstraints constrain;
-    private GridBagLayout gridLayout;
+//    private GridBagLayout gridLayout;
+
     private ImageIcon imagenFlecha = new ImageIcon(this.getClass().getResource("/img/flecha.png"));
     private ImageIcon fondoRegistro = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.jpg"));
 
@@ -71,6 +72,8 @@ public class VIngreso extends JPanel {
         tema2.setName("tema2");
         tema3.setName("tema3");
 
+        labelDificultad.setName("labelDificultad");
+
         facil.setName("facil");
         medio.setName("medio");
         dificil.setName("dificil");
@@ -84,6 +87,7 @@ public class VIngreso extends JPanel {
         medio.addItemListener(controlador);
         dificil.addItemListener(controlador);
 
+        labelDificultad.addMouseListener(controlador);
         campoNombre.addTextListener(controlador);
         botonFlechaAtrás.addMouseListener(controlador);
         botonFlechaSiguiente.addMouseListener(controlador);
