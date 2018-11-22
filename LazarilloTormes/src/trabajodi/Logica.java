@@ -475,9 +475,6 @@ public class Logica {
         for (String ruta : rutas) {
             System.out.println(ruta);
         }
-        System.out.println("");
-        System.out.println("");
-        System.out.println(partidaGuardada.getVuelta() + " seg" + partidaGuardada.getSegundos() + " mov" + partidaGuardada.getMovimientos());
         //generamos la partida
     }
 
