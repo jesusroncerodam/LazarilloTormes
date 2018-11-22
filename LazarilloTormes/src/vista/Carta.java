@@ -30,7 +30,7 @@ public class Carta extends JLabel {
     private Timer timer;
     private boolean bloquear;
 
-    private final String VUELTA_IMAGEN = "src/img/cartas/vuelta.png";
+    private final String VUELTA_IMAGEN = "/img/cartas/vuelta.png";
     private final int WIDTH_DEF, HEIHT_DEF, TIEMPO_ANIMACION = 2;
 
 
