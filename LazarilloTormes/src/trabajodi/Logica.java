@@ -183,15 +183,15 @@ public class Logica {
 
     public String[] obtenerRutasImg() {
         //inicializamos temporal
-        rutas = new String[8];
+        rutas = new String[2];
         rutas[0] = "/img/carta.jpg";
         rutas[1] = "/img/2.jpg";
-        rutas[2] = "/img/carga2.jpg";
-        rutas[3] = "/img/flecha.png";
-        rutas[4] = "/img/flecha.png";
-        rutas[5] = "/img/flecha.png";
-        rutas[6] = "/img/flecha.png";
-        rutas[7] = "/img/flecha.png";
+//        rutas[2] = "/img/carga2.jpg";
+//        rutas[3] = "/img/flecha.png";
+//        rutas[4] = "/img/flecha.png";
+//        rutas[5] = "/img/flecha.png";
+//        rutas[6] = "/img/flecha.png";
+//        rutas[7] = "/img/flecha.png";
         return rutas;
         //rutas=null;
     }

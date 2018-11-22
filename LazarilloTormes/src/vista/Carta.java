@@ -156,7 +156,7 @@ public class Carta extends JLabel {
             if (sale) {
                 setIcon(null);
             } else {
-                setIcon(imgVuelta);
+                setIcon(new ImageIcon(this.getClass().getResource(VUELTA_IMAGEN)));
             }
             timer.stop();
         }
