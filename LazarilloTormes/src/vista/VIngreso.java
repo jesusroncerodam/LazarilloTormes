@@ -19,6 +19,7 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.TextField;
 import java.util.Random;
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -75,9 +76,9 @@ public class VIngreso extends JPanel {
 
         labelDificultad.setName("labelDificultad");
 
-        facil.setName("facil");
-        medio.setName("medio");
-        dificil.setName("dificil");
+        facil.setName("dificultad1");
+        medio.setName("dificultad2");
+        dificil.setName("dificultad3");
 
         botonFlechaAtras.setName("botonFlechaAtras");
         botonFlechaSiguiente.setName("botonFlechaSiguiente");
@@ -223,7 +224,7 @@ public class VIngreso extends JPanel {
     }
     private ImageIcon iconoTema1 = new ImageIcon(this.getClass().getResource("/img/tema1.jpg"));
     private ImageIcon iconoTema2 = new ImageIcon(this.getClass().getResource("/img/tema2.jpg"));
-    private ImageIcon iconoTema3 = new ImageIcon(this.getClass().getResource("/img/tema2.jpg"));
+    private ImageIcon iconoTema3 = new ImageIcon(this.getClass().getResource("/img/tema3.jpg"));
 
 
     public void crearTema() {
@@ -237,10 +238,6 @@ public class VIngreso extends JPanel {
         grupoTema.add(tema2);
         grupoTema.add(tema3);
 
-        tema1.setIcon(iconoTema1);
-        tema2.setIcon(iconoTema2);
-        tema3.setIcon(iconoTema3);
-
         /*
          * COLOCAR TEMA
          */
@@ -250,13 +247,48 @@ public class VIngreso extends JPanel {
         add(labelTema, constrain);
 
         constrainPorDefecto();
-
+        constrain.fill = GridBagConstraints.BASELINE;
         constrain.gridx = 1;
         add(tema1, constrain);
         constrain.gridx = 2;
         add(tema2, constrain);
         constrain.gridx = 3;
         add(tema3, constrain);
+
+        final int ALTITO = 110, ANCHITO = 85;
+
+        iconoTema1 = cambiarTamano(iconoTema1, ANCHITO, ALTITO);
+        iconoTema2 = cambiarTamano(iconoTema2, ANCHITO, ALTITO);
+        iconoTema3 = cambiarTamano(iconoTema3, ANCHITO, ALTITO);
+
+        tema1.setIcon(iconoTema1);
+        tema2.setIcon(iconoTema2);
+        tema3.setIcon(iconoTema3);
+    }
+
+
+    public void asignarBordeTema(int tema) {
+
+        tema1.setBorder(null);
+        tema2.setBorder(null);
+        tema3.setBorder(null);
+
+        switch (tema) {
+            case 1:
+                tema1.setBorder(BorderFactory.createRaisedBevelBorder());
+                break;
+
+            case 2:
+                tema2.setBorder(BorderFactory.createRaisedBevelBorder());
+                break;
+
+            case 3:
+                tema3.setBorder(BorderFactory.createRaisedBevelBorder());
+                break;
+
+            default:
+                System.err.println("\nOpcion no valida");
+        }
     }
 
 
@@ -315,23 +347,29 @@ public class VIngreso extends JPanel {
      * Le asigno el estilo de letra y demás pijadas a los objetos
      */
     public void estiloElementos() {
-//        avatar1.setOpaque(false);
-//        avatar2.setOpaque(false);
-//        avatar3.setOpaque(false);
+        avatar1.setOpaque(false);
+        avatar2.setOpaque(false);
+        avatar3.setOpaque(false);
 
-        tema1.setBackground(colorAleatorio());
-        tema2.setBackground(colorAleatorio());
-        tema3.setBackground(colorAleatorio());
-        avatar1.setBackground(colorAleatorio());
-        avatar2.setBackground(colorAleatorio());
-        avatar3.setBackground(colorAleatorio());
-        facil.setBackground(colorAleatorio());
-        medio.setBackground(colorAleatorio());
-        dificil.setBackground(colorAleatorio());
+        tema1.setOpaque(false);
+        tema2.setOpaque(false);
+        tema3.setOpaque(false);
+        tema1.setBorderPainted(true);
+        tema2.setBorderPainted(true);
+        tema3.setBorderPainted(true);
+//        tema1.setBackground(colorAleatorio());
+//        tema2.setBackground(colorAleatorio());
+//        tema3.setBackground(colorAleatorio());
+//        avatar1.setBackground(colorAleatorio());
+//        avatar2.setBackground(colorAleatorio());
+//        avatar3.setBackground(colorAleatorio());
+//        facil.setBackground(colorAleatorio());
+//        medio.setBackground(colorAleatorio());
+//        dificil.setBackground(colorAleatorio());
 
-//        facil.setOpaque(false);
-//        medio.setOpaque(false);
-//        dificil.setOpaque(false);
+        facil.setOpaque(false);
+        medio.setOpaque(false);
+        dificil.setOpaque(false);
 //        botonFlechaAtras.setOpaque(false);
 //        botonFlechaAtras.setContentAreaFilled(false);
         botonFlechaAtras.setBorder(null);
@@ -366,6 +404,36 @@ public class VIngreso extends JPanel {
         int blue = aleatorio.nextInt(255);
         Color color = new Color(red, green, blue);
         return color;
+    }
+
+
+    /**
+     * Modifica el tamaño de las imagenes
+     *
+     * @param icono
+     * @param anchoImagen
+     * @param altoImagen
+     * @return
+     */
+    public ImageIcon cambiarTamano(ImageIcon icono, int anchoImagen, int altoImagen) {
+        Image imagen = icono.getImage();
+        Image reescalada = imagen.getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH);
+        icono = new ImageIcon(reescalada);
+        return icono;
+    }
+
+
+    /**
+     * Modifica el tamaño de las imagenes
+     *
+     * @param icono
+     * @param anchoImagen
+     * @param altoImagen
+     * @return
+     */
+    public Image cambiarTamano(Image icono, int anchoImagen, int altoImagen) {
+        Image reescalada = icono.getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH);
+        return reescalada;
     }
 }
 

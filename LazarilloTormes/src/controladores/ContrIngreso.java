@@ -72,35 +72,26 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (((JCheckBox) e.getSource()).isSelected()) {
-            switch (((JCheckBox) e.getSource()).getName()) {
+            String variableTexto = ((JCheckBox) e.getSource()).getName();
+            switch (variableTexto) {
+
+                case "avatar1":
+                case "avatar2":
+                case "avatar3":
+                    break;
+
                 case "tema1":
-                    System.out.println("Has elegido el tema 1");
-
-                    break;
-
                 case "tema2":
-                    System.out.println("Tema 2");
-
-                    break;
-
                 case "tema3":
-                    System.out.println("Tema 3");
-
+                    vistaIngreso.asignarBordeTema(Integer.parseInt(variableTexto.substring(4)));
                     break;
 
-                case "facil":
+                case "dificultad1":
                     System.out.println("dificultad facil");
-
-                    break;
-
-                case "medio":
+                case "dificultad2":
                     System.out.println("dificultad media");
-
-                    break;
-
-                case "dificil":
+                case "dificultad3":
                     System.out.println("dificultad dificl");
-
                     break;
 
                 default:
