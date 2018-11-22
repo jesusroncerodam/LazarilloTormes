@@ -45,7 +45,7 @@ public class VMenu extends JMenuBar {
         this.vista = vista;
         generar();
         
-        modoJuego();
+       // modoJuego();
 
     }
 
@@ -145,6 +145,15 @@ public class VMenu extends JMenuBar {
         guardarPartida.setEnabled(true);
         cargarPartida.setEnabled(false);
         
+    }
+    public void normal(){
+        atras.setEnabled(true);
+        salir.setVisible(true);
+        
+        submenu.setEnabled(true);
+        pausaPlay.setEnabled(false);
+        guardarPartida.setEnabled(false);
+        cargarPartida.setEnabled(true);
     }
 
 }

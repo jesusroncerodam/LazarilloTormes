@@ -230,6 +230,24 @@ public class Logica {
             case "guardar":
                 guardarPartida();
                 break;
+            case "salir":
+                System.exit(0);
+                break;
+            case "atras":
+                guardarPartida();
+                break;
+            case "pausaplay":
+                guardarPartida();
+                break;
+            /*case "guardar":
+                guardarPartida();
+                break;
+            case "guardar":
+                guardarPartida();
+                break;
+            case "guardar":
+                guardarPartida();
+                break;*/
             default:
                 System.out.println("Valor no esperado en logica gestionarMenu: " + accion);
         }
@@ -594,7 +612,6 @@ public class Logica {
             case "stats":
 
                 principal.cambiarDeVista("lista");
-                System.out.println("3");
                 break;
 
             case "aboutus":

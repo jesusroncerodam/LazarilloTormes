@@ -459,19 +459,6 @@ public class VJuego extends JPanel {
     }
 
 
-    public void sdjkb() {
-        ArrayList<String> rutaGuardada = guardarUrlCarta();
-        ArrayList<Boolean> estadoCarta = guardarBloquearCarta();
-        int vuelta = algunaVisible();
-        if (vuelta != -1) {//si hay alguna
-            //lo guardamos
-
-        }
-
-        //   contadorSeg;
-    }
-
-
     public void generarGuardada() {
         controlador.asignarControlador();//se tiene que volver a generar
         //desactivadas = 0;
