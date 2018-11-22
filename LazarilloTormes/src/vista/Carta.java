@@ -110,13 +110,10 @@ public class Carta extends JLabel {
 
     /**
      * Casigna el timer , si hay una animacion en progreso, la pausa y crea una
-     * Esta hecho para que no entre en bucle cuando haces click en la isma
-     * imagen
-     * mas de una vez mientras estaba apareciendo; Cuando asigna el timer
-     * dependiendo
-     * de el estado de sale, si esta en animacion entrar o anumacion salir,
-     * aumentara o
-     * disminuira el tamano de la imagen
+     * Esta hecho para que no entre en bucle cuando haces click en la misma
+     * imagen mas de una vez mientras estaba apareciendo; Cuando asigna el timer
+     * dependiendo de el estado de sale, si esta en animacion entrar o anumacion 
+     * salir, aumentara o disminuira el tamano de la imagen
      */
     private void empezar() {
         if (timer != null) {//si existe un timer lo paramos, evitamos tener 2 timer,
@@ -150,7 +147,6 @@ public class Carta extends JLabel {
      * saliendo la quita y si la imgen estaba entrando la asigna por defecto;
      * siempre que se sale de las oquillas para el timer, puesto que termino la
      * animacion
-     *
      * Siempte actualiza la carta para que los cambios sean visibles
      */
     private void ponerImagen() {
@@ -184,9 +180,8 @@ public class Carta extends JLabel {
 
     /**
      * Bloquea la imagen esto significa que cuando se ejecute este metodo la
-     * carta
-     * no se podrá mover de nuevo (si la carta se bloquea significa que encontro
-     * la pareja)
+     * carta no se podrá mover de nuevo (si la carta se bloquea significa que
+     * encontro la pareja)
      */
     public void bloquear() {
         bloquear = true;
