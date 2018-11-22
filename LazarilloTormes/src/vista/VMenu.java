@@ -29,10 +29,13 @@ public class VMenu extends JMenuBar {
     private Vista vista;
     private ContrMenu controlador;
     private JMenu archivo,
+            submenu, 
             partida,
             ajustes,
             irA,
             mover;
+    private JMenuItem pausaPlay, guardarPartida, cargarPartida;
+
     //cargarPartida;
     private JMenuItem atras, salir;//temporalk aqui , a lo mejor en el futuro se pueden eleminar de aqui
 
@@ -75,7 +78,7 @@ public class VMenu extends JMenuBar {
     private void generarPartida() {
         partida = new JMenu("Game");
 
-        JMenu submenu = new JMenu("New Game");
+        submenu = new JMenu("New Game");
         JMenuItem partidaRapida = new JMenuItem("Quick game");
         submenu.add(partidaRapida);
 
@@ -83,20 +86,20 @@ public class VMenu extends JMenuBar {
         submenu.add(partidaPersonalizada);
         partida.add(submenu);
 
-        JMenuItem pausaPlay = new JMenuItem("Pause/Play", cambiarTamano(new ImageIcon("src/img/playPause.png"), 20, 20));//poner imahgen en pequeño 20px
+        pausaPlay = new JMenuItem("Pause/Play", cambiarTamano(new ImageIcon("src/img/playPause.png"), 20, 20));//poner imahgen en pequeño 20px
         partida.add(pausaPlay);
 
         partida.addSeparator();
         partida.addSeparator();
 
-        JMenuItem guardarPartida = new JMenuItem("Save game");
+        guardarPartida = new JMenuItem("Save game");
+        guardarPartida.setEnabled(false);
         guardarPartida.addActionListener(controlador);
         guardarPartida.setActionCommand("guardar");
         partida.add(guardarPartida);
 
         //cargarPartida=new JMenu("Load game");
-        JMenuItem cargarPartida = new JMenuItem("Load game");
-
+        cargarPartida = new JMenuItem("Load game");
         cargarPartida.addActionListener(controlador);
         cargarPartida.setActionCommand("cargar");
         partida.add(cargarPartida);
@@ -130,6 +133,15 @@ public class VMenu extends JMenuBar {
         Image reescalada = imagen.getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH);
         icono = new ImageIcon(reescalada);
         return icono;
+    }
+    public void modoJuego(){
+        
+        atras.setEnabled(false);
+        submenu.setEnabled(false);
+        cargarPartida.setEnabled(false);
+        
+        guardarPartida.setEnabled(false);
+        salir.setEnabled(true);
     }
 
 }
