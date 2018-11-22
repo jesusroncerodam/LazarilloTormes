@@ -272,7 +272,6 @@ public class Logica {
         juego.getContMov();
         //tiempo
         juego.getContadorSeg();
-
     }
 
 

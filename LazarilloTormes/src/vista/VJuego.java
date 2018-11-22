@@ -32,6 +32,7 @@ import trabajodi.Vista;
  * @author Guille
  */
 public class VJuego extends JPanel {
+
     private Vista vista;
     private Font fuente = new Font("Agency FB", Font.BOLD, 40);
     private final int HGAP = 20, VGAP = 5;
@@ -42,7 +43,7 @@ public class VJuego extends JPanel {
     private JLabel lMovimientos, lReloj;
     private JButton bPausaPlay, bGuardar, bContinuar;
     private GridBagConstraints constrain;
-    private final String RUTA_PLAYPAUSE="/img/playPause.png",RUTA_RELOJ="/img/relojWh.png",RUTA_FLECHA="/img/flechaRect.png",RUTA_GUARDAR="/img/save.png",RUTA_FONDO="/img/fondo2.gif"; 
+    private final String RUTA_PLAYPAUSE = "/img/playPause.png", RUTA_RELOJ = "/img/relojWh.png", RUTA_FLECHA = "/img/flechaRect.png", RUTA_GUARDAR = "/img/save.png", RUTA_FONDO = "/img/fondo2.gif";
 
 
     /**
@@ -51,8 +52,8 @@ public class VJuego extends JPanel {
      * generar
      * @param logica
      */
-    public VJuego(Logica logica,Vista vista) {
-        this.vista=vista;
+    public VJuego(Logica logica, Vista vista) {
+        this.vista = vista;
         controlador = new ContrJuego(this, logica);
     }
 
@@ -60,7 +61,7 @@ public class VJuego extends JPanel {
     /**
      * Encargado de generar un juego nuevo, inicialiA todas las variables y
      * controladores
-     * 
+     *
      */
     public void generar() {
         controlador.asignarControlador();//asignamos el controlador a la logica
@@ -74,7 +75,7 @@ public class VJuego extends JPanel {
         constrain = new GridBagConstraints();
         constrain.weighty = 0.5;
         constrain.anchor = GridBagConstraints.CENTER;
-        
+
         this.setLayout(new GridBagLayout());
 
         //asignamos los labels de tiempo y movimientos
@@ -114,18 +115,16 @@ public class VJuego extends JPanel {
         ImageIcon imgReloj = new ImageIcon(this.getClass().getResource(RUTA_RELOJ));
         lReloj = new JLabel("00:" + contadorSeg, imgReloj, JLabel.CENTER);
         System.out.println(imgReloj.getIconWidth());
-        
-        
+
         lReloj.setHorizontalTextPosition(SwingConstants.CENTER);
         lReloj.setVerticalTextPosition(SwingConstants.CENTER);
-       // lReloj.setIconTextGap((int) (-imgReloj.getIconWidth() / 1.6));//si no hacemos esto, el texto saldría a la derecha de la imagen, no encima
+        // lReloj.setIconTextGap((int) (-imgReloj.getIconWidth() / 1.6));//si no hacemos esto, el texto saldría a la derecha de la imagen, no encima
         lReloj.setFont(fuente);
         lReloj.setForeground(new Color(74, 110, 242));///////////////////////////////////////////////////////////////////////////////////////////////////////////CAMBIAR COLOR, PONER VARIABLE
         constrain.gridx = 2;
         constrain.gridy = 0;
         this.add(lReloj, constrain);
         constrain.fill = GridBagConstraints.NONE;
-
     }
 
 
@@ -137,15 +136,15 @@ public class VJuego extends JPanel {
         String[] rutas = obtenerRutas();
         carta = new ArrayList();
 
-        if(deshordenar){
+        if (deshordenar) {
             for (int i = 0; i < rutas.length; i++) { //asignamos la misma ruta a 2 carta
                 carta.add(new Carta(rutas[i]));
                 carta.add(new Carta(rutas[i]));
             }
-        }else{
-              for (int i = 0; i < rutas.length; i++) {
-                  carta.add(new Carta(rutas[i]));//cargamos las cartas, de la partida guardada
-              }
+        } else {
+            for (int i = 0; i < rutas.length; i++) {
+                carta.add(new Carta(rutas[i]));//cargamos las cartas, de la partida guardada
+            }
         }
 
         JPanel cartas = new JPanel();//creamos el panel donde estarán las cartas
@@ -153,10 +152,10 @@ public class VJuego extends JPanel {
 
         int cuadrado = (int) Math.sqrt(carta.size());//la raiz da lugar a unas fulas respectivas 
         cartas.setLayout(new GridLayout(cuadrado, cuadrado, HGAP, VGAP));//asignamos un layout a las cartas
-        
-        if(deshordenar)
-           Collections.shuffle(carta);//deshordenamos las cartas asi estan colocadas de manera aleatoria
 
+        if (deshordenar) {
+            Collections.shuffle(carta);//deshordenamos las cartas asi estan colocadas de manera aleatoria
+        }
         for (int i = 0; i < carta.size(); i++) {//asignamos el indice al nombre de las cartas
             carta.get(i).setName("" + i);
         }
@@ -188,7 +187,9 @@ public class VJuego extends JPanel {
             }
         });
     }
-    private void ponerTiempo(){
+
+
+    private void ponerTiempo() {
         int minutos = contadorSeg / 60;
         int seg = contadorSeg % 60;
         String tiempo = "00:" + contadorSeg;
@@ -395,7 +396,7 @@ public class VJuego extends JPanel {
      * @param estado booleano, pone el estado de este boton
      */
     public void cambiarEstadoBoton(String boton, boolean estado) {
-        System.out.println(boton+"---->"+estado);
+        System.out.println(boton + "---->" + estado);
         switch (boton) {
             case "continuar":
                 bContinuar.setEnabled(estado);
@@ -447,8 +448,6 @@ public class VJuego extends JPanel {
     }
 
 
-
-
     public void cargarBloquear(ArrayList<Boolean> bloqueadas) {
         for (int i = 0; i < carta.size(); i++) {
             if (bloqueadas.get(i))//si bloquear es true lo bloqueamos
@@ -469,7 +468,7 @@ public class VJuego extends JPanel {
         this.addKeyListener(controlador);
 
         constrain = new GridBagConstraints();
-        constrain.weighty = 0.5; 
+        constrain.weighty = 0.5;
         constrain.anchor = GridBagConstraints.CENTER;
         this.setLayout(new GridBagLayout());
 
@@ -482,26 +481,27 @@ public class VJuego extends JPanel {
         continuar();
 
         //generamos las cartas
-        generarCartas(false);   
+        generarCartas(false);
         controlador.bloquearCartas();
         //se tiene que hacer en este orden
-        contMov=controlador.obtenerMovimientos();
+        contMov = controlador.obtenerMovimientos();
         lMovimientos.setText("Movimientos: " + contMov);
-        
-        desactivadas=controlador.obtenerGuardadDesact();
-        
-        
-        contadorSeg=controlador.obtenerTiempo();
-        
+
+        desactivadas = controlador.obtenerGuardadDesact();
+
+        contadorSeg = controlador.obtenerTiempo();
+
         ponerTiempo();
     }
-    public void bloquearUna(int indice){
+
+
+    public void bloquearUna(int indice) {
         carta.get(indice).bloquear();
     }
-    
-    public void cambiarVista(String vistaACambiar){
+
+
+    public void cambiarVista(String vistaACambiar) {
         vista.cambiarVista(vistaACambiar);
     }
 
 }
-
