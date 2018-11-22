@@ -11,6 +11,7 @@ import java.awt.Checkbox;
 import java.awt.CheckboxGroup;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -86,6 +87,18 @@ public class VIngreso extends JPanel {
         campoNombre.addTextListener(controlador);
         botonFlechaAtrás.addMouseListener(controlador);
         botonFlechaSiguiente.addMouseListener(controlador);
+    }
+
+
+    /**
+     * Crea una fuente para aplicarla a los label
+     * @param tamanofuente int que hay que pasar para asignar el tamaño a la
+     *                     fuente
+     * @return font Devuelve una fuente
+     */
+    public Font bakerville(int tamanofuente) {
+        Font fuente = new Font("Baskerville Old Face", Font.PLAIN, tamanofuente);
+        return fuente;
     }
 
 
