@@ -59,8 +59,8 @@ public class VIngreso extends JPanel {
     public void anadirescuchadores() {
 
         botonFlechaAtrás.setName("botonFlechaAtras");
-        
-        
+        botonFlechaSiguiente.setName("botonFlechaSiguiente");
+
 //        Controladores
         tema1.addMouseListener(controlador);
         tema2.addMouseListener(controlador);
