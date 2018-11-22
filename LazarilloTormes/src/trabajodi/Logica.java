@@ -222,6 +222,7 @@ public class Logica {
 
 
     public void gestionarMenu(String accion) {
+        
         switch (accion) {
             case "cargar":
                 cargarPartida();
@@ -231,23 +232,24 @@ public class Logica {
                 guardarPartida();
                 break;
             case "salir":
-                System.exit(0);
+                 Runtime.getRuntime().exit(500);
+                System.out.println(accion);
                 break;
             case "atras":
-                guardarPartida();
+                System.out.println(accion);
                 break;
             case "pausaplay":
+                System.out.println(accion);
+                break;
+            case "sonido":
+                System.out.println(accion);
+                break;
+            case "partidarapida"://Partida Rapida
                 guardarPartida();
                 break;
-            /*case "guardar":
+            case "partidapersonalizada"://Partida Personalizada
                 guardarPartida();
                 break;
-            case "guardar":
-                guardarPartida();
-                break;
-            case "guardar":
-                guardarPartida();
-                break;*/
             default:
                 System.out.println("Valor no esperado en logica gestionarMenu: " + accion);
         }
