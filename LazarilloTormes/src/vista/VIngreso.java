@@ -49,7 +49,7 @@ public class VIngreso extends JPanel {
     private JCheckBox tema1, tema2, tema3;
     private JCheckBox facil, medio, dificil;
 
-    private JButton botonFlechaAtrás, botonFlechaSiguiente;
+    private JButton botonFlechaAtras, botonFlechaSiguiente;
 
     private GridBagConstraints constrain;
 //    private GridBagLayout gridLayout;
@@ -77,7 +77,7 @@ public class VIngreso extends JPanel {
         medio.setName("medio");
         dificil.setName("dificil");
 
-        botonFlechaAtrás.setName("botonFlechaAtras");
+        botonFlechaAtras.setName("botonFlechaAtras");
         botonFlechaSiguiente.setName("botonFlechaSiguiente");
 
 //        Escuchadores
@@ -92,7 +92,7 @@ public class VIngreso extends JPanel {
         medio.addItemListener(controlador);
         dificil.addItemListener(controlador);
 
-        botonFlechaAtrás.addMouseListener(controlador);
+        botonFlechaAtras.addMouseListener(controlador);
         botonFlechaSiguiente.addMouseListener(controlador);
     }
 
@@ -136,7 +136,7 @@ public class VIngreso extends JPanel {
         crearTema();
         crearDificultad();
         imagenFlecha = metodo.cambiarTamano(imagenFlecha, 50, 50);
-        botonFlechaAtrás = new JButton(imagenFlecha);
+        botonFlechaAtras = new JButton(imagenFlecha);
         botonFlechaSiguiente = new JButton(imagenFlecha);
     }
 
@@ -160,6 +160,23 @@ public class VIngreso extends JPanel {
     public void crearCampoNombre() {
         campoNombre = new TextField("Introduce tu nombre");
         campoNombre.setFont(bakerville(18));
+
+        /*
+         * COLOCACION CAMPO NOMBRE
+         */
+        constrain.gridwidth = 2;
+//        .NONE hace que el campo de texto no aparezca ocupando gran parte del cuadrante
+        constrain.fill = GridBagConstraints.NONE;
+        /*
+         * campoNombre.setPreferredSize(new Dimension(50, 50));
+         * campoNombre.setSize(50, 50);
+         * el .insets coloca el cuadro de texto en el cuadrante, pegado a la
+         * izquierda
+         */
+        constrain.insets = new Insets(25, 0, 25, 0);
+        constrain.anchor = GridBagConstraints.LINE_START;
+        constrain.gridx = 1;
+        add(campoNombre, constrain);
     }
 
 
@@ -252,24 +269,6 @@ public class VIngreso extends JPanel {
      */
     public void anadirElementos() {
 
-
-        /*
-         * COLOCACION CAMPO NOMBRE
-         */
-        constrain.gridwidth = 2;
-//        .NONE hace que el campo de texto no aparezca ocupando gran parte del cuadrante
-        constrain.fill = GridBagConstraints.NONE;
-        /*
-         * campoNombre.setPreferredSize(new Dimension(50, 50));
-         * campoNombre.setSize(50, 50);
-         * el .insets coloca el cuadro de texto en el cuadrante, pegado a la
-         * izquierda
-         */
-        constrain.insets = new Insets(25, 0, 25, 0);
-        constrain.anchor = GridBagConstraints.LINE_START;
-        constrain.gridx = 1;
-        add(campoNombre, constrain);
-
         contraintPorDefecto();
         /*
          * BOTONES
@@ -277,7 +276,7 @@ public class VIngreso extends JPanel {
         constrain.gridy = 4;
 
         constrain.gridx = 0;
-        add(botonFlechaAtrás, constrain);
+        add(botonFlechaAtras, constrain);
         constrain.gridx = 3;
         add(botonFlechaSiguiente, constrain);
     }
@@ -310,9 +309,9 @@ public class VIngreso extends JPanel {
         medio.setOpaque(false);
         dificil.setOpaque(false);
 
-        botonFlechaAtrás.setOpaque(false);
-        botonFlechaAtrás.setContentAreaFilled(false);
-        botonFlechaAtrás.setBorder(null);
+        botonFlechaAtras.setOpaque(false);
+        botonFlechaAtras.setContentAreaFilled(false);
+        botonFlechaAtras.setBorder(null);
 
         botonFlechaSiguiente.setOpaque(false);
         botonFlechaSiguiente.setContentAreaFilled(false);
