@@ -70,7 +70,7 @@ public class VIngreso extends JPanel {
 
     private ImageIcon imagenFlecha = new ImageIcon(this.getClass().getResource("/img/atras.png"));
     private ImageIcon imagenAvanzar = new ImageIcon(this.getClass().getResource("/img/flechaRect.png"));
-    private ImageIcon fondoRegistro = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.jpg"));
+    private ImageIcon fondoRegistro = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.gif"));
 
     private final Border bordeAvatar = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.black, 1), BorderFactory.createRaisedBevelBorder());
     private final Border bordeTema = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.black, 1), BorderFactory.createRaisedBevelBorder());
@@ -170,6 +170,8 @@ public class VIngreso extends JPanel {
         constrain.gridy = 0;
         constrain.gridx = 1;
         add(campoNombre, constrain);
+
+        campoNombre.setBackground(null);
 
         constrainPorDefecto();
     }
@@ -361,6 +363,7 @@ public class VIngreso extends JPanel {
 
 
     public void asignarBordeAvatar(int avatar) {
+
         avatar1.setBorder(null);
         avatar2.setBorder(null);
         avatar3.setBorder(null);
@@ -376,6 +379,7 @@ public class VIngreso extends JPanel {
                 break;
             default:
         }
+        updateUI();
     }
 
 
@@ -395,12 +399,13 @@ public class VIngreso extends JPanel {
                 break;
             default:
         }
+        updateUI();
     }
 
 
     @Override
     public void paint(Graphics g) {
-
+        updateUI();
         g.drawImage(fondoRegistro.getImage(), 0, 0, getWidth(), getHeight(), null);
         super.paint(g);
     }
