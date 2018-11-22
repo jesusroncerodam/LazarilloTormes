@@ -70,7 +70,7 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
             System.out.println(state);
 
         }
-
+if(((JCheckBox) e.getSource()).isSelected())
         switch (((JCheckBox) e.getSource()).getName()) {
             case "tema1":
                 System.out.println("Has elegido el tema 1");
