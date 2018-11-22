@@ -114,15 +114,11 @@ public class VIngreso extends JPanel {
     public void generar() {
         this.setOpaque(false);
 
-        setPreferredSize(new Dimension(2, 2));
-
+//        setPreferredSize(new Dimension(2, 2));
         constrain = new GridBagConstraints();
         this.setLayout(new GridBagLayout());
 
-        constrain.anchor = GridBagConstraints.CENTER;
-        constrain.weighty = 1.0; //para que se estiren las columnas
-        constrain.weightx = 1.0; // El área de texto ocupa 1 filasa
-        constrain.fill = GridBagConstraints.BOTH;
+        constrainPorDefecto();
 
         crearElementos();
         estiloElementos();
@@ -133,19 +129,14 @@ public class VIngreso extends JPanel {
 
     public void crearElementos() {
         crearLabelNombre();
-        constrainPorDefecto();
 
         crearCampoNombre();
-        constrainPorDefecto();
 
         crearAvatar();
-        constrainPorDefecto();
 
         crearTema();
-        constrainPorDefecto();
 
         crearDificultad();
-        constrainPorDefecto();
 
         imagenFlecha = metodo.cambiarTamano(imagenFlecha, 50, 50);
         botonFlechaAtras = new JButton(imagenFlecha);
@@ -162,18 +153,15 @@ public class VIngreso extends JPanel {
         add(botonFlechaSiguiente, constrain);
     }
 
+    private int TAMANOFUENTE = 22;
+
 
     public void crearLabelNombre() {
         labelNombre = new JLabel("Nombre: ");
-        labelNombre.setFont(bakerville(20));
-        /*
-         * COLOCACION LABEL NOMBRE
-         */
+        labelNombre.setFont(bakerville(TAMANOFUENTE));
 
-        //Asigno al Y una sola vez para no repetir codigo
 //        constrain.weighty = 10;
-        constrain.fill = GridBagConstraints.CENTER;
-
+//        constrain.fill = GridBagConstraints.CENTER;
         constrain.gridy = 0;
         constrain.gridx = 0;
         add(labelNombre, constrain);
@@ -185,33 +173,28 @@ public class VIngreso extends JPanel {
 
     public void crearCampoNombre() {
         campoNombre = new TextField("Introduce tu nombre");
-        campoNombre.setFont(bakerville(18));
-        /*
-         * COLOCACION CAMPO NOMBRE
-         */
-        constrain.weighty = 0.0;
-        constrain.weightx = 0.0;
+        campoNombre.setFont(bakerville(TAMANOFUENTE - 2));
+//        constrain.weighty = 0.0;
+//        constrain.weightx = 0.0;
         constrain.gridwidth = 2;
 //        .NONE hace que el campo de texto no aparezca ocupando gran parte del cuadrante
         constrain.fill = GridBagConstraints.NONE;
         /*
          * campoNombre.setPreferredSize(new Dimension(50, 50));
          * campoNombre.setSize(50, 50);
-         * el .insets coloca el cuadro de texto en el cuadrante, pegado a la
-         * izquierda
          */
-        constrain.insets = new Insets(0, 50, 0, -50);
-        constrain.anchor = GridBagConstraints.LINE_START;
+//        constrain.anchor = GridBagConstraints.LINE_START;
+        constrain.gridy = 0;
         constrain.gridx = 1;
-        add(campoNombre, constrain);
+//        add(campoNombre, constrain);
 
         constrainPorDefecto();
     }
 
 
     public void crearAvatar() {
-        labelAvatar = new JLabel("Avatar: ", SwingConstants.CENTER);
-        labelAvatar.setFont(bakerville(20));
+        labelAvatar = new JLabel("Avatar: ");
+        labelAvatar.setFont(bakerville(TAMANOFUENTE));
         ButtonGroup grupoAvatar = new ButtonGroup();
         avatar1 = new JCheckBox("", true);
         avatar2 = new JCheckBox("", false);
@@ -222,7 +205,7 @@ public class VIngreso extends JPanel {
         /*
          * COLOCAR AVATAR
          */
-        constrain.insets = new Insets(0, 50, 0, 0);
+        constrainPorDefecto();
 
         constrain.gridy = 1;
 
@@ -238,11 +221,14 @@ public class VIngreso extends JPanel {
         constrain.gridx = 3;
         add(avatar3, constrain);
     }
+    private ImageIcon iconoTema1 = new ImageIcon(this.getClass().getResource("/img/tema1.jpg"));
+    private ImageIcon iconoTema2 = new ImageIcon(this.getClass().getResource("/img/tema2.jpg"));
+    private ImageIcon iconoTema3 = new ImageIcon(this.getClass().getResource("/img/tema2.jpg"));
 
 
     public void crearTema() {
         labelTema = new JLabel("Tema");
-        labelTema.setFont(bakerville(20));
+        labelTema.setFont(bakerville(TAMANOFUENTE));
         ButtonGroup grupoTema = new ButtonGroup();
         tema1 = new JCheckBox("", true);
         tema2 = new JCheckBox("", false);
@@ -251,10 +237,13 @@ public class VIngreso extends JPanel {
         grupoTema.add(tema2);
         grupoTema.add(tema3);
 
+        tema1.setIcon(iconoTema1);
+        tema2.setIcon(iconoTema2);
+        tema3.setIcon(iconoTema3);
+
         /*
          * COLOCAR TEMA
          */
-        constrain.insets = new Insets(0, 50, 0, -50);
         constrain.gridy = 2;
         //        le asigno la Y una sola vez 
         constrain.gridx = 0;
@@ -273,7 +262,7 @@ public class VIngreso extends JPanel {
 
     public void crearDificultad() {
         labelDificultad = new JLabel("Dificultad");
-        labelDificultad.setFont(bakerville(20));
+        labelDificultad.setFont(bakerville(TAMANOFUENTE));
         ButtonGroup grupoDificultad = new ButtonGroup();
         facil = new JCheckBox("", true);
         medio = new JCheckBox("", false);
@@ -287,9 +276,8 @@ public class VIngreso extends JPanel {
         /*
          * COLOCAR DIFICULTAD
          */
-        constrain.insets = new Insets(0, 50, 0, 0);
-        constrain.gridy = 3;
-        //Le asigno la Y una unica vez
+//        constrain.insets = new Insets(0, 50, 0, 0);
+        constrain.gridy = 3; //Le asigno la Y una unica vez
         constrain.gridx = 0;
         add(labelDificultad, constrain);
 
@@ -314,12 +302,12 @@ public class VIngreso extends JPanel {
         /*
          * POR DEFECTO
          */
-        constrain.gridwidth = 1;
         constrain.anchor = GridBagConstraints.CENTER;
+        constrain.weighty = 1.0; //para que se estiren las columnas
+        constrain.weightx = 1.0; // El área de texto ocupa 1 filasa
         constrain.fill = GridBagConstraints.BOTH;
+        constrain.gridwidth = 1;
         constrain.insets = new Insets(0, 0, 0, 0);
-        constrain.weighty = 1.0;
-        constrain.weightx = 1.0;
     }
 
 
@@ -344,12 +332,12 @@ public class VIngreso extends JPanel {
 //        facil.setOpaque(false);
 //        medio.setOpaque(false);
 //        dificil.setOpaque(false);
-        botonFlechaAtras.setOpaque(false);
-        botonFlechaAtras.setContentAreaFilled(false);
+//        botonFlechaAtras.setOpaque(false);
+//        botonFlechaAtras.setContentAreaFilled(false);
         botonFlechaAtras.setBorder(null);
 
-        botonFlechaSiguiente.setOpaque(false);
-        botonFlechaSiguiente.setContentAreaFilled(false);
+//        botonFlechaSiguiente.setOpaque(false);
+//        botonFlechaSiguiente.setContentAreaFilled(false);
         botonFlechaSiguiente.setBorder(null);
     }
 
