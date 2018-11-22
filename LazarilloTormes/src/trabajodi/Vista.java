@@ -155,7 +155,7 @@ public class Vista {
     public void crearRegistro() {
         System.out.println("sjf");
         System.out.println("Has entrado en el registro");
-        ventana.setSize(600, 600);
+        ventana.setSize(1200, 800);
         ventana.add(vIngreso);
         ventana.setVisible(true);
     }
