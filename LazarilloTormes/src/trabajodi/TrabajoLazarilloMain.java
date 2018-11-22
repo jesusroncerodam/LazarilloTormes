@@ -16,6 +16,7 @@ public class TrabajoLazarilloMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         Vista vista = new Vista(new Logica());
     }
 }
