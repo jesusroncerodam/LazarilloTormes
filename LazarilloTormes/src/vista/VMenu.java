@@ -44,6 +44,8 @@ public class VMenu extends JMenuBar {
         controlador = new ContrMenu(logica, this);
         this.vista = vista;
         generar();
+        
+        modoJuego();
 
     }
 
