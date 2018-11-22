@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import trabajodi.Logica;
+import trabajodi.Vista;
 
 
 /**
@@ -31,7 +32,7 @@ import trabajodi.Logica;
  * @author Guille
  */
 public class VJuego extends JPanel {
-
+    private Vista vista;
     private Font fuente = new Font("Agency FB", Font.BOLD, 40);
     private final int HGAP = 20, VGAP = 5;
     private ContrJuego controlador;
@@ -50,7 +51,8 @@ public class VJuego extends JPanel {
      * generar
      * @param logica
      */
-    public VJuego(Logica logica) {
+    public VJuego(Logica logica,Vista vista) {
+        this.vista=vista;
         controlador = new ContrJuego(this, logica);
     }
 

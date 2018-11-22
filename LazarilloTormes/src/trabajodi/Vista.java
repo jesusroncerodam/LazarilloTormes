@@ -56,7 +56,7 @@ public class Vista {
         vPrincipal = new VPrincipal(logica, this);
         vDialogoMod = new VDialogoMod(logica);
         vIngreso = new VIngreso(logica, this);
-        vJuego = new VJuego(logica);
+        vJuego = new VJuego(logica,this);
         vLista = new VLista(logica, this);
         vMenu = new VMenu(logica, this);
         //no ponemos splash ya que no necesita logica
