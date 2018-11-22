@@ -572,7 +572,6 @@ public class Logica {
     public void principalClick(String boton, int pulsos) {
         switch (boton.replaceAll(" ", "").toLowerCase()) {
             case "newgame":
-
                 principal.cambiarDeVista("ingresodatos");
 
                 System.out.println("1");
