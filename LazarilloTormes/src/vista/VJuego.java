@@ -15,7 +15,6 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.ImageIcon;
@@ -59,7 +58,7 @@ public class VJuego extends JPanel {
      * controladores
      * @param rutas Array de String, direccion de todas las imagenes de cartas
      */
-    public void generar(boolean defecto) {
+    public void generar() {
         controlador.asignarControlador();//asignamos el controlador a la logica
         desactivadas = 0;
 
@@ -69,10 +68,9 @@ public class VJuego extends JPanel {
         this.addKeyListener(controlador);
 
         constrain = new GridBagConstraints();
-        constrain.weighty = 0.5; //para que se estiren las columnas
-        // constrain.weightx=1;
-        //  constrain.fill = GridBagConstraints.BOTH;
+        constrain.weighty = 0.5;
         constrain.anchor = GridBagConstraints.CENTER;
+        
         this.setLayout(new GridBagLayout());
 
         //asignamos los labels de tiempo y movimientos
@@ -445,15 +443,6 @@ public class VJuego extends JPanel {
     }
 
 
-    /*
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     */
 
 
     public void cargarBloquear(ArrayList<Boolean> bloqueadas) {
@@ -479,14 +468,6 @@ public class VJuego extends JPanel {
     }
 
 
-    //guardar partida
-    //datos:
-    /*
-     * desactivadas
-     * contMov
-     * contadorSeg
-     *
-     */
     public void generarGuardada() {
         controlador.asignarControlador();//se tiene que volver a generar
         //desactivadas = 0;
