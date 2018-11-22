@@ -34,7 +34,9 @@ public class ContrIngreso extends MouseAdapter {
     public void mouseClicked(MouseEvent e) {
         switch (e.getComponent().getName()) {
             case "botonFlechaAtras":
+                
                 vistaIngreso.cambiarDeVista("principal");
+                
                 break;
 
             case "botonSiguiente":
