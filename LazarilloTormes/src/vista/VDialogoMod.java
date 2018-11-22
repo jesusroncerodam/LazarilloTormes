@@ -26,7 +26,7 @@ public class VDialogoMod extends JPanel {
     private ImageIcon flecha;
     private Metodos metodo;
 
-    ImageIcon fondo = new ImageIcon(this.getClass().getResource("/img/fondoregistro.jpg"));
+    ImageIcon fondo = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.jpg"));
 
 
     public VDialogoMod(Logica logica) {
