@@ -95,18 +95,19 @@ public class Logica {
             accionBotonJuego((JButton) componente);
             
         } else if (componente instanceof JLabel) {//si es un JLabel, 
-            accionLabelJuego(componente.getName());
+            accionLabelJuego(Integer.parseInt(componente.getName()));
         }
     }
     
     /**
-     * Metodo que controla las accciones de la carta, recive
-     * @param carta 
+     * Metodo que controla las accciones de la carta, recive la carta que tiene
+     * la accion
+     * @param carta int indice de la carta
      */
-    private void accionLabelJuego(String carta){
+    private void accionLabelJuego(int carta){
         if (!animacionC) {//mientras que no tengamos ninguna animacion en progreso
             vuelta = juego.algunaVisible();//antes de mover la carta actual miramos si hay alguna carta visible
-            cartaAct = Integer.parseInt(carta);//opbtenemos el indice del array de la carta que ss hizo click
+            cartaAct = carta;//opbtenemos el indice del array de la carta que ss hizo click
 
             if (vuelta == cartaAct) {//comprobamos que no tenga hecho click en la misma imagen 2 veces
                 vuelta = -1;//si es asi la carta que se dio la vuelta no existe, para la logica
