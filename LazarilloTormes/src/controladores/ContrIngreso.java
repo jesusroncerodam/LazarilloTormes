@@ -67,7 +67,7 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
     public void itemStateChanged(ItemEvent e) {
         int state = e.getStateChange();
         if (state == ItemEvent.SELECTED) {
-            System.out.print(state);
+            System.out.println(state);
 
         }
 
