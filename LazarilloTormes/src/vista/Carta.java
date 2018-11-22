@@ -135,6 +135,7 @@ public class Carta extends JLabel {
                     ancho++;
                 }
                 ponerImagen();
+                System.out.println(altura+" "+ancho);
             }
         });
         timer.start();
@@ -155,8 +156,8 @@ public class Carta extends JLabel {
      */
     private void ponerImagen() {
         if (altura > 0 && ancho > 0 && altura < imgVuelta.getIconHeight() && ancho < imgVuelta.getIconWidth()) {
-            this.setIcon(cambiarTamano(new ImageIcon(VUELTA_IMAGEN), ancho, altura));
-        } else {
+            this.setIcon(cambiarTamano(new ImageIcon(this.getClass().getResource(VUELTA_IMAGEN)), ancho, altura));
+           } else {
             if (sale) {
                 setIcon(null);
             } else {
