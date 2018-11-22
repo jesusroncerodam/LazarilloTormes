@@ -35,25 +35,24 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
     }
 
 
+    public void mandarControlador() {
+        logica.asignarControladorIngreso(this);
+    }
+
+
     @Override
     public void mouseClicked(MouseEvent e) {
         System.out.println(e);
         switch (e.getComponent().getName()) {
             case "botonFlechaAtras":
-
                 vistaIngreso.cambiarDeVista("principal");
-
                 break;
 
             case "botonFlechaSiguiente":
-
                 vistaIngreso.cambiarDeVista("juego");
-
                 break;
 
             case "avatar":
-                System.out.print("ñaksjfñajsdfñlkajsfñlkasjkfdñljaskñfjklasdjfsd");
-
                 logica.cogerImagenSistema();
                 break;
 
@@ -65,39 +64,22 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
 
     @Override
     public void textValueChanged(TextEvent e) {
-        System.out.println(e);
-
     }
 
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        if (((JCheckBox) e.getSource()).isSelected()) {
-            String variableTexto = ((JCheckBox) e.getSource()).getName();
-            switch (variableTexto) {
-                case "avatar1":
-                case "avatar2":
-                case "avatar3":
-                    vistaIngreso.asignarBordeAvatar(Integer.parseInt(variableTexto.substring(6)));
-                    break;
+        logica.vistaIngresoItemChange(e);
+    }
 
-                case "tema1":
-                case "tema2":
-                case "tema3":
-                    vistaIngreso.asignarBordeTema(Integer.parseInt(variableTexto.substring(4)));
-                    break;
 
-                case "dificultad1":
-                    System.out.println("dificultad facil");
-                case "dificultad2":
-                    System.out.println("dificultad media");
-                case "dificultad3":
-                    System.out.println("dificultad dificl");
-                    break;
+    public void asignarBordeAvatar(int parseInt) {
+        vistaIngreso.asignarBordeAvatar(parseInt);
+    }
 
-                default:
-                    System.err.println("\nOpcion no valida");
-            }
-        }
+
+    public void asignarBordeTema(int parseInt) {
+        vistaIngreso.asignarBordeTema(parseInt);
+
     }
 }

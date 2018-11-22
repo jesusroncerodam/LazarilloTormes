@@ -6,11 +6,13 @@
 package trabajodi;
 
 
+import controladores.ContrIngreso;
 import controladores.ContrJuego;
 import controladores.ContrLista;
 import controladores.ContrMenu;
 import controladores.ControladorPrincipal;
 import java.awt.Component;
+import java.awt.event.ItemEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,6 +29,7 @@ import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -93,18 +96,19 @@ public class Logica {
 
         if (componente instanceof JButton) {//si es un boton
             accionBotonJuego((JButton) componente);
-            
+
         } else if (componente instanceof JLabel) {//si es un JLabel, 
             accionLabelJuego(Integer.parseInt(componente.getName()));
         }
     }
-    
+
+
     /**
      * Metodo que controla las accciones de la carta, recive la carta que tiene
      * la accion
      * @param carta int indice de la carta
      */
-    private void accionLabelJuego(int carta){
+    private void accionLabelJuego(int carta) {
         if (!animacionC) {//mientras que no tengamos ninguna animacion en progreso
             vuelta = juego.algunaVisible();//antes de mover la carta actual miramos si hay alguna carta visible
             cartaAct = carta;//opbtenemos el indice del array de la carta que ss hizo click
@@ -133,21 +137,23 @@ public class Logica {
                     animacionC = true;//ponermos que existe una animacion en progreso
                     timer = new java.util.Timer();//cremos el timer para crear una animacion
                     TimerTask tarea = new TimerTask() {//creamos un timerTask, que se ejecutara en x segundos
-                        int i=0;
+                        int i = 0;
+
+
                         @Override
                         public void run() {
-                            if(i>0){//cuando termine dejamos hacer otra accion, para que no se vean 3 imagenes
+                            if (i > 0) {//cuando termine dejamos hacer otra accion, para que no se vean 3 imagenes
                                 animacionC = false;//marcamos  que el timer termino
                                 timer.cancel();
-                                timer=null;
-                            }else{
-                            i++;
-                            juego.girar(cartaAct);//girampos la carta actual 
-                            
-                            juego.girar(vuelta);//girampos la que esta visble
-                         //   timer = null;//eliminamos el timer
+                                timer = null;
+                            } else {
+                                i++;
+                                juego.girar(cartaAct);//girampos la carta actual 
+
+                                juego.girar(vuelta);//girampos la que esta visble
+                                //   timer = null;//eliminamos el timer
                             }
-                            
+
                         }
                     };
                     //asignamos que se mueva en estos seguntos para que no cambie de golpe , para que la animacion sea mas suave
@@ -156,9 +162,10 @@ public class Logica {
             }
         }
     }
-    
-    private void accionBotonJuego(JButton boton){
-        if(boton.isEnabled()){
+
+
+    private void accionBotonJuego(JButton boton) {
+        if (boton.isEnabled()) {
             switch (boton.getActionCommand()) {
                 case "playPause":
                     juego.gestionarContador(boton.getActionCommand());
@@ -178,7 +185,8 @@ public class Logica {
             }
         }
     }
-    
+
+
     public void juegokey(char pulso) {
         switch (pulso) {
             case 'q':
@@ -222,7 +230,7 @@ public class Logica {
 
 
     public void gestionarMenu(String accion) {
-        
+
         switch (accion) {
             case "cargar":
                 cargarPartida();
@@ -232,7 +240,7 @@ public class Logica {
                 guardarPartida();
                 break;
             case "salir":
-                 Runtime.getRuntime().exit(500);
+                Runtime.getRuntime().exit(500);
                 System.out.println(accion);
                 break;
             case "atras":
@@ -442,8 +450,42 @@ public class Logica {
      * // CONTROLADOR VISTA INGRESO
      * // CONTROLADOR VISTA INGRESO
      */
-    public void metodo2() {
+    private ContrIngreso cIngreso;
 
+
+    public void asignarControladorIngreso(ContrIngreso ingreso) {
+        this.cIngreso = ingreso;
+    }
+
+
+    public void vistaIngresoItemChange(ItemEvent e) {
+        if (((JCheckBox) e.getSource()).isSelected()) {
+            String variableTexto = ((JCheckBox) e.getSource()).getName();
+            switch (variableTexto) {
+                case "avatar1":
+                case "avatar2":
+                case "avatar3":
+                    cIngreso.asignarBordeAvatar(Integer.parseInt(variableTexto.substring(6)));
+                    break;
+
+                case "tema1":
+                case "tema2":
+                case "tema3":
+                    cIngreso.asignarBordeTema(Integer.parseInt(variableTexto.substring(4)));
+                    break;
+
+                case "dificultad1":
+                    System.out.println("dificultad facil");
+                case "dificultad2":
+                    System.out.println("dificultad media");
+                case "dificultad3":
+                    System.out.println("dificultad dificl");
+                    break;
+
+                default:
+                    System.err.println("\nOpcion no valida");
+            }
+        }
     }
 
     ///////////////////////////

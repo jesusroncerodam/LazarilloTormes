@@ -68,12 +68,17 @@ public class VIngreso extends JPanel {
     private ImageIcon iconoTema2 = new ImageIcon(this.getClass().getResource("/img/tema2.jpg"));
     private ImageIcon iconoTema3 = new ImageIcon(this.getClass().getResource("/img/tema3.jpg"));
 
+    private ImageIcon iconoDificultad1 = new ImageIcon(this.getClass().getResource("/img/dificultad1.png"));
+    private ImageIcon iconoDificultad2 = new ImageIcon(this.getClass().getResource("/img/dificultad2.png"));
+    private ImageIcon iconoDificultad3 = new ImageIcon(this.getClass().getResource("/img/dificultad3.png"));
+
     private ImageIcon imagenFlecha = new ImageIcon(this.getClass().getResource("/img/atras.png"));
     private ImageIcon imagenAvanzar = new ImageIcon(this.getClass().getResource("/img/flechaRect.png"));
     private ImageIcon fondoRegistro = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.gif"));
 
-    private final Border bordeAvatar = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.black, 1), BorderFactory.createRaisedBevelBorder());
-    private final Border bordeTema = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.black, 1), BorderFactory.createRaisedBevelBorder());
+    private final Border bordeAvatar = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.ORANGE, 5), BorderFactory.createRaisedBevelBorder());
+    private final Border bordeTema = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.RED, 5), BorderFactory.createRaisedBevelBorder());
+    private final Border bordeDificultad = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.YELLOW, 3), BorderFactory.createRaisedBevelBorder());
 
 
     public VIngreso(Logica logica, Vista vistaMain) {
@@ -95,6 +100,8 @@ public class VIngreso extends JPanel {
 
 
     public void generar() {
+        controlador.mandarControlador();
+
         this.setOpaque(false);
 
 //        setPreferredSize(new Dimension(2, 2));
@@ -287,7 +294,8 @@ public class VIngreso extends JPanel {
         constrain.gridx = 0;
         add(labelDificultad, constrain);
 
-        constrainPorDefecto();
+//        constrainPorDefecto();
+        constrain.fill = GridBagConstraints.BASELINE;
 
         constrain.gridx = 1;
         add(dificultad1, constrain);
@@ -299,6 +307,16 @@ public class VIngreso extends JPanel {
         dificultad1.setOpaque(false);
         dificultad2.setOpaque(false);
         dificultad3.setOpaque(false);
+        dificultad1.setBorderPainted(true);
+        dificultad2.setBorderPainted(true);
+        dificultad3.setBorderPainted(true);
+
+        dificultad1.setIcon(cambiarTamano(iconoDificultad1, ANCHITO, ALTITO - 50));
+        dificultad2.setIcon(cambiarTamano(iconoDificultad2, ANCHITO, ALTITO - 50));
+        dificultad3.setIcon(cambiarTamano(iconoDificultad3, ANCHITO, ALTITO - 50));
+        dificultad1.setBorder(bordeDificultad);
+        dificultad2.setBorder(null);
+        dificultad3.setBorder(null);
     }
 
 
