@@ -14,6 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.TextEvent;
 import java.awt.event.TextListener;
+import javax.swing.JCheckBox;
 import vista.VIngreso;
 import trabajodi.Logica;
 
@@ -62,11 +63,7 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        System.out.println(e.getItemSelectable());
-        System.out.println(e.getStateChange());
-
-        System.out.println("sofsd" + e.getSource().equals(e));
-
+        System.out.println(((JCheckBox) e.getItem()).getName());
     }
 
 
