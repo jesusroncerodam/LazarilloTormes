@@ -141,9 +141,8 @@ public class VIngreso extends JPanel {
 
         imagenFlecha = metodo.cambiarTamano(imagenFlecha, 50, 50);
 
-        facil.setIcon(imagenFlecha);
-        medio.setIcon(imagenFlecha);
-
+//        facil.setIcon(imagenFlecha);
+//        medio.setIcon(imagenFlecha);
         botonFlechaAtrás = new JButton(imagenFlecha);
         botonFlechaSiguiente = new JButton();
     }
@@ -239,7 +238,13 @@ public class VIngreso extends JPanel {
 //        medio.setOpaque(false);
 //        dificil.setOpaque(false);
         botonFlechaAtrás.setOpaque(false);
+//        botonFlechaAtrás.setContentAreaFilled(false);
+//        botonFlechaAtrás.setBorder(null);
+
         botonFlechaSiguiente.setOpaque(false);
+//        botonFlechaSiguiente.setContentAreaFilled(false);
+//        botonFlechaSiguiente.setBorder(null);
+
 //        botonFlechaAtrás.setIcon(metodo.cambiarTamano(imagenFlecha, botonFlechaAtrás.getWidth(), botonFlechaAtrás.getHeight()));
 //        botonFlechaSiguiente.setIcon(metodo.cambiarTamano(imagenFlecha, botonFlechaSiguiente.getWidth(), botonFlechaSiguiente.getHeight()));
     }

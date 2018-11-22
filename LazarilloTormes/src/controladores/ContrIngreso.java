@@ -65,45 +65,41 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        int state = e.getStateChange();
-        if (state == ItemEvent.SELECTED) {
-            System.out.println(state);
+        if (((JCheckBox) e.getSource()).isSelected()) {
+            switch (((JCheckBox) e.getSource()).getName()) {
+                case "tema1":
+                    System.out.println("Has elegido el tema 1");
 
-        }
-if(((JCheckBox) e.getSource()).isSelected())
-        switch (((JCheckBox) e.getSource()).getName()) {
-            case "tema1":
-                System.out.println("Has elegido el tema 1");
+                    break;
 
-                break;
+                case "tema2":
+                    System.out.println("Tema 2");
 
-            case "tema2":
-                System.out.println("Tema 2");
+                    break;
 
-                break;
+                case "tema3":
+                    System.out.println("Tema 3");
 
-            case "tema3":
-                System.out.println("Tema 3");
+                    break;
 
-                break;
+                case "facil":
+                    System.out.println("dificultad facil");
 
-            case "facil":
-                System.out.println("dificultad facil");
+                    break;
 
-                break;
+                case "medio":
+                    System.out.println("dificultad media");
 
-            case "medio":
-                System.out.println("dificultad media");
+                    break;
 
-                break;
+                case "dificil":
+                    System.out.println("dificultad dificl");
 
-            case "dificil":
-                System.out.println("dificultad dificl");
+                    break;
 
-                break;
-
-            default:
-                System.err.println("\nOpcion no valida");
+                default:
+                    System.err.println("\nOpcion no valida");
+            }
         }
     }
 }
