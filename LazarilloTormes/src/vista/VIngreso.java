@@ -151,6 +151,7 @@ public class VIngreso extends JPanel {
          * COLOCACION LABEL NOMBRE
          */
         constrain.gridy = 0;
+        //Asigno al Y una sola vez para no repetir codigo
         constrain.insets = new Insets(25, 50, 25, 0);
 //        constrain.weighty = 10;
 //        constrain.fill = GridBagConstraints.CENTER;
@@ -166,7 +167,7 @@ public class VIngreso extends JPanel {
         /*
          * COLOCACION CAMPO NOMBRE
          */
-        constrain.gridwidth = 2;
+        constrain.gridwidth = 3;
 //        .NONE hace que el campo de texto no aparezca ocupando gran parte del cuadrante
         constrain.fill = GridBagConstraints.NONE;
         /*
@@ -196,6 +197,7 @@ public class VIngreso extends JPanel {
          * COLOCAR AVATAR
          */
         constrain.gridy = 1;
+
         constrain.gridx = 0;
         add(labelAvatar, constrain);
         constrain.gridx = 1;
