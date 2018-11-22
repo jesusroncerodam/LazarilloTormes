@@ -325,11 +325,13 @@ public class Vista {
     }
     
     public void avisoSalida(){
-        int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro?", "Alerta!", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
-        //JOptionPane.showConfirmDialog(Componente padre, "Mensaje", "titulo", "tipo de seleccion", "tipo de mensaje");
-       /* if (JOptionPane.showConfirmDialog(null, "¿Desea realmente salir del sistema?",
-                "Salir del sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-            System.exit(0);*/
+        if (JOptionPane.showConfirmDialog(ventana, "¿Desea realmente salir del sistema?",
+                "Salir del sistema", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION){
+            System.exit(0);
+        }else{
+            ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        }
+        
     }
     
     class EscuchaVentana implements WindowListener{
@@ -349,7 +351,6 @@ public class Vista {
         public void windowClosing(WindowEvent e) {
             if(partidaOn){
                  vista.avisoSalida();
-               //  System.e
             }else{
                 System.exit(0);
             }
