@@ -14,6 +14,8 @@ import vista.VMenu;
 import vista.VistaSplash;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -26,6 +28,7 @@ import javax.swing.JFrame;
 import vista.VPrincipal;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -36,7 +39,7 @@ public class Vista {
 
     private JFrame ventana;
     private Font fuente = new Font("Agency FB", Font.BOLD, 40);
-
+    private EscuchaVentana escuchaVentana;
     private VCarga vCarga;
     private VDialogoMod vDialogoMod;
     private VIngreso vIngreso;
@@ -85,7 +88,9 @@ public class Vista {
         ventana = new JFrame("Memorion");
         ventana.setMaximumSize(new Dimension(1924, 1047));
         //ventana.setSize(600, 600);
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        escuchaVentana=new EscuchaVentana(this);
+        ventana.addWindowListener(escuchaVentana);
+       // ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
 
@@ -124,6 +129,8 @@ public class Vista {
 
 
     public void iniciarJuego() {
+        escuchaVentana.setPartidaOn(true);
+
         //vJuego.generar();
         //cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
         ventana.setSize(1000, 1000);
@@ -300,6 +307,7 @@ public class Vista {
      * Elimina todas las vistas o paneles añadidos
      */
     public void eliminarVistas() {
+        escuchaVentana.setPartidaOn(false);
         ventana.remove(vPrincipal);
         vPrincipal.removeAll();
         ventana.remove(vDialogoMod);
@@ -315,5 +323,74 @@ public class Vista {
         //ventana.removeAll();
         //vJuego.eliminarElementos();
     }
+    
+    public void avisoSalida(){
+        int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro?", "Alerta!", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+        //JOptionPane.showConfirmDialog(Componente padre, "Mensaje", "titulo", "tipo de seleccion", "tipo de mensaje");
+       /* if (JOptionPane.showConfirmDialog(null, "¿Desea realmente salir del sistema?",
+                "Salir del sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+            System.exit(0);*/
+    }
+    
+    class EscuchaVentana implements WindowListener{
+        private boolean partidaOn=false;
+        Vista vista;
 
+        public EscuchaVentana(Vista vista) {
+            this.vista = vista;
+        }
+        
+        @Override
+        public void windowOpened(WindowEvent e) {
+            System.out.println("windowOpened --->"+e);
+        }
+
+         @Override
+        public void windowClosing(WindowEvent e) {
+            if(partidaOn){
+                 vista.avisoSalida();
+               //  System.e
+            }else{
+                System.exit(0);
+            }
+               
+        }
+
+        @Override
+        public void windowClosed(WindowEvent e) {
+            System.out.println("windowClosed --->"+e);
+        }
+
+        @Override
+        public void windowIconified(WindowEvent e) {
+            System.out.println("windowIconified --->"+e);
+        }
+
+        @Override
+        public void windowDeiconified(WindowEvent e) {
+            System.out.println("windowDeiconified --->"+e);
+        }
+
+        @Override
+        public void windowActivated(WindowEvent e) {
+            System.out.println("windowActivated --->"+e);
+        }
+
+        @Override
+        public void windowDeactivated(WindowEvent e) {
+            System.out.println("windowDeactivated --->"+e);
+        }
+
+        public void setPartidaOn(boolean partidaOn) {
+            this.partidaOn = partidaOn;
+        }
+ 
+    }
 }
+/*class wi
+/* @Override
+    public void windowClosing(WindowEvent e) {
+       if (JOptionPane.showConfirmDialog(vista, "¿Desea realmente salir del sistema?",
+                "Salir del sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+            System.exit(0);
+    }*/
