@@ -37,6 +37,7 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        System.out.println(e);
         switch (e.getComponent().getName()) {
             case "botonFlechaAtras":
 
