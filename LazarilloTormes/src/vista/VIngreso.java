@@ -40,11 +40,12 @@ public class VIngreso extends JPanel {
     private Metodos metodo = new Metodos();
 
     //SIN CONTROLADOR
-    private JLabel labelNombre, labelTema, labelDificultad;
+    private JLabel labelNombre, labelAvatar, labelTema, labelDificultad;
 
     //CON CONTROLADOR
     private TextField campoNombre;
 
+    private JCheckBox avatar1, avatar2, avatar3;
     private JCheckBox tema1, tema2, tema3;
     private JCheckBox facil, medio, dificil;
 
@@ -64,9 +65,7 @@ public class VIngreso extends JPanel {
 
 
     public void anadirescuchadores() {
-
-        botonFlechaAtrás.setName("botonFlechaAtras");
-        botonFlechaSiguiente.setName("botonFlechaSiguiente");
+        labelAvatar.setName("avatar");
 
         tema1.setName("tema1");
         tema2.setName("tema2");
@@ -78,7 +77,13 @@ public class VIngreso extends JPanel {
         medio.setName("medio");
         dificil.setName("dificil");
 
-//        Controladores
+        botonFlechaAtrás.setName("botonFlechaAtras");
+        botonFlechaSiguiente.setName("botonFlechaSiguiente");
+
+//        Escuchadores
+        labelAvatar.addMouseListener(controlador);
+        campoNombre.addTextListener(controlador);
+
         tema1.addItemListener(controlador);
         tema2.addItemListener(controlador);
         tema3.addItemListener(controlador);
@@ -87,8 +92,6 @@ public class VIngreso extends JPanel {
         medio.addItemListener(controlador);
         dificil.addItemListener(controlador);
 
-        labelDificultad.addMouseListener(controlador);
-        campoNombre.addTextListener(controlador);
         botonFlechaAtrás.addMouseListener(controlador);
         botonFlechaSiguiente.addMouseListener(controlador);
     }
@@ -118,50 +121,106 @@ public class VIngreso extends JPanel {
         constrain.weighty = 0.6; //para que se estiren las columnas
         constrain.weightx = 0.6; // El área de texto ocupa 1 filasa
         constrain.fill = GridBagConstraints.BOTH;
-
         crearElementos();
         anadirElementos();
         estiloElementos();
-
         anadirescuchadores();
-
         setVisible(true);
     }
 
 
     public void crearElementos() {
-
         labelNombre = new JLabel("Nombre: ");
+        labelNombre.setFont(bakerville(20));
         campoNombre = new TextField("Introduce tu nombre");
+        campoNombre.setFont(bakerville(20));
+        crearAvatar();
+        crearTema();
+        crearDificultad();
+        imagenFlecha = metodo.cambiarTamano(imagenFlecha, 50, 50);
+        botonFlechaAtrás = new JButton(imagenFlecha);
+        botonFlechaSiguiente = new JButton(imagenFlecha);
+    }
 
+
+    public void crearAvatar() {
+        labelAvatar = new JLabel("Avatar: ");
+        labelAvatar.setFont(bakerville(20));
+        ButtonGroup grupoAvatar = new ButtonGroup();
+        avatar1 = new JCheckBox("", true);
+        avatar2 = new JCheckBox("", false);
+        avatar3 = new JCheckBox("", false);
+        grupoAvatar.add(avatar1);
+        grupoAvatar.add(avatar2);
+        grupoAvatar.add(avatar3);
+        /*
+         * COLOCAR AVATAR
+         */
+        constrain.gridy = 1;
+        constrain.gridx = 0;
+        add(labelAvatar, constrain);
+        constrain.gridx = 1;
+        add(avatar1, constrain);
+        constrain.gridx = 2;
+        add(avatar2, constrain);
+        constrain.gridx = 3;
+        add(avatar3, constrain);
+    }
+
+
+    public void crearTema() {
         labelTema = new JLabel("Tema");
+        labelTema.setFont(bakerville(20));
         ButtonGroup grupoTema = new ButtonGroup();
-
         tema1 = new JCheckBox("", true);
         tema2 = new JCheckBox("", false);
         tema3 = new JCheckBox("", false);
-
         grupoTema.add(tema1);
         grupoTema.add(tema2);
         grupoTema.add(tema3);
 
-        labelDificultad = new JLabel("Dificultad");
-        ButtonGroup grupoDificultad = new ButtonGroup();
+        /*
+         * COLOCAR TEMA
+         */
+        constrain.gridy = 2;
+        //        le asigno la Y una sola vez 
+        constrain.gridx = 0;
+        add(labelTema, constrain);
+        constrain.gridx = 1;
+        add(tema1, constrain);
+        constrain.gridx = 2;
+        add(tema2, constrain);
+        constrain.gridx = 3;
+        add(tema3, constrain);
+    }
 
+
+    public void crearDificultad() {
+        labelDificultad = new JLabel("Dificultad");
+        labelDificultad.setFont(bakerville(20));
+        ButtonGroup grupoDificultad = new ButtonGroup();
         facil = new JCheckBox("", true);
         medio = new JCheckBox("", false);
         dificil = new JCheckBox("", false);
-
         grupoDificultad.add(facil);
         grupoDificultad.add(medio);
         grupoDificultad.add(dificil);
 
-        imagenFlecha = metodo.cambiarTamano(imagenFlecha, 50, 50);
-
 //        facil.setIcon(imagenFlecha);
 //        medio.setIcon(imagenFlecha);
-        botonFlechaAtrás = new JButton(imagenFlecha);
-        botonFlechaSiguiente = new JButton(imagenFlecha);
+        /*
+         * COLOCAR DIFICULTAD
+         */
+        constrain.gridy = 3;
+        //Le asigno la Y una unica vez
+        constrain.gridx = 0;
+        add(labelDificultad, constrain);
+        constrain.gridx = 1;
+        add(facil, constrain);
+        constrain.gridx = 2;
+        add(medio, constrain);
+        constrain.gridx = 3;
+        add(dificil, constrain);
     }
 
 
@@ -172,16 +231,15 @@ public class VIngreso extends JPanel {
      * loc.anchor = GridBagConstraints.LINE_START;
      */
     public void anadirElementos() {
+        constrain.gridy = 0;
 
         constrain.insets = new Insets(25, 50, 25, 0);
-        constrain.gridx = 0;
-        constrain.gridy = 0;
+
 //        constrain.weighty = 10;
 //        constrain.fill = GridBagConstraints.CENTER;
+        constrain.gridx = 0;
         add(labelNombre, constrain);
 
-        constrain.gridx = 1;
-        constrain.gridy = 0;
         constrain.gridwidth = 2;
         constrain.fill = GridBagConstraints.NONE;
 //        campoNombre.setPreferredSize(new Dimension(50, 50));
@@ -189,6 +247,7 @@ public class VIngreso extends JPanel {
         constrain.insets = new Insets(25, 0, 25, 0);
         constrain.anchor = GridBagConstraints.LINE_START;
 
+        constrain.gridx = 1;
         add(campoNombre, constrain);
 
         /*
@@ -199,52 +258,15 @@ public class VIngreso extends JPanel {
         constrain.fill = GridBagConstraints.BOTH;
         constrain.insets = new Insets(0, 0, 0, 0);
 
-        /*
-         * COLOCAR TEMA
-         */
-        constrain.gridx = 0;
-        constrain.gridy = 1;
-        add(labelTema, constrain);
-
-        constrain.gridx = 1;
-        constrain.gridy = 1;
-        add(tema1, constrain);
-
-        constrain.gridx = 2;
-        constrain.gridy = 1;
-        add(tema2, constrain);
-
-        constrain.gridx = 3;
-        constrain.gridy = 1;
-        add(tema3, constrain);
-
-        /*
-         * COLOCAR DIFICULTAD
-         */
-        constrain.gridx = 0;
-        constrain.gridy = 2;
-        add(labelDificultad, constrain);
-
-        constrain.gridx = 1;
-        constrain.gridy = 2;
-        add(facil, constrain);
-
-        constrain.gridx = 2;
-        constrain.gridy = 2;
-        add(medio, constrain);
-
-        constrain.gridx = 3;
-        constrain.gridy = 2;
-        add(dificil, constrain);
 
         /*
          * BOTONES
          */
+        constrain.gridy = 4;
+
         constrain.gridx = 0;
-        constrain.gridy = 3;
         add(botonFlechaAtrás, constrain);
         constrain.gridx = 3;
-        constrain.gridy = 3;
         add(botonFlechaSiguiente, constrain);
     }
 

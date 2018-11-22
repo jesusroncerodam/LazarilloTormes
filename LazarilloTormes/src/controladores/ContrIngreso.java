@@ -50,7 +50,7 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
 
                 break;
 
-            case "labelDificultad":
+            case "avatar":
                 System.out.print("ñaksjfñajsdfñlkajsfñlkasjkfdñljaskñfjklasdjfsd");
 
                 logica.cogerImagenSistema();
