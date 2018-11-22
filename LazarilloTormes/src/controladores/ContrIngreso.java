@@ -8,6 +8,8 @@ package controladores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.TextEvent;
@@ -20,7 +22,7 @@ import trabajodi.Logica;
  *
  * @author Guille
  */
-public class ContrIngreso extends MouseAdapter implements TextListener {
+public class ContrIngreso extends MouseAdapter implements TextListener, ItemListener, ActionListener {
 
     private VIngreso vistaIngreso;
     private Logica logica;
@@ -55,5 +57,22 @@ public class ContrIngreso extends MouseAdapter implements TextListener {
 
     @Override
     public void textValueChanged(TextEvent e) {
+    }
+
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        System.out.println(e.getItemSelectable());
+        System.out.println(e.getStateChange());
+
+        System.out.println("sofsd" + e.getSource().equals(e));
+
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.out.println(e.getActionCommand());
+
     }
 }

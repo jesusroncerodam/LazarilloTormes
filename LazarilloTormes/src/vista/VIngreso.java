@@ -10,6 +10,7 @@ import controladores.ContrIngreso;
 import java.awt.Checkbox;
 import java.awt.CheckboxGroup;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -43,9 +44,9 @@ public class VIngreso extends JPanel {
     //CON CONTROLADOR
     private TextField campoNombre;
 
-    private JPanel tema1, tema2, tema3;
-
+    private JCheckBox tema1, tema2, tema3;
     private JCheckBox facil, medio, dificil;
+
     private JButton botonFlechaAtrás, botonFlechaSiguiente;
 
     private GridBagConstraints constrain;
@@ -65,10 +66,20 @@ public class VIngreso extends JPanel {
         botonFlechaAtrás.setName("botonFlechaAtras");
         botonFlechaSiguiente.setName("botonFlechaSiguiente");
 
+        tema1.setName("tema1");
+
+        facil.setActionCommand("facil");
+        medio.setActionCommand("medio");
+        dificil.setActionCommand("dificil");
+
 //        Controladores
-        tema1.addMouseListener(controlador);
-        tema2.addMouseListener(controlador);
-        tema3.addMouseListener(controlador);
+        tema1.addItemListener(controlador);
+        tema2.addItemListener(controlador);
+        tema3.addItemListener(controlador);
+
+        facil.addActionListener(controlador);
+        medio.addActionListener(controlador);
+        dificil.addActionListener(controlador);
 
         campoNombre.addTextListener(controlador);
         botonFlechaAtrás.addMouseListener(controlador);
@@ -78,6 +89,8 @@ public class VIngreso extends JPanel {
 
     public void generar() {
         this.setOpaque(false);
+
+        setPreferredSize(new Dimension(2, 2));
 
         constrain = new GridBagConstraints();
         this.setLayout(new GridBagLayout());
@@ -103,12 +116,17 @@ public class VIngreso extends JPanel {
         campoNombre = new TextField("Introduce tu nombre");
 
         labelTema = new JLabel("Tema");
-        tema1 = new JPanel();
-        tema2 = new JPanel();
-        tema3 = new JPanel();
+        ButtonGroup grupoTema = new ButtonGroup();
+
+        tema1 = new JCheckBox("", true);
+        tema2 = new JCheckBox("", false);
+        tema3 = new JCheckBox("", false);
+
+        grupoTema.add(tema1);
+        grupoTema.add(tema2);
+        grupoTema.add(tema3);
 
         labelDificultad = new JLabel("Dificultad");
-
         ButtonGroup grupoDificultad = new ButtonGroup();
 
         facil = new JCheckBox("", true);
@@ -123,6 +141,7 @@ public class VIngreso extends JPanel {
 
         facil.setIcon(imagenFlecha);
         medio.setIcon(imagenFlecha);
+
         botonFlechaAtrás = new JButton(imagenFlecha);
         botonFlechaSiguiente = new JButton();
     }
