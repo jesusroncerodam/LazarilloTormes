@@ -144,7 +144,7 @@ public class VIngreso extends JPanel {
 //        facil.setIcon(imagenFlecha);
 //        medio.setIcon(imagenFlecha);
         botonFlechaAtrás = new JButton(imagenFlecha);
-        botonFlechaSiguiente = new JButton();
+        botonFlechaSiguiente = new JButton(imagenFlecha);
     }
 
 
@@ -156,6 +156,7 @@ public class VIngreso extends JPanel {
      */
     public void anadirElementos() {
 
+        constrain.insets = new Insets(25, 50, 25, 0);
         constrain.gridx = 0;
         constrain.gridy = 0;
 //        constrain.weighty = 10;
@@ -164,6 +165,7 @@ public class VIngreso extends JPanel {
 
         constrain.gridx = 1;
         constrain.gridy = 0;
+        constrain.gridwidth = 2;
         constrain.fill = GridBagConstraints.NONE;
 //        campoNombre.setPreferredSize(new Dimension(50, 50));
 //        campoNombre.setSize(50, 50);
@@ -172,12 +174,16 @@ public class VIngreso extends JPanel {
 
         add(campoNombre, constrain);
 
+        /*
+         * POR DEFECTO
+         */
+        constrain.gridwidth = 1;
         constrain.anchor = GridBagConstraints.CENTER;
         constrain.fill = GridBagConstraints.BOTH;
         constrain.insets = new Insets(0, 0, 0, 0);
 
         /*
-         * COLCOAR TEMA
+         * COLOCAR TEMA
          */
         constrain.gridx = 0;
         constrain.gridy = 1;
@@ -244,9 +250,6 @@ public class VIngreso extends JPanel {
         botonFlechaSiguiente.setOpaque(false);
 //        botonFlechaSiguiente.setContentAreaFilled(false);
 //        botonFlechaSiguiente.setBorder(null);
-
-//        botonFlechaAtrás.setIcon(metodo.cambiarTamano(imagenFlecha, botonFlechaAtrás.getWidth(), botonFlechaAtrás.getHeight()));
-//        botonFlechaSiguiente.setIcon(metodo.cambiarTamano(imagenFlecha, botonFlechaSiguiente.getWidth(), botonFlechaSiguiente.getHeight()));
     }
 
 
