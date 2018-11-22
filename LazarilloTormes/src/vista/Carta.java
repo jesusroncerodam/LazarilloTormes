@@ -135,7 +135,6 @@ public class Carta extends JLabel {
                     ancho++;
                 }
                 ponerImagen();
-                System.out.println(altura+" "+ancho);
             }
         });
         timer.start();
