@@ -8,6 +8,7 @@ package trabajodi;
 
 import controladores.ContrJuego;
 import controladores.ContrLista;
+import controladores.ContrMenu;
 import controladores.ControladorPrincipal;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
@@ -42,12 +43,14 @@ public class Logica {
     private ContrJuego juego;
     private ControladorPrincipal principal;
     private ContrLista lista;
+    private ContrMenu menu;
+    private PartidaGuardada partidaGuardada;
     private boolean primeraJuego, animacionC;
     private Timer timer;
     private int vuelta, cartaAct;
     private final String FICHERO = "estadisticas.txt", PRIMERA_LINEA = "Directorio de almacenamiento de estadistica\n";
     private String[] rutas;
-    PartidaGuardada partidaGuardada;
+    private String nombre;
 
 
     public Logica() {
@@ -156,16 +159,10 @@ public class Logica {
         }
     }
 
+    public void juegokey() {
 
-    /*
-     * CONTROLADOR JUEGO
-     * CONTROLADOR JUEGO
-     * CONTROLADOR JUEGO
-     * CONTROLADOR JUEGO
-     * CONTROLADOR JUEGO
-     * CONTROLADOR JUEGO
-     * CONTROLADOR JUEGO
-     */
+    }
+
     public String[] obtenerRutasImg() {
         //inicializamos temporal
         rutas = new String[8];
@@ -192,18 +189,22 @@ public class Logica {
      * CONTROLADOR MENU
      * CONTROLADOR MENU
      */
-    public void setPrimeraJuego() {
-        this.primeraJuego = true;
+    
+    public void asignarMenu(ContrMenu menu){
+        this.menu=menu;
     }
-
-
-    /*
-     *
-     *
-     *
-     *
-     *
-     */
+    public void gestionarMenu(String accion){
+        switch (accion) {
+            case "cargar":
+                cargarPartida();
+                break;
+            case "guardar":
+                guardarPartida();
+                break;
+            default:
+                System.out.println("Valor no esperado en logica gestionarMenu: "+accion);
+        }
+    }
     private void guardarDatos() {
         //nombre//ya lo tengo 
         //imagen //ya lo tengo
@@ -215,9 +216,6 @@ public class Logica {
     }
 
 
-    public void juegokey() {
-
-    }
 
 //    private void gestionFichero(Historial historialNuevo){
 //        ArrayList<Historial> historial;
@@ -346,10 +344,10 @@ public class Logica {
         } catch (IOException ex) {
             Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
         }
-        for (String linea1 : lineas) {
-            System.out.println(linea1);
-        }
-        System.out.println("==========================");
+//        for (String linea1 : lineas) {
+//            System.out.println(linea1);
+//        }
+//        System.out.println("==========================");
         return lineas.toArray(new String[lineas.size()]);
     }
 
