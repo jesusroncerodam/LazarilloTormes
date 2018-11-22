@@ -141,7 +141,9 @@ public class VJuego extends JPanel {
                 carta.add(new Carta(rutas[i]));
             }
         }else{
-            
+              for (int i = 0; i < rutas.length; i++) {
+                  carta.add(new Carta(rutas[i]));//cargamos las cartas, de la partida guardada
+              }
         }
 
         JPanel cartas = new JPanel();//creamos el panel donde estarán las cartas
@@ -179,7 +181,13 @@ public class VJuego extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 contadorSeg++;
-                int minutos = contadorSeg / 60;
+                ponerTiempo();
+                repaint();
+            }
+        });
+    }
+    private void ponerTiempo(){
+          int minutos = contadorSeg / 60;
                 int seg = contadorSeg % 60;
                 String tiempo = "00:" + contadorSeg;
                 if (minutos < 10) {
@@ -193,10 +201,6 @@ public class VJuego extends JPanel {
                     tiempo += seg;
                 }
                 lReloj.setText(tiempo);
-                System.out.println("hoildsjf" + tiempo);
-                repaint();
-            }
-        });
     }
 
 
@@ -509,6 +513,12 @@ public class VJuego extends JPanel {
 
         //generamos las cartas
         generarCartas(false);
+        desactivadas=1;//
+        
+        contMov=2;
+        lMovimientos.setText("Movimientos: " + contMov);
+        
+        contadorSeg=1;
     }
 
 }
