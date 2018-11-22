@@ -42,4 +42,7 @@ public class ContrMenu implements ActionListener {
     public void cambiarVista(String vistaCambio){
         vista.cambiarVista(vistaCambio);
     }
+    public boolean estadoSonido(){
+        return vista.estadoSonido();
+    }
 }

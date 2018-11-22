@@ -334,7 +334,10 @@ public class Vista {
         }
          @Override
         public void windowClosing(WindowEvent e) {
-            if(partidaOn){
+             System.out.println("aaa");
+                    
+            if(partidaOn || (e.getID()==1 && partidaOn)){
+                System.out.println("eeee");
                  vista.avisoSalida();
             }else{
                 System.exit(0);

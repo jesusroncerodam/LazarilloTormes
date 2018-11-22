@@ -35,7 +35,7 @@ public class VMenu extends JMenuBar {
             irA,
             mover;
     private JMenuItem pausaPlay, guardarPartida, cargarPartida;
-
+    private JRadioButtonMenuItem sonido;
     //cargarPartida;
     private JMenuItem atras, salir;//temporalk aqui , a lo mejor en el futuro se pueden eleminar de aqui
 
@@ -82,21 +82,26 @@ public class VMenu extends JMenuBar {
         partida = new JMenu("Game");
 
         submenu = new JMenu("New Game");
-        JMenuItem partidaRapida = new JMenuItem("Quick game");
-        submenu.add(partidaRapida);
+            JMenuItem partidaRapida = new JMenuItem("Quick game");
+            partidaRapida.setActionCommand("partidarapida");
+            partidaRapida.addActionListener(controlador);
+            submenu.add(partidaRapida);
 
-        JMenuItem partidaPersonalizada = new JMenuItem("Custom game");
-        submenu.add(partidaPersonalizada);
+            JMenuItem partidaPersonalizada = new JMenuItem("Custom game");
+            partidaPersonalizada.setActionCommand("partidapersonalizada");
+            partidaPersonalizada.addActionListener(controlador);
+            submenu.add(partidaPersonalizada);
         partida.add(submenu);
 
         pausaPlay = new JMenuItem("Pause/Play", cambiarTamano(new ImageIcon("src/img/playPause.png"), 20, 20));//poner imahgen en pequeño 20px
+        pausaPlay.setActionCommand("pausaplay");
+        pausaPlay.addActionListener(controlador);
         partida.add(pausaPlay);
 
         partida.addSeparator();
         partida.addSeparator();
 
         guardarPartida = new JMenuItem("Save game");
-        guardarPartida.setEnabled(false);
         guardarPartida.addActionListener(controlador);
         guardarPartida.setActionCommand("guardar");
         partida.add(guardarPartida);
@@ -110,14 +115,39 @@ public class VMenu extends JMenuBar {
         this.add(partida);
     }
 
+   
 
-    private void ajustes() {
+    private void ajustes(){
         ajustes = new JMenu("Settings");
-        JRadioButtonMenuItem sonido = new JRadioButtonMenuItem("Sound", true);
+        sonido = new JRadioButtonMenuItem("Sound", true);
+        sonido.setActionCommand("sonido");
+        sonido.addActionListener(controlador);
         ajustes.add(sonido);
         this.add(ajustes);
     }
 
+    public void modoJuego(){
+        atras.setEnabled(false);
+        salir.setVisible(true);
+        
+        submenu.setEnabled(false);
+        pausaPlay.setEnabled(true);
+        guardarPartida.setEnabled(true);
+        cargarPartida.setEnabled(false);
+        
+    }
+    public void normal(){
+        atras.setEnabled(true);
+        salir.setVisible(true);
+        
+        submenu.setEnabled(true);
+        pausaPlay.setEnabled(false);
+        guardarPartida.setEnabled(false);
+        cargarPartida.setEnabled(true);
+    } 
+    public boolean estadoSonido(){
+        return sonido.isSelected();
+    }
 
     public void cambiarVista(String vistaCambia){
         System.out.println(vistaCambia);
@@ -137,24 +167,4 @@ public class VMenu extends JMenuBar {
         icono = new ImageIcon(reescalada);
         return icono;
     }
-    public void modoJuego(){
-        atras.setEnabled(false);
-        salir.setVisible(true);
-        
-        submenu.setEnabled(false);
-        pausaPlay.setEnabled(true);
-        guardarPartida.setEnabled(true);
-        cargarPartida.setEnabled(false);
-        
-    }
-    public void normal(){
-        atras.setEnabled(true);
-        salir.setVisible(true);
-        
-        submenu.setEnabled(true);
-        pausaPlay.setEnabled(false);
-        guardarPartida.setEnabled(false);
-        cargarPartida.setEnabled(true);
-    }
-
 }
