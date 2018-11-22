@@ -15,13 +15,13 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import trabajodi.Logica;
 
@@ -41,6 +41,7 @@ public class VJuego extends JPanel {
     private JLabel lMovimientos, lReloj;
     private JButton bPausaPlay, bGuardar, bContinuar;
     private GridBagConstraints constrain;
+    private final String RUTA_PLAYPAUSE="/img/playPause.png",RUTA_RELOJ="/img/relojWh.png",RUTA_FLECHA="/img/flechaRect.png",RUTA_GUARDAR="/img/save.png",RUTA_FONDO="/img/fondo2.gif"; 
 
 
     /**
@@ -57,9 +58,9 @@ public class VJuego extends JPanel {
     /**
      * Encargado de generar un juego nuevo, inicialiA todas las variables y
      * controladores
-     * @param rutas Array de String, direccion de todas las imagenes de cartas
+     * 
      */
-    public void generar(boolean defecto) {
+    public void generar() {
         controlador.asignarControlador();//asignamos el controlador a la logica
         desactivadas = 0;
 
@@ -69,10 +70,9 @@ public class VJuego extends JPanel {
         this.addKeyListener(controlador);
 
         constrain = new GridBagConstraints();
-        constrain.weighty = 0.5; //para que se estiren las columnas
-        // constrain.weightx=1;
-        //  constrain.fill = GridBagConstraints.BOTH;
+        constrain.weighty = 0.5;
         constrain.anchor = GridBagConstraints.CENTER;
+        
         this.setLayout(new GridBagLayout());
 
         //asignamos los labels de tiempo y movimientos
@@ -101,7 +101,7 @@ public class VJuego extends JPanel {
         contMov = 0;
         lMovimientos = new JLabel("Movimientos: " + contMov);
         lMovimientos.setFont(fuente);
-        //lMovimientos.setForeground(new Color(74, 110, 242));///////////////////////////////////////////////////////////////////////////////////////////////////////////CAMBIAR COLOR, PONER VARIABLE
+        lMovimientos.setForeground(new Color(74, 110, 242));///////////////////////////////////////////////////////////////////////////////////////////////////////////CAMBIAR COLOR, PONER VARIABLE
         constrain.gridx = 0;
         constrain.gridy = 0;
         constrain.fill = GridBagConstraints.BOTH;
@@ -109,14 +109,14 @@ public class VJuego extends JPanel {
 
         //contador segundos
         contadorSeg = 0;
-        ImageIcon imgReloj = new ImageIcon("src/img/reloj.png");
+        ImageIcon imgReloj = new ImageIcon(this.getClass().getResource(RUTA_RELOJ));
         lReloj = new JLabel("00:" + contadorSeg, imgReloj, JLabel.CENTER);
         System.out.println(imgReloj.getIconWidth());
-        /////////////////////////
         
-//        bNuevaPartida.setHorizontalTextPosition(SwingConstants.CENTER);
-//        bNuevaPartida.setVerticalTextPosition(SwingConstants.CENTER);
-        lReloj.setIconTextGap((int) (-imgReloj.getIconWidth() / 1.6));//si no hacemos esto, el texto saldría a la derecha de la imagen, no encima
+        
+        lReloj.setHorizontalTextPosition(SwingConstants.CENTER);
+        lReloj.setVerticalTextPosition(SwingConstants.CENTER);
+       // lReloj.setIconTextGap((int) (-imgReloj.getIconWidth() / 1.6));//si no hacemos esto, el texto saldría a la derecha de la imagen, no encima
         lReloj.setFont(fuente);
         lReloj.setForeground(new Color(74, 110, 242));///////////////////////////////////////////////////////////////////////////////////////////////////////////CAMBIAR COLOR, PONER VARIABLE
         constrain.gridx = 2;
@@ -208,7 +208,7 @@ public class VJuego extends JPanel {
      * Encargado de generar y asignar el JButon de PlayYpause
      */
     private void playPause() {
-        bPausaPlay = new JButton(new ImageIcon("src/img/playPause.png"));
+        bPausaPlay = new JButton(new ImageIcon(this.getClass().getResource(RUTA_PLAYPAUSE)));
         bPausaPlay.setContentAreaFilled(false);
         bPausaPlay.setBorder(null);
         constrain.gridx = 0;
@@ -227,7 +227,7 @@ public class VJuego extends JPanel {
      * Encargado de generar y asignar el JButon de continuar
      */
     private void continuar() {
-        bContinuar = new JButton(new ImageIcon("src/img/flechaRect.png"));
+        bContinuar = new JButton(new ImageIcon(this.getClass().getResource(RUTA_FLECHA)));
         bContinuar.setContentAreaFilled(false);
         bContinuar.setBorder(null);
         constrain.gridx = 2;
@@ -246,7 +246,7 @@ public class VJuego extends JPanel {
      * Encargado de generar y asignar el JButon de guardar
      */
     private void guardar() {
-        bGuardar = new JButton(new ImageIcon("src/img/save.png"));
+        bGuardar = new JButton(new ImageIcon(this.getClass().getResource(RUTA_GUARDAR)));
         bGuardar.setContentAreaFilled(false);
         bGuardar.setBorder(null);
         bGuardar.setActionCommand("guardar");
@@ -268,8 +268,7 @@ public class VJuego extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        ImageIcon img = new ImageIcon("src/img/fondo2.gif");
-        g.drawImage(img.getImage(), 0, 0, getWidth(), getHeight() + 5, this);
+        g.drawImage((new ImageIcon(this.getClass().getResource(RUTA_FONDO))).getImage(), 0, 0, getWidth(), getHeight() + 5, this);
     }
 
 
@@ -445,15 +444,6 @@ public class VJuego extends JPanel {
     }
 
 
-    /*
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     */
 
 
     public void cargarBloquear(ArrayList<Boolean> bloqueadas) {
@@ -479,14 +469,6 @@ public class VJuego extends JPanel {
     }
 
 
-    //guardar partida
-    //datos:
-    /*
-     * desactivadas
-     * contMov
-     * contadorSeg
-     *
-     */
     public void generarGuardada() {
         controlador.asignarControlador();//se tiene que volver a generar
         //desactivadas = 0;
@@ -530,16 +512,3 @@ public class VJuego extends JPanel {
 
 }
 
-/*
- * private void resize(){
- * this.addComponentListener(new java.awt.event.ComponentAdapter() {
- * public void componentResized(java.awt.event.ComponentEvent evt) {
- * System.out.println(evt.getComponent());
- * for (Carta carta1 : carta) {
- * System.out.println(getWidth()+"---"+getHeight());
- * carta1.actualizarTamaño();
- * }
- * }
- * });
- * }
- */

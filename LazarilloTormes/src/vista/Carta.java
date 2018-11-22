@@ -9,7 +9,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.Serializable;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -41,10 +40,10 @@ public class Carta extends JLabel {
      */
     public Carta(String url) {
         this.setBorder(borde);//ponemos un borde
-        imgVuelta = new ImageIcon(VUELTA_IMAGEN);
+        imgVuelta = new ImageIcon(this.getClass().getResource(VUELTA_IMAGEN));
         this.setSize(imgVuelta.getIconWidth(), imgVuelta.getIconHeight());//la imagen de "imgVuelta" da las dimensiones
         this.setIcon(imgVuelta);//asignamos como icono la imagen de imgVuelta
-        imgCarta = cambiarTamano(new ImageIcon(url), imgVuelta.getIconWidth(), imgVuelta.getIconHeight());//asignamos un tamaño a la carta, para que esta se vea con las mismas 
+        imgCarta = cambiarTamano(new ImageIcon(this.getClass().getResource(url)), imgVuelta.getIconWidth(), imgVuelta.getIconHeight());//asignamos un tamaño a la carta, para que esta se vea con las mismas 
 
         //asignamios datos
         this.url = url;
