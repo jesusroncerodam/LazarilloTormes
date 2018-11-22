@@ -66,6 +66,7 @@ public class VIngreso extends JPanel {
         tema2.addMouseListener(controlador);
         tema3.addMouseListener(controlador);
 
+        campoNombre.addTextListener(controlador);
         botonFlechaAtrás.addMouseListener(controlador);
         botonFlechaSiguiente.addMouseListener(controlador);
     }
