@@ -513,7 +513,7 @@ public class VJuego extends JPanel {
 
         //generamos las cartas
         generarCartas(false);
-        desactivadas=1;//
+        desactivadas=controlador.obtenerGuardadDesact();
         
         contMov=2;
         lMovimientos.setText("Movimientos: " + contMov);
