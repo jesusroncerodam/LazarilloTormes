@@ -187,20 +187,20 @@ public class VJuego extends JPanel {
         });
     }
     private void ponerTiempo(){
-          int minutos = contadorSeg / 60;
-                int seg = contadorSeg % 60;
-                String tiempo = "00:" + contadorSeg;
-                if (minutos < 10) {
-                    tiempo = "0" + minutos + ":";
-                } else {
-                    tiempo = minutos + ":";
-                }
-                if (seg < 10) {
-                    tiempo += "0" + seg;
-                } else {
-                    tiempo += seg;
-                }
-                lReloj.setText(tiempo);
+        int minutos = contadorSeg / 60;
+        int seg = contadorSeg % 60;
+        String tiempo = "00:" + contadorSeg;
+        if (minutos < 10) {
+            tiempo = "0" + minutos + ":";
+        } else {
+            tiempo = minutos + ":";
+        }
+        if (seg < 10) {
+            tiempo += "0" + seg;
+        } else {
+            tiempo += seg;
+        }
+        lReloj.setText(tiempo);
     }
 
 
@@ -519,6 +519,8 @@ public class VJuego extends JPanel {
         lMovimientos.setText("Movimientos: " + contMov);
         
         contadorSeg=1;
+        ponerTiempo();
+        
     }
 
 }

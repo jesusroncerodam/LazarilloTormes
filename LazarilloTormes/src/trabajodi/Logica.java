@@ -47,6 +47,7 @@ public class Logica {
     private int vuelta, cartaAct;
     private final String FICHERO = "estadisticas.txt", PRIMERA_LINEA = "Directorio de almacenamiento de estadistica\n";
     private String[] rutas;
+    PartidaGuardada partidaGuardada;
 
 
     public Logica() {
@@ -479,14 +480,14 @@ public class Logica {
 
 
     public void cargarPartida() {
-        PartidaGuardada partida = null;
+        partidaGuardada = null;
         try {
             //Creamos un flujo de entrada desde el disco
             FileInputStream fileIn = new FileInputStream("PartidaGuardada.obj");
             //Vinculamos la referencia al disco con nuestro flujo de entrada
             ObjectInputStream entrada = new ObjectInputStream(fileIn);
             //Cargamos el objeto y hacemos el casting del tipo que es
-            partida = (PartidaGuardada) entrada.readObject();
+            partidaGuardada = (PartidaGuardada) entrada.readObject();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -494,9 +495,43 @@ public class Logica {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
         }
-        rutas = partida.getRutaGuardada().toArray(new String[partida.getRutaGuardada().size()]);
+        rutas = partidaGuardada.getRutaGuardada().toArray(new String[partidaGuardada.getRutaGuardada().size()]);
         //generamos la partida
     }
+    public int obtenerGuardadDesact(){
+        int desactivadas=0;
+        ArrayList<Boolean> cartaBloqueada=partidaGuardada.getCartaBloqueada();
+        for(int i=0;i<cartaBloqueada.size();i++){
+            if(cartaBloqueada.get(i)){//si bloquear == true esta desactivada
+                desactivadas++;
+            }
+        }
+        return desactivadas;
+    }
+    public void bloquearCartas(){
+        ArrayList<Boolean> cartaBloqueada=partidaGuardada.getCartaBloqueada();
+        for(int i=0;i<cartaBloqueada.size();i++){
+            if(cartaBloqueada.get(i)){//si bloquear == true esta desactivada
+               juego.girar(i);
+            }
+        }
+    }
+    public int obtenerMovimientos(){
+        if( partidaGuardada.getVuelta()==-1)//si no hay ninguna carta dada la vuelta retornamos esto
+            return partidaGuardada.getMovimientos();
+        else{
+            juego.girar(partidaGuardada.getVuelta());
+            return partidaGuardada.getMovimientos()-1;
+        }
+    }
+    public int obtenerTiempo(){
+        return partidaGuardada.getSegundos();
+    }
+//    public int obtenerVuelta(){
+//        return partidaGuardada.getVuelta();
+//    }
+    
+    
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //controlador Estadisticas(vLista)
