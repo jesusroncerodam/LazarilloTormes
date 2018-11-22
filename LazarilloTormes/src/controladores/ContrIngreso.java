@@ -65,7 +65,7 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        switch (((JCheckBox) e.getItemSelectable()).getName()) {
+        switch (((JCheckBox) e.getSource()).getName()) {
             case "tema1":
                 System.out.println("Has elegido el tema 1");
 
