@@ -34,12 +34,14 @@ public class ContrIngreso extends MouseAdapter {
     public void mouseClicked(MouseEvent e) {
         switch (e.getComponent().getName()) {
             case "botonFlechaAtras":
-                
+
                 vistaIngreso.cambiarDeVista("principal");
-                
+
                 break;
 
-            case "botonSiguiente":
+            case "botonFlechaSiguiente":
+
+                vistaIngreso.cambiarDeVista("juego");
 
                 break;
 
@@ -47,5 +49,4 @@ public class ContrIngreso extends MouseAdapter {
                 System.err.println("\nOpcion no valida");
         }
     }
-
 }
