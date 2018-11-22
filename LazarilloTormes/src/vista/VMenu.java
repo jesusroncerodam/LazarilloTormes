@@ -60,19 +60,20 @@ public class VMenu extends JMenuBar {
 
     private void generarMenuArchivo() {
         archivo = new JMenu("Archive");
-
+        
         atras = new JMenuItem("Go back", new ImageIcon("src/img/back.png"));
         atras.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
-
+        atras.setActionCommand("atras");
+        atras.addActionListener(controlador);
         archivo.add(atras);
 
-        archivo.addSeparator();//(separador);
+        archivo.addSeparator();
         archivo.addSeparator();
 
         salir = new JMenuItem("Exit", new ImageIcon("src/img/equis.png"));
-
+        salir.setActionCommand("salir");
+        salir.addActionListener(controlador);
         archivo.add(salir);
-
         this.add(archivo);
     }
 
