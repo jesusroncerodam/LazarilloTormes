@@ -8,6 +8,7 @@ package controladores;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
@@ -23,7 +24,7 @@ import trabajodi.Logica;
  *
  * @author Guille
  */
-public class ContrJuego extends WindowAdapter implements MouseListener, KeyListener{
+public class ContrJuego extends MouseAdapter implements  KeyListener{
 
     private VJuego vista;
     private Logica logica;
@@ -53,26 +54,6 @@ public class ContrJuego extends WindowAdapter implements MouseListener, KeyListe
     public void mouseClicked(MouseEvent e) {
         //vista.eliminarElementos();
         logica.juegoClick(e.getComponent());
-    }
-
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
-
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
-
-
-    @Override
-    public void mouseExited(MouseEvent e) {
     }
 
 
@@ -193,32 +174,70 @@ public class ContrJuego extends WindowAdapter implements MouseListener, KeyListe
         return vista.getContMov();
     }
 
-    
+    /**
+     * Comuncicacion vista a logica, obtiene las rutas de las imagenes a cargar
+     * en el juego
+     * @return Array de String, con las rutas
+     */
     public String[] obtenerRutas() {
         return logica.obtenerRutasImg();
     }    
     
+    /**
+     * Retona las rutas de las cartas, en orden mostradas, para poderlas 
+     * almaenarlas en guardar partida.
+     * @return ArrayList de string
+     */
     public ArrayList<String> guardarUrlCarta() {
         return vista.guardarUrlCarta();
     }
+    /**
+     * Retona las cartas bloqueadas,es decir las cartas que igualaron,
+     * en orden mostrado, para poderlas almacenarlas 
+     * en guardar partida.
+     * @return 
+     */
     public ArrayList<Boolean> guardarBloquearCarta() {
         return vista.guardarBloquearCarta();
     }
-    //regoger datos
+    /**
+     * Metodo llama a la logica para que bloquee las cartas que fueron guardas,
+     * parte de cargar partida
+     */
     public void bloquearCartas(){
         logica.bloquearCartas();
     }
+    /**
+     * Metodo encargado de retornar el tiempo, en segundos parte de cargar partida
+     * @return int, segundos
+     */
     public int obtenerTiempo(){
         return logica.obtenerTiempo();
     }
+    /**
+     * Metodo encargado de retornar los movimientos ejecutados en la partida guardada,
+     * en el caso de que alguna carta estuviese volteada pero sin pareja, se cargaria esta
+     * @return int, cantidad de movimientos
+     */
     public int obtenerMovimientos(){
         return logica.obtenerMovimientos();
     }
+    /**
+     * Metodo encargado de ajustar las cartdas desactivasas , parte de cargar partida
+     * @return 
+     */
     public int obtenerGuardadDesact(){
         return logica.obtenerGuardadDesact();
     }
+    /**
+     * Metodo encargado de bloquear las cartas que se guardaron
+     * @param indice indice de la carta a bloquear
+     */
     public void bloquearUna(int indice){
         vista.bloquearUna(indice);
+    }
+    public void cambiarVista(String vistaACambiar){
+        vista.cambiarVista(vistaACambiar);
     }
     
 }

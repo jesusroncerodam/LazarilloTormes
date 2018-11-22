@@ -133,23 +133,17 @@ public class Vista {
 
 
     public void principal() {
-        // vPrincipal.generar();
-        //cargarSplash("/img/logotrini.png", "/img/carga.jpg", 5);
-
         ventana.setSize(1000, 800);
         ventana.add(vPrincipal);
         ventana.setVisible(true);
     }
 
 
-    public void estadisticas() {
-        // vLista.generar();
-        //cargarSplash("/img/logotrini.png", "/img/carga.jpg", 2);
-        System.out.println("paso");
+    public void iniciarLista() {
         ventana.setSize(600, 600);
         ventana.add(vLista);
+        ventana.repaint();
         ventana.setVisible(true);
-        // ventana.repaint();
     }
 
 
@@ -215,7 +209,7 @@ public class Vista {
                         break;
 
                     case "lista":
-                        estadisticas();
+                        iniciarLista();
                         break;
 
                     case "aboutus":

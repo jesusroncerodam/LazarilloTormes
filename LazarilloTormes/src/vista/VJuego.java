@@ -508,8 +508,11 @@ public class VJuego extends JPanel {
         ponerTiempo();
     }
     public void bloquearUna(int indice){
-        System.out.println(indice);
         carta.get(indice).bloquear();
+    }
+    
+    public void cambiarVista(String vistaACambiar){
+        vista.cambiarVista(vistaACambiar);
     }
 
 }
