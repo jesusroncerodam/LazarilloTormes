@@ -92,25 +92,8 @@ public class Logica {
         }
 
         if (componente instanceof JButton) {//si es un boton
-            String accion = ((JButton) componente).getActionCommand();//guardamos la accion del boton
-            switch (accion) {
-                case "playPause":
-                    juego.gestionarContador(accion);
-                    break;
-
-                case "continuar"://guardar los datos
-                    guardarDatos();//guardamos los datos y los mostramos
-                    juego.cambiarVista("lista");
-                    break;
-
-                case "guardar":
-                    System.out.println("en creaccion");
-                    break;
-
-                default:
-                    System.out.println("error juegoClick opcion no esperada: " + accion);
-            }
-
+            accionBotonJuego((JButton) componente);
+            
         } else if (componente instanceof JLabel) {//si es un JLabel, 
             if (!animacionC) {//mientras que no tengamos ninguna animacion en progreso
                 JLabel jlComponente = (JLabel) componente;
@@ -157,8 +140,28 @@ public class Logica {
             }
         }
     }
+    private void accionBotonJuego(JButton boton){
+        if(boton.isEnabled()){
+            switch (boton.getActionCommand()) {
+                case "playPause":
+                    juego.gestionarContador(boton.getActionCommand());
+                    break;
 
+                case "continuar"://guardar los datos
+                    guardarDatos();//guardamos los datos y los mostramos
+                    juego.cambiarVista("lista");
+                    break;
 
+                case "guardar":
+                    System.out.println("en creaccion");
+                    break;
+
+                default:
+                    System.out.println("error juegoClick opcion no esperada: " + boton.getActionCommand());
+            }
+        }
+    }
+    
     public void juegokey(char pulso) {
         switch (pulso) {
             case 'q':
