@@ -21,6 +21,7 @@ import javax.swing.JFrame;
 import vista.VPrincipal;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 
 
@@ -105,6 +106,7 @@ public class Vista {
         ventana.add(splash);
         ventana.setVisible(true);
         splash.empezarAnimaciones();
+        vMenu.setVisible(false);
     }
 
 
@@ -119,14 +121,13 @@ public class Vista {
         ventana.remove(splash);//lo quitamos de la vusta para que no de errores
         splash = null;//eliminamos el objeto, ya no lo necesitamos mas 
         ventana.repaint();
+        vMenu.setVisible(true);
     }
 
 
-    public void iniciarJuego() {
-        escuchaVentana.setPartidaOn(true);
-
-        //vJuego.generar();
-        //cargarSplash("/img/logotrini.png", "/img/carga.jpg", 0);
+    public void iniciarJuego(){
+        escuchaVentana.setPartidaOn(true);//cambiamos el escuchador para que muestre mensaje antews de salir
+        vMenu.modoJuego();
         ventana.setSize(1000, 1000);
         ventana.add(vJuego);
         ventana.repaint();

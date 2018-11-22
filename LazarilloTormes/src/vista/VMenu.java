@@ -137,13 +137,14 @@ public class VMenu extends JMenuBar {
         return icono;
     }
     public void modoJuego(){
-        
         atras.setEnabled(false);
+        salir.setVisible(true);
+        
         submenu.setEnabled(false);
+        pausaPlay.setEnabled(true);
+        guardarPartida.setEnabled(true);
         cargarPartida.setEnabled(false);
         
-        guardarPartida.setEnabled(false);
-        salir.setEnabled(true);
     }
 
 }
