@@ -192,9 +192,10 @@ public class VIngreso extends JPanel {
         constrainPorDefecto();
     }
 
-    private ImageIcon iconoTema1 = new ImageIcon(this.getClass().getResource("/img/avatar1.jpg"));
-    private ImageIcon iconoTema2 = new ImageIcon(this.getClass().getResource("/img/avatar2.jpg"));
-    private ImageIcon iconoTema3 = new ImageIcon(this.getClass().getResource("/img/avatar3.jpg"));
+    private ImageIcon iconoAvatar1 = new ImageIcon(this.getClass().getResource("/img/avatar1.jpg"));
+    private ImageIcon iconoAvatar2 = new ImageIcon(this.getClass().getResource("/img/avatar2.jpg"));
+    private ImageIcon iconoAvatar3 = new ImageIcon(this.getClass().getResource("/img/avatar3.jpg"));
+    private ImageIcon iconoAvatar4 = new ImageIcon(this.getClass().getResource("/img/avatar4.jpg"));
 
 
     public void crearAvatar() {
@@ -225,7 +226,19 @@ public class VIngreso extends JPanel {
         add(avatar2, constrain);
         constrain.gridx = 3;
         add(avatar3, constrain);
+
+        iconoAvatar1 = cambiarTamano(iconoAvatar1, ANCHITO, ALTITO);
+        iconoAvatar2 = cambiarTamano(iconoAvatar2, ANCHITO, ALTITO);
+        iconoAvatar3 = cambiarTamano(iconoAvatar3, ANCHITO, ALTITO);
+
+        avatar1.setIcon(iconoAvatar1);
+        avatar2.setIcon(iconoAvatar2);
+        avatar3.setIcon(iconoAvatar3);
+        avatar1.setBorder(BorderFactory.createRaisedBevelBorder());
+        avatar2.setBorder(null);
+        avatar3.setBorder(null);
     }
+    private final int ALTITO = 110, ANCHITO = 85;
     private ImageIcon iconoTema1 = new ImageIcon(this.getClass().getResource("/img/tema1.jpg"));
     private ImageIcon iconoTema2 = new ImageIcon(this.getClass().getResource("/img/tema2.jpg"));
     private ImageIcon iconoTema3 = new ImageIcon(this.getClass().getResource("/img/tema3.jpg"));
@@ -259,8 +272,6 @@ public class VIngreso extends JPanel {
         constrain.gridx = 3;
         add(tema3, constrain);
 
-        final int ALTITO = 110, ANCHITO = 85;
-
         iconoTema1 = cambiarTamano(iconoTema1, ANCHITO, ALTITO);
         iconoTema2 = cambiarTamano(iconoTema2, ANCHITO, ALTITO);
         iconoTema3 = cambiarTamano(iconoTema3, ANCHITO, ALTITO);
@@ -274,27 +285,40 @@ public class VIngreso extends JPanel {
     }
 
 
-    public void asignarBordeTema(int tema) {
+    public void asignarBordeAvatar(int avatar) {
+        avatar1.setBorder(null);
+        avatar2.setBorder(null);
+        avatar3.setBorder(null);
+        switch (avatar) {
+            case 1:
+                avatar1.setBorder(BorderFactory.createRaisedBevelBorder());
+                break;
+            case 2:
+                avatar2.setBorder(BorderFactory.createRaisedBevelBorder());
+                break;
+            case 3:
+                avatar3.setBorder(BorderFactory.createRaisedBevelBorder());
+                break;
+            default:
+        }
+    }
 
+
+    public void asignarBordeTema(int tema) {
         tema1.setBorder(null);
         tema2.setBorder(null);
         tema3.setBorder(null);
-
         switch (tema) {
             case 1:
                 tema1.setBorder(BorderFactory.createRaisedBevelBorder());
                 break;
-
             case 2:
                 tema2.setBorder(BorderFactory.createRaisedBevelBorder());
                 break;
-
             case 3:
                 tema3.setBorder(BorderFactory.createRaisedBevelBorder());
                 break;
-
             default:
-
         }
     }
 
@@ -357,6 +381,9 @@ public class VIngreso extends JPanel {
         avatar1.setOpaque(false);
         avatar2.setOpaque(false);
         avatar3.setOpaque(false);
+        avatar1.setBorderPainted(true);
+        avatar2.setBorderPainted(true);
+        avatar3.setBorderPainted(true);
 
         tema1.setOpaque(false);
         tema2.setOpaque(false);

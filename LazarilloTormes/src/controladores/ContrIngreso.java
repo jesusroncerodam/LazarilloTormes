@@ -74,10 +74,10 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
         if (((JCheckBox) e.getSource()).isSelected()) {
             String variableTexto = ((JCheckBox) e.getSource()).getName();
             switch (variableTexto) {
-
                 case "avatar1":
                 case "avatar2":
                 case "avatar3":
+                    vistaIngreso.asignarBordeAvatar(Integer.parseInt(variableTexto.substring(6)));
                     break;
 
                 case "tema1":
