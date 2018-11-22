@@ -133,16 +133,25 @@ public class Logica {
                     animacionC = true;//ponermos que existe una animacion en progreso
                     timer = new java.util.Timer();//cremos el timer para crear una animacion
                     TimerTask tarea = new TimerTask() {//creamos un timerTask, que se ejecutara en x segundos
+                        int i=0;
                         @Override
                         public void run() {
+                            if(i>0){//cuando termine dejamos hacer otra accion, para que no se vean 3 imagenes
+                                animacionC = false;//marcamos  que el timer termino
+                                timer.cancel();
+                                timer=null;
+                            }else{
+                            i++;
                             juego.girar(cartaAct);//girampos la carta actual 
+                            
                             juego.girar(vuelta);//girampos la que esta visble
-                            timer = null;//eliminamos el timer
-                            animacionC = false;//marcamos  que el timer termino
+                         //   timer = null;//eliminamos el timer
+                            }
+                            
                         }
                     };
                     //asignamos que se mueva en estos seguntos para que no cambie de golpe , para que la animacion sea mas suave
-                    timer.schedule(tarea, 1000);// decimos al timer que ejecute el TimeTask en los seguntos
+                    timer.schedule(tarea, 1000, 1000);// decimos al timer que ejecute el TimeTask en los seguntos
                 }
             }
         }

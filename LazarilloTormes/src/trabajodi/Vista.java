@@ -14,6 +14,7 @@ import vista.VMenu;
 import vista.VistaSplash;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JFrame;
@@ -222,6 +223,9 @@ public class Vista {
                         throw new AssertionError();
 
                 }
+                
+        ventana.repaint();
+        ventana.setVisible(true);
             }
         };
         timer.schedule(task, tiempo * 1000 + 200);
@@ -318,55 +322,22 @@ public class Vista {
         }else{
             ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         }
-        
     }
     
-    class EscuchaVentana implements WindowListener{
+    class EscuchaVentana extends WindowAdapter{
         private boolean partidaOn=false;
         Vista vista;
 
         public EscuchaVentana(Vista vista) {
             this.vista = vista;
         }
-        
-        @Override
-        public void windowOpened(WindowEvent e) {
-            System.out.println("windowOpened --->"+e);
-        }
-
          @Override
         public void windowClosing(WindowEvent e) {
             if(partidaOn){
                  vista.avisoSalida();
             }else{
                 System.exit(0);
-            }
-               
-        }
-
-        @Override
-        public void windowClosed(WindowEvent e) {
-            System.out.println("windowClosed --->"+e);
-        }
-
-        @Override
-        public void windowIconified(WindowEvent e) {
-            System.out.println("windowIconified --->"+e);
-        }
-
-        @Override
-        public void windowDeiconified(WindowEvent e) {
-            System.out.println("windowDeiconified --->"+e);
-        }
-
-        @Override
-        public void windowActivated(WindowEvent e) {
-            System.out.println("windowActivated --->"+e);
-        }
-
-        @Override
-        public void windowDeactivated(WindowEvent e) {
-            System.out.println("windowDeactivated --->"+e);
+            }  
         }
 
         public void setPartidaOn(boolean partidaOn) {

@@ -183,7 +183,7 @@ public class Carta extends JLabel {
      * carta no se podrá mover de nuevo (si la carta se bloquea significa que
      * encontro la pareja)
      */
-    public void bloquear() {
+    public void bloquear() { 
         bloquear = true;
         this.setIcon(imgCarta);
         repaint();
