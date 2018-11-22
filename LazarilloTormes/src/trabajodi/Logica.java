@@ -512,7 +512,8 @@ public class Logica {
         ArrayList<Boolean> cartaBloqueada=partidaGuardada.getCartaBloqueada();
         for(int i=0;i<cartaBloqueada.size();i++){
             if(cartaBloqueada.get(i)){//si bloquear == true esta desactivada
-               juego.girar(i);
+                juego.bloquearUna(i);
+                //juego.girar(i);
             }
         }
     }

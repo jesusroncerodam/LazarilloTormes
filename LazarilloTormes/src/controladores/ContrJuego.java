@@ -191,8 +191,6 @@ public class ContrJuego implements MouseListener, KeyListener {
         return vista.getContMov();
     }
 
-
-    
     
     public String[] obtenerRutas() {
         return logica.obtenerRutasImg();
@@ -205,6 +203,9 @@ public class ContrJuego implements MouseListener, KeyListener {
         return vista.guardarBloquearCarta();
     }
     //regoger datos
+    public void bloquearCartas(){
+        logica.bloquearCartas();
+    }
     public int obtenerTiempo(){
         return logica.obtenerTiempo();
     }
@@ -213,6 +214,9 @@ public class ContrJuego implements MouseListener, KeyListener {
     }
     public int obtenerGuardadDesact(){
         return logica.obtenerGuardadDesact();
+    }
+    public void bloquearUna(int indice){
+        vista.bloquearUna(indice);
     }
     
 }
