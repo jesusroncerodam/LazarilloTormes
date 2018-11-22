@@ -99,7 +99,8 @@ public class Logica {
                     break;
 
                 case "continuar"://guardar los datos
-                    guardarDatos();
+                    guardarDatos();//guardamos los datos y los mostramos
+                    juego.c
                     break;
 
                 case "guardar":
@@ -158,8 +159,14 @@ public class Logica {
     }
 
 
-    public void juegokey() {
-
+    public void juegokey(char pulso) {
+        switch (pulso) {
+            case 'q':
+                //...
+                break;
+            default:
+                throw new AssertionError();
+        }
     }
 
 
@@ -420,9 +427,7 @@ public class Logica {
     }
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void guardarPartida() {
-
         //int segundos, int movimientos, int vuelta, ArrayList<String> rutaGuardada, ArrayList<Boolean> cartaBloqueada
         PartidaGuardada partida = new PartidaGuardada(juego.getContadorSeg(), juego.getContMov(), juego.algunaVisible(), juego.guardarUrlCarta(), juego.guardarBloquearCarta());
 
