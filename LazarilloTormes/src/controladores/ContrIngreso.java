@@ -23,7 +23,7 @@ import trabajodi.Logica;
  *
  * @author Guille
  */
-public class ContrIngreso extends MouseAdapter implements TextListener, ItemListener, ActionListener {
+public class ContrIngreso extends MouseAdapter implements TextListener, ItemListener {
 
     private VIngreso vistaIngreso;
     private Logica logica;
@@ -58,18 +58,46 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
 
     @Override
     public void textValueChanged(TextEvent e) {
+        System.out.println(e);
+
     }
 
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        System.out.println(((JCheckBox) e.getItem()).getName());
-    }
+        switch (((JCheckBox) e.getItemSelectable()).getName()) {
+            case "tema1":
+                System.out.println("Has elegido el tema 1");
 
+                break;
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        System.out.println(e.getActionCommand());
+            case "tema2":
+                System.out.println("Tema 2");
 
+                break;
+
+            case "tema3":
+                System.out.println("Tema 3");
+
+                break;
+
+            case "facil":
+                System.out.println("dificultad facil");
+
+                break;
+
+            case "medio":
+                System.out.println("dificultad media");
+
+                break;
+
+            case "dificil":
+                System.out.println("dificultad dificl");
+
+                break;
+
+            default:
+                System.err.println("\nOpcion no valida");
+        }
     }
 }

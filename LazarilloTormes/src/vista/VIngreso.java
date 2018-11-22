@@ -67,19 +67,21 @@ public class VIngreso extends JPanel {
         botonFlechaSiguiente.setName("botonFlechaSiguiente");
 
         tema1.setName("tema1");
+        tema2.setName("tema2");
+        tema3.setName("tema3");
 
-        facil.setActionCommand("facil");
-        medio.setActionCommand("medio");
-        dificil.setActionCommand("dificil");
+        facil.setName("facil");
+        medio.setName("medio");
+        dificil.setName("dificil");
 
 //        Controladores
         tema1.addItemListener(controlador);
         tema2.addItemListener(controlador);
         tema3.addItemListener(controlador);
 
-        facil.addActionListener(controlador);
-        medio.addActionListener(controlador);
-        dificil.addActionListener(controlador);
+        facil.addItemListener(controlador);
+        medio.addItemListener(controlador);
+        dificil.addItemListener(controlador);
 
         campoNombre.addTextListener(controlador);
         botonFlechaAtrás.addMouseListener(controlador);
