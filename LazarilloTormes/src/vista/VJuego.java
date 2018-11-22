@@ -512,15 +512,23 @@ public class VJuego extends JPanel {
         continuar();
 
         //generamos las cartas
-        generarCartas(false);
-        desactivadas=controlador.obtenerGuardadDesact();
-        
-        contMov=2;
+        generarCartas(false);   
+        controlador.bloquearCartas();
+        //se tiene que hacer en este orden
+        contMov=controlador.getContMov();
         lMovimientos.setText("Movimientos: " + contMov);
         
-        contadorSeg=1;
-        ponerTiempo();
+        desactivadas=controlador.obtenerGuardadDesact();
+     
         
+        contadorSeg=controlador.getContadorSeg();
+        ponerTiempo();
+    }
+    public void bloquearUna(int indice){
+        carta.get(indice).bloquear();
+    }
+    private void aparecerCargaDatos(){
+        //controlador.
     }
 
 }
