@@ -130,16 +130,36 @@ public class VIngreso extends JPanel {
 
 
     public void crearElementos() {
-        labelNombre = new JLabel("Nombre: ");
-        labelNombre.setFont(bakerville(20));
-        campoNombre = new TextField("Introduce tu nombre");
-        campoNombre.setFont(bakerville(20));
+        crearLabelNombre();
+        crearCampoNombre();
         crearAvatar();
         crearTema();
         crearDificultad();
         imagenFlecha = metodo.cambiarTamano(imagenFlecha, 50, 50);
         botonFlechaAtrás = new JButton(imagenFlecha);
         botonFlechaSiguiente = new JButton(imagenFlecha);
+    }
+
+
+    public void crearLabelNombre() {
+        labelNombre = new JLabel("Nombre: ");
+        labelNombre.setFont(bakerville(20));
+        /*
+         * COLOCACION LABEL NOMBRE
+         */
+        constrain.gridy = 0;
+        constrain.insets = new Insets(25, 50, 25, 0);
+
+//        constrain.weighty = 10;
+//        constrain.fill = GridBagConstraints.CENTER;
+        constrain.gridx = 0;
+        add(labelNombre, constrain);
+    }
+
+
+    public void crearCampoNombre() {
+        campoNombre = new TextField("Introduce tu nombre");
+        campoNombre.setFont(bakerville(18));
     }
 
 
@@ -231,34 +251,26 @@ public class VIngreso extends JPanel {
      * loc.anchor = GridBagConstraints.LINE_START;
      */
     public void anadirElementos() {
-        constrain.gridy = 0;
 
-        constrain.insets = new Insets(25, 50, 25, 0);
 
-//        constrain.weighty = 10;
-//        constrain.fill = GridBagConstraints.CENTER;
-        constrain.gridx = 0;
-        add(labelNombre, constrain);
-
+        /*
+         * COLOCACION CAMPO NOMBRE
+         */
         constrain.gridwidth = 2;
+//        .NONE hace que el campo de texto no aparezca ocupando gran parte del cuadrante
         constrain.fill = GridBagConstraints.NONE;
-//        campoNombre.setPreferredSize(new Dimension(50, 50));
-//        campoNombre.setSize(50, 50);
+        /*
+         * campoNombre.setPreferredSize(new Dimension(50, 50));
+         * campoNombre.setSize(50, 50);
+         * el .insets coloca el cuadro de texto en el cuadrante, pegado a la
+         * izquierda
+         */
         constrain.insets = new Insets(25, 0, 25, 0);
         constrain.anchor = GridBagConstraints.LINE_START;
-
         constrain.gridx = 1;
         add(campoNombre, constrain);
 
-        /*
-         * POR DEFECTO
-         */
-        constrain.gridwidth = 1;
-        constrain.anchor = GridBagConstraints.CENTER;
-        constrain.fill = GridBagConstraints.BOTH;
-        constrain.insets = new Insets(0, 0, 0, 0);
-
-
+        contraintPorDefecto();
         /*
          * BOTONES
          */
@@ -271,24 +283,40 @@ public class VIngreso extends JPanel {
     }
 
 
+    public void contraintPorDefecto() {
+        /*
+         * POR DEFECTO
+         */
+        constrain.gridwidth = 1;
+        constrain.anchor = GridBagConstraints.CENTER;
+        constrain.fill = GridBagConstraints.BOTH;
+        constrain.insets = new Insets(0, 0, 0, 0);
+    }
+
+
     /**
      * Le asigno el estilo de letra y demás pijadas a los objetos
      */
     public void estiloElementos() {
+        avatar1.setOpaque(false);
+        avatar2.setOpaque(false);
+        avatar3.setOpaque(false);
+
         tema1.setBackground(Color.red);
         tema2.setBackground(Color.darkGray);
         tema3.setBackground(Color.green);
 
-//        facil.setOpaque(false);
-//        medio.setOpaque(false);
-//        dificil.setOpaque(false);
+        facil.setOpaque(false);
+        medio.setOpaque(false);
+        dificil.setOpaque(false);
+
         botonFlechaAtrás.setOpaque(false);
-//        botonFlechaAtrás.setContentAreaFilled(false);
-//        botonFlechaAtrás.setBorder(null);
+        botonFlechaAtrás.setContentAreaFilled(false);
+        botonFlechaAtrás.setBorder(null);
 
         botonFlechaSiguiente.setOpaque(false);
-//        botonFlechaSiguiente.setContentAreaFilled(false);
-//        botonFlechaSiguiente.setBorder(null);
+        botonFlechaSiguiente.setContentAreaFilled(false);
+        botonFlechaSiguiente.setBorder(null);
     }
 
 
