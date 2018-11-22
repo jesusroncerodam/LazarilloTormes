@@ -237,7 +237,7 @@ public class VJuego extends JPanel {
         constrain.fill = GridBagConstraints.HORIZONTAL;
         constrain.weighty = 0.5;
         this.add(bContinuar, constrain);
-        cambiarEstadoBoton("continuar", true);
+        cambiarEstadoBoton("continuar", false);
         bContinuar.setActionCommand("continuar");
         bContinuar.addKeyListener(controlador);
         bContinuar.addMouseListener(controlador);
@@ -395,15 +395,16 @@ public class VJuego extends JPanel {
      * @param estado booleano, pone el estado de este boton
      */
     public void cambiarEstadoBoton(String boton, boolean estado) {
+        System.out.println(boton+"---->"+estado);
         switch (boton) {
             case "continuar":
-                bContinuar.setEnabled(!estado);
+                bContinuar.setEnabled(estado);
                 break;
             case "guardar":
-                bGuardar.setEnabled(!estado);
+                bGuardar.setEnabled(estado);
                 break;
             case "playPause":
-                bPausaPlay.setEnabled(!estado);
+                bPausaPlay.setEnabled(estado);
                 break;
             default:
                 System.out.println("error cambiarEstadoBoton" + boton);
