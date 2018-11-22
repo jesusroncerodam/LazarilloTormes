@@ -27,6 +27,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import trabajodi.Logica;
 import trabajodi.Metodos;
 import trabajodi.Vista;
@@ -57,46 +58,27 @@ public class VIngreso extends JPanel {
     private GridBagConstraints constrain;
 //    private GridBagLayout gridLayout;
 
-    private ImageIcon imagenFlecha = new ImageIcon(this.getClass().getResource("/img/flecha.png"));
+    private final int ALTITO = 130, ANCHITO = 105;
+
+    private ImageIcon iconoAvatar1 = new ImageIcon(this.getClass().getResource("/img/avatar1.jpg"));
+    private ImageIcon iconoAvatar2 = new ImageIcon(this.getClass().getResource("/img/avatar2.jpg"));
+    private ImageIcon iconoAvatar3 = new ImageIcon(this.getClass().getResource("/img/avatar3.jpg"));
+
+    private ImageIcon iconoTema1 = new ImageIcon(this.getClass().getResource("/img/tema1.jpg"));
+    private ImageIcon iconoTema2 = new ImageIcon(this.getClass().getResource("/img/tema2.jpg"));
+    private ImageIcon iconoTema3 = new ImageIcon(this.getClass().getResource("/img/tema3.jpg"));
+
+    private ImageIcon imagenFlecha = new ImageIcon(this.getClass().getResource("/img/atras.png"));
+    private ImageIcon imagenAvanzar = new ImageIcon(this.getClass().getResource("/img/flechaRect.png"));
     private ImageIcon fondoRegistro = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.jpg"));
+
+    private final Border bordeAvatar = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.black, 1), BorderFactory.createRaisedBevelBorder());
+    private final Border bordeTema = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.black, 1), BorderFactory.createRaisedBevelBorder());
 
 
     public VIngreso(Logica logica, Vista vistaMain) {
         this.vistaMain = vistaMain;
         controlador = new ContrIngreso(this, logica);
-    }
-
-
-    public void anadirescuchadores() {
-        labelAvatar.setName("avatar");
-
-        tema1.setName("tema1");
-        tema2.setName("tema2");
-        tema3.setName("tema3");
-
-        labelDificultad.setName("labelDificultad");
-
-        dificultad1.setName("dificultad1");
-        dificultad2.setName("dificultad2");
-        dificultad3.setName("dificultad3");
-
-        botonFlechaAtras.setName("botonFlechaAtras");
-        botonFlechaSiguiente.setName("botonFlechaSiguiente");
-
-//        Escuchadores
-        labelAvatar.addMouseListener(controlador);
-        campoNombre.addTextListener(controlador);
-
-        tema1.addItemListener(controlador);
-        tema2.addItemListener(controlador);
-        tema3.addItemListener(controlador);
-
-        dificultad1.addItemListener(controlador);
-        dificultad2.addItemListener(controlador);
-        dificultad3.addItemListener(controlador);
-
-        botonFlechaAtras.addMouseListener(controlador);
-        botonFlechaSiguiente.addMouseListener(controlador);
     }
 
 
@@ -107,7 +89,7 @@ public class VIngreso extends JPanel {
      * @return font Devuelve una fuente
      */
     public Font bakerville(int tamanofuente) {
-        Font fuente = new Font("Baskerville Old Face", Font.PLAIN, tamanofuente);
+        Font fuente = new Font("Baskerville Old Face", Font.BOLD, tamanofuente);
         return fuente;
     }
 
@@ -122,26 +104,22 @@ public class VIngreso extends JPanel {
         constrainPorDefecto();
 
         crearElementos();
-        estiloElementos();
         anadirescuchadores();
         setVisible(true);
     }
 
 
     public void crearElementos() {
+        constrainPorDefecto();
+
         crearLabelNombre();
-
         crearCampoNombre();
-
         crearAvatar();
-
         crearTema();
-
         crearDificultad();
 
-        imagenFlecha = metodo.cambiarTamano(imagenFlecha, 50, 50);
-        botonFlechaAtras = new JButton(imagenFlecha);
-        botonFlechaSiguiente = new JButton(imagenFlecha);
+        botonFlechaAtras = new JButton(cambiarTamano(imagenFlecha, 100, 100));
+        botonFlechaSiguiente = new JButton(cambiarTamano(imagenAvanzar, 100, 90));
 
         /*
          * BOTONES
@@ -152,50 +130,49 @@ public class VIngreso extends JPanel {
         add(botonFlechaAtras, constrain);
         constrain.gridx = 3;
         add(botonFlechaSiguiente, constrain);
+
+        botonFlechaAtras.setOpaque(false);
+        botonFlechaAtras.setContentAreaFilled(false);
+        botonFlechaAtras.setBorder(null);
+
+        botonFlechaSiguiente.setOpaque(false);
+        botonFlechaSiguiente.setContentAreaFilled(false);
+        botonFlechaSiguiente.setBorder(null);
     }
 
-    private int TAMANOFUENTE = 22;
+    private int TAMANOFUENTE = 24;
 
 
     public void crearLabelNombre() {
-        labelNombre = new JLabel("Nombre: ");
+        labelNombre = new JLabel("Nickname: ");
         labelNombre.setFont(bakerville(TAMANOFUENTE));
 
-//        constrain.weighty = 10;
-//        constrain.fill = GridBagConstraints.CENTER;
+        constrain.fill = GridBagConstraints.BASELINE;
+
         constrain.gridy = 0;
         constrain.gridx = 0;
         add(labelNombre, constrain);
 
-//        lReloj.setHorizontalTextPosition(SwingConstants.CENTER);
-//        lReloj.setVerticalTextPosition(SwingConstants.CENTER);
+        constrainPorDefecto();
     }
 
 
     public void crearCampoNombre() {
-        campoNombre = new TextField("Introduce tu nombre");
-        campoNombre.setFont(bakerville(TAMANOFUENTE - 2));
+        campoNombre = new TextField("Introduce your name");
+        campoNombre.setFont(bakerville(TAMANOFUENTE - 8));
 //        constrain.weighty = 0.0;
 //        constrain.weightx = 0.0;
         constrain.gridwidth = 2;
 //        .NONE hace que el campo de texto no aparezca ocupando gran parte del cuadrante
-        constrain.fill = GridBagConstraints.NONE;
-        /*
-         * campoNombre.setPreferredSize(new Dimension(50, 50));
-         * campoNombre.setSize(50, 50);
-         */
+        constrain.fill = GridBagConstraints.BASELINE;
 //        constrain.anchor = GridBagConstraints.LINE_START;
+
         constrain.gridy = 0;
         constrain.gridx = 1;
-//        add(campoNombre, constrain);
+        add(campoNombre, constrain);
 
         constrainPorDefecto();
     }
-
-    private ImageIcon iconoAvatar1 = new ImageIcon(this.getClass().getResource("/img/avatar1.jpg"));
-    private ImageIcon iconoAvatar2 = new ImageIcon(this.getClass().getResource("/img/avatar2.jpg"));
-    private ImageIcon iconoAvatar3 = new ImageIcon(this.getClass().getResource("/img/avatar3.jpg"));
-    private ImageIcon iconoAvatar4 = new ImageIcon(this.getClass().getResource("/img/avatar4.jpg"));
 
 
     public void crearAvatar() {
@@ -212,13 +189,11 @@ public class VIngreso extends JPanel {
          * COLOCAR AVATAR
          */
         constrainPorDefecto();
-
+        constrain.fill = GridBagConstraints.BASELINE;
         constrain.gridy = 1;
 
         constrain.gridx = 0;
         add(labelAvatar, constrain);
-
-        constrainPorDefecto();
 
         constrain.gridx = 1;
         add(avatar1, constrain);
@@ -227,6 +202,13 @@ public class VIngreso extends JPanel {
         constrain.gridx = 3;
         add(avatar3, constrain);
 
+        avatar1.setOpaque(false);
+        avatar2.setOpaque(false);
+        avatar3.setOpaque(false);
+        avatar1.setBorderPainted(true);
+        avatar2.setBorderPainted(true);
+        avatar3.setBorderPainted(true);
+
         iconoAvatar1 = cambiarTamano(iconoAvatar1, ANCHITO, ALTITO);
         iconoAvatar2 = cambiarTamano(iconoAvatar2, ANCHITO, ALTITO);
         iconoAvatar3 = cambiarTamano(iconoAvatar3, ANCHITO, ALTITO);
@@ -234,18 +216,14 @@ public class VIngreso extends JPanel {
         avatar1.setIcon(iconoAvatar1);
         avatar2.setIcon(iconoAvatar2);
         avatar3.setIcon(iconoAvatar3);
-        avatar1.setBorder(BorderFactory.createRaisedBevelBorder());
+        avatar1.setBorder(bordeAvatar);
         avatar2.setBorder(null);
         avatar3.setBorder(null);
     }
-    private final int ALTITO = 110, ANCHITO = 85;
-    private ImageIcon iconoTema1 = new ImageIcon(this.getClass().getResource("/img/tema1.jpg"));
-    private ImageIcon iconoTema2 = new ImageIcon(this.getClass().getResource("/img/tema2.jpg"));
-    private ImageIcon iconoTema3 = new ImageIcon(this.getClass().getResource("/img/tema3.jpg"));
 
 
     public void crearTema() {
-        labelTema = new JLabel("Tema");
+        labelTema = new JLabel("Theme");
         labelTema.setFont(bakerville(TAMANOFUENTE));
         ButtonGroup grupoTema = new ButtonGroup();
         tema1 = new JCheckBox("", true);
@@ -272,59 +250,24 @@ public class VIngreso extends JPanel {
         constrain.gridx = 3;
         add(tema3, constrain);
 
-        iconoTema1 = cambiarTamano(iconoTema1, ANCHITO, ALTITO);
-        iconoTema2 = cambiarTamano(iconoTema2, ANCHITO, ALTITO);
-        iconoTema3 = cambiarTamano(iconoTema3, ANCHITO, ALTITO);
+        tema1.setOpaque(false);
+        tema2.setOpaque(false);
+        tema3.setOpaque(false);
+        tema1.setBorderPainted(true);
+        tema2.setBorderPainted(true);
+        tema3.setBorderPainted(true);
 
-        tema1.setIcon(iconoTema1);
-        tema2.setIcon(iconoTema2);
-        tema3.setIcon(iconoTema3);
-        tema1.setBorder(BorderFactory.createRaisedBevelBorder());
+        tema1.setIcon(cambiarTamano(iconoTema1, ANCHITO, ALTITO));
+        tema2.setIcon(cambiarTamano(iconoTema2, ANCHITO, ALTITO));
+        tema3.setIcon(cambiarTamano(iconoTema3, ANCHITO, ALTITO));
+        tema1.setBorder(bordeTema);
         tema2.setBorder(null);
         tema3.setBorder(null);
-    }
-
-
-    public void asignarBordeAvatar(int avatar) {
-        avatar1.setBorder(null);
-        avatar2.setBorder(null);
-        avatar3.setBorder(null);
-        switch (avatar) {
-            case 1:
-                avatar1.setBorder(BorderFactory.createRaisedBevelBorder());
-                break;
-            case 2:
-                avatar2.setBorder(BorderFactory.createRaisedBevelBorder());
-                break;
-            case 3:
-                avatar3.setBorder(BorderFactory.createRaisedBevelBorder());
-                break;
-            default:
-        }
-    }
-
-
-    public void asignarBordeTema(int tema) {
-        tema1.setBorder(null);
-        tema2.setBorder(null);
-        tema3.setBorder(null);
-        switch (tema) {
-            case 1:
-                tema1.setBorder(BorderFactory.createRaisedBevelBorder());
-                break;
-            case 2:
-                tema2.setBorder(BorderFactory.createRaisedBevelBorder());
-                break;
-            case 3:
-                tema3.setBorder(BorderFactory.createRaisedBevelBorder());
-                break;
-            default:
-        }
     }
 
 
     public void crearDificultad() {
-        labelDificultad = new JLabel("Dificultad");
+        labelDificultad = new JLabel("Difficulty");
         labelDificultad.setFont(bakerville(TAMANOFUENTE));
         ButtonGroup grupoDificultad = new ButtonGroup();
         dificultad1 = new JCheckBox("", true);
@@ -334,8 +277,6 @@ public class VIngreso extends JPanel {
         grupoDificultad.add(dificultad2);
         grupoDificultad.add(dificultad3);
 
-//        facil.setIcon(imagenFlecha);
-//        medio.setIcon(imagenFlecha);
         /*
          * COLOCAR DIFICULTAD
          */
@@ -352,6 +293,51 @@ public class VIngreso extends JPanel {
         add(dificultad2, constrain);
         constrain.gridx = 3;
         add(dificultad3, constrain);
+
+        dificultad1.setOpaque(false);
+        dificultad2.setOpaque(false);
+        dificultad3.setOpaque(false);
+    }
+
+
+    public void anadirescuchadores() {
+        labelAvatar.setName("avatar");
+
+        avatar1.setName("avatar1");
+        avatar2.setName("avatar2");
+        avatar3.setName("avatar3");
+
+        tema1.setName("tema1");
+        tema2.setName("tema2");
+        tema3.setName("tema3");
+
+        labelDificultad.setName("labelDificultad");
+
+        dificultad1.setName("dificultad1");
+        dificultad2.setName("dificultad2");
+        dificultad3.setName("dificultad3");
+
+        botonFlechaAtras.setName("botonFlechaAtras");
+        botonFlechaSiguiente.setName("botonFlechaSiguiente");
+
+//        Escuchadores
+        labelAvatar.addMouseListener(controlador);
+        campoNombre.addTextListener(controlador);
+
+        avatar1.addItemListener(controlador);
+        avatar2.addItemListener(controlador);
+        avatar3.addItemListener(controlador);
+
+        tema1.addItemListener(controlador);
+        tema2.addItemListener(controlador);
+        tema3.addItemListener(controlador);
+
+        dificultad1.addItemListener(controlador);
+        dificultad2.addItemListener(controlador);
+        dificultad3.addItemListener(controlador);
+
+        botonFlechaAtras.addMouseListener(controlador);
+        botonFlechaSiguiente.addMouseListener(controlador);
     }
 
 
@@ -374,43 +360,41 @@ public class VIngreso extends JPanel {
     }
 
 
-    /**
-     * Le asigno el estilo de letra y demás pijadas a los objetos
-     */
-    public void estiloElementos() {
-        avatar1.setOpaque(false);
-        avatar2.setOpaque(false);
-        avatar3.setOpaque(false);
-        avatar1.setBorderPainted(true);
-        avatar2.setBorderPainted(true);
-        avatar3.setBorderPainted(true);
+    public void asignarBordeAvatar(int avatar) {
+        avatar1.setBorder(null);
+        avatar2.setBorder(null);
+        avatar3.setBorder(null);
+        switch (avatar) {
+            case 1:
+                avatar1.setBorder(bordeAvatar);
+                break;
+            case 2:
+                avatar2.setBorder(bordeAvatar);
+                break;
+            case 3:
+                avatar3.setBorder(bordeAvatar);
+                break;
+            default:
+        }
+    }
 
-        tema1.setOpaque(false);
-        tema2.setOpaque(false);
-        tema3.setOpaque(false);
-        tema1.setBorderPainted(true);
-        tema2.setBorderPainted(true);
-        tema3.setBorderPainted(true);
-//        tema1.setBackground(colorAleatorio());
-//        tema2.setBackground(colorAleatorio());
-//        tema3.setBackground(colorAleatorio());
-//        avatar1.setBackground(colorAleatorio());
-//        avatar2.setBackground(colorAleatorio());
-//        avatar3.setBackground(colorAleatorio());
-//        facil.setBackground(colorAleatorio());
-//        medio.setBackground(colorAleatorio());
-//        dificil.setBackground(colorAleatorio());
 
-        dificultad1.setOpaque(false);
-        dificultad2.setOpaque(false);
-        dificultad3.setOpaque(false);
-//        botonFlechaAtras.setOpaque(false);
-//        botonFlechaAtras.setContentAreaFilled(false);
-        botonFlechaAtras.setBorder(null);
-
-//        botonFlechaSiguiente.setOpaque(false);
-//        botonFlechaSiguiente.setContentAreaFilled(false);
-        botonFlechaSiguiente.setBorder(null);
+    public void asignarBordeTema(int tema) {
+        tema1.setBorder(null);
+        tema2.setBorder(null);
+        tema3.setBorder(null);
+        switch (tema) {
+            case 1:
+                tema1.setBorder(bordeTema);
+                break;
+            case 2:
+                tema2.setBorder(bordeTema);
+                break;
+            case 3:
+                tema3.setBorder(bordeTema);
+                break;
+            default:
+        }
     }
 
 
