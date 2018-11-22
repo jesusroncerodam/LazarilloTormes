@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.TextEvent;
+import java.awt.event.TextListener;
 import vista.VIngreso;
 import trabajodi.Logica;
 
@@ -18,7 +20,7 @@ import trabajodi.Logica;
  *
  * @author Guille
  */
-public class ContrIngreso extends MouseAdapter {
+public class ContrIngreso extends MouseAdapter implements TextListener {
 
     private VIngreso vistaIngreso;
     private Logica logica;
@@ -48,5 +50,10 @@ public class ContrIngreso extends MouseAdapter {
             default:
                 System.err.println("\nOpcion no valida");
         }
+    }
+
+
+    @Override
+    public void textValueChanged(TextEvent e) {
     }
 }

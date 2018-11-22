@@ -16,6 +16,7 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.TextField;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -36,7 +37,10 @@ public class VIngreso extends JPanel {
     private ContrIngreso controlador;
     private Metodos metodo = new Metodos();
 
+    //SIN CONTROLADOR
     private JLabel labelNombre, labelTema, labelDificultad;
+
+    //CON CONTROLADOR
     private TextField campoNombre;
 
     private JPanel tema1, tema2, tema3;
@@ -104,17 +108,21 @@ public class VIngreso extends JPanel {
         tema3 = new JPanel();
 
         labelDificultad = new JLabel("Dificultad");
-        CheckboxGroup cbg = new CheckboxGroup();
 
-        facil = new JCheckBox("Facil", true);
-        medio = new JCheckBox("Medio", false);
-//        dificil = new JCheckBox("Dificil", cbg, false);
+        ButtonGroup grupoDificultad = new ButtonGroup();
+
+        facil = new JCheckBox("", true);
+        medio = new JCheckBox("", false);
+        dificil = new JCheckBox("", false);
+
+        grupoDificultad.add(facil);
+        grupoDificultad.add(medio);
+        grupoDificultad.add(dificil);
 
         imagenFlecha = metodo.cambiarTamano(imagenFlecha, 50, 50);
 
         facil.setIcon(imagenFlecha);
         medio.setIcon(imagenFlecha);
-
         botonFlechaAtrás = new JButton(imagenFlecha);
         botonFlechaSiguiente = new JButton();
     }
@@ -181,10 +189,10 @@ public class VIngreso extends JPanel {
         constrain.gridx = 2;
         constrain.gridy = 2;
         add(medio, constrain);
-//
-//        constrain.gridx = 3;
-//        constrain.gridy = 2;
-//        add(dificil, constrain);
+
+        constrain.gridx = 3;
+        constrain.gridy = 2;
+        add(dificil, constrain);
 
         /*
          * BOTONES
@@ -206,6 +214,11 @@ public class VIngreso extends JPanel {
         tema2.setBackground(Color.darkGray);
         tema3.setBackground(Color.green);
 
+//        facil.setOpaque(false);
+//        medio.setOpaque(false);
+//        dificil.setOpaque(false);
+        botonFlechaAtrás.setOpaque(false);
+        botonFlechaSiguiente.setOpaque(false);
 //        botonFlechaAtrás.setIcon(metodo.cambiarTamano(imagenFlecha, botonFlechaAtrás.getWidth(), botonFlechaAtrás.getHeight()));
 //        botonFlechaSiguiente.setIcon(metodo.cambiarTamano(imagenFlecha, botonFlechaSiguiente.getWidth(), botonFlechaSiguiente.getHeight()));
     }
