@@ -131,7 +131,9 @@ public class VIngreso extends JPanel {
 
     public void crearElementos() {
         crearLabelNombre();
+        contraintPorDefecto();
         crearCampoNombre();
+        contraintPorDefecto();
         crearAvatar();
         crearTema();
         crearDificultad();
@@ -155,7 +157,6 @@ public class VIngreso extends JPanel {
         constrain.gridx = 0;
         add(labelNombre, constrain);
 
-        contraintPorDefecto();
     }
 
 
