@@ -50,6 +50,7 @@ public class Vista {
      */
     public Vista(Logica logica) {
         generarVista();
+        
         //creamos todas las vistas mandandole la logica
         vCarga = new VCarga(logica);
         vPrincipal = new VPrincipal(logica, this);
