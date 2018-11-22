@@ -27,15 +27,19 @@ public class ContrMenu implements ActionListener {
         this.vista = vista;
     }
 
+    public void asignarMenuLogica(){
+        logica.asignarMenu(this);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("guardar")) {
-            logica.setPrimeraJuego();
-            vista.guardar();
-        }
-        if (e.getActionCommand().equals("cargar")) {
-            vista.cargar();
-        }
+        logica.gestionarMenu(e.getActionCommand());
+        //System.out.println(e.getActionCommand());
+//        System.out.println("");
+//        System.out.println(e);
+//       
+    }
+    public void cambiarVista(String vistaCambio){
+        
     }
 }

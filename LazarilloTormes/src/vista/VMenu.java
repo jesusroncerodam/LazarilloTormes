@@ -46,6 +46,7 @@ public class VMenu extends JMenuBar {
 
 
     public void generar() {
+        controlador.asignarMenuLogica();
         generarMenuArchivo();
         generarPartida();
         ajustes();
@@ -127,13 +128,4 @@ public class VMenu extends JMenuBar {
         return icono;
     }
 
-
-    public void guardar() {
-        //vista.guardar();
-    }
-
-
-    public void cargar() {
-        //vista.cargar();
-    }
 }
