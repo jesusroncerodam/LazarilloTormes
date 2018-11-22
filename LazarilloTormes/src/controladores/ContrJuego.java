@@ -198,7 +198,6 @@ public class ContrJuego implements MouseListener, KeyListener {
         return logica.obtenerRutasImg();
     }    
     
-//mandar vista logica dayos
     public ArrayList<String> guardarUrlCarta() {
         return vista.guardarUrlCarta();
     }
@@ -206,5 +205,14 @@ public class ContrJuego implements MouseListener, KeyListener {
         return vista.guardarBloquearCarta();
     }
     //regoger datos
+    public int obtenerTiempo(){
+        return logica.obtenerTiempo();
+    }
+    public int obtenerMovimientos(){
+        return logica.obtenerMovimientos();
+    }
+    public int obtenerGuardadDesact(){
+        return logica.obtenerGuardadDesact();
+    }
     
 }
