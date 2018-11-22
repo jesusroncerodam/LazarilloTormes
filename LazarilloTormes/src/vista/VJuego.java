@@ -489,7 +489,7 @@ public class VJuego extends JPanel {
      */
     public void generarGuardada() {
         controlador.asignarControlador();//se tiene que volver a generar
-        desactivadas = 0;
+        //desactivadas = 0;
 
         this.setOpaque(true);
         this.setFocusable(true);
@@ -497,9 +497,7 @@ public class VJuego extends JPanel {
         this.addKeyListener(controlador);
 
         constrain = new GridBagConstraints();
-        constrain.weighty = 0.5; //para que se estiren las columnas
-        // constrain.weightx=1;
-        //  constrain.fill = GridBagConstraints.BOTH;
+        constrain.weighty = 0.5; 
         constrain.anchor = GridBagConstraints.CENTER;
         this.setLayout(new GridBagLayout());
 
@@ -515,13 +513,14 @@ public class VJuego extends JPanel {
         generarCartas(false);   
         controlador.bloquearCartas();
         //se tiene que hacer en este orden
-        contMov=controlador.getContMov();
+        contMov=controlador.obtenerMovimientos();
         lMovimientos.setText("Movimientos: " + contMov);
         
         desactivadas=controlador.obtenerGuardadDesact();
-     
         
-        contadorSeg=controlador.getContadorSeg();
+        
+        contadorSeg=controlador.obtenerTiempo();
+        
         ponerTiempo();
     }
     public void bloquearUna(int indice){
