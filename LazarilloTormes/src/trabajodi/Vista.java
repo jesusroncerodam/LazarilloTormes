@@ -59,7 +59,7 @@ public class Vista {
         vCarga = new VCarga(logica);
         vPrincipal = new VPrincipal(logica, this);
         vDialogoMod = new VDialogoMod(logica);
-        vIngreso = new VIngreso(logica);
+        vIngreso = new VIngreso(logica, this);
         vJuego = new VJuego(logica);
         vLista = new VLista(logica, this);
         vMenu = new VMenu(logica, this);

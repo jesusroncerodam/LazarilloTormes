@@ -20,12 +20,12 @@ import trabajodi.Logica;
  */
 public class ContrIngreso extends MouseAdapter {
 
-    private VIngreso vista;
+    private VIngreso vistaIngreso;
     private Logica logica;
 
 
     public ContrIngreso(VIngreso vista, Logica logica) {
-        this.vista = vista;
+        this.vistaIngreso = vista;
         this.logica = logica;
     }
 
@@ -33,8 +33,8 @@ public class ContrIngreso extends MouseAdapter {
     @Override
     public void mouseClicked(MouseEvent e) {
         switch (e.getComponent().getName()) {
-            case "botonSalida":
-
+            case "botonFlechaAtras":
+                vistaIngreso.cambiarDeVista("principal");
                 break;
 
             case "botonSiguiente":

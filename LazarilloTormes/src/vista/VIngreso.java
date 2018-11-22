@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import trabajodi.Logica;
 import trabajodi.Metodos;
+import trabajodi.Vista;
 
 
 /*
@@ -31,6 +32,7 @@ import trabajodi.Metodos;
  */
 public class VIngreso extends JPanel {
 
+    private Vista vistaMain;
     private ContrIngreso controlador;
     private Metodos metodo = new Metodos();
 
@@ -48,13 +50,17 @@ public class VIngreso extends JPanel {
     private ImageIcon fondoRegistro = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.jpg"));
 
 
-    public VIngreso(Logica logica) {
+    public VIngreso(Logica logica, Vista vistaMain) {
+        this.vistaMain = vistaMain;
         controlador = new ContrIngreso(this, logica);
     }
 
 
     public void anadirescuchadores() {
 
+        botonFlechaAtrás.setName("botonFlechaAtras");
+        
+        
 //        Controladores
         tema1.addMouseListener(controlador);
         tema2.addMouseListener(controlador);
@@ -211,6 +217,12 @@ public class VIngreso extends JPanel {
         super.paint(g);
     }
 
+
+    public void cambiarDeVista(String vista) {
+        vistaMain.cambiarVista(vista);
+    }
+}
+
 //        constrain = new GridBagConstraints();
 //        constrain.gridx = 1;
 //        constrain.gridy = 1;
@@ -238,4 +250,3 @@ public class VIngreso extends JPanel {
 //        mainPanel.add(Box.createGlue(), gbc);
 //        add(mainPanel);
 //        pack();
-}
