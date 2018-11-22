@@ -16,14 +16,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import vista.VPrincipal;
 import java.util.Timer;
@@ -325,8 +317,8 @@ public class Vista {
     }
     
     public void avisoSalida(){
-        if (JOptionPane.showConfirmDialog(ventana, "¿Desea realmente salir del sistema?",
-                "Salir del sistema", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION){
+        if (JOptionPane.showConfirmDialog(ventana, "You will exit off the game ¿Are you sure?",
+                "Do you want to exit?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION){
             System.exit(0);
         }else{
             ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
