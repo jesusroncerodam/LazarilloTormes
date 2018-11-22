@@ -95,51 +95,58 @@ public class Logica {
             accionBotonJuego((JButton) componente);
             
         } else if (componente instanceof JLabel) {//si es un JLabel, 
-            if (!animacionC) {//mientras que no tengamos ninguna animacion en progreso
-                JLabel jlComponente = (JLabel) componente;
+            accionLabelJuego(componente.getName());
+        }
+    }
+    
+    /**
+     * Metodo que controla las accciones de la carta, recive
+     * @param carta 
+     */
+    private void accionLabelJuego(String carta){
+        if (!animacionC) {//mientras que no tengamos ninguna animacion en progreso
+            vuelta = juego.algunaVisible();//antes de mover la carta actual miramos si hay alguna carta visible
+            cartaAct = Integer.parseInt(carta);//opbtenemos el indice del array de la carta que ss hizo click
 
-                vuelta = juego.algunaVisible();//antes de mover la carta actual miramos si hay alguna carta visible
-                cartaAct = Integer.parseInt(jlComponente.getName());//opbtenemos el indice del array de la carta que ss hizo click
+            if (vuelta == cartaAct) {//comprobamos que no tenga hecho click en la misma imagen 2 veces
+                vuelta = -1;//si es asi la carta que se dio la vuelta no existe, para la logica
+            }
+            juego.movimiento();//se realiza 1 movimiento, sumamos 1 al contador
 
-                if (vuelta == cartaAct) {//comprobamos que no tenga hecho click en la misma imagen 2 veces
-                    vuelta = -1;//si es asi la carta que se dio la vuelta no existe, para la logica
-                }
-                juego.movimiento();//se realiza 1 movimiento, sumamos 1 al contador
+            juego.girar(cartaAct);//gira mos la carta que se hizo click
 
-                juego.girar(cartaAct);//gira mos la carta que se hizo click
+            if (vuelta != -1) {//si es diferente de  -1 hay 2 visibles
+                if (juego.mismaImagen(vuelta, cartaAct)) {//si las cartas que hay son iguales
 
-                if (vuelta != -1) {//si es diferente de  -1 hay 2 visibles
-                    if (juego.mismaImagen(vuelta, cartaAct)) {//si las cartas que hay son iguales
+                    juego.bloquearImagenes(vuelta, cartaAct);//bloqueamos la imagen, para que no se puedan mover mas
 
-                        juego.bloquearImagenes(vuelta, cartaAct);//bloqueamos la imagen, para que no se puedan mover mas
-
-                        if (!juego.isFin()) {//si es el fin del juego(Si a termiando)
-                            juego.gestionarContador("pausa");
-                            //cambiamos los estados de los botones 
-                            juego.cambiarEstadoBoton("guardar", false);
-                            juego.cambiarEstadoBoton("playPause", false);
-                            juego.cambiarEstadoBoton("continuar", true);
-                        }
-
-                    } else {//si las cartas que tenemos no son iguales las giramos
-                        animacionC = true;//ponermos que existe una animacion en progreso
-                        timer = new java.util.Timer();//cremos el timer para crear una animacion
-                        TimerTask tarea = new TimerTask() {//creamos un timerTask, que se ejecutara en x segundos
-                            @Override
-                            public void run() {
-                                juego.girar(cartaAct);//girampos la carta actual 
-                                juego.girar(vuelta);//girampos la que esta visble
-                                timer = null;//eliminamos el timer
-                                animacionC = false;//marcamos  que el timer termino
-                            }
-                        };
-                        //asignamos que se mueva en estos seguntos para que no cambie de golpe , para que la animacion sea mas suave
-                        timer.schedule(tarea, 1000);// decimos al timer que ejecute el TimeTask en los seguntos
+                    if (!juego.isFin()) {//si es el fin del juego(Si a termiando)
+                        juego.gestionarContador("pausa");
+                        //cambiamos los estados de los botones 
+                        juego.cambiarEstadoBoton("guardar", false);
+                        juego.cambiarEstadoBoton("playPause", false);
+                        juego.cambiarEstadoBoton("continuar", true);
                     }
+
+                } else {//si las cartas que tenemos no son iguales las giramos
+                    animacionC = true;//ponermos que existe una animacion en progreso
+                    timer = new java.util.Timer();//cremos el timer para crear una animacion
+                    TimerTask tarea = new TimerTask() {//creamos un timerTask, que se ejecutara en x segundos
+                        @Override
+                        public void run() {
+                            juego.girar(cartaAct);//girampos la carta actual 
+                            juego.girar(vuelta);//girampos la que esta visble
+                            timer = null;//eliminamos el timer
+                            animacionC = false;//marcamos  que el timer termino
+                        }
+                    };
+                    //asignamos que se mueva en estos seguntos para que no cambie de golpe , para que la animacion sea mas suave
+                    timer.schedule(tarea, 1000);// decimos al timer que ejecute el TimeTask en los seguntos
                 }
             }
         }
     }
+    
     private void accionBotonJuego(JButton boton){
         if(boton.isEnabled()){
             switch (boton.getActionCommand()) {
