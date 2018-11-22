@@ -42,23 +42,7 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println(e);
-        switch (e.getComponent().getName()) {
-            case "botonFlechaAtras":
-                vistaIngreso.cambiarDeVista("principal");
-                break;
-
-            case "botonFlechaSiguiente":
-                vistaIngreso.cambiarDeVista("juego");
-                break;
-
-            case "avatar":
-                logica.cogerImagenSistema();
-                break;
-
-            default:
-                System.err.println("\nOpcion no valida");
-        }
+        logica.vistaIngresoMouseListener(e);
     }
 
 
@@ -80,6 +64,20 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
 
     public void asignarBordeTema(int parseInt) {
         vistaIngreso.asignarBordeTema(parseInt);
+    }
 
+
+    public void asignarBordeDificultad(int parseInt) {
+        vistaIngreso.asignarBordeDificultad(parseInt);
+    }
+
+
+    public void cambiarAVistaPrincipal() {
+        vistaIngreso.cambiarDeVista("principal");
+    }
+
+
+    public void cambiarAVistaJuego() {
+        vistaIngreso.cambiarDeVista("juego");
     }
 }

@@ -52,13 +52,13 @@ public class Vista {
      */
     public Vista(Logica logica) {
         generarVista();
-        
+
         //creamos todas las vistas mandandole la logica
         vCarga = new VCarga(logica);
         vPrincipal = new VPrincipal(logica, this);
         vDialogoMod = new VDialogoMod(logica);
         vIngreso = new VIngreso(logica, this);
-        vJuego = new VJuego(logica,this);
+        vJuego = new VJuego(logica, this);
         vLista = new VLista(logica, this);
         vMenu = new VMenu(logica, this);
         //no ponemos splash ya que no necesita logica
@@ -83,9 +83,9 @@ public class Vista {
         ventana = new JFrame("Memorion");
         ventana.setMaximumSize(new Dimension(1924, 1047));
         //ventana.setSize(600, 600);
-        escuchaVentana=new EscuchaVentana(this);
+        escuchaVentana = new EscuchaVentana(this);
         ventana.addWindowListener(escuchaVentana);
-       // ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
 
@@ -125,17 +125,17 @@ public class Vista {
     }
 
 
-    public void iniciarJuego(){
+    public void iniciarJuego() {
         escuchaVentana.setPartidaOn(true);//cambiamos el escuchador para que muestre mensaje antews de salir
         vMenu.modoJuego();
         ventana.setSize(1000, 1000);
         ventana.add(vJuego);
         ventana.repaint();
-    } 
+    }
 
 
     public void principal() {
-        ventana.setSize(1000, 800);
+        ventana.setSize(1200, 800);
         ventana.add(vPrincipal);
         ventana.setVisible(true);
     }
@@ -205,7 +205,7 @@ public class Vista {
                         //ajustar menubar quitar elementos
                         iniciarJuego();
                         break;
-                        
+
                     case "juegoguardado":
                         iniciarJuego();
                         break;
@@ -218,15 +218,14 @@ public class Vista {
                         crearPantallaDesarrolladores();
                         break;
 
-
                     default:
                         System.out.print(vista);
                         throw new AssertionError();
 
                 }
-                
-        ventana.repaint();
-        ventana.setVisible(true);
+
+                ventana.repaint();
+                ventana.setVisible(true);
             }
         };
         timer.schedule(task, tiempo * 1000 + 200);
@@ -268,9 +267,9 @@ public class Vista {
                 vJuego.generar();//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                 break;
-                
+
             case "juegoguardado":
-                tiempo=1;
+                tiempo = 1;
                 vJuego.generarGuardada();
                 cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                 break;
@@ -315,40 +314,48 @@ public class Vista {
         //ventana.removeAll();
         //vJuego.eliminarElementos();
     }
-    
-    public void avisoSalida(){
+
+
+    public void avisoSalida() {
         if (JOptionPane.showConfirmDialog(ventana, "You will exit off the game ¿Are you sure?",
-                "Do you want to exit?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION){
+                "Do you want to exit?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
             System.exit(0);
-        }else{
+        } else {
             ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         }
     }
-    
-    class EscuchaVentana extends WindowAdapter{
-        private boolean partidaOn=false;
+
+
+    class EscuchaVentana extends WindowAdapter {
+
+        private boolean partidaOn = false;
         Vista vista;
+
 
         public EscuchaVentana(Vista vista) {
             this.vista = vista;
         }
-         @Override
+
+
+        @Override
         public void windowClosing(WindowEvent e) {
-             System.out.println("aaa");
-                    
-            if(partidaOn || (e.getID()==1 && partidaOn)){
+            System.out.println("aaa");
+
+            if (partidaOn || (e.getID() == 1 && partidaOn)) {
                 System.out.println("eeee");
-                 vista.avisoSalida();
-            }else{
+                vista.avisoSalida();
+            } else {
                 System.exit(0);
-            }  
+            }
         }
+
 
         public void setPartidaOn(boolean partidaOn) {
             this.partidaOn = partidaOn;
         }
- 
+
     }
+
 }
 /*class wi
 /* @Override

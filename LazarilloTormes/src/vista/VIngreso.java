@@ -58,7 +58,7 @@ public class VIngreso extends JPanel {
     private GridBagConstraints constrain;
 //    private GridBagLayout gridLayout;
 
-    private final int ALTITO = 130, ANCHITO = 105;
+    private final int ALTOIMAGENES = 150, ANCHOIMAGENES = 120;
 
     private ImageIcon iconoAvatar1 = new ImageIcon(this.getClass().getResource("/img/avatar1.jpg"));
     private ImageIcon iconoAvatar2 = new ImageIcon(this.getClass().getResource("/img/avatar2.jpg"));
@@ -218,9 +218,9 @@ public class VIngreso extends JPanel {
         avatar2.setBorderPainted(true);
         avatar3.setBorderPainted(true);
 
-        iconoAvatar1 = cambiarTamano(iconoAvatar1, ANCHITO, ALTITO);
-        iconoAvatar2 = cambiarTamano(iconoAvatar2, ANCHITO, ALTITO);
-        iconoAvatar3 = cambiarTamano(iconoAvatar3, ANCHITO, ALTITO);
+        iconoAvatar1 = cambiarTamano(iconoAvatar1, ANCHOIMAGENES, ALTOIMAGENES);
+        iconoAvatar2 = cambiarTamano(iconoAvatar2, ANCHOIMAGENES, ALTOIMAGENES);
+        iconoAvatar3 = cambiarTamano(iconoAvatar3, ANCHOIMAGENES, ALTOIMAGENES);
 
         avatar1.setIcon(iconoAvatar1);
         avatar2.setIcon(iconoAvatar2);
@@ -266,9 +266,9 @@ public class VIngreso extends JPanel {
         tema2.setBorderPainted(true);
         tema3.setBorderPainted(true);
 
-        tema1.setIcon(cambiarTamano(iconoTema1, ANCHITO, ALTITO));
-        tema2.setIcon(cambiarTamano(iconoTema2, ANCHITO, ALTITO));
-        tema3.setIcon(cambiarTamano(iconoTema3, ANCHITO, ALTITO));
+        tema1.setIcon(cambiarTamano(iconoTema1, ANCHOIMAGENES, ALTOIMAGENES));
+        tema2.setIcon(cambiarTamano(iconoTema2, ANCHOIMAGENES, ALTOIMAGENES));
+        tema3.setIcon(cambiarTamano(iconoTema3, ANCHOIMAGENES, ALTOIMAGENES));
         tema1.setBorder(bordeTema);
         tema2.setBorder(null);
         tema3.setBorder(null);
@@ -311,9 +311,9 @@ public class VIngreso extends JPanel {
         dificultad2.setBorderPainted(true);
         dificultad3.setBorderPainted(true);
 
-        dificultad1.setIcon(cambiarTamano(iconoDificultad1, ANCHITO, ALTITO - 50));
-        dificultad2.setIcon(cambiarTamano(iconoDificultad2, ANCHITO, ALTITO - 50));
-        dificultad3.setIcon(cambiarTamano(iconoDificultad3, ANCHITO, ALTITO - 50));
+        dificultad1.setIcon(cambiarTamano(iconoDificultad1, ANCHOIMAGENES + 20, ALTOIMAGENES - 50));
+        dificultad2.setIcon(cambiarTamano(iconoDificultad2, ANCHOIMAGENES + 20, ALTOIMAGENES - 50));
+        dificultad3.setIcon(cambiarTamano(iconoDificultad3, ANCHOIMAGENES + 20, ALTOIMAGENES - 50));
         dificultad1.setBorder(bordeDificultad);
         dificultad2.setBorder(null);
         dificultad3.setBorder(null);
@@ -381,7 +381,6 @@ public class VIngreso extends JPanel {
 
 
     public void asignarBordeAvatar(int avatar) {
-
         avatar1.setBorder(null);
         avatar2.setBorder(null);
         avatar3.setBorder(null);
@@ -414,6 +413,26 @@ public class VIngreso extends JPanel {
                 break;
             case 3:
                 tema3.setBorder(bordeTema);
+                break;
+            default:
+        }
+        updateUI();
+    }
+
+
+    public void asignarBordeDificultad(int dificultad) {
+        dificultad1.setBorder(null);
+        dificultad2.setBorder(null);
+        dificultad3.setBorder(null);
+        switch (dificultad) {
+            case 1:
+                dificultad1.setBorder(bordeDificultad);
+                break;
+            case 2:
+                dificultad2.setBorder(bordeDificultad);
+                break;
+            case 3:
+                dificultad3.setBorder(bordeDificultad);
                 break;
             default:
         }

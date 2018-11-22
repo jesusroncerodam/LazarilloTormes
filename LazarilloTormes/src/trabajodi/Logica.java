@@ -13,6 +13,7 @@ import controladores.ContrMenu;
 import controladores.ControladorPrincipal;
 import java.awt.Component;
 import java.awt.event.ItemEvent;
+import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -458,6 +459,23 @@ public class Logica {
     }
 
 
+    public void vistaIngresoMouseListener(MouseEvent e) {
+        switch (e.getComponent().getName()) {
+            case "botonFlechaAtras":
+                cIngreso.cambiarAVistaPrincipal();
+                break;
+            case "botonFlechaSiguiente":
+                cIngreso.cambiarAVistaJuego();
+                break;
+            case "avatar":
+                cogerImagenSistema();
+                break;
+            default:
+                System.err.println("\nOpcion no valida");
+        }
+    }
+
+
     public void vistaIngresoItemChange(ItemEvent e) {
         if (((JCheckBox) e.getSource()).isSelected()) {
             String variableTexto = ((JCheckBox) e.getSource()).getName();
@@ -467,21 +485,16 @@ public class Logica {
                 case "avatar3":
                     cIngreso.asignarBordeAvatar(Integer.parseInt(variableTexto.substring(6)));
                     break;
-
                 case "tema1":
                 case "tema2":
                 case "tema3":
                     cIngreso.asignarBordeTema(Integer.parseInt(variableTexto.substring(4)));
                     break;
-
                 case "dificultad1":
-                    System.out.println("dificultad facil");
                 case "dificultad2":
-                    System.out.println("dificultad media");
                 case "dificultad3":
-                    System.out.println("dificultad dificl");
+                    cIngreso.asignarBordeDificultad(Integer.parseInt(variableTexto.substring(10)));
                     break;
-
                 default:
                     System.err.println("\nOpcion no valida");
             }
@@ -644,32 +657,21 @@ public class Logica {
         switch (boton.replaceAll(" ", "").toLowerCase()) {
             case "newgame":
                 principal.cambiarDeVista("ingresodatos");
-
                 System.out.println("1");
                 break;
-
             case "loadgame":
-
                 System.out.println("2");
                 break;
-
             case "stats":
-
                 principal.cambiarDeVista("lista");
                 break;
-
             case "aboutus":
-
                 principal.cambiarDeVista("aboutus");
-
                 System.out.println("4");
                 break;
-
             case "":
-
                 System.out.println("5");
                 break;
-
             default:
                 throw new AssertionError();
         }
