@@ -113,6 +113,10 @@ public class VMenu extends JMenuBar {
     }
 
 
+    public void cambiarVista(String vistaCambia){
+        System.out.println(vistaCambia);
+        vista.cambiarVista(vistaCambia);
+    }
     /**
      * Modifica el tamaño de las imagenes
      *

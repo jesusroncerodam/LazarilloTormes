@@ -129,7 +129,7 @@ public class Vista {
         ventana.setSize(1000, 1000);
         ventana.add(vJuego);
         ventana.repaint();
-    }
+    } 
 
 
     public void principal() {
@@ -209,6 +209,10 @@ public class Vista {
                         //ajustar menubar quitar elementos
                         iniciarJuego();
                         break;
+                        
+                    case "juegoguardado":
+                        iniciarJuego();
+                        break;
 
                     case "lista":
                         estadisticas();
@@ -217,6 +221,7 @@ public class Vista {
                     case "aboutus":
                         crearPantallaDesarrolladores();
                         break;
+
 
                     default:
                         System.out.print(vista);
@@ -262,6 +267,12 @@ public class Vista {
             case "juego":
                 tiempo = 1;
                 vJuego.generar(true);//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
+                break;
+                
+            case "juegoguardado":
+                tiempo=1;
+                vJuego.generarGuardada();
                 cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                 break;
 

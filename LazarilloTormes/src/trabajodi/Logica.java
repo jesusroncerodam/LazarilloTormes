@@ -197,6 +197,7 @@ public class Logica {
         switch (accion) {
             case "cargar":
                 cargarPartida();
+                menu.cambiarVista("juegoguardado");
                 break;
             case "guardar":
                 guardarPartida();

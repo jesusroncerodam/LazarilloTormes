@@ -525,10 +525,8 @@ public class VJuego extends JPanel {
         ponerTiempo();
     }
     public void bloquearUna(int indice){
+        System.out.println(indice);
         carta.get(indice).bloquear();
-    }
-    private void aparecerCargaDatos(){
-        //controlador.
     }
 
 }
