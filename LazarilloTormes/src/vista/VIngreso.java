@@ -50,7 +50,7 @@ public class VIngreso extends JPanel {
 
     private JCheckBox avatar1, avatar2, avatar3;
     private JCheckBox tema1, tema2, tema3;
-    private JCheckBox facil, medio, dificil;
+    private JCheckBox dificultad1, dificultad2, dificultad3;
 
     private JButton botonFlechaAtras, botonFlechaSiguiente;
 
@@ -76,9 +76,9 @@ public class VIngreso extends JPanel {
 
         labelDificultad.setName("labelDificultad");
 
-        facil.setName("dificultad1");
-        medio.setName("dificultad2");
-        dificil.setName("dificultad3");
+        dificultad1.setName("dificultad1");
+        dificultad2.setName("dificultad2");
+        dificultad3.setName("dificultad3");
 
         botonFlechaAtras.setName("botonFlechaAtras");
         botonFlechaSiguiente.setName("botonFlechaSiguiente");
@@ -91,9 +91,9 @@ public class VIngreso extends JPanel {
         tema2.addItemListener(controlador);
         tema3.addItemListener(controlador);
 
-        facil.addItemListener(controlador);
-        medio.addItemListener(controlador);
-        dificil.addItemListener(controlador);
+        dificultad1.addItemListener(controlador);
+        dificultad2.addItemListener(controlador);
+        dificultad3.addItemListener(controlador);
 
         botonFlechaAtras.addMouseListener(controlador);
         botonFlechaSiguiente.addMouseListener(controlador);
@@ -192,6 +192,10 @@ public class VIngreso extends JPanel {
         constrainPorDefecto();
     }
 
+    private ImageIcon iconoTema1 = new ImageIcon(this.getClass().getResource("/img/avatar1.jpg"));
+    private ImageIcon iconoTema2 = new ImageIcon(this.getClass().getResource("/img/avatar2.jpg"));
+    private ImageIcon iconoTema3 = new ImageIcon(this.getClass().getResource("/img/avatar3.jpg"));
+
 
     public void crearAvatar() {
         labelAvatar = new JLabel("Avatar: ");
@@ -264,6 +268,9 @@ public class VIngreso extends JPanel {
         tema1.setIcon(iconoTema1);
         tema2.setIcon(iconoTema2);
         tema3.setIcon(iconoTema3);
+        tema1.setBorder(BorderFactory.createRaisedBevelBorder());
+        tema2.setBorder(null);
+        tema3.setBorder(null);
     }
 
 
@@ -287,7 +294,7 @@ public class VIngreso extends JPanel {
                 break;
 
             default:
-                System.err.println("\nOpcion no valida");
+
         }
     }
 
@@ -296,12 +303,12 @@ public class VIngreso extends JPanel {
         labelDificultad = new JLabel("Dificultad");
         labelDificultad.setFont(bakerville(TAMANOFUENTE));
         ButtonGroup grupoDificultad = new ButtonGroup();
-        facil = new JCheckBox("", true);
-        medio = new JCheckBox("", false);
-        dificil = new JCheckBox("", false);
-        grupoDificultad.add(facil);
-        grupoDificultad.add(medio);
-        grupoDificultad.add(dificil);
+        dificultad1 = new JCheckBox("", true);
+        dificultad2 = new JCheckBox("", false);
+        dificultad3 = new JCheckBox("", false);
+        grupoDificultad.add(dificultad1);
+        grupoDificultad.add(dificultad2);
+        grupoDificultad.add(dificultad3);
 
 //        facil.setIcon(imagenFlecha);
 //        medio.setIcon(imagenFlecha);
@@ -316,11 +323,11 @@ public class VIngreso extends JPanel {
         constrainPorDefecto();
 
         constrain.gridx = 1;
-        add(facil, constrain);
+        add(dificultad1, constrain);
         constrain.gridx = 2;
-        add(medio, constrain);
+        add(dificultad2, constrain);
         constrain.gridx = 3;
-        add(dificil, constrain);
+        add(dificultad3, constrain);
     }
 
 
@@ -367,9 +374,9 @@ public class VIngreso extends JPanel {
 //        medio.setBackground(colorAleatorio());
 //        dificil.setBackground(colorAleatorio());
 
-        facil.setOpaque(false);
-        medio.setOpaque(false);
-        dificil.setOpaque(false);
+        dificultad1.setOpaque(false);
+        dificultad2.setOpaque(false);
+        dificultad3.setOpaque(false);
 //        botonFlechaAtras.setOpaque(false);
 //        botonFlechaAtras.setContentAreaFilled(false);
         botonFlechaAtras.setBorder(null);
