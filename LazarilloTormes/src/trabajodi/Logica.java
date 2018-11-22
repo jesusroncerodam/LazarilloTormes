@@ -100,7 +100,7 @@ public class Logica {
 
                 case "continuar"://guardar los datos
                     guardarDatos();//guardamos los datos y los mostramos
-                    juego.c
+                    juego.cambiarVista("lista");
                     break;
 
                 case "guardar":

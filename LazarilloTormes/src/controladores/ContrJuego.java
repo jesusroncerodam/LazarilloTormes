@@ -236,5 +236,8 @@ public class ContrJuego extends MouseAdapter implements  KeyListener{
     public void bloquearUna(int indice){
         vista.bloquearUna(indice);
     }
+    public void cambiarVista(String vistaACambiar){
+        vista.cambiarVista(vistaACambiar);
+    }
     
 }
