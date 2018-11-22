@@ -135,6 +135,7 @@ public class VIngreso extends JPanel {
         crearAvatar();
         crearTema();
         crearDificultad();
+
         imagenFlecha = metodo.cambiarTamano(imagenFlecha, 50, 50);
         botonFlechaAtras = new JButton(imagenFlecha);
         botonFlechaSiguiente = new JButton(imagenFlecha);
@@ -149,18 +150,18 @@ public class VIngreso extends JPanel {
          */
         constrain.gridy = 0;
         constrain.insets = new Insets(25, 50, 25, 0);
-
 //        constrain.weighty = 10;
 //        constrain.fill = GridBagConstraints.CENTER;
         constrain.gridx = 0;
         add(labelNombre, constrain);
+
+        contraintPorDefecto();
     }
 
 
     public void crearCampoNombre() {
         campoNombre = new TextField("Introduce tu nombre");
         campoNombre.setFont(bakerville(18));
-
         /*
          * COLOCACION CAMPO NOMBRE
          */
