@@ -5,11 +5,6 @@
  */
 package trabajodi;
 
-
-import java.io.Serializable;
-import javax.swing.ImageIcon;
-
-
 /**
  *
  * @author Guille
