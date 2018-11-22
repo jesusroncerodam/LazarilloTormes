@@ -419,33 +419,6 @@ public class Logica {
     }
 
 
-    public void cargar() {
-        //System.out.println("ewdkjhgbekj");
-        //eliminarVistas();
-        System.out.println("antes try");
-        //FileInputStream fileIn=null;
-        try {
-            System.out.println("despues try");
-            //Creamos un flujo de entrada desde el disco
-            FileInputStream fileIn = new FileInputStream("juego.obj");
-            //Vinculamos la referencia al disco con nuestro flujo de entrada
-            System.out.println("despues file");
-            ObjectInputStream entrada = new ObjectInputStream(fileIn);
-            //Cargamos el objeto y hacemos el casting del tipo que es
-            VJuego vJuegoo = (VJuego) entrada.readObject();
-            System.out.println("despues cast");
-            //  ventana.add(vJuegoo);
-            System.out.println("despues añadir");
-            //ventana.setVisible(true);
-        } catch (Exception e) {
-            System.out.println("edfjn");
-            e.printStackTrace();
-
-        }
-        // vJuego.setVisible(false);
-
-        System.out.println("holas");
-    }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -494,7 +467,14 @@ public class Logica {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         rutas = partidaGuardada.getRutaGuardada().toArray(new String[partidaGuardada.getRutaGuardada().size()]);
+        for (String ruta : rutas) {
+            System.out.println(ruta);   
+        }
+        System.out.println("");
+        System.out.println("");
+        System.out.println(partidaGuardada.getVuelta()+" seg"+partidaGuardada.getSegundos()+" mov"+partidaGuardada.getMovimientos());
         //generamos la partida
     }
     public int obtenerGuardadDesact(){
@@ -517,6 +497,7 @@ public class Logica {
         }
     }
     public int obtenerMovimientos(){
+        System.out.println("ewrwdgjbsg"+partidaGuardada.getMovimientos());
         if( partidaGuardada.getVuelta()==-1)//si no hay ninguna carta dada la vuelta retornamos esto
             return partidaGuardada.getMovimientos();
         else{
