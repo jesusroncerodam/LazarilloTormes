@@ -313,14 +313,12 @@ public class Vista {
         //vJuego.eliminarElementos();
     }
 
-
+    
     public void avisoSalida() {
-
+        
     }//this.getClass().getResource("/img/despedida.gif"
-
-
     public void splashScreen() {
-
+        
     }
 
 
@@ -337,14 +335,14 @@ public class Vista {
 
         @Override
         public void windowClosing(WindowEvent e) {
-            if (partidaOn) {
-                if (JOptionPane.showConfirmDialog(ventana, "You will exit off the game ¿Are you sure?", "Do you want to exit?",
+            if(partidaOn){
+                if (JOptionPane.showConfirmDialog(ventana, "You will exit off the game ¿Are you sure?","Do you want to exit?", 
                         JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) != JOptionPane.YES_OPTION) {
-                    ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-                } else {
+                ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                }else{
                     System.exit(0);
-                }
-            } else {
+                } 
+            }else{
                 System.exit(0);
             }
         }
@@ -357,14 +355,10 @@ public class Vista {
     }
 
 }
-
-/*
- * class wi
- * /* @Override
- * public void windowClosing(WindowEvent e) {
- * if (JOptionPane.showConfirmDialog(vista, "¿Desea realmente salir del
- * sistema?",
- * "Salir del sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
- * System.exit(0);
- * }
- */
+/*class wi
+/* @Override
+    public void windowClosing(WindowEvent e) {
+       if (JOptionPane.showConfirmDialog(vista, "¿Desea realmente salir del sistema?",
+                "Salir del sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+            System.exit(0);
+    }*/
