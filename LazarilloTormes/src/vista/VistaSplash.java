@@ -179,7 +179,7 @@ public class VistaSplash extends JPanel {
      * Metodo encargado de ir rellenndo el progreso, paso a paso y
      * asignar los textos de progreso
      */
-    private synchronized void rellenarProgreso() {
+    private void rellenarProgreso() {
         if (valorP <= 100) {//mientras que el valor del progreso sea menor de 100
             if (cont < textos.length) {//mientras que el contador sea menor que el array de mensajes
                 if (valorP % (100 / textos.length) == 0) {//esta operacion divide el progreso y muestra los mensajes en funcion de el tamaño del array de mensajes

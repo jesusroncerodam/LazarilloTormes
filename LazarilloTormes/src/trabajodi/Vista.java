@@ -15,6 +15,7 @@ import vista.VistaSplash;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.SplashScreen;
 import java.awt.event.WindowAdapter;
@@ -23,6 +24,7 @@ import javax.swing.JFrame;
 import vista.VPrincipal;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 
@@ -52,6 +54,7 @@ public class Vista {
      * @param logica clase logica para vincularla con todas las clases
      */
     public Vista(Logica logica) {
+        new SplashDemo();
         generarVista();
 
         //creamos todas las vistas mandandole la logica
@@ -355,30 +358,31 @@ public class Vista {
         }
 
     }
-    class SplashDemo{
+    class SplashDemo extends Frame {
+        
         public SplashDemo(){
-        Frame despedida=new Frame("Thanks for playing");//creamos el frame de despedida
-
-        final SplashScreen splash = SplashScreen.getSplashScreen();//obtenemos el splash screen, solo se obtiene en el archivo .jar
-        if (splash == null) {
-            System.out.println("SplashScreen.getSplashScreen() retorna nulo");
-            return;//no continuamos con la ejecucion ya que si es nulo da lugar a errores
-        }
-        Graphics2D g = splash.createGraphics();//obtenemos el contexto de los graficos
-        if(g == null) {
-            System.out.println("los graficos son null");
-            return;//no continuamos con la ejecucion ya que si es nulo da lugar a errores
-        }
-        try{
-            Thread.sleep(2500);//dormimos el para poder ver la imagen de fondo 2,5 segundos
-        }catch(InterruptedException e){
-            System.out.println("Error al inenter dormir en Splash "+e);
-        }
-        splash.close();//ceramos el splash
-        //despedida.setVisible(true);
-        //despedida.toFront();//ponemos la ventana en el foco
-        despedida.dispose();//eliminamos la ventana
+        super("Thanks for playing");//creamos el frame de despedida
+       // despedida.setUndecorated(true);
+      // despedida.seto
+        setSize(800,480);
+        setVisible(true);
+        toFront();//ponemos la ventana en el foco
+        for(int i=0;i<50;i++)
+            try{
+                repaint();
+                Thread.sleep(50);//dormimos el para poder ver la imagen de fondo 2,5 segundos
+            }catch(InterruptedException e){
+                System.out.println("Error al inenter dormir en Splash "+e);
+            }
+        
+       
+        dispose();//eliminamos la ventana
         System.exit(0);//cerramos 
+        }
+        
+        public void paint(Graphics g) {
+            super.paint(g);
+            g.drawImage(new ImageIcon(getClass().getResource("/img/despedida.gif")).getImage(), 0, 0, getWidth(), getHeight(), null);
         }
     }
 
