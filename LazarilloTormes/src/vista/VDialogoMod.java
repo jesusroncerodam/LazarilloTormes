@@ -54,6 +54,8 @@ public class VDialogoMod extends JPanel {
         crearLableNombreGuille();
         crearLogoTrini();
         generarBoton();
+
+        anadirControladores();
     }
 
 
@@ -147,7 +149,7 @@ public class VDialogoMod extends JPanel {
 
 
     public void anadirControladores() {
-        controlador = new ContrDialogoMod(this);
+//        controlador = new ContrDialogoMod(this);
     }
 
 
