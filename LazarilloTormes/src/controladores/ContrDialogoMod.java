@@ -61,4 +61,5 @@ public class ContrDialogoMod extends MouseAdapter implements ActionListener {
     public void mouseClicked(MouseEvent e) {
         logica.vistaDialogoModMouseListener(e);
     }
+    
 }

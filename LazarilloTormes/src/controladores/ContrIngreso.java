@@ -87,4 +87,9 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
     public void mandarDatos(String avatar, int tema, int dificultad, String nombre) {
         logica.recogerDatos(avatar, tema, dificultad, nombre);
     }
+
+
+    public void establecerImagenElegida(String imagenElegida) {
+        vistaIngreso.establecerImagenElegida(imagenElegida);
+    }
 }

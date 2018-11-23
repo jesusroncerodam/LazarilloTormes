@@ -164,7 +164,7 @@ public class VIngreso extends JPanel {
 
 
     public void crearCampoNombre() {
-        campoNombre = new TextField("Introduce your nickname");
+        campoNombre = new TextField("Nickname");
         campoNombre.setFont(bakerville(TAMANOFUENTE - 8));
 //        constrain.weighty = 0.0;
 //        constrain.weightx = 0.0;
@@ -576,6 +576,8 @@ public class VIngreso extends JPanel {
     public void mandarDatos() {
         controlador.mandarDatos(recogerAvatar(), recogerTema(), recogerDificultad(), recogerNombre());
     }
+
+
     /*
      *
      * private TextField campoNombre;
@@ -584,6 +586,10 @@ public class VIngreso extends JPanel {
      * private JCheckBox tema1, tema2, tema3;
      * private JCheckBox dificultad1, dificultad2, dificultad3;
      */
+    public void establecerImagenElegida(String imagenElegida) {
+        ImageIcon icono = new ImageIcon(imagenElegida);
+        avatar1.setIcon(cambiarTamano(icono, ANCHOIMAGENES, ALTOIMAGENES));
+    }
 }
 
 //        constrain = new GridBagConstraints();
