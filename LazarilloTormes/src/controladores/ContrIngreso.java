@@ -35,6 +35,10 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
     }
 
 
+    /**
+     * Llama al metodo alojado en logica utilizado como un constructor para
+     * igualar el Controlador local con el original
+     */
     public void mandarControlador() {
         logica.asignarControladorIngreso(this);
     }
@@ -58,21 +62,40 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
     }
 
 
+    /**
+     * Metodo puente para asignar los bordes a los iconos de los avatares
+     * @param avatar int que se utiliza en el case para asignar el borde
+     *               dependiendo de que icono esté seleccionado
+     */
     public void asignarBordeAvatar(int avatar) {
         vistaIngreso.asignarBordeAvatar(avatar);
     }
 
 
+    /**
+     * Metodo puente para asignar los bordes a los iconos de los temas
+     * @param tema int que se utiliza en el case para asignar el borde
+     *             dependiendo de que icono esté seleccionado
+     */
     public void asignarBordeTema(int tema) {
         vistaIngreso.asignarBordeTema(tema);
     }
 
 
+    /**
+     * Metodo puente para asignar los bordes a los iconos de las dificultades
+     * @param dificultad int que se utiliza en el case para asignar el borde
+     *                   dependiendo de que icono esté seleccionado
+     */
     public void asignarBordeDificultad(int dificultad) {
         vistaIngreso.asignarBordeDificultad(dificultad);
     }
 
 
+    /**
+     * Metodo utilizado para
+     * @param vista
+     */
     public void cambiarVista(String vista) {
         vistaIngreso.cambiarDeVista(vista);
     }
@@ -90,7 +113,8 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
 
 
     /**
-     * Llama
+     * Este método es llamado desde la lógica para pasar el string con el path
+     * para crear la imagen elegida por el usuario
      * @param imagenElegida String con el path de la imagen elegida
      */
     public void establecerImagenElegida(String imagenElegida) {
