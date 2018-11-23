@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -208,7 +209,6 @@ public class Logica {
 
     public String[] obtenerRutasImg() {
         return rutas;
-        //rutas=null;
     }
 
 
@@ -266,13 +266,21 @@ public class Logica {
     }
 
 
-    private void guardarDatos() {
+    private void guardarDatos(){
+        ArrayList<Historial> historial =pasarFicheroAArray();
+        historial.add(new Historial(juego.getContMov(), juego.getContadorSeg(), avatar, nombre));//añadimos
+        //ordenamos
+        Collections.sort(historial);
+        //eliminamos el fichero anterior 
+        crearFichero(false);
+        //lo pasamos al fichero
+        
         //nombre//ya lo tengo 
         //imagen //ya lo tengo
         //movimientos
-        juego.getContMov();
+        
         //tiempo
-        juego.getContadorSeg();
+        
     }
 
 
@@ -297,13 +305,12 @@ public class Logica {
                     
            // System.out.println(fichero2.getAbsoluteFile().getPath());
           //  File archivo = new File(this.getClass().getName().);
-            System.out.println("sajfkb");
           //  System.out.println(archivo.getAbsoluteFile());
-           if (!archivo.exists()) {
+          // if (!archivo.exists()) {
                 FileWriter escritor = new FileWriter(archivo, mantenerFichero);//true no sobrescribe
                 escritor.write(PRIMERA_LINEA);
                 escritor.close();
-            }
+           // }
         } catch (Exception e) {
             System.out.println("Error al escribir");//Si existe un problema al escribir cae aqui
         }
@@ -387,10 +394,6 @@ public class Logica {
         } catch (IOException ex) {
             Logger.getLogger(Logica.class.getName()).log(Level.SEVERE, null, ex);
         }
-//        for (String linea1 : lineas) {
-//            System.out.println(linea1);
-//        }
-//        System.out.println("==========================");
         return lineas.toArray(new String[lineas.size()]);
     }
 
@@ -441,11 +444,10 @@ public class Logica {
         rutas = new String[cartas];
     }
     private void cargarRutas(int tema){
-        String rutaConTema=RUTA_IMAGENES+"cartas/tema"+tema;
+        String rutaConTema=RUTA_IMAGENES+"cartas/tema"+tema+"/";
         System.out.println(rutaConTema);
         for (int i = 0; i < rutas.length; i++) {
-            rutas[i] = rutaConTema+"/"+i+".jpg";
-            System.out.println("----> "+rutas[i]);
+            rutas[i] = rutaConTema+i+".jpg";
         }
     }
 
