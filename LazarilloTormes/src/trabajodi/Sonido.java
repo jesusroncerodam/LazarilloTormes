@@ -37,7 +37,8 @@ public class Sonido extends Thread{
         int BUFFER_SIZE = 64*1024;  // 64 KB
         try {
            SourceDataLine soundLine = null;
-           URL url= this.getClass().getResource("/sonidos/air.wav");
+            System.out.println(sonido);
+           URL url= this.getClass().getResource(sonido);
            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
            AudioFormat audioFormat = audioInputStream.getFormat();
            DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
