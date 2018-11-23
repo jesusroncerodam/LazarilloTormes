@@ -5,8 +5,6 @@
 package trabajodi;
 
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import vista.VCarga;
 import vista.VDialogoMod;
 import vista.VIngreso;
@@ -16,25 +14,13 @@ import vista.VMenu;
 import vista.VistaSplash;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.SplashScreen;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.net.MalformedURLException;
-import java.net.URL;
 import javax.swing.JFrame;
 import vista.VPrincipal;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
-import javax.swing.JWindow;
-import javax.swing.SwingConstants;
 
 
 /**
