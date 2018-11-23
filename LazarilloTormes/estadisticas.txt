@@ -32,3 +32,4 @@ Directorio de almacenamiento de estadistica
 50;18;/img/carta.jpg;me
 20;87;/img/avatar1.jpg;d
 28;53;/img/avatar1.jpg;d
+72;108;null;Nickname
