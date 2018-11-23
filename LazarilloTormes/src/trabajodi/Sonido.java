@@ -22,12 +22,10 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * @author Guille
  */
 public class Sonido extends Thread{
-    String mensaje;
     String sonido;
     int timeRep=0;
     boolean stop=false;
     public Sonido(){
-        mensaje="Hola";
     }
     public Sonido(String sonido){
         this.sonido=sonido;
@@ -40,21 +38,13 @@ public class Sonido extends Thread{
         repSonido(sonido);
         System.out.println("Este proceso ha terminado:"+this.getName());
     }
-
-    public void setMensaje(String msj){
-        this.mensaje = msj;
-    }
     
     public void repSonido(String sonido){
-        SourceDataLine soundLine = null;
+       
         int BUFFER_SIZE = 64*1024;  // 64 KB
-        // Set up an audio input stream piped from the sound file.
         try {
-            
-         //InputStream path = getClass().getResourceAsStream("/sonidos/air.wav");
-         URL url= this.getClass().getResource("/sonidos/air.wav");
-         //   URL url = getClass().getResource("sonidos/air.wav");
-           //File soundFile = new File(getClass().getResource("sonidos/air.wav"));//"src/sonidos/air.wav"path
+           SourceDataLine soundLine = null;
+           URL url= this.getClass().getResource("/sonidos/air.wav");
            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
            AudioFormat audioFormat = audioInputStream.getFormat();
            DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
