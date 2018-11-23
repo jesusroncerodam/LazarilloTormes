@@ -486,9 +486,11 @@ public class Logica {
         //guardamos avatar  y nombre
         this.nombre=nombre;
         this.avatar=avatar;
-        
+
         //añadimos cartas segun la dificultad; siendo la minima 4 cartas
+        cartasSegunDificultad(dificultad);
         
+        //añadimos las images
         cargarRutas(tema);
         
     }
