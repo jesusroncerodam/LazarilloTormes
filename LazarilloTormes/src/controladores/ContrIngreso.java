@@ -90,7 +90,8 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
 
 
     /**
-     * Llama
+     * Este método es llamado desde la lógica para pasar el string con el path
+     * para crear la imagen elegida por el usuario
      * @param imagenElegida String con el path de la imagen elegida
      */
     public void establecerImagenElegida(String imagenElegida) {
