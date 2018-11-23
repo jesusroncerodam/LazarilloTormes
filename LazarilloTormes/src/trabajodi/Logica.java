@@ -52,10 +52,10 @@ public class Logica {
     private boolean primeraJuego, animacionC;
     private Timer timer;
     private int vuelta, cartaAct;
-    private final String FICHERO = "estadisticas.txt", PRIMERA_LINEA = "Directorio de almacenamiento de estadistica\n",RUTA_SONIDO_MAIN="/sonidos/";
+    private final String FICHERO = "estadisticas.txt", PRIMERA_LINEA = "Directorio de almacenamiento de estadistica\n",RUTA_SONIDO_MAIN="/sonidos/",RUTA_IMAGENES="/img/";
     private String[] rutas;
 
-    private String nombre;
+    private String nombre,avatar;
     private boolean sonido = true;
 
 
@@ -144,8 +144,6 @@ public class Logica {
                     timer = new java.util.Timer();//cremos el timer para crear una animacion
                     TimerTask tarea = new TimerTask() {//creamos un timerTask, que se ejecutara en x segundos
                         int i = 0;
-
-
                         @Override
                         public void run() {
                             if (i > 0) {//cuando termine dejamos hacer otra accion, para que no se vean 3 imagenes
@@ -483,8 +481,29 @@ public class Logica {
                 System.err.println("\nOpcion no valida");
         }
     }
+    
     public void recogerDatos(String avatar,int tema, int dificultad, String nombre){
         //guardamos avatar  y nombre
+        this.nombre=nombre;
+        this.avatar=avatar;
+        
+        //añadimos cartas segun la dificultad; siendo la minima 4 cartas
+        
+        cargarRutas(tema);
+        
+    }
+    private void cartasSegunDificultad(int dificultad){
+        int cartas=2;
+        for (int i = dificultad; i >0; i--) {
+            cartas+=2;
+        }
+        rutas = new String[cartas];
+    }
+    private void cargarRutas(int tema){
+        String rutaConTema=RUTA_IMAGENES+"cartas/tema"+tema;
+        for (int i = 0; i < rutas.length; i++) {
+            rutas[i] = rutaConTema+i;
+        }
     }
 
 
@@ -718,7 +737,6 @@ public class Logica {
     private JFileChooser archivoSeleccionado;
     private FileNameExtensionFilter filtroArchivos;
     private int resultado;
-    private String path;
 
 
     /**
@@ -726,6 +744,7 @@ public class Logica {
      * metodo que asigna la foto
      */
     public void cogerImagenSistema() {
+        String path;
         selecionarYFiltrarArchivos();
         if (resultado == JFileChooser.APPROVE_OPTION) {
             path = archivoSeleccionado.getSelectedFile().getAbsolutePath();
@@ -759,10 +778,12 @@ public class Logica {
      */
 
     public void crearSonido() {
-        String accion="correcta";//viene del main
-        String rutaSonido=RUTA_SONIDO_MAIN+accion+((int) (Math.random()*3)+1)+".wav";
-        Sonido reproducir = new Sonido(rutaSonido);
-        reproducir.start();
-        System.out.println("Después de la canción");
+        if(sonido){
+            String accion="correcta";//viene del main
+            String rutaSonido=RUTA_SONIDO_MAIN+accion+((int) (Math.random()*3)+1)+".wav";
+            Sonido reproducir = new Sonido(rutaSonido);
+            reproducir.start();
+            System.out.println("Después de la canción");
+        }
     }
 }
