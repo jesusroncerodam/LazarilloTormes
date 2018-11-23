@@ -5,6 +5,8 @@
  */
 package trabajodi;
 
+import java.util.Locale;
+
 
 /**
  *
@@ -16,7 +18,7 @@ public class TrabajoLazarilloMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        Locale.setDefault(Locale.ENGLISH);
         Vista vista = new Vista(new Logica());
     }
 }
