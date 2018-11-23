@@ -5,7 +5,7 @@ Directorio de almacenamiento de estadistica
 2;10;/img/carta.jpg;ma
 2;10;/img/carta.jpg;ma
 2;10;/img/carta.jpg;ma
-15;15;/img/avatar1.jpg;Introduce your name
+15;15;/img/avatar1.jpg;d
 20;10;/img/carta.jpg;em3rer
 20;10;/img/carta.jpg;em
 20;10;/img/carta.jpg;em
@@ -30,5 +30,5 @@ Directorio de almacenamiento de estadistica
 50;18;/img/carta.jpg;me
 50;18;/img/carta.jpg;me
 50;18;/img/carta.jpg;me
-20;87;/img/avatar1.jpg;Introduce your name
-28;53;/img/avatar1.jpg;Introduce your name
+20;87;/img/avatar1.jpg;d
+28;53;/img/avatar1.jpg;d
