@@ -354,20 +354,10 @@ public class Vista {
                         JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) != JOptionPane.YES_OPTION) {
                 ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
                 }else{
-                    try {
-                        splashScreen();
-                    } catch (MalformedURLException ex) {
-                        Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    //System.exit(0);
+                    splashScreen(); //System.exit(0);
                 } 
             }else{
-                try {
-                    splashScreen();
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
-                }
-               // System.exit(0);
+                splashScreen(); // System.exit(0);
             }
         }
 

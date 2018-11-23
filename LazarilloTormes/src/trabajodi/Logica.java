@@ -33,6 +33,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
@@ -53,9 +54,11 @@ public class Logica {
     private final String FICHERO = "estadisticas.txt", PRIMERA_LINEA = "Directorio de almacenamiento de estadistica\n";
     private String[] rutas;
     private String nombre;
+    private boolean sonido=true;
 
 
     public Logica() {
+        crearSonido();
     }
 
 
@@ -241,7 +244,11 @@ public class Logica {
                 guardarPartida();
                 break;
             case "salir":
-                Runtime.getRuntime().exit(500);
+                if (JOptionPane.showConfirmDialog(null, "You will exit off the game ¿Are you sure?","Do you want to exit?", 
+                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
+                //Runtime.getRuntime().exit(500);
                 System.out.println(accion);
                 break;
             case "atras":
@@ -251,6 +258,7 @@ public class Logica {
                 System.out.println(accion);
                 break;
             case "sonido":
+                sonido=menu.estadoSonido();
                 System.out.println(accion);
                 break;
             case "partidarapida"://Partida Rapida
@@ -717,5 +725,10 @@ public class Logica {
         archivoSeleccionado.addChoosableFileFilter(filtroArchivos);
 //        archivoSeleccionado.setFileFilter(filtroArchivos);
         resultado = archivoSeleccionado.showSaveDialog(null);
+    }
+    public void crearSonido(){
+        Sonido reproducir = new Sonido("sonidos/air.wav");
+        reproducir.start();
+        System.out.println("Después de la canción");
     }
 }
