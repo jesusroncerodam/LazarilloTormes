@@ -8,8 +8,11 @@ package vista;
 
 import controladores.ContrDialogoMod;
 import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import trabajodi.Logica;
 import trabajodi.Metodos;
@@ -22,11 +25,11 @@ import trabajodi.Metodos;
 public class VDialogoMod extends JPanel {
 
     private ContrDialogoMod controlador;
-    private JButton atras;
-    private ImageIcon flecha;
-    private Metodos metodo;
-
-    ImageIcon fondo = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.jpg"));
+    private JButton botonFlechaAtras;
+    private ImageIcon flecha = new ImageIcon(this.getClass().getResource("/img/atras.png"));
+    private ImageIcon fondo = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.jpg"));
+    private GridBagConstraints constrain;
+    private JLabel labelNombreGuille, labelNombreJesus;
 
 
     public VDialogoMod(Logica logica) {
@@ -35,18 +38,39 @@ public class VDialogoMod extends JPanel {
 
 
     public void generar() {
+
+        constrain = new GridBagConstraints();
+        this.setLayout(new GridBagLayout());
+
         generarBoton();
     }
 
 
+    public void crearLableNombreJesus() {
+        labelNombreJesus = new JLabel("Jesús Roncero García");
+
+        constrain.fill = GridBagConstraints.BASELINE;
+        constrain.gridwidth = 3;
+
+        constrain.gridy = 1;
+        constrain.gridx = 0;
+        add(labelNombreJesus, constrain);
+    }
+
+
     private void generarBoton() {
-        atras = new JButton();
+        botonFlechaAtras = new JButton();
 //        flecha = metodo.imagenEspejo("/img/flecha.png");
 
-        atras.setIcon(flecha);
-        atras.setContentAreaFilled(false);
-        atras.setBorderPainted(false);
-        this.add(atras);
+        constrain.fill = GridBagConstraints.BASELINE;
+
+        constrain.gridy = 0;
+        constrain.gridx = 4;
+        add(botonFlechaAtras, constrain);
+
+        botonFlechaAtras.setIcon(flecha);
+        botonFlechaAtras.setContentAreaFilled(false);
+        botonFlechaAtras.setBorderPainted(false);
     }
 
 
