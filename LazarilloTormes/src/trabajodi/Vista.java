@@ -140,7 +140,7 @@ public class Vista {
 
 
     public void iniciarLista() {
-        ventana.setSize(600, 600);
+        ventana.setSize(1200, 800);
         ventana.add(vLista);
         ventana.repaint();
         ventana.setVisible(true);
