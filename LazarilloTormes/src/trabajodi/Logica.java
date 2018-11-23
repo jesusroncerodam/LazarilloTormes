@@ -61,8 +61,7 @@ public class Logica {
 
 
     public Logica() {
-        //crearFichero(true);
-        crearSonido();
+        crearSonido("inicio");//cargamos el sonido para la accion
     }
 
 
@@ -78,6 +77,7 @@ public class Logica {
      * CONTROLADOR JUEGO
      * CONTROLADOR JUEGO
      */
+    
     /**
      * asinamos el controlador de Juego y incicializamos valores a un juego por
      * defecto
@@ -125,15 +125,17 @@ public class Logica {
                 vuelta = -1;//si es asi la carta que se dio la vuelta no existe, para la logica
             }
             juego.movimiento();//se realiza 1 movimiento, sumamos 1 al contador
-
+            crearSonido("movimiento");//cargamos el sonido para la accion
             juego.girar(cartaAct);//gira mos la carta que se hizo click
 
             if (vuelta != -1) {//si es diferente de  -1 hay 2 visibles
                 if (juego.mismaImagen(vuelta, cartaAct)) {//si las cartas que hay son iguales
 
                     juego.bloquearImagenes(vuelta, cartaAct);//bloqueamos la imagen, para que no se puedan mover mas
+                    crearSonido("correcta");//cargamos el sonido para la accion
 
                     if (!juego.isFin()) {//si es el fin del juego(Si a termiando)
+                        crearSonido("victoria");//cargamos el sonido para la accion
                         juego.gestionarContador("pausa");
                         //cambiamos los estados de los botones 
                         juego.cambiarEstadoBoton("guardar", false);
@@ -144,6 +146,7 @@ public class Logica {
                     }
 
                 } else {//si las cartas que tenemos no son iguales las giramos
+                    crearSonido("fallo");//cargamos el sonido para la accion
                     animacionC = true;//ponermos que existe una animacion en progreso
                     timer = new java.util.Timer();//cremos el timer para crear una animacion
                     TimerTask tarea = new TimerTask() {//creamos un timerTask, que se ejecutara en x segundos
@@ -304,31 +307,6 @@ public class Logica {
             System.out.println("Error al escribir");//Si existe un problema al escribir cae aqui
         }
     }
-
-
-    public void mostrarFichero() {
-        //Creamos un String que va a contener todo el texto del archivo
-        String texto = "";
-        System.out.println("ficheroooooo");
-        System.out.println("================================");
-        try {
-            //Creamos un archivo FileReader que obtiene lo que tenga el archivo
-            FileReader lector = new FileReader(FICHERO);
-
-            //El contenido de lector se guarda en un BufferedReader
-            BufferedReader contenido = new BufferedReader(lector);
-
-            //Con el siguiente ciclo extraemos todo el contenido del objeto "contenido" y lo mostramos
-            while ((texto = contenido.readLine()) != null) {
-                System.out.println(texto);
-            }
-        } //Si se causa un error al leer cae aqui
-        catch (Exception e) {
-            System.out.println("Error al leer");
-        }
-    }
-
-
 
     public ArrayList<Historial> pasarFicheroAArray() {//Retorna el contenido del fichero en el array
         String linea;
@@ -707,9 +685,8 @@ public class Logica {
      * SONIDO
      */
 
-    public void crearSonido() {
-        if(sonido){
-            String accion="correcta";//viene del main
+    public void crearSonido( String accion) {
+        if(sonido){//mientras que el sonido este habilitado
             String rutaSonido=RUTA_SONIDO_MAIN+accion+((int) (Math.random()*3)+1)+".wav";
             Sonido reproducir = new Sonido(rutaSonido);
             reproducir.start();
@@ -717,3 +694,32 @@ public class Logica {
         }
     }
 }
+
+
+
+
+/*
+ public void mostrarFichero() {
+        //Creamos un String que va a contener todo el texto del archivo
+        String texto = "";
+        System.out.println("ficheroooooo");
+        System.out.println("================================");
+        try {
+            //Creamos un archivo FileReader que obtiene lo que tenga el archivo
+            FileReader lector = new FileReader(FICHERO);
+
+            //El contenido de lector se guarda en un BufferedReader
+            BufferedReader contenido = new BufferedReader(lector);
+
+            //Con el siguiente ciclo extraemos todo el contenido del objeto "contenido" y lo mostramos
+            while ((texto = contenido.readLine()) != null) {
+                System.out.println(texto);
+            }
+        } //Si se causa un error al leer cae aqui
+        catch (Exception e) {
+            System.out.println("Error al leer");
+        }
+    }
+
+
+*/
