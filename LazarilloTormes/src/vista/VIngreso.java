@@ -558,6 +558,7 @@ public class VIngreso extends JPanel {
 
 
     public void mandarDatos() {
+        System.out.println("estbjf");
         controlador.mandarDatos(recogerAvatar(), recogerTema(), recogerDificultad(), recogerNombre());
     }
     /*

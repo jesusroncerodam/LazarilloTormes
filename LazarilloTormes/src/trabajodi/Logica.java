@@ -138,6 +138,8 @@ public class Logica {
                         juego.cambiarEstadoBoton("guardar", false);
                         juego.cambiarEstadoBoton("playPause", false);
                         juego.cambiarEstadoBoton("continuar", true);
+                        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //guardar datos y ordenar
                     }
 
                 } else {//si las cartas que tenemos no son iguales las giramos
@@ -191,7 +193,8 @@ public class Logica {
         }
     }
 
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //poner q es indice 1, etc
     public void juegokey(char pulso) {
         switch (pulso) {
             case 'q':
@@ -204,16 +207,6 @@ public class Logica {
 
 
     public String[] obtenerRutasImg() {
-        //inicializamos temporal
-        rutas = new String[2];
-        rutas[0] = "/img/carta.jpg";
-        rutas[1] = "/img/2.jpg";
-//        rutas[2] = "/img/carga2.jpg";
-//        rutas[3] = "/img/flecha.png";
-//        rutas[4] = "/img/flecha.png";
-//        rutas[5] = "/img/flecha.png";
-//        rutas[6] = "/img/flecha.png";
-//        rutas[7] = "/img/flecha.png";
         return rutas;
         //rutas=null;
     }
@@ -340,27 +333,6 @@ public class Logica {
     }
 
 
-    public void test() {
-        ArrayList historial = new ArrayList<Historial>();
-        //String nombre, ImageIcon imagen, int tiempo, int movimientos
-        historial.add(new Historial(20, 10, "url", "em"));
-        historial.add(new Historial(50, 15, "url", "am"));
-        historial.add(new Historial(20, 15, "url", "om"));
-        historial.add(new Historial(2, 10, "url", "ma"));
-        historial.add(new Historial(50, 18, "url", "me"));
-        pasarAFichero(historial);
-        /*
-         * for (Object object : historial) {
-         * System.out.println(object.toString()+"");
-         * }
-         * Collections.sort(historial);
-         * System.out.println("----");
-         * for (Object object : historial) {
-         * System.out.println(object.toString()+"");
-         * }
-         */
-    }
-
 
     public ArrayList<Historial> pasarFicheroAArray() {//Retorna el contenido del fichero en el array
         String linea;
@@ -452,7 +424,7 @@ public class Logica {
         //guardamos avatar  y nombre
         this.nombre=nombre;
         this.avatar=avatar;
-
+        
         //añadimos cartas segun la dificultad; siendo la minima 4 cartas
         cartasSegunDificultad(dificultad);
         
@@ -469,6 +441,7 @@ public class Logica {
     }
     private void cargarRutas(int tema){
         String rutaConTema=RUTA_IMAGENES+"cartas/tema"+tema;
+        System.out.println(rutaConTema);
         for (int i = 0; i < rutas.length; i++) {
             rutas[i] = rutaConTema+i;
         }

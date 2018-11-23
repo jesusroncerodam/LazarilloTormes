@@ -107,7 +107,7 @@ public class VLista extends JPanel {
             JPanel fila = new JPanel(new GridLayout(1, NOMBRE_COLUMNAS.length + 1));
             elementos = datos[i].split(";");
             fila.add(new JLabel());
-            fila.add(new JLabel("" + i+1));//47, 92, 255
+            fila.add(new JLabel("" + (i+1)));//47, 92, 255
             if (i % 2 != 0) {
                 fila.setBackground(new Color(255, 255, 255, 200));
             } else {
@@ -117,6 +117,7 @@ public class VLista extends JPanel {
                 //System.out.println(elementos[j]+" -i"+i+" -j"+j);
                 switch (j) {
                     case 0://imagen, en el array es la pos 2
+                        System.out.println(elementos[2]);
                         JLabel b = new JLabel(cambiarTamano(new ImageIcon(this.getClass().getResource(elementos[2])), 20, 20), SwingConstants.LEFT);
                         fila.add(b);
                         //columna[i][3]=new ImageIcon(elementos[j]); 
