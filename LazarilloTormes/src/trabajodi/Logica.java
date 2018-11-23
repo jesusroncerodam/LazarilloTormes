@@ -267,14 +267,14 @@ public class Logica {
 
 
     private void guardarDatos(){
-        crearFichero(true);//nos aseguramso de que exista un fichero
-        
+        crearFichero();//nos aseguramso de que exista un fichero
         ArrayList<Historial> historial =pasarFicheroAArray();
         historial.add(new Historial(juego.getContMov(), juego.getContadorSeg(), avatar, nombre));//añadimos
         //ordenamos
         Collections.sort(historial);
         //eliminamos el fichero anterior 
-        crearFichero(false);
+        eliminarFichero();
+        crearFichero();
         pasarAFichero(historial);
         //lo añadimos
         //lo pasamos al fichero
@@ -286,16 +286,20 @@ public class Logica {
         //tiempo
         
     }
+    private void eliminarFichero(){
+         File archivo=new File(new File(FICHERO).getAbsolutePath());
+         archivo.delete();
+    }
 
     
-    private void crearFichero(boolean mantenerFichero) {
+    private void crearFichero() {
         try {
             File archivo=new File(new File(FICHERO).getAbsolutePath());
-          // if (!archivo.exists()) {
-                FileWriter escritor = new FileWriter(archivo, mantenerFichero);//true no sobrescribe
+            if (!archivo.exists()) {
+                FileWriter escritor = new FileWriter(archivo, true);//true no sobrescribe
                 escritor.write(PRIMERA_LINEA);
                 escritor.close();
-           // }
+            }
         } catch (Exception e) {
             System.out.println("Error al escribir");//Si existe un problema al escribir cae aqui
         }
@@ -409,7 +413,7 @@ public class Logica {
     }
     
     public void recogerDatos(String avatar,int tema, int dificultad, String nombre){
-        System.out.println(tema+" "+nombre+" "+dificultad+"");
+        System.out.println(tema+" "+nombre+" "+dificultad+""+avatar);
         //guardamos avatar  y nombre
         this.nombre=nombre;
         this.avatar=avatar;
@@ -577,7 +581,6 @@ public class Logica {
 
 
     public int obtenerMovimientos() {
-        System.out.println("ewrwdgjbsg" + partidaGuardada.getMovimientos());
         if (partidaGuardada.getVuelta() == -1)//si no hay ninguna carta dada la vuelta retornamos esto
         {
             return partidaGuardada.getMovimientos();
@@ -591,9 +594,6 @@ public class Logica {
     public int obtenerTiempo() {
         return partidaGuardada.getSegundos();
     }
-//    public int obtenerVuelta(){
-//        return partidaGuardada.getVuelta();
-//    }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

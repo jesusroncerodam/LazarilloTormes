@@ -227,7 +227,7 @@ public class VIngreso extends JPanel {
         avatar1.setBorder(bordeAvatar);
         avatar2.setBorder(null);
         avatar3.setBorder(null);
-        System.out.println(avatar1.getIcon().toString());
+        anadirDescripciones();
     }
 
 
@@ -574,7 +574,6 @@ public class VIngreso extends JPanel {
 
 
     public void mandarDatos() {
-        System.out.println("estbjf");
         controlador.mandarDatos(recogerAvatar(), recogerTema(), recogerDificultad(), recogerNombre());
     }
     /*

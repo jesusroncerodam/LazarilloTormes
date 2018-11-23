@@ -5,7 +5,6 @@ Directorio de almacenamiento de estadistica
 2;10;/img/carta.jpg;ma
 2;10;/img/carta.jpg;ma
 2;10;/img/carta.jpg;ma
-15;15;/img/avatar1.jpg;Introduce your name
 20;10;/img/carta.jpg;em3rer
 20;10;/img/carta.jpg;em
 20;10;/img/carta.jpg;em
@@ -30,3 +29,4 @@ Directorio de almacenamiento de estadistica
 50;18;/img/carta.jpg;me
 50;18;/img/carta.jpg;me
 50;18;/img/carta.jpg;me
+Directorio de almacenamiento de estadistica
