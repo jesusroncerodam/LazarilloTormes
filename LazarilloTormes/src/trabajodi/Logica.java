@@ -287,29 +287,10 @@ public class Logica {
         
     }
 
-
-//    private void gestionFichero(Historial historialNuevo){
-//        ArrayList<Historial> historial;
-//        //nos aseguramos que existe un fichero
-//        crearFichero(true);
-//        //añadimos el contenido del fichero a un array
-//        historial= pasarFicheroAArray();
-//        //añadimos los nuevos valores 
-//        historial.add(historialNuevo);
-//        //ordenamos el arraylist
-//        Collections.sort(historial);
-//        //lo escribimos en el fichero
-//        pasarAFichero(historial);
-//    }
+    
     private void crearFichero(boolean mantenerFichero) {
         try {
             File archivo=new File(new File(FICHERO).getAbsolutePath());
-           
-            //System.out.println(aux.getAbsoluteFile());
-                    
-           // System.out.println(fichero2.getAbsoluteFile().getPath());
-          //  File archivo = new File(this.getClass().getName().);
-          //  System.out.println(archivo.getAbsoluteFile());
           // if (!archivo.exists()) {
                 FileWriter escritor = new FileWriter(archivo, mantenerFichero);//true no sobrescribe
                 escritor.write(PRIMERA_LINEA);
