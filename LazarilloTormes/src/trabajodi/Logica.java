@@ -60,6 +60,7 @@ public class Logica {
 
 
     public Logica() {
+        //crearFichero(true);
         crearSonido();
     }
 
@@ -297,9 +298,15 @@ public class Logica {
 //    }
     private void crearFichero(boolean mantenerFichero) {
         try {
-            File archivo = new File(FICHERO);
-            System.out.println(archivo.getAbsoluteFile());
-            if (!archivo.exists()) {
+            File archivo=new File(new File("test.txt").getAbsolutePath());
+           
+            //System.out.println(aux.getAbsoluteFile());
+                    
+           // System.out.println(fichero2.getAbsoluteFile().getPath());
+          //  File archivo = new File(this.getClass().getName().);
+            System.out.println("sajfkb");
+          //  System.out.println(archivo.getAbsoluteFile());
+           if (!archivo.exists()) {
                 FileWriter escritor = new FileWriter(archivo, mantenerFichero);//true no sobrescribe
                 escritor.write(PRIMERA_LINEA);
                 escritor.close();
@@ -396,7 +403,7 @@ public class Logica {
         String linea;
         ArrayList<String> lineas = new ArrayList();
         try {
-            FileReader f = new FileReader(FICHERO);
+            FileReader f = new FileReader(new File(FICHERO).getAbsolutePath());
             BufferedReader b = new BufferedReader(f);
             b.readLine();//ignoramos la 1º linea
             while ((linea = b.readLine()) != null) {
