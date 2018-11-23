@@ -54,7 +54,7 @@ public class Vista {
      * @param logica clase logica para vincularla con todas las clases
      */
     public Vista(Logica logica) {
-        new SplashDemo();
+        //new SplashDemo();
         generarVista();
 
         //creamos todas las vistas mandandole la logica
@@ -381,8 +381,10 @@ public class Vista {
         }
         
         public void paint(Graphics g) {
+            
             super.paint(g);
             g.drawImage(new ImageIcon(getClass().getResource("/img/despedida.gif")).getImage(), 0, 0, getWidth(), getHeight(), null);
+            super.paint(g);
         }
     }
 
