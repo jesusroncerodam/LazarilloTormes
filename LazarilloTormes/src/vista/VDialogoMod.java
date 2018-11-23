@@ -10,6 +10,7 @@ import controladores.ContrDialogoMod;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -27,7 +28,7 @@ public class VDialogoMod extends JPanel {
     private ContrDialogoMod controlador;
     private JButton botonFlechaAtras;
     private ImageIcon flecha = new ImageIcon(this.getClass().getResource("/img/atras.png"));
-    private ImageIcon fondo = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.jpg"));
+    private ImageIcon fondo = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.gif"));
     private GridBagConstraints constrain;
     private JLabel labelNombreGuille, labelNombreJesus;
 
@@ -38,11 +39,26 @@ public class VDialogoMod extends JPanel {
 
 
     public void generar() {
-
+        setOpaque(false);
         constrain = new GridBagConstraints();
         this.setLayout(new GridBagLayout());
+        defectoConstrain();
 
+        crearLableNombreJesus();
         generarBoton();
+    }
+
+
+    public void crearLableNombreGuille() {
+        labelNombreGuille = new JLabel("Guillermo Manso García");
+
+        constrain.fill = GridBagConstraints.BASELINE;
+        constrain.gridwidth = 3;
+
+        constrain.gridy = 1;
+        constrain.gridx = 1;
+        add(labelNombreGuille, constrain);
+        defectoConstrain();
     }
 
 
@@ -50,11 +66,11 @@ public class VDialogoMod extends JPanel {
         labelNombreJesus = new JLabel("Jesús Roncero García");
 
         constrain.fill = GridBagConstraints.BASELINE;
-        constrain.gridwidth = 3;
 
         constrain.gridy = 1;
-        constrain.gridx = 0;
+        constrain.gridx = 1;
         add(labelNombreJesus, constrain);
+        defectoConstrain();
     }
 
 
@@ -68,9 +84,12 @@ public class VDialogoMod extends JPanel {
         constrain.gridx = 4;
         add(botonFlechaAtras, constrain);
 
+        defectoConstrain();
+
         botonFlechaAtras.setIcon(flecha);
         botonFlechaAtras.setContentAreaFilled(false);
         botonFlechaAtras.setBorderPainted(false);
+
     }
 
 
@@ -81,8 +100,29 @@ public class VDialogoMod extends JPanel {
      */
     @Override
     public void paint(Graphics g) {
-        super.paint(g);
+
         g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), null);
+        super.paint(g);
+        repaint();
+    }
+
+
+    /*
+     * Añade los elementos a la vista
+     *
+     * loc.ipadx = 50;
+     * loc.anchor = GridBagConstraints.LINE_START;
+     */
+    public void defectoConstrain() {
+        /*
+         * POR DEFECTO
+         */
+        constrain.anchor = GridBagConstraints.CENTER;
+        constrain.weighty = 1.0; //para que se estiren las columnas
+        constrain.weightx = 1.0; // El área de texto ocupa 1 filasa
+        constrain.fill = GridBagConstraints.BOTH;
+        constrain.gridwidth = 1;
+        constrain.insets = new Insets(0, 0, 0, 0);
     }
 }
 
