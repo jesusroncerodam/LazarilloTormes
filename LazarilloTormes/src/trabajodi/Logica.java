@@ -421,6 +421,7 @@ public class Logica {
     }
     
     public void recogerDatos(String avatar,int tema, int dificultad, String nombre){
+        System.out.println(tema+" "+nombre+" "+dificultad+"");
         //guardamos avatar  y nombre
         this.nombre=nombre;
         this.avatar=avatar;
@@ -443,7 +444,8 @@ public class Logica {
         String rutaConTema=RUTA_IMAGENES+"cartas/tema"+tema;
         System.out.println(rutaConTema);
         for (int i = 0; i < rutas.length; i++) {
-            rutas[i] = rutaConTema+i;
+            rutas[i] = rutaConTema+"/"+i+".jpg";
+            System.out.println("----> "+rutas[i]);
         }
     }
 
