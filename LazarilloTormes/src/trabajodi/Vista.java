@@ -164,7 +164,7 @@ public class Vista {
      */
     public void crearPantallaDesarrolladores() {
         System.out.println("Has entrado en el registro");
-        ventana.setSize(600, 600);
+        ventana.setSize(1000, 600);
         ventana.add(vDialogoMod);
         ventana.setVisible(true);
     }

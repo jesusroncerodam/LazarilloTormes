@@ -27,11 +27,14 @@ import trabajodi.Metodos;
 public class VDialogoMod extends JPanel {
 
     private ContrDialogoMod controlador;
+
     private JButton botonFlechaAtras;
+
+    private GridBagConstraints constrain;
+    private JLabel labelDesarrolladores, labelNombreGuille, labelNombreJesus, labelLogoTrini;
+
     private ImageIcon flecha = new ImageIcon(this.getClass().getResource("/img/atras.png"));
     private ImageIcon fondo = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.gif"));
-    private GridBagConstraints constrain;
-    private JLabel labelDesarrolladores, labelNombreGuille, labelNombreJesus;
     private ImageIcon iconoTrinitarias = new ImageIcon(this.getClass().getResource("/img/logotrini.png"));
 
 
@@ -49,19 +52,20 @@ public class VDialogoMod extends JPanel {
         crearLableDesarrolladores();
         crearLableNombreJesus();
         crearLableNombreGuille();
+        crearLogoTrini();
         generarBoton();
     }
 
 
     public void crearLableDesarrolladores() {
         labelDesarrolladores = new JLabel("Desarrolladores");
-        labelDesarrolladores.setFont(bakerville(50));
+        labelDesarrolladores.setFont(bakerville(70));
 
         constrain.fill = GridBagConstraints.BASELINE;
-        constrain.gridwidth = 3;
+        constrain.gridwidth = 5;
 
         constrain.gridy = 0;
-        constrain.gridx = 0;
+        constrain.gridx = 1;
         add(labelDesarrolladores, constrain);
         defectoConstrain();
     }
@@ -69,13 +73,14 @@ public class VDialogoMod extends JPanel {
 
     public void crearLableNombreGuille() {
         labelNombreGuille = new JLabel("Guillermo Manso García");
-        labelNombreGuille.setFont(bakerville(15));
+        labelNombreGuille.setFont(bakerville(30));
 
-        constrain.fill = GridBagConstraints.BOTH;
-        constrain.gridwidth = 3;
+        constrain.fill = GridBagConstraints.BASELINE;
+        constrain.gridwidth = 2;
 
+        constrain.gridx = 2;
         constrain.gridy = 1;
-        constrain.gridx = 1;
+
         add(labelNombreGuille, constrain);
         defectoConstrain();
     }
@@ -83,13 +88,28 @@ public class VDialogoMod extends JPanel {
 
     public void crearLableNombreJesus() {
         labelNombreJesus = new JLabel("Jesús Roncero García");
-        labelNombreJesus.setFont(bakerville(15));
+        labelNombreJesus.setFont(bakerville(30));
 
         constrain.fill = GridBagConstraints.BASELINE;
+        constrain.gridwidth = 2;
 
-        constrain.gridy = 1;
-        constrain.gridx = 1;
+        constrain.gridy = 2;
+        constrain.gridx = 2;
         add(labelNombreJesus, constrain);
+        defectoConstrain();
+    }
+
+
+    private void crearLogoTrini() {
+        labelLogoTrini = new JLabel(iconoTrinitarias);
+
+        constrain.fill = GridBagConstraints.BASELINE;
+        constrain.gridwidth = 4;
+
+        constrain.gridx = 4;       //HORIZONTAL
+        constrain.gridy = 4;        //VERTICAL
+
+        add(labelLogoTrini, constrain);
         defectoConstrain();
     }
 
@@ -109,7 +129,6 @@ public class VDialogoMod extends JPanel {
         botonFlechaAtras.setIcon(flecha);
         botonFlechaAtras.setContentAreaFilled(false);
         botonFlechaAtras.setBorderPainted(false);
-
     }
 
 
@@ -128,7 +147,7 @@ public class VDialogoMod extends JPanel {
 
 
     public void anadirControladores() {
-
+        controlador = new ContrDialogoMod(this);
     }
 
 
@@ -161,6 +180,7 @@ public class VDialogoMod extends JPanel {
         Font fuente = new Font("Baskerville Old Face", Font.BOLD, tamanofuente);
         return fuente;
     }
+
 }
 
 //
