@@ -17,7 +17,7 @@ Directorio de almacenamiento de estadistica
 20;15;/img/carta.jpg;om
 20;15;/img/carta.jpg;om
 20;15;/img/carta.jpg;om
-22;28;null;Introduce your name
+23;27;null;Introduce your name
 50;15;/img/carta.jpg;am
 50;15;/img/carta.jpg;am
 50;15;/img/carta.jpg;am
