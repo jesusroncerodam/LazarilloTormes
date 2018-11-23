@@ -89,6 +89,10 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
     }
 
 
+    /**
+     * Llama
+     * @param imagenElegida String con el path de la imagen elegida
+     */
     public void establecerImagenElegida(String imagenElegida) {
         vistaIngreso.establecerImagenElegida(imagenElegida);
     }

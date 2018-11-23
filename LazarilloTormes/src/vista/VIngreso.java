@@ -217,13 +217,9 @@ public class VIngreso extends JPanel {
         avatar2.setBorderPainted(true);
         avatar3.setBorderPainted(true);
 
-        iconoAvatar1 = cambiarTamano(iconoAvatar1, ANCHOIMAGENES, ALTOIMAGENES);
-        iconoAvatar2 = cambiarTamano(iconoAvatar2, ANCHOIMAGENES, ALTOIMAGENES);
-        iconoAvatar3 = cambiarTamano(iconoAvatar3, ANCHOIMAGENES, ALTOIMAGENES);
-
-        avatar1.setIcon(iconoAvatar1);
-        avatar2.setIcon(iconoAvatar2);
-        avatar3.setIcon(iconoAvatar3);
+        avatar1.setIcon(cambiarTamano(iconoAvatar1, ANCHOIMAGENES, ALTOIMAGENES));
+        avatar2.setIcon(cambiarTamano(iconoAvatar2, ANCHOIMAGENES, ALTOIMAGENES));
+        avatar3.setIcon(cambiarTamano(iconoAvatar3, ANCHOIMAGENES, ALTOIMAGENES));
         avatar1.setBorder(bordeAvatar);
         avatar2.setBorder(null);
         avatar3.setBorder(null);
@@ -465,11 +461,6 @@ public class VIngreso extends JPanel {
     }
 
 
-    public void cambiarDeVista(String vista) {
-        vistaMain.cambiarVista(vista);
-    }
-
-
     /**
      * Proporciona un color aleatorio para el panel
      * @return Devuelve un color
@@ -578,18 +569,24 @@ public class VIngreso extends JPanel {
     }
 
 
-    /*
+    /**
+     * Este metodo se utiliza para cambiar el Avatar 1 por una imagen elegida
+     * del sistema
      *
-     * private TextField campoNombre;
-     *
-     * private JCheckBox avatar1, avatar2, avatar3;
-     * private JCheckBox tema1, tema2, tema3;
-     * private JCheckBox dificultad1, dificultad2, dificultad3;
+     * Es llamado desde el controladorIngreso por el método
+     * establecerImagenElegida
+     * @param imagenElegida
      */
     public void establecerImagenElegida(String imagenElegida) {
         ImageIcon icono = new ImageIcon(imagenElegida);
         avatar1.setIcon(cambiarTamano(icono, ANCHOIMAGENES, ALTOIMAGENES));
     }
+
+
+    public void cambiarDeVista(String vista) {
+        vistaMain.cambiarVista(vista);
+    }
+
 }
 
 //        constrain = new GridBagConstraints();
