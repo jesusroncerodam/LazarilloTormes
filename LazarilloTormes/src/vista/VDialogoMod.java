@@ -7,6 +7,7 @@ package vista;
 
 
 import controladores.ContrDialogoMod;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -30,7 +31,8 @@ public class VDialogoMod extends JPanel {
     private ImageIcon flecha = new ImageIcon(this.getClass().getResource("/img/atras.png"));
     private ImageIcon fondo = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.gif"));
     private GridBagConstraints constrain;
-    private JLabel labelNombreGuille, labelNombreJesus;
+    private JLabel labelDesarrolladores, labelNombreGuille, labelNombreJesus;
+    private ImageIcon iconoTrinitarias = new ImageIcon(this.getClass().getResource("/img/logotrini.png"));
 
 
     public VDialogoMod(Logica logica) {
@@ -44,15 +46,32 @@ public class VDialogoMod extends JPanel {
         this.setLayout(new GridBagLayout());
         defectoConstrain();
 
+        crearLableDesarrolladores();
         crearLableNombreJesus();
+        crearLableNombreGuille();
         generarBoton();
+    }
+
+
+    public void crearLableDesarrolladores() {
+        labelDesarrolladores = new JLabel("Desarrolladores");
+        labelDesarrolladores.setFont(bakerville(50));
+
+        constrain.fill = GridBagConstraints.BASELINE;
+        constrain.gridwidth = 3;
+
+        constrain.gridy = 0;
+        constrain.gridx = 0;
+        add(labelDesarrolladores, constrain);
+        defectoConstrain();
     }
 
 
     public void crearLableNombreGuille() {
         labelNombreGuille = new JLabel("Guillermo Manso García");
+        labelNombreGuille.setFont(bakerville(15));
 
-        constrain.fill = GridBagConstraints.BASELINE;
+        constrain.fill = GridBagConstraints.BOTH;
         constrain.gridwidth = 3;
 
         constrain.gridy = 1;
@@ -64,6 +83,7 @@ public class VDialogoMod extends JPanel {
 
     public void crearLableNombreJesus() {
         labelNombreJesus = new JLabel("Jesús Roncero García");
+        labelNombreJesus.setFont(bakerville(15));
 
         constrain.fill = GridBagConstraints.BASELINE;
 
@@ -80,8 +100,8 @@ public class VDialogoMod extends JPanel {
 
         constrain.fill = GridBagConstraints.BASELINE;
 
-        constrain.gridy = 0;
-        constrain.gridx = 4;
+        constrain.gridy = 4;
+        constrain.gridx = 0;
         add(botonFlechaAtras, constrain);
 
         defectoConstrain();
@@ -107,6 +127,11 @@ public class VDialogoMod extends JPanel {
     }
 
 
+    public void anadirControladores() {
+
+    }
+
+
     /*
      * Añade los elementos a la vista
      *
@@ -123,6 +148,18 @@ public class VDialogoMod extends JPanel {
         constrain.fill = GridBagConstraints.BOTH;
         constrain.gridwidth = 1;
         constrain.insets = new Insets(0, 0, 0, 0);
+    }
+
+
+    /**
+     * Crea una fuente para aplicarla a los label
+     * @param tamanofuente int que hay que pasar para asignar el tamaño a la
+     *                     fuente
+     * @return font Devuelve una fuente
+     */
+    public Font bakerville(int tamanofuente) {
+        Font fuente = new Font("Baskerville Old Face", Font.BOLD, tamanofuente);
+        return fuente;
     }
 }
 

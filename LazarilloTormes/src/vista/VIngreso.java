@@ -320,6 +320,21 @@ public class VIngreso extends JPanel {
     }
 
 
+    public void anadirDescripciones() {
+        iconoAvatar1.setDescription("/img/avatar1.jpg");
+        iconoAvatar2.setDescription("/img/avatar2.jpg");
+        iconoAvatar3.setDescription("/img/avatar3.jpg");
+
+//        iconoTema1.setDescription("/img/tema1.jpg");
+//        iconoTema2.setDescription("/img/tema2.jpg");
+//        iconoTema3.setDescription("/img/tema3.jpg");
+//
+//        iconoDificultad1.setDescription("/img/dificultad1.jpg");
+//        iconoDificultad2.setDescription("/img/dificultad2.jpg");
+//        iconoDificultad3.setDescription("/img/dificultad3.jpg");
+    }
+
+
     public void anadirescuchadores() {
         labelAvatar.setName("avatar");
         campoNombre.setName("campoNombre");
@@ -360,6 +375,7 @@ public class VIngreso extends JPanel {
         botonFlechaAtras.addMouseListener(controlador);
         botonFlechaSiguiente.addMouseListener(controlador);
     }
+
 
 
     /*
