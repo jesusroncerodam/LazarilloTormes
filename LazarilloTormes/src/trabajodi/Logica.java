@@ -703,38 +703,25 @@ public class Logica {
      * COGER IMAGEN SISTEMA
      * COGER IMAGEN SISTEMA
      */
-    private JFileChooser archivoSeleccionado;
-    private FileNameExtensionFilter filtroArchivos;
-    private int resultado;
-
-
     /**
      * Le asigna la ruta a una variable string y se la pasa por parametro al
      * metodo que asigna la foto
      */
     public void cogerImagenSistema() {
         String path;
-        selecionarYFiltrarArchivos();
+        JFileChooser archivoSeleccionado = new JFileChooser();
+        archivoSeleccionado.setCurrentDirectory(new File(System.getProperty("user.dir")));
+        FileNameExtensionFilter filtroArchivos = new FileNameExtensionFilter(".jpg", ".gif", ".png");
+        archivoSeleccionado.addChoosableFileFilter(filtroArchivos);
+//        archivoSeleccionado.setFileFilter(filtroArchivos);
+
+        int resultado = archivoSeleccionado.showSaveDialog(null);
         if (resultado == JFileChooser.APPROVE_OPTION) {
             path = archivoSeleccionado.getSelectedFile().getAbsolutePath();
 //            controlApp.vistaAppControlador.asignarFotoalBoton(path);
         } else if (resultado == JFileChooser.CANCEL_OPTION) {
             System.out.println("No has seleccionado ningun archivo");
         }
-    }
-
-
-    /**
-     * Abre el explorador y filtra los archivos que aparecen cuando se abre el
-     * explorador
-     */
-    public void selecionarYFiltrarArchivos() {
-        archivoSeleccionado = new JFileChooser();
-        archivoSeleccionado.setCurrentDirectory(new File(System.getProperty("user.dir")));
-        filtroArchivos = new FileNameExtensionFilter(".jpg", ".gif", ".png");
-        archivoSeleccionado.addChoosableFileFilter(filtroArchivos);
-//        archivoSeleccionado.setFileFilter(filtroArchivos);
-        resultado = archivoSeleccionado.showSaveDialog(null);
     }
 
 
