@@ -34,6 +34,11 @@ public class ContrDialogoMod extends MouseAdapter implements ActionListener {
     }
 
 
+    public void mandarControlador() {
+        logica.asignarControladorDialogoMod(this);
+    }
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
@@ -54,19 +59,6 @@ public class ContrDialogoMod extends MouseAdapter implements ActionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        switch (e.getComponent().getName()) {
-            case "iconoTrinitarias":
-                try {
-                    Desktop.getDesktop().browse(new URI("http://www.marca.com"));
-                } catch (IOException | URISyntaxException e1) {
-                    e1.printStackTrace();
-                }
-                break;
-
-            default:
-                System.err.println("\nOpcion no valida");
-        }
-
+        logica.vistaDialogoModMouseListener(e);
     }
-
 }

@@ -6,12 +6,14 @@
 package trabajodi;
 
 
+import controladores.ContrDialogoMod;
 import controladores.ContrIngreso;
 import controladores.ContrJuego;
 import controladores.ContrLista;
 import controladores.ContrMenu;
 import controladores.ControladorPrincipal;
 import java.awt.Component;
+import java.awt.Desktop;
 import java.awt.event.ItemEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.TextEvent;
@@ -25,6 +27,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Timer;
@@ -49,14 +53,15 @@ public class Logica {
     private ControladorPrincipal principal;
     private ContrLista lista;
     private ContrMenu menu;
+
     private PartidaGuardada partidaGuardada;
     private boolean primeraJuego, animacionC;
     private Timer timer;
     private int vuelta, cartaAct;
-    private final String FICHERO = "estadisticas.txt", PRIMERA_LINEA = "Directorio de almacenamiento de estadistica\n",RUTA_SONIDO_MAIN="/sonidos/",RUTA_IMAGENES="/img/";
+    private final String FICHERO = "estadisticas.txt", PRIMERA_LINEA = "Directorio de almacenamiento de estadistica\n", RUTA_SONIDO_MAIN = "/sonidos/", RUTA_IMAGENES = "/img/";
     private String[] rutas;
 
-    private String nombre,avatar;
+    private String nombre, avatar;
     private boolean sonido = true;
 
 
@@ -77,7 +82,6 @@ public class Logica {
      * CONTROLADOR JUEGO
      * CONTROLADOR JUEGO
      */
-    
     /**
      * asinamos el controlador de Juego y incicializamos valores a un juego por
      * defecto
@@ -151,6 +155,8 @@ public class Logica {
                     timer = new java.util.Timer();//cremos el timer para crear una animacion
                     TimerTask tarea = new TimerTask() {//creamos un timerTask, que se ejecutara en x segundos
                         int i = 0;
+
+
                         @Override
                         public void run() {
                             if (i > 0) {//cuando termine dejamos hacer otra accion, para que no se vean 3 imagenes
@@ -199,6 +205,7 @@ public class Logica {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //poner q es indice 1, etc
+
     public void juegokey(char pulso) {
         switch (pulso) {
             case 'q':
@@ -269,9 +276,9 @@ public class Logica {
     }
 
 
-    private void guardarDatos(){
+    private void guardarDatos() {
         crearFichero();//nos aseguramso de que exista un fichero
-        ArrayList<Historial> historial =pasarFicheroAArray();
+        ArrayList<Historial> historial = pasarFicheroAArray();
         historial.add(new Historial(juego.getContMov(), juego.getContadorSeg(), avatar, nombre));//añadimos
         //ordenamos
         Collections.sort(historial);
@@ -281,23 +288,23 @@ public class Logica {
         pasarAFichero(historial);
         //lo añadimos
         //lo pasamos al fichero
-        
+
         //nombre//ya lo tengo 
         //imagen //ya lo tengo
         //movimientos
-        
         //tiempo
-        
-    }
-    private void eliminarFichero(){
-         File archivo=new File(new File(FICHERO).getAbsolutePath());
-         archivo.delete();
     }
 
-    
+
+    private void eliminarFichero() {
+        File archivo = new File(new File(FICHERO).getAbsolutePath());
+        archivo.delete();
+    }
+
+
     private void crearFichero() {
         try {
-            File archivo=new File(new File(FICHERO).getAbsolutePath());
+            File archivo = new File(new File(FICHERO).getAbsolutePath());
             if (!archivo.exists()) {
                 FileWriter escritor = new FileWriter(archivo, true);//true no sobrescribe
                 escritor.write(PRIMERA_LINEA);
@@ -307,6 +314,7 @@ public class Logica {
             System.out.println("Error al escribir");//Si existe un problema al escribir cae aqui
         }
     }
+
 
     public ArrayList<Historial> pasarFicheroAArray() {//Retorna el contenido del fichero en el array
         String linea;
@@ -364,7 +372,15 @@ public class Logica {
         return lineas.toArray(new String[lineas.size()]);
     }
 
-
+    /*
+     * CONTROLADOR VISTA INGRESO
+     * CONTROLADOR VISTA INGRESO
+     * CONTROLADOR VISTA INGRESO
+     * CONTROLADOR VISTA INGRESO
+     * CONTROLADOR VISTA INGRESO
+     * CONTROLADOR VISTA INGRESO
+     * CONTROLADOR VISTA INGRESO
+     */
     private ContrIngreso cIngreso;
 
 
@@ -389,32 +405,77 @@ public class Logica {
                 System.err.println("\nOpcion no valida");
         }
     }
-    
-    public void recogerDatos(String avatar,int tema, int dificultad, String nombre){
-        System.out.println(tema+" "+nombre+" "+dificultad+""+avatar);
+
+
+    /*
+     * CONTROLADOR VISTA DIALOGMOD
+     * CONTROLADOR VISTA DIALOGMOD
+     * CONTROLADOR VISTA DIALOGMOD
+     * CONTROLADOR VISTA DIALOGMOD
+     * CONTROLADOR VISTA DIALOGMOD
+     * CONTROLADOR VISTA DIALOGMOD
+     * CONTROLADOR VISTA DIALOGMOD
+     */
+    private ContrDialogoMod cDialogMod;
+
+
+    public void asignarControladorDialogoMod(ContrDialogoMod cDialogo) {
+        this.cDialogMod = cDialogo;
+    }
+
+
+    public void vistaDialogoModMouseListener(MouseEvent e) {
+        switch (e.getComponent().getName()) {
+            case "iconoTrinitarias":
+                try {
+                    Desktop.getDesktop().browse(new URI("http://www.marca.com"));
+                } catch (IOException | URISyntaxException e1) {
+                    e1.printStackTrace();
+                }
+                break;
+
+            default:
+                System.err.println("\nOpcion no valida");
+        }
+    }
+
+
+    /*
+     *
+     *
+     *
+     *
+     *
+     */
+    public void recogerDatos(String avatar, int tema, int dificultad, String nombre) {
+        System.out.println(tema + " " + nombre + " " + dificultad + "" + avatar);
         //guardamos avatar  y nombre
-        this.nombre=nombre;
-        this.avatar=avatar;
-        
+        this.nombre = nombre;
+        this.avatar = avatar;
+
         //añadimos cartas segun la dificultad; siendo la minima 4 cartas
         cartasSegunDificultad(dificultad);
-        
+
         //añadimos las images
         cargarRutas(tema);
-        
+
     }
-    private void cartasSegunDificultad(int dificultad){
-        int cartas=2;
-        for (int i = dificultad; i >0; i--) {
-            cartas+=2;
+
+
+    private void cartasSegunDificultad(int dificultad) {
+        int cartas = 2;
+        for (int i = dificultad; i > 0; i--) {
+            cartas += 2;
         }
         rutas = new String[cartas];
     }
-    private void cargarRutas(int tema){
-        String rutaConTema=RUTA_IMAGENES+"cartas/tema"+tema+"/";
+
+
+    private void cargarRutas(int tema) {
+        String rutaConTema = RUTA_IMAGENES + "cartas/tema" + tema + "/";
         System.out.println(rutaConTema);
         for (int i = 0; i < rutas.length; i++) {
-            rutas[i] = rutaConTema+i+".jpg";
+            rutas[i] = rutaConTema + i + ".jpg";
         }
     }
 
@@ -684,10 +745,9 @@ public class Logica {
      * SONIDO1
      * SONIDO
      */
-
-    public void crearSonido( String accion) {
-        if(sonido){//mientras que el sonido este habilitado
-            String rutaSonido=RUTA_SONIDO_MAIN+accion+((int) (Math.random()*3)+1)+".wav";
+    public void crearSonido(String accion) {
+        if (sonido) {//mientras que el sonido este habilitado
+            String rutaSonido = RUTA_SONIDO_MAIN + accion + ((int) (Math.random() * 3) + 1) + ".wav";
             Sonido reproducir = new Sonido(rutaSonido);
             reproducir.start();
             System.out.println("Después de la canción");
@@ -695,31 +755,30 @@ public class Logica {
     }
 }
 
-
-
-
 /*
- public void mostrarFichero() {
-        //Creamos un String que va a contener todo el texto del archivo
-        String texto = "";
-        System.out.println("ficheroooooo");
-        System.out.println("================================");
-        try {
-            //Creamos un archivo FileReader que obtiene lo que tenga el archivo
-            FileReader lector = new FileReader(FICHERO);
-
-            //El contenido de lector se guarda en un BufferedReader
-            BufferedReader contenido = new BufferedReader(lector);
-
-            //Con el siguiente ciclo extraemos todo el contenido del objeto "contenido" y lo mostramos
-            while ((texto = contenido.readLine()) != null) {
-                System.out.println(texto);
-            }
-        } //Si se causa un error al leer cae aqui
-        catch (Exception e) {
-            System.out.println("Error al leer");
-        }
-    }
-
-
-*/
+ * public void mostrarFichero() {
+ * //Creamos un String que va a contener todo el texto del archivo
+ * String texto = "";
+ * System.out.println("ficheroooooo");
+ * System.out.println("================================");
+ * try {
+ * //Creamos un archivo FileReader que obtiene lo que tenga el archivo
+ * FileReader lector = new FileReader(FICHERO);
+ *
+ * //El contenido de lector se guarda en un BufferedReader
+ * BufferedReader contenido = new BufferedReader(lector);
+ *
+ * //Con el siguiente ciclo extraemos todo el contenido del objeto "contenido"
+ * y
+ * lo mostramos
+ * while ((texto = contenido.readLine()) != null) {
+ * System.out.println(texto);
+ * }
+ * } //Si se causa un error al leer cae aqui
+ * catch (Exception e) {
+ * System.out.println("Error al leer");
+ * }
+ * }
+ *
+ *
+ */

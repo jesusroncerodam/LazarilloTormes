@@ -30,4 +30,5 @@ Directorio de almacenamiento de estadistica
 50;18;/img/carta.jpg;me
 50;18;/img/carta.jpg;me
 50;18;/img/carta.jpg;me
+20;87;/img/avatar1.jpg;Introduce your name
 28;53;/img/avatar1.jpg;Introduce your name

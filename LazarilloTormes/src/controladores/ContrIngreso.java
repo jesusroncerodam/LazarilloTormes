@@ -76,12 +76,15 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
     public void cambiarVista(String vista) {
         vistaIngreso.cambiarDeVista(vista);
     }
-    
-    public void mandarRecogerDatos(){
+
+
+    public void mandarRecogerDatos() {
         vistaIngreso.mandarDatos();
     }
+
+
     //recogerAvatar(), recogerTema(),recogerDificultad(),recogerNombre()
-    public void mandarDatos(String avatar,int tema, int dificultad, String nombre){
+    public void mandarDatos(String avatar, int tema, int dificultad, String nombre) {
         logica.recogerDatos(avatar, tema, dificultad, nombre);
     }
 }

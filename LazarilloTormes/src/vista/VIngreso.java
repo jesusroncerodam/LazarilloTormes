@@ -164,7 +164,7 @@ public class VIngreso extends JPanel {
 
 
     public void crearCampoNombre() {
-        campoNombre = new TextField("Introduce your name");
+        campoNombre = new TextField("Introduce your nickname");
         campoNombre.setFont(bakerville(TAMANOFUENTE - 8));
 //        constrain.weighty = 0.0;
 //        constrain.weightx = 0.0;

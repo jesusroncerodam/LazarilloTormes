@@ -47,6 +47,7 @@ public class VDialogoMod extends JPanel {
 
 
     public void generar() {
+        controlador.mandarControlador();
         setOpaque(false);
         constrain = new GridBagConstraints();
         this.setLayout(new GridBagLayout());
