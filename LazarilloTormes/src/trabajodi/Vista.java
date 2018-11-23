@@ -381,8 +381,6 @@ public class Vista {
         }
         
         public void paint(Graphics g) {
-            
-            super.paint(g);
             g.drawImage(new ImageIcon(getClass().getResource("/img/despedida.gif")).getImage(), 0, 0, getWidth(), getHeight(), null);
             super.paint(g);
         }
