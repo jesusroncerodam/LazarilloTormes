@@ -14,6 +14,7 @@ import controladores.ControladorPrincipal;
 import java.awt.Component;
 import java.awt.event.ItemEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.TextEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -53,8 +54,9 @@ public class Logica {
     private int vuelta, cartaAct;
     private final String FICHERO = "estadisticas.txt", PRIMERA_LINEA = "Directorio de almacenamiento de estadistica\n";
     private String[] rutas;
+
     private String nombre;
-    private boolean sonido=true;
+    private boolean sonido = true;
 
 
     public Logica() {
@@ -244,7 +246,7 @@ public class Logica {
                 guardarPartida();
                 break;
             case "salir":
-                if (JOptionPane.showConfirmDialog(null, "You will exit off the game ¿Are you sure?","Do you want to exit?", 
+                if (JOptionPane.showConfirmDialog(null, "You will exit off the game ¿Are you sure?", "Do you want to exit?",
                         JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
                     System.exit(0);
                 }
@@ -258,7 +260,7 @@ public class Logica {
                 System.out.println(accion);
                 break;
             case "sonido":
-                sonido=menu.estadoSonido();
+                sonido = menu.estadoSonido();
                 System.out.println(accion);
                 break;
             case "partidarapida"://Partida Rapida
@@ -469,10 +471,10 @@ public class Logica {
     public void vistaIngresoMouseListener(MouseEvent e) {
         switch (e.getComponent().getName()) {
             case "botonFlechaAtras":
-                cIngreso.cambiarAVistaPrincipal();
+                cIngreso.cambiarVista("principal");
                 break;
             case "botonFlechaSiguiente":
-                cIngreso.cambiarAVistaJuego();
+                cIngreso.cambiarVista("juego");
                 break;
             case "avatar":
                 cogerImagenSistema();
@@ -484,28 +486,45 @@ public class Logica {
 
 
     public void vistaIngresoItemChange(ItemEvent e) {
+        int avatar = 1, tema = 1, dificultad = 1;
         if (((JCheckBox) e.getSource()).isSelected()) {
             String variableTexto = ((JCheckBox) e.getSource()).getName();
             switch (variableTexto) {
                 case "avatar1":
                 case "avatar2":
                 case "avatar3":
-                    cIngreso.asignarBordeAvatar(Integer.parseInt(variableTexto.substring(6)));
+                    avatar = Integer.parseInt(variableTexto.substring(6));
+                    cIngreso.asignarBordeAvatar(avatar);
                     break;
                 case "tema1":
                 case "tema2":
                 case "tema3":
-                    cIngreso.asignarBordeTema(Integer.parseInt(variableTexto.substring(4)));
+                    tema = Integer.parseInt(variableTexto.substring(4));
+                    cIngreso.asignarBordeTema(tema);
                     break;
                 case "dificultad1":
                 case "dificultad2":
                 case "dificultad3":
-                    cIngreso.asignarBordeDificultad(Integer.parseInt(variableTexto.substring(10)));
+                    dificultad = Integer.parseInt(variableTexto.substring(10));
+                    cIngreso.asignarBordeDificultad(dificultad);
                     break;
                 default:
                     System.err.println("\nOpcion no valida");
             }
         }
+    }
+
+
+    public void vistaIngresoEscuchadorTexto(TextEvent e) {
+//        switch (e.) {
+//            case "campoNombre":
+//                System.out.print("añksljfñlaskjfsñ");
+//
+//                break;
+//
+//            default:
+//                System.err.println("\nOpcion no valida");
+//        }
     }
 
     ///////////////////////////
@@ -726,7 +745,17 @@ public class Logica {
 //        archivoSeleccionado.setFileFilter(filtroArchivos);
         resultado = archivoSeleccionado.showSaveDialog(null);
     }
-    public void crearSonido(){
+
+
+    /*
+     * SONIDO
+     * SONIDO
+     * SONIDO
+     * SONIDO
+     * SONIDO
+     */
+
+    public void crearSonido() {
         Sonido reproducir = new Sonido("sonidos/air.wav");
         reproducir.start();
         System.out.println("Después de la canción");

@@ -48,6 +48,7 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
 
     @Override
     public void textValueChanged(TextEvent e) {
+        logica.vistaIngresoEscuchadorTexto(e);
     }
 
 
@@ -57,27 +58,22 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
     }
 
 
-    public void asignarBordeAvatar(int parseInt) {
-        vistaIngreso.asignarBordeAvatar(parseInt);
+    public void asignarBordeAvatar(int avatar) {
+        vistaIngreso.asignarBordeAvatar(avatar);
     }
 
 
-    public void asignarBordeTema(int parseInt) {
-        vistaIngreso.asignarBordeTema(parseInt);
+    public void asignarBordeTema(int tema) {
+        vistaIngreso.asignarBordeTema(tema);
     }
 
 
-    public void asignarBordeDificultad(int parseInt) {
-        vistaIngreso.asignarBordeDificultad(parseInt);
+    public void asignarBordeDificultad(int dificultad) {
+        vistaIngreso.asignarBordeDificultad(dificultad);
     }
 
 
-    public void cambiarAVistaPrincipal() {
-        vistaIngreso.cambiarDeVista("principal");
-    }
-
-
-    public void cambiarAVistaJuego() {
-        vistaIngreso.cambiarDeVista("juego");
+    public void cambiarVista(String vista) {
+        vistaIngreso.cambiarDeVista(vista);
     }
 }

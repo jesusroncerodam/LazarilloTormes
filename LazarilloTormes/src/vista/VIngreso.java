@@ -322,6 +322,7 @@ public class VIngreso extends JPanel {
 
     public void anadirescuchadores() {
         labelAvatar.setName("avatar");
+        campoNombre.setName("campoNombre");
 
         avatar1.setName("avatar1");
         avatar2.setName("avatar2");
@@ -495,6 +496,19 @@ public class VIngreso extends JPanel {
         Image reescalada = icono.getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH);
         return reescalada;
     }
+
+
+    /*
+     * GETTERS Y SETTERS
+     * GETTERS Y SETTERS
+     * GETTERS Y SETTERS
+     * GETTERS Y SETTERS
+     * GETTERS Y SETTERS
+     */
+    public String getTextoCampoNombre() {
+        return campoNombre.getText();
+    }
+
 }
 
 //        constrain = new GridBagConstraints();
