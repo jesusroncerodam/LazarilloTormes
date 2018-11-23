@@ -14,6 +14,9 @@ import vista.VMenu;
 import vista.VistaSplash;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Graphics2D;
+import java.awt.SplashScreen;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
@@ -317,22 +320,21 @@ public class Vista {
     public void avisoSalida() {
         
     }//this.getClass().getResource("/img/despedida.gif"
-    public void splashScreen() {
-        
-    }
+    /**
+     * Solo se ejecutará correctamente en el fichero.jar, si no se ejecuta en el 
+     * fichero.jar dara error, al ser nulo
+     */
+    
 
 
     class EscuchaVentana extends WindowAdapter {
-
+        
         private boolean partidaOn = false;
         Vista vista;
-
-
         public EscuchaVentana(Vista vista) {
             this.vista = vista;
         }
-
-
+        
         @Override
         public void windowClosing(WindowEvent e) {
             if(partidaOn){
@@ -340,18 +342,44 @@ public class Vista {
                         JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) != JOptionPane.YES_OPTION) {
                 ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
                 }else{
+                    new SplashDemo();
                     System.exit(0);
                 } 
             }else{
+                new SplashDemo();
                 System.exit(0);
             }
         }
-
-
         public void setPartidaOn(boolean partidaOn) {
             this.partidaOn = partidaOn;
         }
 
+    }
+    class SplashDemo{
+        public SplashDemo(){
+        Frame despedida=new Frame("Thanks for playing");//creamos el frame de despedida
+
+        final SplashScreen splash = SplashScreen.getSplashScreen();//obtenemos el splash screen, solo se obtiene en el archivo .jar
+        if (splash == null) {
+            System.out.println("SplashScreen.getSplashScreen() retorna nulo");
+            return;//no continuamos con la ejecucion ya que si es nulo da lugar a errores
+        }
+        Graphics2D g = splash.createGraphics();//obtenemos el contexto de los graficos
+        if(g == null) {
+            System.out.println("los graficos son null");
+            return;//no continuamos con la ejecucion ya que si es nulo da lugar a errores
+        }
+        try{
+            Thread.sleep(2500);//dormimos el para poder ver la imagen de fondo 2,5 segundos
+        }catch(InterruptedException e){
+            System.out.println("Error al inenter dormir en Splash "+e);
+        }
+        splash.close();//ceramos el splash
+        //despedida.setVisible(true);
+        //despedida.toFront();//ponemos la ventana en el foco
+        despedida.dispose();//eliminamos la ventana
+        System.exit(0);//cerramos 
+        }
     }
 
 }
