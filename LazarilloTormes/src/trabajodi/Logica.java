@@ -267,12 +267,16 @@ public class Logica {
 
 
     private void guardarDatos(){
+        crearFichero(true);//nos aseguramso de que exista un fichero
+        
         ArrayList<Historial> historial =pasarFicheroAArray();
         historial.add(new Historial(juego.getContMov(), juego.getContadorSeg(), avatar, nombre));//añadimos
         //ordenamos
         Collections.sort(historial);
         //eliminamos el fichero anterior 
         crearFichero(false);
+        pasarAFichero(historial);
+        //lo añadimos
         //lo pasamos al fichero
         
         //nombre//ya lo tengo 
@@ -299,7 +303,7 @@ public class Logica {
 //    }
     private void crearFichero(boolean mantenerFichero) {
         try {
-            File archivo=new File(new File("test.txt").getAbsolutePath());
+            File archivo=new File(new File(FICHERO).getAbsolutePath());
            
             //System.out.println(aux.getAbsoluteFile());
                     
