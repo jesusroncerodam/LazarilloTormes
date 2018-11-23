@@ -101,7 +101,6 @@ public class VIngreso extends JPanel {
 
     public void generar() {
         controlador.mandarControlador();
-
         this.setOpaque(false);
 
 //        setPreferredSize(new Dimension(2, 2));
@@ -228,6 +227,7 @@ public class VIngreso extends JPanel {
         avatar1.setBorder(bordeAvatar);
         avatar2.setBorder(null);
         avatar3.setBorder(null);
+        System.out.println(avatar1.getIcon().toString());
     }
 
 
@@ -508,7 +508,60 @@ public class VIngreso extends JPanel {
     public String getTextoCampoNombre() {
         return campoNombre.getText();
     }
+    
+    private String recogerAvatar(){
+        if(avatar1.getBorder()!=null){
+            return ((ImageIcon) avatar1.getIcon()).getDescription();
+        }
+        if(avatar2.getBorder()!=null){
+            return ((ImageIcon) avatar2.getIcon()).getDescription();
+        }
+        if(avatar3.getBorder()!=null){
+            return((ImageIcon) avatar3.getIcon()).getDescription();
+        }
+        return ((ImageIcon) avatar1.getIcon()).getDescription();
+    }
+    
+    private int recogerTema(){
+        if(tema1.getBorder()!=null){
+            return 1;
+        }
+        if(tema2.getBorder()!=null){
+            return 2;
+        }
+        if(tema3.getBorder()!=null){
+            return 3;
+        }
+        return 1;
+    }
+    
+    private int recogerDificultad(){
+        if(dificultad1.getBorder()!=null){
+            return 1;
+        }
+        if(dificultad2.getBorder()!=null){
+            return 2;
+        }
+        if(dificultad3.getBorder()!=null){
+            return 3;
+        }
+        return 1;
+    }
+    
+    public String recogerNombre(){
+        return campoNombre.getText();
+    }
+    public void mandarDatos(){
+        controlador.mandarDatos(recogerAvatar(), recogerTema(),recogerDificultad(),recogerNombre());
+    }
+/*
+    
+    private TextField campoNombre;
 
+    private JCheckBox avatar1, avatar2, avatar3;
+    private JCheckBox tema1, tema2, tema3;
+    private JCheckBox dificultad1, dificultad2, dificultad3;
+    */
 }
 
 //        constrain = new GridBagConstraints();

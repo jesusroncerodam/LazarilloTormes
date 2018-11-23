@@ -250,7 +250,6 @@ public class Logica {
                         JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
                     System.exit(0);
                 }
-                //Runtime.getRuntime().exit(500);
                 System.out.println(accion);
                 break;
             case "atras":
@@ -474,6 +473,7 @@ public class Logica {
                 cIngreso.cambiarVista("principal");
                 break;
             case "botonFlechaSiguiente":
+                cIngreso.mandarRecogerDatos();
                 cIngreso.cambiarVista("juego");
                 break;
             case "avatar":
@@ -482,6 +482,9 @@ public class Logica {
             default:
                 System.err.println("\nOpcion no valida");
         }
+    }
+    public void recogerDatos(String avatar,int tema, int dificultad, String nombre){
+        //guardamos avatar  y nombre
     }
 
 
