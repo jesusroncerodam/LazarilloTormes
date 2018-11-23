@@ -345,11 +345,11 @@ public class Vista {
                         JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) != JOptionPane.YES_OPTION) {
                 ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
                 }else{
-                    new SplashDemo();
+                    //new SplashDemo();
                     System.exit(0);
                 } 
             }else{
-                new SplashDemo();
+                //new SplashDemo();
                 System.exit(0);
             }
         }
