@@ -22,17 +22,10 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * @author Guille
  */
 public class Sonido extends Thread{
-    String sonido;
-    int timeRep=0;
-    boolean stop=false;
-    public Sonido(){
-    }
+    private String sonido;
+    
     public Sonido(String sonido){
         this.sonido=sonido;
-    }
-    public Sonido(String sonido,boolean stop){
-        this.sonido=sonido;
-        stop=false;
     }
     public void run(){
         repSonido(sonido);
@@ -64,8 +57,6 @@ public class Sonido extends Thread{
            soundLine.close();
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             System.err.println("Error: "+ex.getMessage());
-        } finally {
-           
         }
     }
 

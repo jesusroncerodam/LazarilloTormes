@@ -52,7 +52,7 @@ public class Logica {
     private boolean primeraJuego, animacionC;
     private Timer timer;
     private int vuelta, cartaAct;
-    private final String FICHERO = "estadisticas.txt", PRIMERA_LINEA = "Directorio de almacenamiento de estadistica\n";
+    private final String FICHERO = "estadisticas.txt", PRIMERA_LINEA = "Directorio de almacenamiento de estadistica\n",RUTA_SONIDO_MAIN="sonidos/";
     private String[] rutas;
 
     private String nombre;
@@ -759,6 +759,8 @@ public class Logica {
      */
 
     public void crearSonido() {
+        String accion="correcta";//viene del main
+        String rutaSonido=RUTA_SONIDO_MAIN+((int) (Math.random() * 3) + 1);
         Sonido reproducir = new Sonido("sonidos/air.wav");
         reproducir.start();
         System.out.println("Después de la canción");
