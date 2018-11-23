@@ -100,6 +100,8 @@ public class VIngreso extends JPanel {
 
 
     public void generar() {
+        
+anadirDescripciones();
         controlador.mandarControlador();
         this.setOpaque(false);
 
@@ -112,6 +114,8 @@ public class VIngreso extends JPanel {
         crearElementos();
         anadirescuchadores();
         setVisible(true);
+        System.out.println("ERwtrewtrewtwerte"+((ImageIcon) avatar1.getIcon()).getDescription());
+        System.out.println("+++++"+iconoAvatar1.getDescription());
     }
 
 
@@ -216,14 +220,13 @@ public class VIngreso extends JPanel {
         avatar1.setBorderPainted(true);
         avatar2.setBorderPainted(true);
         avatar3.setBorderPainted(true);
-
         avatar1.setIcon(cambiarTamano(iconoAvatar1, ANCHOIMAGENES, ALTOIMAGENES));
         avatar2.setIcon(cambiarTamano(iconoAvatar2, ANCHOIMAGENES, ALTOIMAGENES));
         avatar3.setIcon(cambiarTamano(iconoAvatar3, ANCHOIMAGENES, ALTOIMAGENES));
         avatar1.setBorder(bordeAvatar);
         avatar2.setBorder(null);
         avatar3.setBorder(null);
-        anadirDescripciones();
+        
     }
 
 
@@ -519,15 +522,16 @@ public class VIngreso extends JPanel {
 
     private String recogerAvatar() {
         if (avatar1.getBorder() != null) {
-            return ((ImageIcon) avatar1.getIcon()).getDescription();
+            System.out.println("------>"+((ImageIcon) avatar1.getIcon()).getDescription());
+            return iconoAvatar1.getDescription();//((ImageIcon) iconoAvatar1.getIcon()).getDescription();
         }
         if (avatar2.getBorder() != null) {
-            return ((ImageIcon) avatar2.getIcon()).getDescription();
+            return iconoAvatar2.getDescription();//((ImageIcon) avatar2.getIcon()).getDescription();
         }
         if (avatar3.getBorder() != null) {
-            return ((ImageIcon) avatar3.getIcon()).getDescription();
+            return iconoAvatar3.getDescription();//((ImageIcon) avatar3.getIcon()).getDescription();
         }
-        return ((ImageIcon) avatar1.getIcon()).getDescription();
+        return iconoAvatar1.getDescription();//((ImageIcon) avatar1.getIcon()).getDescription();
     }
 
 
@@ -565,6 +569,7 @@ public class VIngreso extends JPanel {
 
 
     public void mandarDatos() {
+        System.out.println("------------------------"+recogerAvatar());
         controlador.mandarDatos(recogerAvatar(), recogerTema(), recogerDificultad(), recogerNombre());
     }
 
@@ -580,6 +585,7 @@ public class VIngreso extends JPanel {
     public void establecerImagenElegida(String imagenElegida) {
         ImageIcon icono = new ImageIcon(imagenElegida);
         avatar1.setIcon(cambiarTamano(icono, ANCHOIMAGENES, ALTOIMAGENES));
+        iconoAvatar1.setDescription(imagenElegida);
     }
 
 
