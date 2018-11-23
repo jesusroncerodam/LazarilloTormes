@@ -6,6 +6,14 @@
 package controladores;
 
 
+import java.awt.Desktop;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import vista.VDialogoMod;
 import trabajodi.Logica;
 
@@ -14,15 +22,51 @@ import trabajodi.Logica;
  *
  * @author Guille
  */
-public class ContrDialogoMod {
+public class ContrDialogoMod extends MouseAdapter implements ActionListener {
 
-    private VDialogoMod vista;
+    private VDialogoMod vDialog;
     private Logica logica;
 
 
     public ContrDialogoMod(VDialogoMod vista, Logica logica) {
-        this.vista = vista;
+        this.vDialog = vista;
         this.logica = logica;
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        switch (e.getActionCommand()) {
+            case "botonAtras":
+                cambiarVista("principal");
+                break;
+
+            default:
+                System.err.println("\nOpcion no valida");
+        }
+    }
+
+
+    public void cambiarVista(String vista) {
+        vDialog.cambiarDeVista(vista);
+    }
+
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        switch (e.getComponent().getName()) {
+            case "iconoTrinitarias":
+                try {
+                    Desktop.getDesktop().browse(new URI("http://www.marca.com"));
+                } catch (IOException | URISyntaxException e1) {
+                    e1.printStackTrace();
+                }
+                break;
+
+            default:
+                System.err.println("\nOpcion no valida");
+        }
+
     }
 
 }

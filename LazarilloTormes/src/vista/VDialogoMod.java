@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import trabajodi.Logica;
 import trabajodi.Metodos;
+import trabajodi.Vista;
 
 
 /**
@@ -26,6 +27,7 @@ import trabajodi.Metodos;
  */
 public class VDialogoMod extends JPanel {
 
+    private Vista vistaMain;
     private ContrDialogoMod controlador;
 
     private JButton botonFlechaAtras;
@@ -38,7 +40,8 @@ public class VDialogoMod extends JPanel {
     private ImageIcon iconoTrinitarias = new ImageIcon(this.getClass().getResource("/img/logotrini.png"));
 
 
-    public VDialogoMod(Logica logica) {
+    public VDialogoMod(Logica logica, Vista vista) {
+        this.vistaMain = vista;
         controlador = new ContrDialogoMod(this, logica);
     }
 
@@ -149,7 +152,16 @@ public class VDialogoMod extends JPanel {
 
 
     public void anadirControladores() {
-//        controlador = new ContrDialogoMod(this);
+        botonFlechaAtras.setActionCommand("botonAtras");
+        labelLogoTrini.setName("iconoTrinitarias");
+
+        botonFlechaAtras.addActionListener(controlador);
+        labelLogoTrini.addMouseListener(controlador);
+    }
+
+
+    public void cambiarDeVista(String vista) {
+        vistaMain.cambiarVista(vista);
     }
 
 
