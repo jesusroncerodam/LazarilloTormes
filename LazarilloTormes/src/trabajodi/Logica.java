@@ -64,9 +64,12 @@ public class Logica {
     private String nombre, avatar;
     private boolean sonido = true;
 
-
+    /**
+     * Constructor de logia, no se manda nada, se crea al comienzo de la ejecucion
+     * al llamarlo se ejecutara un sonido
+     */
     public Logica() {
-        crearSonido("inicio");//cargamos el sonido para la accion
+        crearSonido("inicio");//cargamos el sonido para el inicio
     }
 
 
@@ -99,7 +102,7 @@ public class Logica {
      * del juego, aqui se gestionaran toda la logica
      * @param componente
      */
-    public synchronized void juegoClick(Component componente) {
+    public void juegoClick(Component componente) {
         //si se ejecuta laguna accion  comienza el contador
         if (primeraJuego) {
             juego.gestionarContador("empezar");
@@ -140,11 +143,12 @@ public class Logica {
 
                     if (!juego.isFin()) {//si es el fin del juego(Si a termiando)
                         crearSonido("victoria");//cargamos el sonido para la accion
-                        juego.gestionarContador("pausa");
+                        juego.gestionarContador("pausa");//pausamos el contador
                         //cambiamos los estados de los botones 
                         juego.cambiarEstadoBoton("guardar", false);
                         juego.cambiarEstadoBoton("playPause", false);
                         juego.cambiarEstadoBoton("continuar", true);
+                        guardarDatos();//guardamos los datos y los mostramos
                         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         //guardar datos y ordenar
                     }
@@ -180,7 +184,11 @@ public class Logica {
         }
     }
 
-
+    /**
+     * Metodo controla las acciones que se realizan mediante el pulso de un boton, 
+     * en la vista del juego
+     * @param boton boton que recive la accion
+     */
     private void accionBotonJuego(JButton boton) {
         if (boton.isEnabled()) {
             switch (boton.getActionCommand()) {
@@ -189,12 +197,13 @@ public class Logica {
                     break;
 
                 case "continuar"://guardar los datos
-                    guardarDatos();//guardamos los datos y los mostramos
+                    //guardarDatos();//los datos los guardamos al ternimar la partida
                     juego.cambiarVista("lista");
                     break;
 
                 case "guardar":
-                    System.out.println("en creaccion");
+                    guardar();//guardamso la partida
+                    juego.cambiarVista("principal");//mandamos al main
                     break;
 
                 default:
@@ -207,13 +216,12 @@ public class Logica {
     //poner q es indice 1, etc
 
     public void juegokey(char pulso) {
-        switch (pulso) {
-            case 'q':
-                //...
-                break;
-            default:
-                throw new AssertionError();
-        }
+        int indice=0;
+        pulso= Character.toUpperCase(pulso);
+        //lo pasamos a mayusculas siempre, a mayusculas y no a minisculas ya que
+        //las mallusculas tienen un indice inferior en ASCII
+        indice=(int) pulso;
+        System.out.println(indice);
     }
 
 
@@ -284,15 +292,8 @@ public class Logica {
         Collections.sort(historial);
         //eliminamos el fichero anterior 
         eliminarFichero();
-        crearFichero();
-        pasarAFichero(historial);
-        //lo añadimos
-        //lo pasamos al fichero
-
-        //nombre//ya lo tengo 
-        //imagen //ya lo tengo
-        //movimientos
-        //tiempo
+        crearFichero();//volvemos a crear el fichero
+        pasarAFichero(historial);//le mandamis informacion
     }
 
 

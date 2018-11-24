@@ -89,6 +89,7 @@ public class Vista {
         //ventana.setSize(600, 600);
         escuchaVentana = new EscuchaVentana(this);
         ventana.addWindowListener(escuchaVentana);
+      
         // ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -227,7 +228,7 @@ public class Vista {
                         throw new AssertionError();
 
                 }
-
+                ventana.setLocationRelativeTo(null);//centramos la pantalla
                 ventana.repaint();
                 ventana.setVisible(true);
             }
@@ -294,6 +295,7 @@ public class Vista {
             default:
                 throw new AssertionError();
         }
+        ventana.setLocationRelativeTo(null);
         anadirVista(vista, tiempo);
     }
 

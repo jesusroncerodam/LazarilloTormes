@@ -88,6 +88,9 @@ public class VJuego extends JPanel {
 
         //generamos las cartas
         generarCartas(true);//pata que se deshordenen
+        this.setFocusable(true);
+        this.requestFocus();
+        this.addKeyListener(controlador);
     }
 
 
@@ -163,6 +166,7 @@ public class VJuego extends JPanel {
         for (int i = 0; i < carta.size(); i++) {//anadimos todas las cartas y les ponemos escuchador
             cartas.add(carta.get(i));
             carta.get(i).addMouseListener(controlador);
+            carta.get(i).addKeyListener(controlador);
         }
         constrain.gridx = 0; // El área de texto empieza en la columna 0.
         constrain.gridy = 1; // El área de texto empieza en la fila 1
