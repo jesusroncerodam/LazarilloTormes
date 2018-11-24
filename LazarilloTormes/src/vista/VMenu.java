@@ -31,13 +31,11 @@ public class VMenu extends JMenuBar {
     private JMenu archivo,
             submenu, 
             partida,
-            ajustes,
-            irA,
-            mover;
+            ajustes;
+    private final String PLAYPAUSE="src/img/playPause.png",EQUIS="/img/equis.png",ATRAS="/img/back.png";
     private JMenuItem pausaPlay, guardarPartida, cargarPartida;
     private JRadioButtonMenuItem sonido;
-    //cargarPartida;
-    private JMenuItem atras, salir;//temporalk aqui , a lo mejor en el futuro se pueden eleminar de aqui
+    private JMenuItem atras, salir;
 
 
     public VMenu(Logica logica, Vista vista) {
@@ -59,7 +57,7 @@ public class VMenu extends JMenuBar {
     private void generarMenuArchivo() {
         archivo = new JMenu("Archive");
         
-        atras = new JMenuItem("Go back", new ImageIcon("src/img/back.png"));
+        atras = new JMenuItem("Go back", new ImageIcon(ATRAS));
         atras.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
         atras.setActionCommand("atras");
         atras.addActionListener(controlador);
@@ -68,7 +66,7 @@ public class VMenu extends JMenuBar {
         archivo.addSeparator();
         archivo.addSeparator();
 
-        salir = new JMenuItem("Exit", new ImageIcon("src/img/equis.png"));
+        salir = new JMenuItem("Exit", new ImageIcon(EQUIS));
         salir.setActionCommand("salir");
         salir.addActionListener(controlador);
         archivo.add(salir);
@@ -90,8 +88,7 @@ public class VMenu extends JMenuBar {
             partidaPersonalizada.addActionListener(controlador);
             submenu.add(partidaPersonalizada);
         partida.add(submenu);
-
-        pausaPlay = new JMenuItem("Pause/Play", cambiarTamano(new ImageIcon("src/img/playPause.png"), 20, 20));//poner imahgen en pequeño 20px
+        pausaPlay = new JMenuItem("Pause/Play", cambiarTamano(new ImageIcon(getClass().getResource(PLAYPAUSE)), 20, 20));//poner imahgen en pequeño 20px
         pausaPlay.setActionCommand("pausaplay");
         pausaPlay.addActionListener(controlador);
         partida.add(pausaPlay);

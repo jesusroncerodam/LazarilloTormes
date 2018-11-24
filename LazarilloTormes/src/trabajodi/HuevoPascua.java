@@ -24,7 +24,7 @@ import javax.swing.Timer;
 public class HuevoPascua extends Thread{
     
     private JFrame ventana;
-    private final String IMAGEN1="/img/letras.gif",IMAGEN2="/img/carga.gif",IMAGEN3="/img/nubes.gif",IMAGEN4="/img/nubes.png",IMAGEN_GLOBO="/img/globo.png",IMAGEN_FIN="/img/fineasteregg.gif";
+    private final String IMAGEN1="/img/letras.gif",IMAGEN2="/img/carga.gif",IMAGEN3="/img/nubes.gif",IMAGEN4="/img/nubes.png",IMAGEN_GLOBO="/img/globo.png";
     private JLabel etiqueta;
     
     private JButton[] boton;
@@ -32,17 +32,16 @@ public class HuevoPascua extends Thread{
     private ControladorPascua controlador;
     private boolean salir;
     private Timer cambiarfondo,timerMover;
-    private Vista vista;
     
-    public HuevoPascua(Vista vista) {
-        this.vista=vista;
+    public HuevoPascua() {
         salir=false;
         controlador= new ControladorPascua(this);
         ventana=new JFrame("Easter Egg");
         boton=new JButton[CANTIDAD_GLOBOS];
         ventana.addWindowListener(controlador);
         ventana.setSize(600,600);
-        
+        ventana.setResizable(false);
+        ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
         
     }
@@ -148,32 +147,11 @@ public class HuevoPascua extends Thread{
             timerMover.stop();
         if(cambiarfondo!=null)
             cambiarfondo.stop();
-        //ventana.removeAll();
-        
-        //etiqueta.removeAll();
-        //ventana.removeAll();
-        //etiqueta=null;
-       /* generarImagen(IMAGEN_FIN);
-        ventana.setVisible(true);
-        ventana.repaint();*/
-        
-        JLabel fun=new JLabel();
-        ImageIcon imageIcon = new ImageIcon(new ImageIcon(this.getClass().getResource(IMAGEN_FIN)).getImage().getScaledInstance(ventana.getWidth(), ventana.getHeight(), Image.SCALE_DEFAULT));
-        fun.setIcon(imageIcon);
-        imageIcon.setImageObserver(fun); 
-        ventana.add(fun);
-        ventana.remove(etiqueta);
-        ventana.setVisible(true);//*/
-        fun.updateUI();
-        ventana.repaint();
-        
-        //salir=true;
-        
-        dormir(5000);
-        
-        //salir=true;
+        salir=true;
+        etiqueta.removeAll();
+        ventana.removeAll();
+        ventana.dispose();
         //ventana.dispose();
-       // vista.pascuaTermina();
     }
 
     

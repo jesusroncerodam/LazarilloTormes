@@ -22,7 +22,7 @@ public class LogicaPascua {
     public void accionEjecutada(String accion){
         contador++;
         controlador.subirBoton(Integer.parseInt(accion));
-        if(contador<10)
+        if(contador>10)
             controlador.cerrarVista();
     }
     
