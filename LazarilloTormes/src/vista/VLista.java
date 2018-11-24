@@ -33,7 +33,7 @@ import trabajodi.Vista;
  */
 public class VLista extends JPanel {
 
-    private final String[] NOMBRE_COLUMNAS = {"Nº", "Image", "Name", "Mov.", "Time"};
+    private final String[] NOMBRE_COLUMNAS = {"Nº", "Image", "Name", "Mov.", "Time", "Difficulty"};
     private final Color COLOR_LETRAS = Color.white;
     private String[] datos;
     private Vista vista;
@@ -41,13 +41,14 @@ public class VLista extends JPanel {
     private JButton atras;
     private GridBagConstraints loc;
     private JPanel lista;
-    private final int NUMERO_MINIMO_FILAS=15;
+    private final int NUMERO_MINIMO_FILAS = 10;
 
 
     public VLista(Logica logica, Vista vista) {
         this.vista = vista;
         controlador = new ContrLista(this, logica);
     }
+
 
     /**
      * Generamos la vista, creando una tabal con un JScrollPane
@@ -63,21 +64,20 @@ public class VLista extends JPanel {
         generarLista();
         crearBoton();
     }
-    
-    
-    
+
+
     /**
      * Creamos la lista con todos sus componentes
      */
     public void generarLista() {
-        lista = new JPanel(new GridLayout(obrenerColumnas(), 1, 0, 0));
+        lista = new JPanel(new GridLayout(obtenerColumnas(), 1, 0, 0));
         lista.setOpaque(false);
         String[] elementos;
-        
+
         generarPrimeraFila();
-        
+
         for (int i = 0; i < datos.length; i++) {
-            JPanel fila = new JPanel(new GridLayout(1, NOMBRE_COLUMNAS.length ));
+            JPanel fila = new JPanel(new GridLayout(1, NOMBRE_COLUMNAS.length));
             elementos = datos[i].split(";");
             //si es par ponemos un color y si es inpar otro
             if (i % 2 != 0) {
@@ -85,34 +85,34 @@ public class VLista extends JPanel {
             } else {
                 fila.setBackground(new Color(99, 132, 252, 200));
             }
-            
-            fila.add(new JLabel("" + (i+1),SwingConstants.RIGHT));//añadimos la posicion
+
+            fila.add(new JLabel("" + (i + 1), SwingConstants.RIGHT));//añadimos la posicion
             for (int j = 0; j < elementos.length; j++) {//movimientos0;tiempo1;imagen2;nombre3
                 switch (j) {//j seria la posicionde la lista 
                     case 0://imagen, en el array es la pos 2
-                        if(elementos[2]==null || (elementos[2].indexOf('\\')!=-1 && !new File(elementos[2]).exists())){//si el elemento es nulo o tiene un ruta absoluta y si el elemento existe
-                            System.out.println("El elemento '"+elementos[2]+"' es nulo o tiene una ruta absoluta y no existe");
-                            elementos[2]="/img/avatar1.jpg";
+                        if (elementos[2] == null || (elementos[2].indexOf('\\') != -1 && !new File(elementos[2]).exists())) {//si el elemento es nulo o tiene un ruta absoluta y si el elemento existe
+                            System.out.println("El elemento '" + elementos[2] + "' es nulo o tiene una ruta absoluta y no existe");
+                            elementos[2] = "/img/avatar1.jpg";
                         }
-                        if(elementos[2].indexOf('\\')!=-1){
-                            fila.add(new JLabel(cambiarTamano(new ImageIcon(elementos[2]), 20, 20), SwingConstants.CENTER)); 
-                        }else{
-                            fila.add(new JLabel(cambiarTamano(new ImageIcon(this.getClass().getResource(elementos[2])), 20, 20), SwingConstants.CENTER)); 
+                        if (elementos[2].indexOf('\\') != -1) {
+                            fila.add(new JLabel(cambiarTamano(new ImageIcon(elementos[2]), 20, 20), SwingConstants.CENTER));
+                        } else {
+                            fila.add(new JLabel(cambiarTamano(new ImageIcon(this.getClass().getResource(elementos[2])), 20, 20), SwingConstants.CENTER));
                         }
                         break;
-                        
+
                     case 1://nombre, en el array es la pos 3
                         fila.add(new JLabel(elementos[3]));
                         break;
-                        
+
                     case 2://movimientos, en el array es la pos 0
                         fila.add(new JLabel(elementos[0]));
                         break;
-                        
+
                     case 3://tiempo, en el array es la pos 1
                         fila.add(new JLabel(elementos[1]));
                         break;
-                        
+
                     default:
                         System.out.println("error " + j);
                 }
@@ -122,26 +122,28 @@ public class VLista extends JPanel {
         rellenar();
         anadirScroll();
     }
-    
+
+
     /**
      * Retornamos el numero de columnas que tendrá la el JPanel
      * @return int, columnas
      */
-    private int obrenerColumnas(){
-        int columnas=datos.length+1;//+1 ya que en datos no esta la cabecera
-        if(datos.length<NUMERO_MINIMO_FILAS+1){
-            columnas=NUMERO_MINIMO_FILAS+1;
+    private int obtenerColumnas() {
+        int columnas = datos.length + 1;//+1 ya que en datos no esta la cabecera
+        if (datos.length < NUMERO_MINIMO_FILAS + 1) {
+            columnas = NUMERO_MINIMO_FILAS + 1;
         }
         return columnas;
     }
-    
+
+
     /**
      * En caso de que no tengamos un gran numero de estadisticas, para que el
      * texto no se descompense, agregamos unas filas vacias
      */
-    private void rellenar(){
-        for(int i=datos.length;i<NUMERO_MINIMO_FILAS;i++){
-            JPanel fila = new JPanel(new GridLayout(1, 1 ));
+    private void rellenar() {
+        for (int i = datos.length; i < NUMERO_MINIMO_FILAS; i++) {
+            JPanel fila = new JPanel(new GridLayout(1, 1));
             if (i % 2 != 0) {
                 fila.setBackground(new Color(255, 255, 255, 100));
             } else {
@@ -150,17 +152,18 @@ public class VLista extends JPanel {
             lista.add(fila);
         }
     }
-    
+
+
     /**
      * Creamos el JSrollPane respecto al JPanel lista, adjuntando a una posicion
      */
-    private void anadirScroll(){
+    private void anadirScroll() {
         JScrollPane scroll = new JScrollPane(lista, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Stats", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 30), COLOR_LETRAS));
         scroll.setPreferredSize(new Dimension(500, 500));
         scroll.setOpaque(false);
         scroll.getViewport().setOpaque(false);
-        
+
         loc.fill = GridBagConstraints.BOTH;
         loc.gridx = 0;
         loc.gridy = 0;
@@ -169,28 +172,29 @@ public class VLista extends JPanel {
         loc.insets = new Insets(50, 25, 25, 25);
         this.add(scroll, loc);
     }
-    
+
+
     /**
-     *Creamos la primera fila, la que mostrara el array NOMBRE_COLUMNAS
+     * Creamos la primera fila, la que mostrara el array NOMBRE_COLUMNAS
      */
-    private void generarPrimeraFila(){
-        JPanel primeraFila = new JPanel(new GridLayout(1, NOMBRE_COLUMNAS.length ));
+    private void generarPrimeraFila() {
+        JPanel primeraFila = new JPanel(new GridLayout(1, NOMBRE_COLUMNAS.length));
         for (int i = 0; i < NOMBRE_COLUMNAS.length; i++) {
             JLabel dato = new JLabel(NOMBRE_COLUMNAS[i], SwingConstants.LEFT);
             dato.setForeground(COLOR_LETRAS);
-            
+
             switch (i) {//en funcion de el valor lo ajustamos a una alineaccion
                 case 0:
                     dato.setHorizontalAlignment(SwingConstants.RIGHT);
                     break;
-                    
+
                 case 1:
                     dato.setHorizontalAlignment(SwingConstants.CENTER);
                     break;
-                    
+
                 case 4:
                     dato.setText("");
-                    dato.setIcon((cambiarTamano( new ImageIcon(this.getClass().getResource("/img/relojWh.png")), 20, 20)));
+                    dato.setIcon((cambiarTamano(new ImageIcon(this.getClass().getResource("/img/relojWh.png")), 20, 20)));
                     break;
             }
             primeraFila.add(dato);
@@ -205,9 +209,9 @@ public class VLista extends JPanel {
         bAtras.setContentAreaFilled(false);
         bAtras.setBorder(null);
         bAtras.setToolTipText("Go to main");
-        
+
         bAtras.addMouseListener(controlador);
-       
+
         loc.fill = GridBagConstraints.NONE;
         loc.gridx = 0;
         loc.gridy = 2;
@@ -219,7 +223,6 @@ public class VLista extends JPanel {
         loc.weightx = 1.0;
         this.add(bAtras, loc);
     }
-    
 
 
     public void recogerDatos() {
@@ -240,10 +243,9 @@ public class VLista extends JPanel {
     }
 
 
-
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Image img = new ImageIcon(this.getClass().getResource("/img/fondo2.jpg")).getImage();
+        Image img = new ImageIcon(this.getClass().getResource("/img/fondoEstadisticas.jpg")).getImage();
         g.drawImage(img, 0, 0, getWidth(), getHeight() + 5, this);
     }
 

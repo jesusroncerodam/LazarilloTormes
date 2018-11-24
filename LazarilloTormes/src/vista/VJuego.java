@@ -47,7 +47,7 @@ public class VJuego extends JPanel {
             RUTA_RELOJ = "/img/relojWh.png", 
             RUTA_FLECHA = "/img/flechaRect.png", 
             RUTA_GUARDAR = "/img/save.png", 
-            RUTA_FONDO = "/img/fondo2.gif",
+            RUTA_FONDO = "/img/fondoJuego.gif",
             RUTA_VICTORIA="/img/victoria/1.gif";
     private final int 
             HGAP = 20, 

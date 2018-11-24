@@ -74,7 +74,7 @@ public class VIngreso extends JPanel {
 
     private ImageIcon imagenFlecha = new ImageIcon(this.getClass().getResource("/img/atras.png"));
     private ImageIcon imagenAvanzar = new ImageIcon(this.getClass().getResource("/img/flechaRect.png"));
-    private ImageIcon fondoRegistro = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.gif"));
+    private ImageIcon fondoRegistro = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.jpg"));
 
     private final Border bordeAvatar = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.ORANGE, 5), BorderFactory.createRaisedBevelBorder());
     private final Border bordeTema = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.RED, 5), BorderFactory.createRaisedBevelBorder());
@@ -155,6 +155,7 @@ public class VIngreso extends JPanel {
     public void crearLabelNombre() {
         labelNombre = new JLabel("Nickname: ");
         labelNombre.setFont(bakerville(TAMANOFUENTE));
+        labelNombre.setForeground(Color.red);
 
         constrain.fill = GridBagConstraints.BASELINE;
 
@@ -169,6 +170,7 @@ public class VIngreso extends JPanel {
     public void crearCampoNombre() {
         campoNombre = new TextField("Nickname");
         campoNombre.setFont(bakerville(TAMANOFUENTE - 8));
+
 //        constrain.weighty = 0.0;
 //        constrain.weightx = 0.0;
         constrain.gridwidth = 2;
@@ -189,6 +191,7 @@ public class VIngreso extends JPanel {
     public void crearAvatar() {
         labelAvatar = new JLabel("Avatar: ");
         labelAvatar.setFont(bakerville(TAMANOFUENTE));
+        labelAvatar.setForeground(Color.red);
         ButtonGroup grupoAvatar = new ButtonGroup();
         avatar1 = new JCheckBox("", true);
         avatar2 = new JCheckBox("", false);
@@ -232,6 +235,7 @@ public class VIngreso extends JPanel {
     public void crearTema() {
         labelTema = new JLabel("Theme");
         labelTema.setFont(bakerville(TAMANOFUENTE));
+        labelTema.setForeground(Color.red);
         ButtonGroup grupoTema = new ButtonGroup();
         tema1 = new JCheckBox("", true);
         tema2 = new JCheckBox("", false);
@@ -276,6 +280,7 @@ public class VIngreso extends JPanel {
     public void crearDificultad() {
         labelDificultad = new JLabel("Difficulty");
         labelDificultad.setFont(bakerville(TAMANOFUENTE));
+        labelDificultad.setForeground(Color.red);
         ButtonGroup grupoDificultad = new ButtonGroup();
         dificultad1 = new JCheckBox("", true);
         dificultad2 = new JCheckBox("", false);

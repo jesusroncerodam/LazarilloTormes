@@ -5,3 +5,4 @@ Directorio de almacenamiento de estadistica
 19;21;C:\Users\Guille\Desktop\DAM2apuntes\horario.png;Gamer
 18;25;/img/avatar1.jpg;sdfse
 38;38;/img/avatar3.jpg;Gamer
+40;90;/img/avatar3.jpg;kujglkjhljk
