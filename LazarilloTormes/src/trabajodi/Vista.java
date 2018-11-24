@@ -229,53 +229,57 @@ public class Vista {
      * VIENE DE VISTAPRINCIPAL
      */
     public void cambiarVista(String vista) {
-        //eliminamos todas las vistas
-        eliminarVistas();
-        escuchaVentana.setPartidaOn(false);
-        int tiempo = 1;
-        switch (vista) {
-            case "principal":
-                tiempo = 1;
-                vPrincipal.generar();
-                cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
-                break;
+        if(vista.equals("pascua")){
+            crearHuevoPascua();
+        }else{
+            //eliminamos todas las vistas
+            eliminarVistas();
+            escuchaVentana.setPartidaOn(false);
+            int tiempo = 1;
+            switch (vista) {
+                case "principal":
+                    tiempo = 1;
+                    vPrincipal.generar();
+                    cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
+                    break;
 
-            case "ingresodatos":
-                tiempo = 1;
+                case "ingresodatos":
+                    tiempo = 1;
 
-                vIngreso.generar();
-                cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
+                    vIngreso.generar();
+                    cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
 
-                break;
+                    break;
 
-            case "juego":
-                tiempo = 1;
-                vJuego.generar();//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
-                break;
+                case "juego":
+                    tiempo = 1;
+                    vJuego.generar();//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
+                    break;
 
-            case "juegoguardado":
-                tiempo = 1;
-                vJuego.generarGuardada();
-                cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
-                break;
+                case "juegoguardado":
+                    tiempo = 1;
+                    vJuego.generarGuardada();
+                    cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
+                    break;
 
-            case "lista":
-                tiempo = 1;
-                vLista.generar();
-                cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
-                break;
+                case "lista":
+                    tiempo = 1;
+                    vLista.generar();
+                    cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
+                    break;
 
-            case "aboutus":
-                tiempo = 1;
-                vDialogoMod.generar();
-                cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
-                break;
+                case "aboutus":
+                    tiempo = 1;
+                    vDialogoMod.generar();
+                    cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
+                    break;
 
-            default:
-                throw new AssertionError();
+                default:
+                    System.out.println("error, elemento no esperado en cambiarVista"+ vista);
+            }
+            anadirVista(vista, tiempo);
         }
-        anadirVista(vista, tiempo);
     }
 
 
@@ -298,6 +302,10 @@ public class Vista {
     }
 
 
+    public void crearHuevoPascua(){
+        new HuevoPascua();
+    }
+    
     /**
      * Creamos un SplashScreen de despedida, elimina la ventana principal y
      * muestra una imagen (gif) durante 2,5 segundos, mas tarde se ciera la app
