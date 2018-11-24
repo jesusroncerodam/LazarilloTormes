@@ -3,4 +3,5 @@ Directorio de almacenamiento de estadistica
 20;18;/img/avatar1.jpg;Gamer
 20;20;/img/avatar1.jpg;Gamer
 19;21;C:\Users\JesusClase\Pictures\Saved Pictures\coche2.png;Gamer
+18;25;/img/avatar1.jpg;sdfse
 38;38;/img/avatar3.jpg;Gamer
