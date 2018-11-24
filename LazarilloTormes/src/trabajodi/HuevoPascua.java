@@ -71,6 +71,7 @@ public class HuevoPascua {
         imageIcon.setImageObserver(etiqueta); 
         ventana.add(etiqueta);
         etiqueta.updateUI();
+        ventana.setVisible(true);
     }
     
     
