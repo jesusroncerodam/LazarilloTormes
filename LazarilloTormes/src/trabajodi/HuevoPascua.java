@@ -21,7 +21,7 @@ import javax.swing.Timer;
  *
  * @author Guille
  */
-public class HuevoPascua {
+public class HuevoPascua extends Thread{
     
     private JFrame ventana;
     private final String IMAGEN1="/img/letras.gif",IMAGEN2="/img/carga.gif",IMAGEN3="/img/nubes.gif",IMAGEN4="/img/nubes.png",IMAGEN_GLOBO="/img/globo.png";
@@ -38,14 +38,16 @@ public class HuevoPascua {
         ventana.setSize(600,600);
         
         ventana.setVisible(true);
+        
+    }
+    public void run(){
         generar();
     }
-    
-    public void generar(){
+    private void generar(){
         etiqueta = new JLabel();
         generarImagen(IMAGEN1);
         dormir(2000);
-        
+        System.out.println("sfjdsb");
         ventana.remove(etiqueta);
         generarImagen(IMAGEN2);
         dormir(2000);
@@ -57,7 +59,7 @@ public class HuevoPascua {
         fondo();
     }
     
-    public void dormir(int segundos){
+    private void dormir(int segundos){
         try {
             Thread.sleep(segundos);
         } catch (InterruptedException ex) {
@@ -65,7 +67,7 @@ public class HuevoPascua {
         }
     }
     
-    public void generarImagen(String imagen){
+    private void generarImagen(String imagen){
         ImageIcon imageIcon = new ImageIcon(new ImageIcon(this.getClass().getResource(imagen)).getImage().getScaledInstance(ventana.getWidth(), ventana.getHeight(), Image.SCALE_DEFAULT));
         etiqueta.setIcon(imageIcon);
         imageIcon.setImageObserver(etiqueta); 
@@ -76,7 +78,7 @@ public class HuevoPascua {
     
     
     private void generarJuego(){
-        int x=30;
+        int x=10;
         int separacion=ventana.getWidth()/boton.length;
         for (int i = 0; i < boton.length; i++) {
             boton[i]=new JButton(new ImageIcon(this.getClass().getResource(IMAGEN_GLOBO)));
@@ -131,4 +133,6 @@ public class HuevoPascua {
         timer.start();
         timer.setRepeats(true);
     }
+
+    
 }

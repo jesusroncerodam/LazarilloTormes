@@ -9,21 +9,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import trabajodi.HuevoPascua;
+import trabajodi.LogicaPascua;
 
 /**
  *
  * @author Guille
  */
 public class ControladorPascua extends WindowAdapter implements ActionListener{
-    HuevoPascua vista;
+    private HuevoPascua vista;
+    private LogicaPascua logica;
 
     public ControladorPascua(HuevoPascua vista) {
         this.vista = vista;
+        logica=new LogicaPascua(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        logica.accionEjecutada(e.getActionCommand());
     }
     
 }

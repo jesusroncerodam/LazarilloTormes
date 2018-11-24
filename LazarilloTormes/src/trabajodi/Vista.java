@@ -303,7 +303,8 @@ public class Vista {
 
 
     public void crearHuevoPascua(){
-        new HuevoPascua();
+       HuevoPascua pasucua= new HuevoPascua();
+       pasucua.start();
     }
     
     /**
