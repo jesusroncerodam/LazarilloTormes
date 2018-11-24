@@ -314,9 +314,9 @@ public class VIngreso extends JPanel {
         dificultad2.setBorderPainted(true);
         dificultad3.setBorderPainted(true);
 
-        dificultad1.setIcon(cambiarTamano(iconoDificultad1, ANCHOIMAGENES + 20, ALTOIMAGENES - 50));
-        dificultad2.setIcon(cambiarTamano(iconoDificultad2, ANCHOIMAGENES + 20, ALTOIMAGENES - 50));
-        dificultad3.setIcon(cambiarTamano(iconoDificultad3, ANCHOIMAGENES + 20, ALTOIMAGENES - 50));
+        dificultad1.setIcon(cambiarTamano(iconoDificultad1, ANCHOIMAGENES + 40, ALTOIMAGENES - 60));
+        dificultad2.setIcon(cambiarTamano(iconoDificultad2, ANCHOIMAGENES + 40, ALTOIMAGENES - 60));
+        dificultad3.setIcon(cambiarTamano(iconoDificultad3, ANCHOIMAGENES + 40, ALTOIMAGENES - 60));
         dificultad1.setBorder(bordeDificultad);
         dificultad2.setBorder(null);
         dificultad3.setBorder(null);
