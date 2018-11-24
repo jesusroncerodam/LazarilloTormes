@@ -156,8 +156,6 @@ public class Logica {
                         juego.cambiarEstadoBoton("playPause", false);
                         juego.cambiarEstadoBoton("continuar", true);
                         guardarDatos();//guardamos los datos y los mostramos
-                        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                        //guardar datos y ordenar
                     }
 
                 } else {//si las cartas que tenemos no son iguales las giramos
@@ -571,10 +569,7 @@ public class Logica {
      * @param tema int del 1 al 3 , dificultad de la carta
      */
     private void cargarRutas(int tema) {
-        System.out.println(tema);
-                
-        System.out.println((tema>3 || tema<1)+"----tema>3"+(tema>3)+"--- tema<1"+( tema<1));
-        if(tema>3 || tema<1){
+        if(tema>3 || tema<1){//realizamos una comprobacion
             tema=1;
         }
         String rutaConTema = RUTA_IMAGENES+RUTA_TEMA+ tema + "/";
@@ -628,37 +623,17 @@ public class Logica {
     }
 
     /*
-    Gestion de guardar la partida 
+        Gestion de guardar la partida 
     */
-
-    public void guardar() {
-        try {
-            //Creamos un flujo de salida al disco
-            FileOutputStream fileOut = new FileOutputStream("juego.obj");
-            //Vinculamos el flujo de salida de objetos con el fichero
-            ObjectOutputStream salida = new ObjectOutputStream(fileOut);
-            //escribimos el objeto
-            //   salida.writeObject(vJuego);
-            //cerramos el flujo
-            salida.close();
-
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
+    
+    
+    /**
+     * Metodo guarda la partida con los datos que existen en logica
+     */
     public void guardarPartida() {
         //int segundos, int movimientos, int vuelta, ArrayList<String> rutaGuardada, ArrayList<Boolean> cartaBloqueada,String nombre,String avatar
         PartidaGuardada partida = new PartidaGuardada(juego.getContadorSeg(), juego.getContMov(), juego.algunaVisible(), juego.guardarUrlCarta(), juego.guardarBloquearCarta(),nombre,avatar);
 
-//        PartidaGuardada partida = new PartidaGuardada();
-//        partida.setRutaGuardada(juego.guardarUrlCarta());
-//        partida.setCartaBloqueada(juego.guardarBloquearCarta());
-//        partida.setSegundos(juego.getContadorSeg());
-//        partida.setMovimientos(juego.getContMov());
-//        partida.setVuelta(juego.algunaVisible());
         try {
             //Creamos un flujo de salida al disco
             FileOutputStream fileOut = new FileOutputStream(new File(ARCHIVO_PARTIDA_GUARDADA).getAbsolutePath());
@@ -674,9 +649,13 @@ public class Logica {
         } catch (IOException ex) {
             Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
         }
+        JOptionPane.showMessageDialog(null, "The game will be saved.","Saving...",JOptionPane.INFORMATION_MESSAGE);
     }
 
-
+    /**
+     * Metodo carga la partida y guarda los datos que coge el juego, el resto de
+     * datos los recogera en funcion los pida y los necesite
+     */
     public void cargarPartida() {
         partidaGuardada = null;
         try {
@@ -796,9 +775,6 @@ public class Logica {
     }
 
 
-    public void asignarContrPrincipal(ControladorPrincipal principal) {
-        this.principal = principal;
-    }
 
 
     /*
@@ -811,21 +787,26 @@ public class Logica {
      * // VISTA PRINCIPAL
      * // VISTA PRINCIPAL
      */
+    
+    public void asignarContrPrincipal(ControladorPrincipal principal) {
+        this.principal = principal;
+    }
+    
     public void principalClick(String boton, int pulsos) {
         switch (boton.replaceAll(" ", "").toLowerCase()) {
             case "newgame":
                 principal.cambiarDeVista("ingresodatos");
                 System.out.println("1");
                 break;
-            case "loadgame":
-                System.out.println("2");
+            case "loadgame":     
+                cargarPartida();
+                menu.cambiarVista("juegoguardado");
                 break;
             case "stats":
                 principal.cambiarDeVista("lista");
                 break;
             case "aboutus":
                 principal.cambiarDeVista("aboutus");
-                System.out.println("4");
                 break;
             case "":
                 System.out.println("5");

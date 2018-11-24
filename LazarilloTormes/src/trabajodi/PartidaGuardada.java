@@ -58,28 +58,4 @@ public class PartidaGuardada implements Serializable{
     }
     
     
-    
-    
-    
-    public void setSegundos(int segundos) {
-        this.segundos = segundos;
-    }
-
-    public void setMovimientos(int movimientos) {
-        this.movimientos = movimientos;
-    }
-
-    public void setVuelta(int vuelta) {
-        this.vuelta = vuelta;
-    }
-
-    public void setRutaGuardada(ArrayList<String> rutaGuardada) {
-        this.rutaGuardada = rutaGuardada;
-    }
-
-    public void setCartaBloqueada(ArrayList<Boolean> cartaBloqueada) {
-        this.cartaBloqueada = cartaBloqueada;
-    }
-    
-    
 }
