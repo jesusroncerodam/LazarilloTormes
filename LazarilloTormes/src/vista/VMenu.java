@@ -45,8 +45,6 @@ public class VMenu extends JMenuBar {
         this.vista = vista;
         generar();
         
-       // modoJuego();
-
     }
 
 

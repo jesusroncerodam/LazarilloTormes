@@ -17,15 +17,16 @@ public class PartidaGuardada implements Serializable{
     private int segundos,movimientos,vuelta;//desactivadas;
     private ArrayList<String> rutaGuardada;
     private ArrayList<Boolean> cartaBloqueada;
+    private String nombre,avatar;
 
-    public PartidaGuardada(int segundos, int movimientos, int vuelta, ArrayList<String> rutaGuardada, ArrayList<Boolean> cartaBloqueada) {
+    public PartidaGuardada(int segundos, int movimientos, int vuelta, ArrayList<String> rutaGuardada, ArrayList<Boolean> cartaBloqueada,String nombre,String avatar) {
         this.segundos = segundos;
         this.movimientos = movimientos;
         this.vuelta = vuelta;
         this.rutaGuardada = rutaGuardada;
         this.cartaBloqueada = cartaBloqueada;
-    }
-    public PartidaGuardada(){
+        this.nombre=nombre;
+        this.avatar=avatar;
     }
 
     public int getSegundos() {
@@ -48,6 +49,14 @@ public class PartidaGuardada implements Serializable{
         return cartaBloqueada;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+    
     
     
     

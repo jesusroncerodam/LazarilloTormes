@@ -34,4 +34,5 @@ Directorio de almacenamiento de estadistica
 12;11;/img/avatar1.jpg;Nickname
 18;32;/img/avatar1.jpg;Nickname
 20;87;/img/avatar1.jpg;d
+21;32;null;null
 28;53;/img/avatar1.jpg;d

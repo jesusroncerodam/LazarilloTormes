@@ -127,6 +127,7 @@ public class Vista {
         splash = null;//eliminamos el objeto, ya no lo necesitamos mas 
         ventana.repaint();
         vMenu.setVisible(true);
+        vMenu.normal();
     }
 
 

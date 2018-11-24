@@ -270,6 +270,7 @@ public class Logica {
                 break;
             case "guardar":
                 guardarPartida();
+                menu.cambiarVista("principal");
                 break;
             case "salir":
                 if (JOptionPane.showConfirmDialog(null, "You will exit off the game ¿Are you sure?", "Do you want to exit?",
@@ -278,7 +279,7 @@ public class Logica {
                 }
                 break;
             case "atras":
-                juego.cambiarVista("principal");
+                menu.cambiarVista("principal");
                 break;
             case "pausaplay":
                 juego.gestionarContador("playpause");
@@ -608,8 +609,8 @@ public class Logica {
 
     private final String ARCHIVO_PARTIDA_GUARDADA="PartidaGuardada.obj";
     public void guardarPartida() {
-        //int segundos, int movimientos, int vuelta, ArrayList<String> rutaGuardada, ArrayList<Boolean> cartaBloqueada
-        PartidaGuardada partida = new PartidaGuardada(juego.getContadorSeg(), juego.getContMov(), juego.algunaVisible(), juego.guardarUrlCarta(), juego.guardarBloquearCarta());
+        //int segundos, int movimientos, int vuelta, ArrayList<String> rutaGuardada, ArrayList<Boolean> cartaBloqueada,String nombre,String avatar
+        PartidaGuardada partida = new PartidaGuardada(juego.getContadorSeg(), juego.getContMov(), juego.algunaVisible(), juego.guardarUrlCarta(), juego.guardarBloquearCarta(),nombre,avatar);
 
 //        PartidaGuardada partida = new PartidaGuardada();
 //        partida.setRutaGuardada(juego.guardarUrlCarta());
@@ -656,6 +657,8 @@ public class Logica {
         for (String ruta : rutas) {
             System.out.println(ruta);
         }
+        avatar=partidaGuardada.getAvatar();
+        nombre=partidaGuardada.getNombre();
         partidaCargadaOn=true;
         //generamos la partida
     }
