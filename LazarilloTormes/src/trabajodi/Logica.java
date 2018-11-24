@@ -838,10 +838,10 @@ public class Logica {
                 principal.cambiarDeVista("aboutus");
                 break;
             case "":
-                System.out.println("5");
+                principal.cambiarDeVista("pascua");
                 break;
             default:
-                throw new AssertionError();
+                System.out.println("Error en principalClick "+boton);
         }
     }
 
