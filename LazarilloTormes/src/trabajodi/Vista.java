@@ -48,8 +48,8 @@ public class Vista {
     private VMenu vMenu;
     private VPrincipal vPrincipal;
     private VistaSplash splash;
-
-
+    private final String IMAGEN_DESPEDIDA="/img/despedida.gif";
+    
     /**
      * Constructor principal de la vista, se ejecuta creando también la logica
      * para mandarsela por parámetro al resto de las vistas
@@ -74,11 +74,7 @@ public class Vista {
         //temporal
         ventana.setJMenuBar(vMenu);
 
-        // ingresoDatos();
-        // estadisticas();
-        //principal();
-        //iniciarJuego();
-        //cambiarVista("juego");
+        
         cambiarVista("principal");
     }
 
@@ -197,21 +193,13 @@ public class Vista {
                 switch (vista) {
                     case "principal":
                         principal();
-                        //ventana.setMenuBar(vMenu);
-                        //se genera el menu correspondientevMenu.
-                        //cargamos vista
                         break;
 
                     case "ingresodatos":
-
-                        System.out.print("INGRESO DATOS");
-
                         crearRegistro();
-
                         break;
 
                     case "juego":
-                        //ajustar menubar quitar elementos
                         iniciarJuego();
                         break;
 
@@ -251,16 +239,13 @@ public class Vista {
     public void cambiarVista(String vista) {
         //eliminamos todas las vistas
         eliminarVistas();
+        escuchaVentana.setPartidaOn(false);
         int tiempo = 1;
         switch (vista) {
             case "principal":
                 tiempo = 1;
                 vPrincipal.generar();
                 cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
-                //principal();
-                //ventana.setMenuBar(vMenu);
-                //se genera el menu correspondientevMenu.
-                //cargamos vista
                 break;
 
             case "ingresodatos":
@@ -287,7 +272,6 @@ public class Vista {
                 tiempo = 1;
                 vLista.generar();
                 cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
-                //estadisticas();
                 break;
 
             case "aboutus":
@@ -308,7 +292,6 @@ public class Vista {
      * Elimina todas las vistas o paneles añadidos
      */
     public void eliminarVistas() {
-        escuchaVentana.setPartidaOn(false);
         ventana.remove(vPrincipal);
         vPrincipal.removeAll();
         ventana.remove(vDialogoMod);
@@ -321,8 +304,6 @@ public class Vista {
         vLista.removeAll();
         ventana.remove(vPrincipal);
         vPrincipal.removeAll();
-        //ventana.removeAll();
-        //vJuego.eliminarElementos();
     }
 
     /**
@@ -330,11 +311,11 @@ public class Vista {
      * muestra una imagen (gif) durante 2,5 segundos, mas tarde se ciera la app
      */
     public void splashDespedida() {
-        JFrame despedida=new JFrame("Goodbye");
+        JFrame despedida=new JFrame("Goodbye. Thanks for playing.");
         despedida.setSize(800, 480);
         despedida.setUndecorated(true);//quiramos la "x"
         
-        despedida.getContentPane().add(new JLabel(new ImageIcon(this.getClass().getResource("/img/despedida.gif"))));
+        despedida.getContentPane().add(new JLabel(new ImageIcon(this.getClass().getResource(IMAGEN_DESPEDIDA))));
         
         despedida.setLocationRelativeTo(null);
         despedida.toFront();//lo traemos al frente
