@@ -718,30 +718,47 @@ public class Logica {
         return partidaGuardada.getMovimientos();
     }
 
-
+    /**
+     * Metodo retona el tiempo, en segundos, en el momento que se guardo la partida
+     * @return int tiempo en segudos
+     */
     public int obtenerTiempo() {
         return partidaGuardada.getSegundos();
     }
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //controlador Estadisticas(vLista)
+    /*
+    *   Vista Lista
+    *   Vista Lista
+    *   Vista Lista
+    *   Vista Lista
+    */
+    
+    /**
+     * Metodo asigna el controlador de Vlista 
+     * @param lista Controlador de VLista
+     */
     public void asignarContrLista(ContrLista lista) {
         this.lista = lista;
     }
 
-
+    /**
+     * Encargado de controladar las acciones de la vista VLista
+     * @param componente en el que se produzco la accion
+     */
     public void listaClick(Component componente) {
         if (componente instanceof JButton) {
             JButton bPulsado = (JButton) componente;
-            if (bPulsado.getToolTipText().equals("Go to main")) {
-                lista.cambiarVista("principal");
+            switch (bPulsado.getToolTipText()) {
+                case "Go to main":
+                    lista.cambiarVista("principal");
+                    break;
+                default:
+                    System.out.println("Elemenot no eseperado en listaClick");
             }
         } else {
             System.out.println("evento no esperado en lista");
         }
     }
-///
 
 
     public void asignarContrPrincipal(ControladorPrincipal principal) {
@@ -788,15 +805,18 @@ public class Logica {
      * SONIDO
      * SONIDO
      * SONIDO
-     * SONIDO1
      * SONIDO
+     * SONIDO
+     */
+    /**
+     * Encargado de Hestionar el sonido, se elije un sonido aleatorio entre 1 y 3 de la accion
+     * @param accion 
      */
     public void crearSonido(String accion) {
         if (sonido) {//mientras que el sonido este habilitado
             String rutaSonido = RUTA_SONIDO_MAIN + accion + ((int) (Math.random() * 3) + 1) + ".wav";
             Sonido reproducir = new Sonido(rutaSonido);
             reproducir.start();
-            System.out.println("Después de la canción");
         }
     }
 }
