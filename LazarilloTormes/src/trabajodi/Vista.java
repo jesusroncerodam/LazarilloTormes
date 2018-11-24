@@ -284,7 +284,6 @@ public class Vista {
             default:
                 throw new AssertionError();
         }
-        ventana.setLocationRelativeTo(null);
         anadirVista(vista, tiempo);
     }
 
