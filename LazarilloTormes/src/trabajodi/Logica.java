@@ -60,8 +60,15 @@ public class Logica {
     private boolean primeraJuego, animacionC,partidaCargadaOn=false;
     private Timer timer;
     private int vuelta, cartaAct;
-    private final String FICHERO = "estadisticas.txt", PRIMERA_LINEA = "Directorio de almacenamiento de estadistica\n", RUTA_SONIDO_MAIN = "/sonidos/", RUTA_IMAGENES = "/img/";
+    private final String 
+            FICHERO = "estadisticas.txt", 
+            PRIMERA_LINEA = "Directorio de almacenamiento de estadistica\n", 
+            RUTA_SONIDO_MAIN = "/sonidos/", 
+            RUTA_IMAGENES = "/img/",
+            ARCHIVO_PARTIDA_GUARDADA="PartidaGuardada.obj";
+    private final boolean ELIMINAR_PARTIDA_GUARDADA=false;
     private String[] rutas;
+
 
     private String nombre, avatar;
     private boolean sonido = true;
@@ -308,7 +315,7 @@ public class Logica {
         //ordenamos
         Collections.sort(historial);
         //eliminamos el fichero anterior 
-        eliminarFichero();
+        eliminarFichero(FICHERO);
         crearFichero();//volvemos a crear el fichero
         pasarAFichero(historial);//le mandamis informacion
     }
@@ -316,9 +323,9 @@ public class Logica {
     /**
      * Encargado de eliminar el fichero de estadistica
      */
-    private void eliminarFichero() {
-        File archivo = new File(new File(FICHERO).getAbsolutePath());
-        archivo.delete();
+    private void eliminarFichero(String archivo) {
+        File file = new File(new File(archivo).getAbsolutePath());
+        file.delete();
     }
 
     /**
@@ -607,7 +614,6 @@ public class Logica {
         }
     }
 
-    private final String ARCHIVO_PARTIDA_GUARDADA="PartidaGuardada.obj";
     public void guardarPartida() {
         //int segundos, int movimientos, int vuelta, ArrayList<String> rutaGuardada, ArrayList<Boolean> cartaBloqueada,String nombre,String avatar
         PartidaGuardada partida = new PartidaGuardada(juego.getContadorSeg(), juego.getContMov(), juego.algunaVisible(), juego.guardarUrlCarta(), juego.guardarBloquearCarta(),nombre,avatar);
@@ -659,11 +665,19 @@ public class Logica {
         }
         avatar=partidaGuardada.getAvatar();
         nombre=partidaGuardada.getNombre();
+        //si se quiere eliminar el fichero cambiar la ELIMINAR_PARTIDA_GUARDADA
+        if(ELIMINAR_PARTIDA_GUARDADA){
+            eliminarFichero(ARCHIVO_PARTIDA_GUARDADA);
+        }
         partidaCargadaOn=true;
         //generamos la partida
     }
 
-
+    /**
+     * Metodo retorna de la partida guardada las cartas que han sido
+     * desactivasdas y lo retorna
+     * @return int numero de cartas desactivadas
+     */
     public int obtenerGuardadDesact() {
         int desactivadas = 0;
         ArrayList<Boolean> cartaBloqueada = partidaGuardada.getCartaBloqueada();
@@ -675,7 +689,9 @@ public class Logica {
         return desactivadas;
     }
 
-
+    /**
+     * Metodo bloquea las cartas de la partida guardada
+     */
     public void bloquearCartas() {
         ArrayList<Boolean> cartaBloqueada = partidaGuardada.getCartaBloqueada();
         for (int i = 0; i < cartaBloqueada.size(); i++) {
@@ -686,15 +702,20 @@ public class Logica {
         }
     }
 
-
+    /**
+     * Metodo retorna los movimientos de la partida guardada, en el caso de que
+     * alguna carta estubiera sin pareja al guardar la partida, la mueve 
+     * @return movimientos de la partida gusrdada
+     */
     public int obtenerMovimientos() {
-        if (partidaGuardada.getVuelta() == -1)//si no hay ninguna carta dada la vuelta retornamos esto
-        {
-            return partidaGuardada.getMovimientos();
-        } else {
-            juego.girar(partidaGuardada.getVuelta());
-            return partidaGuardada.getMovimientos() - 1;
+        //tiene que ser en este orden, primero comprobar si hay carta y moverla 
+        //ya que si se hace al reves(en caso de no ser return) , sumaria un movimiento
+        //extra, ya que ajustas los movimientos y despues sumas uno al mover la carta
+        //ya que en getMovimientos ya cuenta el movimieto de esa carta
+        if (partidaGuardada.getVuelta() != -1){//si no hay ninguna carta dada la vuelta retornamos esto
+             juego.girar(partidaGuardada.getVuelta());
         }
+        return partidaGuardada.getMovimientos();
     }
 
 
