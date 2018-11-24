@@ -41,7 +41,7 @@ public class VLista extends JPanel {
     private JButton atras;
     private GridBagConstraints loc;
     private JPanel lista;
-    private final int NUMERO_MINIMO_FILAS = 10;
+    private final int NUMERO_MINIMO_FILAS = 15;
 
 
     public VLista(Logica logica, Vista vista) {
@@ -227,6 +227,7 @@ public class VLista extends JPanel {
 
     public void recogerDatos() {
         datos = controlador.datosFichero();
+        System.out.println("dsakgnsfldkgndkflsngkdsl------------------"+datos);
     }
 
 

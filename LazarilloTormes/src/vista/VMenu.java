@@ -32,7 +32,7 @@ public class VMenu extends JMenuBar {
             submenu, 
             partida,
             ajustes;
-    private final String PLAYPAUSE="src/img/playPause.png",EQUIS="/img/equis.png",ATRAS="/img/back.png";
+    private final String PLAYPAUSE="/img/playPause.png",EQUIS="/img/equis.png",ATRAS="/img/back.png";
     private JMenuItem pausaPlay, guardarPartida, cargarPartida;
     private JRadioButtonMenuItem sonido;
     private JMenuItem atras, salir;

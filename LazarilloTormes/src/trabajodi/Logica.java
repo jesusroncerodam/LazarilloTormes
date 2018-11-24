@@ -303,7 +303,7 @@ public class Logica {
                 guardarPartida();
                 break;
             case "partidapersonalizada"://Partida Personalizada////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                guardarPartida();
+                menu.cambiarVista("ingresodatos");
                 break;
             default:
                 System.out.println("Valor no esperado en logica gestionarMenu: " + accion);
@@ -408,12 +408,12 @@ public class Logica {
     public String[] ficheroAArray() {
         String linea;
         ArrayList<String> lineas = new ArrayList();
-        if (!new File(ARCHIVO_PARTIDA_GUARDADA).exists()) {
+        if (!new File(FICHERO).exists()) {
             JOptionPane.showMessageDialog(null, "There are no statistics.", "statistics not found", JOptionPane.WARNING_MESSAGE);
             return lineas.toArray(new String[lineas.size()]);
         }
         try {
-            FileReader f = new FileReader(new File(FICHERO).getAbsolutePath());
+            FileReader f = new FileReader(new File(FICHERO).getAbsolutePath());  
             BufferedReader b = new BufferedReader(f);
             b.readLine();//ignoramos la 1º linea
             while ((linea = b.readLine()) != null) {
