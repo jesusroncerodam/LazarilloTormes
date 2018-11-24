@@ -79,6 +79,7 @@ public class VIngreso extends JPanel {
     private final Border bordeAvatar = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.ORANGE, 5), BorderFactory.createRaisedBevelBorder());
     private final Border bordeTema = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.RED, 5), BorderFactory.createRaisedBevelBorder());
     private final Border bordeDificultad = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.YELLOW, 3), BorderFactory.createRaisedBevelBorder());
+    private int TAMANOFUENTE = 24;
 
 
     public VIngreso(Logica logica, Vista vistaMain) {
@@ -100,7 +101,6 @@ public class VIngreso extends JPanel {
 
 
     public void generar() {
-
         anadirDescripciones();
         controlador.mandarControlador();
         this.setOpaque(false);
@@ -108,9 +108,7 @@ public class VIngreso extends JPanel {
 //        setPreferredSize(new Dimension(2, 2));
         constrain = new GridBagConstraints();
         this.setLayout(new GridBagLayout());
-
         constrainPorDefecto();
-
         crearElementos();
         anadirescuchadores();
         setVisible(true);
@@ -120,16 +118,13 @@ public class VIngreso extends JPanel {
 
     public void crearElementos() {
         constrainPorDefecto();
-
         crearLabelNombre();
         crearCampoNombre();
         crearAvatar();
         crearTema();
         crearDificultad();
-
         botonFlechaAtras = new JButton(cambiarTamano(imagenFlecha, 100, 100));
         botonFlechaSiguiente = new JButton(cambiarTamano(imagenAvanzar, 100, 90));
-
         /*
          * BOTONES
          */
@@ -149,9 +144,10 @@ public class VIngreso extends JPanel {
         botonFlechaSiguiente.setBorder(null);
     }
 
-    private int TAMANOFUENTE = 24;
 
-
+    /**
+     * Crea el label del nombre
+     */
     public void crearLabelNombre() {
         labelNombre = new JLabel("Nickname: ");
         labelNombre.setFont(bakerville(TAMANOFUENTE));
@@ -167,6 +163,9 @@ public class VIngreso extends JPanel {
     }
 
 
+    /**
+     * Crea todo lo relacionado con el campo de texto del nombre
+     */
     public void crearCampoNombre() {
         campoNombre = new TextField("Nickname");
         campoNombre.setFont(bakerville(TAMANOFUENTE - 8));
@@ -188,6 +187,9 @@ public class VIngreso extends JPanel {
     }
 
 
+    /**
+     * Crea todo lo relacionado con los iconos de los avatares y el jlabel
+     */
     public void crearAvatar() {
         labelAvatar = new JLabel("Avatar: ");
         labelAvatar.setFont(bakerville(TAMANOFUENTE));
@@ -228,10 +230,12 @@ public class VIngreso extends JPanel {
         avatar1.setBorder(bordeAvatar);
         avatar2.setBorder(null);
         avatar3.setBorder(null);
-
     }
 
 
+    /**
+     * Crea todo lo relacionado con los temas
+     */
     public void crearTema() {
         labelTema = new JLabel("Theme");
         labelTema.setFont(bakerville(TAMANOFUENTE));
@@ -277,6 +281,9 @@ public class VIngreso extends JPanel {
     }
 
 
+    /**
+     * Crea todo lo relacionado con las dificultades
+     */
     public void crearDificultad() {
         labelDificultad = new JLabel("Difficulty");
         labelDificultad.setFont(bakerville(TAMANOFUENTE));
@@ -323,6 +330,10 @@ public class VIngreso extends JPanel {
     }
 
 
+    /**
+     * Añade las descripciones para guardar las imágenes y que se muestren en la
+     * pantalla de las estadsticas
+     */
     public void anadirDescripciones() {
         iconoAvatar1.setDescription("/img/avatar1.jpg");
         iconoAvatar2.setDescription("/img/avatar2.jpg");
@@ -338,6 +349,9 @@ public class VIngreso extends JPanel {
     }
 
 
+    /**
+     * Añade todos los escuchadores para relacionarlos con el controlador
+     */
     public void anadirescuchadores() {
         labelAvatar.setName("avatar");
         campoNombre.setName("campoNombre");
@@ -524,6 +538,13 @@ public class VIngreso extends JPanel {
     }
 
 
+    /**
+     * Le manda el avatar a las estadísticas para mostrarlo en el listado
+     *
+     * Analiza que avatar tiene el borde y comprueba que el que no sea nulo, sea
+     * elegido
+     * @return String, la descripcion del avatar con la ruta del mismo
+     */
     private String recogerAvatar() {
         if (avatar1.getBorder() != null) {
             System.out.println("------>" + ((ImageIcon) avatar1.getIcon()).getDescription());
@@ -539,6 +560,10 @@ public class VIngreso extends JPanel {
     }
 
 
+    /**
+     * Manda el tema para el
+     * @return
+     */
     private int recogerTema() {
         if (tema1.getBorder() != null) {
             return 1;
