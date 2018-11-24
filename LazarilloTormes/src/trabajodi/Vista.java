@@ -24,7 +24,10 @@ import javax.swing.JFrame;
 import vista.VPrincipal;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 
@@ -322,15 +325,31 @@ public class Vista {
         //vJuego.eliminarElementos();
     }
 
-    
-    public void avisoSalida() {
-        
-    }//this.getClass().getResource("/img/despedida.gif"
     /**
-     * Solo se ejecutará correctamente en el fichero.jar, si no se ejecuta en el 
-     * fichero.jar dara error, al ser nulo
+     * Creamos un SplashScreen de despedida, elimina la ventana principal y 
+     * muestra una imagen (gif) durante 2,5 segundos, mas tarde se ciera la app
      */
-    
+    public void splashDespedida() {
+        JFrame despedida=new JFrame("Goodbye");
+        despedida.setSize(800, 480);
+        despedida.setUndecorated(true);//quiramos la "x"
+        
+        despedida.getContentPane().add(new JLabel(new ImageIcon(this.getClass().getResource("/img/despedida.gif"))));
+        
+        despedida.setLocationRelativeTo(null);
+        despedida.toFront();//lo traemos al frente
+        despedida.setVisible(true);
+        ventana.dispose();
+        
+        Timer salir=new java.util.Timer();//cremos el timer para crear una animacion
+        TimerTask tarea = new TimerTask() {//creamos un timerTask, que se ejecutara en x segundos
+            @Override
+            public void run() {
+                despedida.dispose();
+                System.exit(0);
+            }};
+        salir.schedule(tarea,2500);// decimos al timer que ejecute el TimeTask en los seguntos
+    }
 
 
     class EscuchaVentana extends WindowAdapter {
@@ -346,54 +365,15 @@ public class Vista {
             if(partidaOn){
                 if (JOptionPane.showConfirmDialog(ventana, "You will exit off the game ¿Are you sure?","Do you want to exit?", 
                         JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) != JOptionPane.YES_OPTION) {
-                ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-                }else{
-                    //new SplashDemo();
-                    System.exit(0);
-                } 
-            }else{
-                //new SplashDemo();
-                System.exit(0);
+                    ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                    return;//si el resultado no es yes , salidmos
+                }
             }
+            vista.splashDespedida();
         }
         public void setPartidaOn(boolean partidaOn) {
             this.partidaOn = partidaOn;
         }
 
     }
-    class SplashDemo extends Frame {
-        
-        public SplashDemo(){
-        super("Thanks for playing");//creamos el frame de despedida
-       // despedida.setUndecorated(true);
-      // despedida.seto
-        setSize(800,480);
-        setVisible(true);
-        toFront();//ponemos la ventana en el foco
-        for(int i=0;i<50;i++)
-            try{
-                repaint();
-                Thread.sleep(50);//dormimos el para poder ver la imagen de fondo 2,5 segundos
-            }catch(InterruptedException e){
-                System.out.println("Error al inenter dormir en Splash "+e);
-            }
-        
-       
-        dispose();//eliminamos la ventana
-        System.exit(0);//cerramos 
-        }
-        
-        public void paint(Graphics g) {
-            g.drawImage(new ImageIcon(getClass().getResource("/img/despedida.gif")).getImage(), 0, 0, getWidth(), getHeight(), null);
-            super.paint(g);
-        }
-    }
-
 }
-/*class wi
-/* @Override
-    public void windowClosing(WindowEvent e) {
-       if (JOptionPane.showConfirmDialog(vista, "¿Desea realmente salir del sistema?",
-                "Salir del sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-            System.exit(0);
-    }*/

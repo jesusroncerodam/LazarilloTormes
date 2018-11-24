@@ -165,8 +165,6 @@ public class Logica {
                     timer = new java.util.Timer();//cremos el timer para crear una animacion
                     TimerTask tarea = new TimerTask() {//creamos un timerTask, que se ejecutara en x segundos
                         int i = 0;
-
-
                         @Override
                         public void run() {
                             if (i > 0) {//cuando termine dejamos hacer otra accion, para que no se vean 3 imagenes
