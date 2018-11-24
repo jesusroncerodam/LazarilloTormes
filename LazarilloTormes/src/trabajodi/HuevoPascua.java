@@ -24,17 +24,23 @@ import javax.swing.Timer;
 public class HuevoPascua extends Thread{
     
     private JFrame ventana;
-    private final String IMAGEN1="/img/letras.gif",IMAGEN2="/img/carga.gif",IMAGEN3="/img/nubes.gif",IMAGEN4="/img/nubes.png",IMAGEN_GLOBO="/img/globo.png";
+    private final String IMAGEN1="/img/letras.gif",IMAGEN2="/img/carga.gif",IMAGEN3="/img/nubes.gif",IMAGEN4="/img/nubes.png",IMAGEN_GLOBO="/img/globo.png",IMAGEN_FIN="/img/fineasteregg.gif";
     private JLabel etiqueta;
+    
     private JButton[] boton;
     private final int CANTIDAD_GLOBOS=5;
     private ControladorPascua controlador;
+    private boolean salir;
+    private Timer cambiarfondo,timerMover;
+    private Vista vista;
     
-    public HuevoPascua() {
+    public HuevoPascua(Vista vista) {
+        this.vista=vista;
+        salir=false;
         controlador= new ControladorPascua(this);
         ventana=new JFrame("Easter Egg");
         boton=new JButton[CANTIDAD_GLOBOS];
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.addWindowListener(controlador);
         ventana.setSize(600,600);
         
         ventana.setVisible(true);
@@ -45,9 +51,10 @@ public class HuevoPascua extends Thread{
     }
     private void generar(){
         etiqueta = new JLabel();
+        
         generarImagen(IMAGEN1);
         dormir(2000);
-        System.out.println("sfjdsb");
+        
         ventana.remove(etiqueta);
         generarImagen(IMAGEN2);
         dormir(2000);
@@ -60,11 +67,12 @@ public class HuevoPascua extends Thread{
     }
     
     private void dormir(int segundos){
-        try {
-            Thread.sleep(segundos);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(HuevoPascua.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        if(!salir)
+            try {
+                Thread.sleep(segundos);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(HuevoPascua.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
     
     private void generarImagen(String imagen){
@@ -73,7 +81,6 @@ public class HuevoPascua extends Thread{
         imageIcon.setImageObserver(etiqueta); 
         ventana.add(etiqueta);
         etiqueta.updateUI();
-        ventana.setVisible(true);
     }
     
     
@@ -100,7 +107,7 @@ public class HuevoPascua extends Thread{
     }
     
     private void mover(){
-        Timer timer=new Timer(1, new ActionListener() {
+        timerMover=new Timer(1, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int i=((int) (Math.random() * boton.length) ) ;
@@ -111,8 +118,8 @@ public class HuevoPascua extends Thread{
                 }
             }
         });
-        timer.start();
-        timer.setRepeats(true);
+        timerMover.start();
+        timerMover.setRepeats(true);
     }
     
     /**
@@ -120,7 +127,7 @@ public class HuevoPascua extends Thread{
      * que el fondo sea la IMAGEN3, si no, será la IMAGEN4
      */
     private void fondo(){
-        Timer timer=new Timer(1000, new ActionListener() {
+        cambiarfondo=new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                  if(((int) (Math.random() * 11)+1 )==4 ){
@@ -130,8 +137,43 @@ public class HuevoPascua extends Thread{
                 }
             }
         });
-        timer.start();
-        timer.setRepeats(true);
+        cambiarfondo.start();
+        cambiarfondo.setRepeats(true);
+    }
+    public void subirBoton(int indice){
+        boton[indice].setLocation(boton[indice].getLocation().x, 0);
+    }
+    public void cerrarVista(){
+        if(timerMover!=null)
+            timerMover.stop();
+        if(cambiarfondo!=null)
+            cambiarfondo.stop();
+        //ventana.removeAll();
+        
+        //etiqueta.removeAll();
+        //ventana.removeAll();
+        //etiqueta=null;
+       /* generarImagen(IMAGEN_FIN);
+        ventana.setVisible(true);
+        ventana.repaint();*/
+        
+        JLabel fun=new JLabel();
+        ImageIcon imageIcon = new ImageIcon(new ImageIcon(this.getClass().getResource(IMAGEN_FIN)).getImage().getScaledInstance(ventana.getWidth(), ventana.getHeight(), Image.SCALE_DEFAULT));
+        fun.setIcon(imageIcon);
+        imageIcon.setImageObserver(fun); 
+        ventana.add(fun);
+        ventana.remove(etiqueta);
+        ventana.setVisible(true);//*/
+        fun.updateUI();
+        ventana.repaint();
+        
+        //salir=true;
+        
+        dormir(5000);
+        
+        //salir=true;
+        //ventana.dispose();
+       // vista.pascuaTermina();
     }
 
     

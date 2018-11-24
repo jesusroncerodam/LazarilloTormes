@@ -8,6 +8,7 @@ package controladores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import trabajodi.HuevoPascua;
 import trabajodi.LogicaPascua;
 
@@ -27,6 +28,19 @@ public class ControladorPascua extends WindowAdapter implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         logica.accionEjecutada(e.getActionCommand());
+    }
+    
+    public void subirBoton(int indice){
+        vista.subirBoton(indice);
+    }
+
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        cerrarVista();
+    }
+    public void cerrarVista(){
+        vista.cerrarVista();    
     }
     
 }

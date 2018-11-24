@@ -301,10 +301,14 @@ public class Vista {
         vPrincipal.removeAll();
     }
 
-
-    public void crearHuevoPascua(){
-       HuevoPascua pasucua= new HuevoPascua();
-       pasucua.start();
+HuevoPascua pascua;
+    private void crearHuevoPascua(){
+       pascua= new HuevoPascua(this);
+       pascua.start();
+    }
+    public void pascuaTermina(){
+        pascua.interrupt();
+        pascua=null;
     }
     
     /**

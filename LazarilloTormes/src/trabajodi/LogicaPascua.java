@@ -13,12 +13,17 @@ import controladores.ControladorPascua;
  */
 public class LogicaPascua {
     private ControladorPascua controlador;
+    private int contador;
 
     public LogicaPascua(ControladorPascua controlador) {
         this.controlador = controlador;
     }
     
     public void accionEjecutada(String accion){
-        System.out.println(accion);
+        contador++;
+        controlador.subirBoton(Integer.parseInt(accion));
+        if(contador<10)
+            controlador.cerrarVista();
     }
+    
 }
