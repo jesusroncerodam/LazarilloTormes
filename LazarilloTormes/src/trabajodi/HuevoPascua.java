@@ -31,7 +31,7 @@ public class HuevoPascua {
     private ControladorPascua controlador;
     
     public HuevoPascua() {
-        controlador= new ControladorPascua();
+        controlador= new ControladorPascua(this);
         ventana=new JFrame("Easter Egg");
         boton=new JButton[CANTIDAD_GLOBOS];
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -5,6 +5,8 @@
  */
 package controladores;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import trabajodi.HuevoPascua;
 
@@ -12,11 +14,16 @@ import trabajodi.HuevoPascua;
  *
  * @author Guille
  */
-public class ControladorPascua extends WindowAdapter implements {
+public class ControladorPascua extends WindowAdapter implements ActionListener{
     HuevoPascua vista;
 
     public ControladorPascua(HuevoPascua vista) {
         this.vista = vista;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
