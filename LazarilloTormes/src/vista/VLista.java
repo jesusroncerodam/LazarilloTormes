@@ -15,6 +15,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -89,10 +90,15 @@ public class VLista extends JPanel {
             for (int j = 0; j < elementos.length; j++) {//movimientos0;tiempo1;imagen2;nombre3
                 switch (j) {//j seria la posicionde la lista 
                     case 0://imagen, en el array es la pos 2
-                        if(elementos[2]==null){
+                        if(elementos[2]==null || (elementos[2].indexOf('\\')!=-1 && !new File(elementos[2]).exists())){//si el elemento es nulo o tiene un ruta absoluta y si el elemento existe
+                            System.out.println("El elemento '"+elementos[2]+"' es nulo o tiene una ruta absoluta y no existe");
                             elementos[2]="/img/avatar1.jpg";
                         }
-                        fila.add(new JLabel(cambiarTamano(new ImageIcon(this.getClass().getResource(elementos[2])), 20, 20), SwingConstants.CENTER)); 
+                        if(elementos[2].indexOf('\\')!=-1){
+                            fila.add(new JLabel(cambiarTamano(new ImageIcon(elementos[2]), 20, 20), SwingConstants.CENTER)); 
+                        }else{
+                            fila.add(new JLabel(cambiarTamano(new ImageIcon(this.getClass().getResource(elementos[2])), 20, 20), SwingConstants.CENTER)); 
+                        }
                         break;
                         
                     case 1://nombre, en el array es la pos 3
