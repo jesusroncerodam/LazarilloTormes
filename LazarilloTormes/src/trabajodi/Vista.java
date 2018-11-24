@@ -79,11 +79,8 @@ public class Vista {
     public void generarVista() {
         ventana = new JFrame("Memorion");
         ventana.setMaximumSize(new Dimension(1924, 1047));
-        //ventana.setSize(600, 600);
         escuchaVentana = new EscuchaVentana(this);
         ventana.addWindowListener(escuchaVentana);
-
-        // ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
 
@@ -106,7 +103,6 @@ public class Vista {
         ventana.setVisible(true);
         splash.empezarAnimaciones();
         vMenu.setVisible(false);
-        ventana.setUndecorated(false);
     }
 
 
