@@ -14,18 +14,12 @@ import vista.VMenu;
 import vista.VistaSplash;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Frame;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.SplashScreen;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import vista.VPrincipal;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -112,6 +106,7 @@ public class Vista {
         ventana.setVisible(true);
         splash.empezarAnimaciones();
         vMenu.setVisible(false);
+        ventana.setUndecorated(false);
     }
 
 
