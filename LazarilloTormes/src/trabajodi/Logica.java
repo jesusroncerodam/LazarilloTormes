@@ -60,18 +60,18 @@ public class Logica {
     private boolean primeraJuego, animacionC,partidaCargadaOn=false;
     private Timer timer;
     private int vuelta, cartaAct;
+    private String[] rutas;
+    private String nombre, avatar;
+    private boolean sonido = true;
+    
     private final String 
             FICHERO = "estadisticas.txt", 
             PRIMERA_LINEA = "Directorio de almacenamiento de estadistica\n", 
             RUTA_SONIDO_MAIN = "/sonidos/", 
             RUTA_IMAGENES = "/img/",
-            ARCHIVO_PARTIDA_GUARDADA="PartidaGuardada.obj";
+            ARCHIVO_PARTIDA_GUARDADA="PartidaGuardada.obj",
+            RUTA_TEMA="cartas/tema";;
     private final boolean ELIMINAR_PARTIDA_GUARDADA=false;
-    private String[] rutas;
-
-
-    private String nombre, avatar;
-    private boolean sonido = true;
 
     /**
      * Constructor de logia, no se manda nada, se crea al comienzo de la ejecucion
@@ -83,9 +83,6 @@ public class Logica {
 
 
     /*
-     * CONTROLADOR JUEGO
-     * CONTROLADOR JUEGO
-     * CONTROLADOR JUEGO
      * CONTROLADOR JUEGO
      * CONTROLADOR JUEGO
      * CONTROLADOR JUEGO
@@ -413,6 +410,7 @@ public class Logica {
         return lineas.toArray(new String[lineas.size()]);
     }
 
+    
     /*
      * CONTROLADOR VISTA INGRESO
      * CONTROLADOR VISTA INGRESO
@@ -517,10 +515,19 @@ public class Logica {
      *
      *
      */
+    /**
+     * Metodo encargado de gestionar los datos que se regojen de la 
+     * vista de Ingreso
+     * @param avatar String ruta del avatar 
+     * @param tema  int 1,2 o 3, tema de la partida, de las cartas
+     * @param dificultad int 1,2 o 3 dificultad, cantidad de cartas a mostrar
+     * @param nombre String nombre del jugador
+     */
     public void recogerDatos(String avatar, int tema, int dificultad, String nombre) {
         System.out.println(tema + " " + nombre + " " + dificultad + "" + avatar);
         //guardamos avatar  y nombre
-        this.nombre = nombre;
+        
+        this.nombre = gestionarNombre(nombre);
         this.avatar = avatar;
 
         //añadimos cartas segun la dificultad; siendo la minima 4 cartas
@@ -530,8 +537,26 @@ public class Logica {
         cargarRutas(tema);
 
     }
-
-
+    /**
+     * Metodo gestiona que el nombre no sea muy grande y que no sea el 
+     * de por defecto
+     * @param nombre String nombre
+     */
+    private String gestionarNombre(String nombre){
+        if(nombre.toLowerCase().equals("nickname")){
+            nombre="Gamer";
+        }
+        if(nombre.length()>15){
+            nombre=nombre.substring(0,15);
+        }
+        return nombre;
+    }
+    /**
+     * Metodo encargado de crear un Array de String con respecto a la dificultad
+     * correspondiente, por cada nivel de dificultad suma 2 cartas, empezando 
+     * por un minimo de 2 cartas
+     * @param dificultad 
+     */
     private void cartasSegunDificultad(int dificultad) {
         int cartas = 2;
         for (int i = dificultad; i > 0; i--) {
@@ -540,9 +565,19 @@ public class Logica {
         rutas = new String[cartas];
     }
 
-
+    /**
+     * Metodo encargado de segun el tema carga las rutas de las imagenes 
+     * correspondientes en el arrat de string
+     * @param tema int del 1 al 3 , dificultad de la carta
+     */
     private void cargarRutas(int tema) {
-        String rutaConTema = RUTA_IMAGENES + "cartas/tema" + tema + "/";
+        System.out.println(tema);
+                
+        System.out.println((tema>3 || tema<1)+"----tema>3"+(tema>3)+"--- tema<1"+( tema<1));
+        if(tema>3 || tema<1){
+            tema=1;
+        }
+        String rutaConTema = RUTA_IMAGENES+RUTA_TEMA+ tema + "/";
         System.out.println(rutaConTema);
         for (int i = 0; i < rutas.length; i++) {
             rutas[i] = rutaConTema + i + ".jpg";

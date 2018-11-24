@@ -115,7 +115,6 @@ anadirDescripciones();
         anadirescuchadores();
         setVisible(true);
         System.out.println("ERwtrewtrewtwerte"+((ImageIcon) avatar1.getIcon()).getDescription());
-        System.out.println("+++++"+iconoAvatar1.getDescription());
     }
 
 
@@ -569,7 +568,6 @@ anadirDescripciones();
 
 
     public void mandarDatos() {
-        System.out.println("------------------------"+recogerAvatar());
         controlador.mandarDatos(recogerAvatar(), recogerTema(), recogerDificultad(), recogerNombre());
     }
 
