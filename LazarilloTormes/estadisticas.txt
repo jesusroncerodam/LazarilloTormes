@@ -30,7 +30,8 @@ Directorio de almacenamiento de estadistica
 50;18;/img/carta.jpg;me
 50;18;/img/carta.jpg;me
 50;18;/img/carta.jpg;me
-8;5;null;Nickname
+12;11;/img/avatar1.jpg;emilioa
+12;11;/img/avatar1.jpg;Nickname
+18;32;/img/avatar1.jpg;Nickname
 20;87;/img/avatar1.jpg;d
 28;53;/img/avatar1.jpg;d
-72;108;null;Nickname
