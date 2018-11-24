@@ -48,7 +48,9 @@ public class VLista extends JPanel {
         controlador = new ContrLista(this, logica);
     }
 
-
+    /**
+     * Generamos la vista, creando una tabal con un JScrollPane
+     */
     public void generar() {
         this.setOpaque(false);
         this.setLayout(new GridBagLayout());

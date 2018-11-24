@@ -266,8 +266,8 @@ public class Logica {
 
         switch (accion) {
             case "cargar":
-                cargarPartida();
-                menu.cambiarVista("juegoguardado");
+                if(cargarPartida())
+                    menu.cambiarVista("juegoguardado");
                 break;
             case "guardar":
                 guardarPartida();
@@ -391,6 +391,10 @@ public class Logica {
     public String[] ficheroAArray() {
         String linea;
         ArrayList<String> lineas = new ArrayList();
+        if(!new File(ARCHIVO_PARTIDA_GUARDADA).exists()){
+            JOptionPane.showMessageDialog(null, "There are no statistics.","statistics not found",JOptionPane.WARNING_MESSAGE);
+            return lineas.toArray(new String[lineas.size()]);
+        }
         try {
             FileReader f = new FileReader(new File(FICHERO).getAbsolutePath());
             BufferedReader b = new BufferedReader(f);
@@ -651,9 +655,15 @@ public class Logica {
     /**
      * Metodo carga la partida y guarda los datos que coge el juego, el resto de
      * datos los recogera en funcion los pida y los necesite
+     * @return 
      */
-    public void cargarPartida() {
+    public boolean cargarPartida() {
         partidaGuardada = null;
+        if(!new File(ARCHIVO_PARTIDA_GUARDADA).exists()){
+            JOptionPane.showMessageDialog(null, "There is no saved game.\nTry saving a game.","Saved game not found",JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        
         try {
             //Creamos un flujo de entrada desde el disco
             FileInputStream fileIn = new FileInputStream(new File(ARCHIVO_PARTIDA_GUARDADA).getAbsolutePath());
@@ -677,7 +687,7 @@ public class Logica {
             eliminarFichero(ARCHIVO_PARTIDA_GUARDADA);
         }
         partidaCargadaOn=true;
-        //generamos la partida
+        return true;
     }
 
     /**
@@ -790,9 +800,9 @@ public class Logica {
             case "newgame":
                 principal.cambiarDeVista("ingresodatos");
                 break;
-            case "loadgame":     
-                cargarPartida();
-                menu.cambiarVista("juegoguardado");
+            case "loadgame": 
+                if(cargarPartida())
+                    menu.cambiarVista("juegoguardado");
                 break;
             case "stats":
                 principal.cambiarDeVista("lista");
