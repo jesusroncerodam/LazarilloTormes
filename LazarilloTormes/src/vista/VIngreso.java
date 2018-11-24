@@ -100,8 +100,8 @@ public class VIngreso extends JPanel {
 
 
     public void generar() {
-        
-anadirDescripciones();
+
+        anadirDescripciones();
         controlador.mandarControlador();
         this.setOpaque(false);
 
@@ -114,7 +114,7 @@ anadirDescripciones();
         crearElementos();
         anadirescuchadores();
         setVisible(true);
-        System.out.println("ERwtrewtrewtwerte"+((ImageIcon) avatar1.getIcon()).getDescription());
+        System.out.println("ERwtrewtrewtwerte" + ((ImageIcon) avatar1.getIcon()).getDescription());
     }
 
 
@@ -225,7 +225,7 @@ anadirDescripciones();
         avatar1.setBorder(bordeAvatar);
         avatar2.setBorder(null);
         avatar3.setBorder(null);
-        
+
     }
 
 
@@ -521,7 +521,7 @@ anadirDescripciones();
 
     private String recogerAvatar() {
         if (avatar1.getBorder() != null) {
-            System.out.println("------>"+((ImageIcon) avatar1.getIcon()).getDescription());
+            System.out.println("------>" + ((ImageIcon) avatar1.getIcon()).getDescription());
             return iconoAvatar1.getDescription();//((ImageIcon) iconoAvatar1.getIcon()).getDescription();
         }
         if (avatar2.getBorder() != null) {
