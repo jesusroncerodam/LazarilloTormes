@@ -48,8 +48,9 @@ public class Vista {
     private VMenu vMenu;
     private VPrincipal vPrincipal;
     private VistaSplash splash;
-    private final String IMAGEN_DESPEDIDA="/img/despedida.gif";
-    
+    private final String IMAGEN_DESPEDIDA = "/img/despedida.gif";
+
+
     /**
      * Constructor principal de la vista, se ejecuta creando también la logica
      * para mandarsela por parámetro al resto de las vistas
@@ -74,7 +75,6 @@ public class Vista {
         //temporal
         ventana.setJMenuBar(vMenu);
 
-        
         cambiarVista("principal");
     }
 
@@ -88,7 +88,7 @@ public class Vista {
         //ventana.setSize(600, 600);
         escuchaVentana = new EscuchaVentana(this);
         ventana.addWindowListener(escuchaVentana);
-      
+
         // ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -105,6 +105,7 @@ public class Vista {
      */
     private void cargarSplash(String logo, String fondo, int tiempo) {
         ventana.setSize(600, 600);
+        ventana.setLocationRelativeTo(null);
         splash = new VistaSplash(logo, fondo, tiempo, fuente, this);
         ventana.setMinimumSize(splash.getMinimumSize());//asignamos el tamaño minimo para la ventana
         ventana.add(splash);
@@ -306,45 +307,50 @@ public class Vista {
         vPrincipal.removeAll();
     }
 
+
     /**
-     * Creamos un SplashScreen de despedida, elimina la ventana principal y 
+     * Creamos un SplashScreen de despedida, elimina la ventana principal y
      * muestra una imagen (gif) durante 2,5 segundos, mas tarde se ciera la app
      */
     public void splashDespedida() {
-        JFrame despedida=new JFrame("Goodbye. Thanks for playing.");
+        JFrame despedida = new JFrame("Goodbye. Thanks for playing.");
         despedida.setSize(800, 480);
         despedida.setUndecorated(true);//quiramos la "x"
-        
+
         despedida.getContentPane().add(new JLabel(new ImageIcon(this.getClass().getResource(IMAGEN_DESPEDIDA))));
-        
+
         despedida.setLocationRelativeTo(null);
         despedida.toFront();//lo traemos al frente
         despedida.setVisible(true);
         ventana.dispose();
-        
-        Timer salir=new java.util.Timer();//cremos el timer para crear una animacion
+
+        Timer salir = new java.util.Timer();//cremos el timer para crear una animacion
         TimerTask tarea = new TimerTask() {//creamos un timerTask, que se ejecutara en x segundos
             @Override
             public void run() {
                 despedida.dispose();
                 System.exit(0);
-            }};
-        salir.schedule(tarea,2500);// decimos al timer que ejecute el TimeTask en los seguntos
+            }
+        };
+        salir.schedule(tarea, 2500);// decimos al timer que ejecute el TimeTask en los seguntos
     }
 
 
     class EscuchaVentana extends WindowAdapter {
-        
+
         private boolean partidaOn = false;
         Vista vista;
+
+
         public EscuchaVentana(Vista vista) {
             this.vista = vista;
         }
-        
+
+
         @Override
         public void windowClosing(WindowEvent e) {
-            if(partidaOn){
-                if (JOptionPane.showConfirmDialog(ventana, "You will exit off the game ¿Are you sure?","Do you want to exit?", 
+            if (partidaOn) {
+                if (JOptionPane.showConfirmDialog(ventana, "You will exit off the game ¿Are you sure?", "Do you want to exit?",
                         JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) != JOptionPane.YES_OPTION) {
                     ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
                     return;//si el resultado no es yes , salidmos
@@ -352,9 +358,12 @@ public class Vista {
             }
             vista.splashDespedida();
         }
+
+
         public void setPartidaOn(boolean partidaOn) {
             this.partidaOn = partidaOn;
         }
 
     }
+
 }

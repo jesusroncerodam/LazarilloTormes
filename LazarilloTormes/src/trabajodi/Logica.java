@@ -48,7 +48,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Guille
  */
 public class Logica {
-    
+
     private ContrJuego juego;
     private ControladorPrincipal principal;
     private ContrLista lista;
@@ -57,24 +57,26 @@ public class Logica {
     private ContrDialogoMod cDialogMod;
 
     private PartidaGuardada partidaGuardada;
-    private boolean primeraJuego, animacionC,partidaCargadaOn=false;
+    private boolean primeraJuego, animacionC, partidaCargadaOn = false;
     private Timer timer;
     private int vuelta, cartaAct;
     private String[] rutas;
     private String nombre, avatar;
     private boolean sonido = true;
-    
-    private final String 
-            FICHERO = "estadisticas.txt", 
-            PRIMERA_LINEA = "Directorio de almacenamiento de estadistica\n", 
-            RUTA_SONIDO_MAIN = "/sonidos/", 
+
+    private final String FICHERO = "estadisticas.txt",
+            PRIMERA_LINEA = "Directorio de almacenamiento de estadistica\n",
+            RUTA_SONIDO_MAIN = "/sonidos/",
             RUTA_IMAGENES = "/img/",
-            ARCHIVO_PARTIDA_GUARDADA="PartidaGuardada.obj",
-            RUTA_TEMA="cartas/tema";;
-    private final boolean ELIMINAR_PARTIDA_GUARDADA=false;
+            ARCHIVO_PARTIDA_GUARDADA = "PartidaGuardada.obj",
+            RUTA_TEMA = "cartas/tema";
+    ;
+    private final boolean ELIMINAR_PARTIDA_GUARDADA = false;
+
 
     /**
-     * Constructor de logia, no se manda nada, se crea al comienzo de la ejecucion
+     * Constructor de logia, no se manda nada, se crea al comienzo de la
+     * ejecucion
      * al llamarlo se ejecutara un sonido
      */
     public Logica() {
@@ -148,9 +150,9 @@ public class Logica {
                     crearSonido("correcta");//cargamos el sonido para la accion
 
                     if (!juego.isFin()) {//si es el fin del juego(Si a termiando)
-                        partidaCargadaOn=false;//ajustamos siempre a false
+                        partidaCargadaOn = false;//ajustamos siempre a false
                         crearSonido("victoria");//cargamos el sonido para la accion
-                        juego.setVictoria(true); 
+                        juego.setVictoria(true);
                         juego.gestionarContador("pausa");//pausamos el contador
                         //cambiamos los estados de los botones 
                         juego.cambiarEstadoBoton("guardar", false);
@@ -165,6 +167,8 @@ public class Logica {
                     timer = new java.util.Timer();//cremos el timer para crear una animacion
                     TimerTask tarea = new TimerTask() {//creamos un timerTask, que se ejecutara en x segundos
                         int i = 0;
+
+
                         @Override
                         public void run() {
                             if (i > 0) {//cuando termine dejamos hacer otra accion, para que no se vean 3 imagenes
@@ -188,8 +192,10 @@ public class Logica {
         }
     }
 
+
     /**
-     * Metodo controla las acciones que se realizan mediante el pulso de un boton, 
+     * Metodo controla las acciones que se realizan mediante el pulso de un
+     * boton,
      * en la vista del juego
      * @param boton boton que recive la accion
      */
@@ -216,22 +222,25 @@ public class Logica {
         }
     }
 
+
     /**
      * Metodo obtiene la tecla pulsada en la vista del juego
      * @param pulso char de la letra que se pulsa
      */
     public void juegokey(char pulso) {
-        int indice=0;
-        pulso= Character.toUpperCase(pulso);
+        int indice = 0;
+        pulso = Character.toUpperCase(pulso);
         //lo pasamos a mayusculas siempre, a mayusculas y no a minisculas ya que
         //las mallusculas tienen un indice inferior en ASCII
-        indice=((int) pulso)-65;
-        if(indice<(rutas.length*2) || (partidaCargadaOn && indice<rutas.length))
+        indice = ((int) pulso) - 65;
+        if (indice < (rutas.length * 2) || (partidaCargadaOn && indice < rutas.length)) {
             accionLabelJuego(indice);
+        }
     }
 
+
     /**
-     * Retorna las rutas que han sido asignadas, en funcion de la dificultad, 
+     * Retorna las rutas que han sido asignadas, en funcion de la dificultad,
      * tema y/o si se carga una partida .
      * @return Array de String con rutas de imagenesS
      */
@@ -258,16 +267,18 @@ public class Logica {
         this.menu = menu;
     }
 
+
     /**
      * Gestiona las acciones que son mandadas a traves del menu
-     * @param accion  String con la accion correspondiente
+     * @param accion String con la accion correspondiente
      */
     public void gestionarMenu(String accion) {
 
         switch (accion) {
             case "cargar":
-                if(cargarPartida())
+                if (cargarPartida()) {
                     menu.cambiarVista("juegoguardado");
+                }
                 break;
             case "guardar":
                 guardarPartida();
@@ -299,6 +310,7 @@ public class Logica {
         }
     }
 
+
     /**
      * Metodo guarda los datos en el fichero, de las estadisticas y lo ordena
      */
@@ -314,6 +326,7 @@ public class Logica {
         pasarAFichero(historial);//le mandamis informacion
     }
 
+
     /**
      * Encargado de eliminar el fichero de estadistica
      */
@@ -322,8 +335,9 @@ public class Logica {
         file.delete();
     }
 
+
     /**
-     * Si el Fichero no existe lo crea, con la primera linea qye corresponde a 
+     * Si el Fichero no existe lo crea, con la primera linea qye corresponde a
      * al string PRIMERA_LINEA
      */
     private void crearFichero() {
@@ -339,6 +353,7 @@ public class Logica {
         }
     }
 
+
     /**
      * Metodo pasa el fichero a un arrayList
      * @return retodna un array list de historial
@@ -348,7 +363,7 @@ public class Logica {
         String[] lineas;
         ArrayList<Historial> historial = new ArrayList();
         try {
-           // FileReader f = new FileReader(FICHERO);            
+            // FileReader f = new FileReader(FICHERO);            
             FileReader f = new FileReader(new File(FICHERO).getAbsolutePath());
             BufferedReader b = new BufferedReader(f);
             b.readLine();//ignoramos la 1º linea
@@ -364,6 +379,7 @@ public class Logica {
         }
         return historial;
     }
+
 
     /**
      * Metodo pasa un arrayList de historial al fichero, ignorando la 1 linea
@@ -383,6 +399,7 @@ public class Logica {
 
     }
 
+
     /**
      * Metodo pasa el fichero a un array de string usando el metodo "toString"
      * en Historial. usado por el controlador de VLista
@@ -391,8 +408,8 @@ public class Logica {
     public String[] ficheroAArray() {
         String linea;
         ArrayList<String> lineas = new ArrayList();
-        if(!new File(ARCHIVO_PARTIDA_GUARDADA).exists()){
-            JOptionPane.showMessageDialog(null, "There are no statistics.","statistics not found",JOptionPane.WARNING_MESSAGE);
+        if (!new File(ARCHIVO_PARTIDA_GUARDADA).exists()) {
+            JOptionPane.showMessageDialog(null, "There are no statistics.", "statistics not found", JOptionPane.WARNING_MESSAGE);
             return lineas.toArray(new String[lineas.size()]);
         }
         try {
@@ -411,7 +428,7 @@ public class Logica {
         return lineas.toArray(new String[lineas.size()]);
     }
 
-    
+
     /*
      * CONTROLADOR VISTA INGRESO
      * CONTROLADOR VISTA INGRESO
@@ -421,8 +438,6 @@ public class Logica {
      * CONTROLADOR VISTA INGRESO
      * CONTROLADOR VISTA INGRESO
      */
-
-
     public void asignarControladorIngreso(ContrIngreso ingreso) {
         this.cIngreso = ingreso;
     }
@@ -476,6 +491,7 @@ public class Logica {
         return path;
     }
 
+
     /*
      * CONTROLADOR VISTA DIALOGMOD
      * CONTROLADOR VISTA DIALOGMOD
@@ -486,7 +502,6 @@ public class Logica {
      * CONTROLADOR VISTA DIALOGMOD
      */
 
-
     public void asignarControladorDialogoMod(ContrDialogoMod cDialogo) {
         this.cDialogMod = cDialogo;
     }
@@ -496,7 +511,7 @@ public class Logica {
         switch (e.getComponent().getName()) {
             case "iconoTrinitarias":
                 try {
-                    Desktop.getDesktop().browse(new URI("http://www.marca.com"));///////////////////////////////////////////////////////////////////////////////////////////////////////
+                    Desktop.getDesktop().browse(new URI("https://www.trinitarias.com/"));
                 } catch (IOException | URISyntaxException e1) {
                     e1.printStackTrace();
                 }
@@ -516,16 +531,16 @@ public class Logica {
      *
      */
     /**
-     * Metodo encargado de gestionar los datos que se regojen de la 
+     * Metodo encargado de gestionar los datos que se regojen de la
      * vista de Ingreso
-     * @param avatar String ruta del avatar 
-     * @param tema  int 1,2 o 3, tema de la partida, de las cartas
+     * @param avatar     String ruta del avatar
+     * @param tema       int 1,2 o 3, tema de la partida, de las cartas
      * @param dificultad int 1,2 o 3 dificultad, cantidad de cartas a mostrar
-     * @param nombre String nombre del jugador
+     * @param nombre     String nombre del jugador
      */
     public void recogerDatos(String avatar, int tema, int dificultad, String nombre) {
         //guardamos avatar  y nombre
-        
+
         this.nombre = gestionarNombre(nombre);
         this.avatar = avatar;
 
@@ -536,25 +551,29 @@ public class Logica {
         cargarRutas(tema);
 
     }
+
+
     /**
-     * Metodo gestiona que el nombre no sea muy grande y que no sea el 
+     * Metodo gestiona que el nombre no sea muy grande y que no sea el
      * de por defecto
      * @param nombre String nombre
      */
-    private String gestionarNombre(String nombre){
-        if(nombre.toLowerCase().equals("nickname")){
-            nombre="Gamer";
+    private String gestionarNombre(String nombre) {
+        if (nombre.toLowerCase().equals("nickname")) {
+            nombre = "Gamer";
         }
-        if(nombre.length()>15){
-            nombre=nombre.substring(0,15);
+        if (nombre.length() > 15) {
+            nombre = nombre.substring(0, 15);
         }
         return nombre;
     }
+
+
     /**
      * Metodo encargado de crear un Array de String con respecto a la dificultad
-     * correspondiente, por cada nivel de dificultad suma 2 cartas, empezando 
+     * correspondiente, por cada nivel de dificultad suma 2 cartas, empezando
      * por un minimo de 2 cartas
-     * @param dificultad 
+     * @param dificultad
      */
     private void cartasSegunDificultad(int dificultad) {
         int cartas = 2;
@@ -564,16 +583,17 @@ public class Logica {
         rutas = new String[cartas];
     }
 
+
     /**
-     * Metodo encargado de segun el tema carga las rutas de las imagenes 
+     * Metodo encargado de segun el tema carga las rutas de las imagenes
      * correspondientes en el arrat de string
      * @param tema int del 1 al 3 , dificultad de la carta
      */
     private void cargarRutas(int tema) {
-        if(tema>3 || tema<1){//realizamos una comprobacion
-            tema=1;
+        if (tema > 3 || tema < 1) {//realizamos una comprobacion
+            tema = 1;
         }
-        String rutaConTema = RUTA_IMAGENES+RUTA_TEMA+ tema + "/";
+        String rutaConTema = RUTA_IMAGENES + RUTA_TEMA + tema + "/";
         for (int i = 0; i < rutas.length; i++) {
             rutas[i] = rutaConTema + i + ".jpg";
         }
@@ -622,17 +642,17 @@ public class Logica {
 //        }
     }
 
+
     /*
-        Gestion de guardar la partida 
-    */
-    
-    
+     * Gestion de guardar la partida
+     */
+
     /**
      * Metodo guarda la partida con los datos que existen en logica
      */
     public void guardarPartida() {
         //int segundos, int movimientos, int vuelta, ArrayList<String> rutaGuardada, ArrayList<Boolean> cartaBloqueada,String nombre,String avatar
-        PartidaGuardada partida = new PartidaGuardada(juego.getContadorSeg(), juego.getContMov(), juego.algunaVisible(), juego.guardarUrlCarta(), juego.guardarBloquearCarta(),nombre,avatar);
+        PartidaGuardada partida = new PartidaGuardada(juego.getContadorSeg(), juego.getContMov(), juego.algunaVisible(), juego.guardarUrlCarta(), juego.guardarBloquearCarta(), nombre, avatar);
 
         try {
             //Creamos un flujo de salida al disco
@@ -649,21 +669,22 @@ public class Logica {
         } catch (IOException ex) {
             Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showMessageDialog(null, "The game will be saved.","Saving...",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "The game will be saved.", "Saving...", JOptionPane.INFORMATION_MESSAGE);
     }
+
 
     /**
      * Metodo carga la partida y guarda los datos que coge el juego, el resto de
      * datos los recogera en funcion los pida y los necesite
-     * @return 
+     * @return
      */
     public boolean cargarPartida() {
         partidaGuardada = null;
-        if(!new File(ARCHIVO_PARTIDA_GUARDADA).exists()){
-            JOptionPane.showMessageDialog(null, "There is no saved game.\nTry saving a game.","Saved game not found",JOptionPane.WARNING_MESSAGE);
+        if (!new File(ARCHIVO_PARTIDA_GUARDADA).exists()) {
+            JOptionPane.showMessageDialog(null, "There is no saved game.\nTry saving a game.", "Saved game not found", JOptionPane.WARNING_MESSAGE);
             return false;
         }
-        
+
         try {
             //Creamos un flujo de entrada desde el disco
             FileInputStream fileIn = new FileInputStream(new File(ARCHIVO_PARTIDA_GUARDADA).getAbsolutePath());
@@ -680,15 +701,16 @@ public class Logica {
         }
 
         rutas = partidaGuardada.getRutaGuardada().toArray(new String[partidaGuardada.getRutaGuardada().size()]);
-        avatar=partidaGuardada.getAvatar();
-        nombre=partidaGuardada.getNombre();
+        avatar = partidaGuardada.getAvatar();
+        nombre = partidaGuardada.getNombre();
         //si se quiere eliminar el fichero cambiar la ELIMINAR_PARTIDA_GUARDADA
-        if(ELIMINAR_PARTIDA_GUARDADA){
+        if (ELIMINAR_PARTIDA_GUARDADA) {
             eliminarFichero(ARCHIVO_PARTIDA_GUARDADA);
         }
-        partidaCargadaOn=true;
+        partidaCargadaOn = true;
         return true;
     }
+
 
     /**
      * Metodo retorna de la partida guardada las cartas que han sido
@@ -706,6 +728,7 @@ public class Logica {
         return desactivadas;
     }
 
+
     /**
      * Metodo bloquea las cartas de la partida guardada
      */
@@ -719,9 +742,10 @@ public class Logica {
         }
     }
 
+
     /**
      * Metodo retorna los movimientos de la partida guardada, en el caso de que
-     * alguna carta estubiera sin pareja al guardar la partida, la mueve 
+     * alguna carta estubiera sin pareja al guardar la partida, la mueve
      * @return movimientos de la partida gusrdada
      */
     public int obtenerMovimientos() {
@@ -729,34 +753,38 @@ public class Logica {
         //ya que si se hace al reves(en caso de no ser return) , sumaria un movimiento
         //extra, ya que ajustas los movimientos y despues sumas uno al mover la carta
         //ya que en getMovimientos ya cuenta el movimieto de esa carta
-        if (partidaGuardada.getVuelta() != -1){//si no hay ninguna carta dada la vuelta retornamos esto
-             juego.girar(partidaGuardada.getVuelta());
+        if (partidaGuardada.getVuelta() != -1) {//si no hay ninguna carta dada la vuelta retornamos esto
+            juego.girar(partidaGuardada.getVuelta());
         }
         return partidaGuardada.getMovimientos();
     }
 
+
     /**
-     * Metodo retona el tiempo, en segundos, en el momento que se guardo la partida
+     * Metodo retona el tiempo, en segundos, en el momento que se guardo la
+     * partida
      * @return int tiempo en segudos
      */
     public int obtenerTiempo() {
         return partidaGuardada.getSegundos();
     }
 
+
     /*
-    *   Vista Lista
-    *   Vista Lista
-    *   Vista Lista
-    *   Vista Lista
-    */
-    
+     * Vista Lista
+     * Vista Lista
+     * Vista Lista
+     * Vista Lista
+     */
+
     /**
-     * Metodo asigna el controlador de Vlista 
+     * Metodo asigna el controlador de Vlista
      * @param lista Controlador de VLista
      */
     public void asignarContrLista(ContrLista lista) {
         this.lista = lista;
     }
+
 
     /**
      * Encargado de controladar las acciones de la vista VLista
@@ -778,8 +806,6 @@ public class Logica {
     }
 
 
-
-
     /*
      * // VISTA PRINCIPAL
      * // VISTA PRINCIPAL
@@ -790,19 +816,20 @@ public class Logica {
      * // VISTA PRINCIPAL
      * // VISTA PRINCIPAL
      */
-    
     public void asignarContrPrincipal(ControladorPrincipal principal) {
         this.principal = principal;
     }
-    
+
+
     public void principalClick(String boton, int pulsos) {
         switch (boton.replaceAll(" ", "").toLowerCase()) {
             case "newgame":
                 principal.cambiarDeVista("ingresodatos");
                 break;
-            case "loadgame": 
-                if(cargarPartida())
+            case "loadgame":
+                if (cargarPartida()) {
                     menu.cambiarVista("juegoguardado");
+                }
                 break;
             case "stats":
                 principal.cambiarDeVista("lista");
@@ -827,8 +854,9 @@ public class Logica {
      * SONIDO
      */
     /**
-     * Encargado de Hestionar el sonido, se elije un sonido aleatorio entre 1 y 3 de la accion
-     * @param accion 
+     * Encargado de Hestionar el sonido, se elije un sonido aleatorio entre 1 y
+     * 3 de la accion
+     * @param accion
      */
     public void crearSonido(String accion) {
         if (sonido) {//mientras que el sonido este habilitado
