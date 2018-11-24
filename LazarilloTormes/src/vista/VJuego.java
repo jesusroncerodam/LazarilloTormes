@@ -192,7 +192,9 @@ public class VJuego extends JPanel {
         });
     }
 
-
+    /**
+     * Ajusta el tiempo en minutos, y segundos
+     */
     private void ponerTiempo() {
         int minutos = contadorSeg / 60;
         int seg = contadorSeg % 60;
@@ -288,6 +290,8 @@ public class VJuego extends JPanel {
      * VIENE DE CONTROLADOR
      * VIENE DE CONTROLADOR
      */
+    
+    
     /**
      * Empieza crea o pausa el contador del timepo
      * @param accion String a realizar
@@ -380,7 +384,7 @@ public class VJuego extends JPanel {
      */
     public void movimiento() {
         contMov++;
-        lMovimientos.setText("Movimientos: " + contMov);
+        lMovimientos.setText("Movements: " + contMov);
     }
 
 
@@ -416,22 +420,26 @@ public class VJuego extends JPanel {
         }
     }
 
-
+    /**
+     * Retorna los segundos actuales, en el momento que se le llama
+     * @return int segundos
+     */
     public int getContadorSeg() {
         return contadorSeg;
     }
 
-
+    /**
+     * Retorna los movimientos actuales, en el momento que se le llama
+     * @return int movimientos
+     */
     public int getContMov() {
         return contMov;
     }
 
-//    public void eliminarElementos() {
-//        for (int i = 0; i < this.getComponentCount(); i++) {
-//            remove(i);
-//        }
-//    }
-
+    /**
+     * Retorna las rutas de las imagenes en orden de colocacion
+     * @return ArrayList de String
+     */
     public ArrayList<String> guardarUrlCarta() {
         ArrayList<String> rutaGuardada = new ArrayList<String>();
         for (int i = 0; i < carta.size(); i++) {
@@ -441,7 +449,10 @@ public class VJuego extends JPanel {
         return rutaGuardada;
     }
 
-
+    /**
+     * Retorna las cartas que han sido bloqueadas
+     * @return ArrayList de Boolean
+     */
     public ArrayList<Boolean> guardarBloquearCarta() {
         ArrayList<Boolean> estadoCarta = new ArrayList<Boolean>();
         for (int i = 0; i < carta.size(); i++) {
@@ -451,17 +462,22 @@ public class VJuego extends JPanel {
         return estadoCarta;
     }
 
-
+    /**
+     * Recive un arrayList booleano y bloquea los indices que sean true
+     * @param bloqueadas arrayList booleano
+     */
     public void cargarBloquear(ArrayList<Boolean> bloqueadas) {
         for (int i = 0; i < carta.size(); i++) {
-            if (bloqueadas.get(i))//si bloquear es true lo bloqueamos
-            {
+            if (bloqueadas.get(i)){ //si bloquear es true lo bloqueamos
                 carta.get(i).bloquear();
             }
         }
     }
 
-
+    /**
+     * Metodo encargado de generar las partida Guardada, llama a todoss
+     * los metodos pero asignandoles valores para la partida guardada
+     */
     public void generarGuardada() {
         controlador.asignarControlador();//se tiene que volver a generar
         //desactivadas = 0;
@@ -489,7 +505,7 @@ public class VJuego extends JPanel {
         controlador.bloquearCartas();
         //se tiene que hacer en este orden
         contMov = controlador.obtenerMovimientos();
-        lMovimientos.setText("Movimientos: " + contMov);
+        lMovimientos.setText("Movements: " + contMov);
 
         desactivadas = controlador.obtenerGuardadDesact();
 
@@ -498,12 +514,19 @@ public class VJuego extends JPanel {
         ponerTiempo();
     }
 
-
+    /**
+     * Metodo llamado desde controlador, que bloqeua una carta, usado en logica 
+     * para asignar las cartas bloqueadas
+     * @param indice int indice del array a bloquear
+     */
     public void bloquearUna(int indice) {
         carta.get(indice).bloquear();
     }
 
-
+    /**
+     * Metodo encargado de llamar a vista pera cambiar de vista
+     * @param vistaACambiar 
+     */
     public void cambiarVista(String vistaACambiar) {
         vista.cambiarVista(vistaACambiar);
     }
