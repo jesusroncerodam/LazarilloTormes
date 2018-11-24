@@ -33,7 +33,7 @@ import trabajodi.Vista;
  */
 public class VLista extends JPanel {
 
-    private final String[] NOMBRE_COLUMNAS = {"Nº", "Image", "Name", "Mov.", "Time", "Difficulty"};
+    private final String[] NOMBRE_COLUMNAS = {"Nº", "Image", "Name", "Mov.", "Time"};
     private final Color COLOR_LETRAS = Color.white;
     private String[] datos;
     private Vista vista;
