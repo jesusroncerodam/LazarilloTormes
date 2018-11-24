@@ -150,6 +150,7 @@ public class Logica {
                     if (!juego.isFin()) {//si es el fin del juego(Si a termiando)
                         partidaCargadaOn=false;//ajustamos siempre a false
                         crearSonido("victoria");//cargamos el sonido para la accion
+                        juego.setVictoria(true); 
                         juego.gestionarContador("pausa");//pausamos el contador
                         //cambiamos los estados de los botones 
                         juego.cambiarEstadoBoton("guardar", false);
@@ -467,7 +468,6 @@ public class Logica {
         if (resultado == JFileChooser.APPROVE_OPTION) {
             path = archivoSeleccionado.getSelectedFile().getAbsolutePath();
         } else if (resultado == JFileChooser.CANCEL_OPTION) {
-
             System.out.println("No has seleccionado ningun archivo");
         }
 
@@ -522,7 +522,6 @@ public class Logica {
      * @param nombre String nombre del jugador
      */
     public void recogerDatos(String avatar, int tema, int dificultad, String nombre) {
-        System.out.println(tema + " " + nombre + " " + dificultad + "" + avatar);
         //guardamos avatar  y nombre
         
         this.nombre = gestionarNombre(nombre);
@@ -573,7 +572,6 @@ public class Logica {
             tema=1;
         }
         String rutaConTema = RUTA_IMAGENES+RUTA_TEMA+ tema + "/";
-        System.out.println(rutaConTema);
         for (int i = 0; i < rutas.length; i++) {
             rutas[i] = rutaConTema + i + ".jpg";
         }
@@ -674,9 +672,6 @@ public class Logica {
         }
 
         rutas = partidaGuardada.getRutaGuardada().toArray(new String[partidaGuardada.getRutaGuardada().size()]);
-        for (String ruta : rutas) {
-            System.out.println(ruta);
-        }
         avatar=partidaGuardada.getAvatar();
         nombre=partidaGuardada.getNombre();
         //si se quiere eliminar el fichero cambiar la ELIMINAR_PARTIDA_GUARDADA
@@ -796,7 +791,6 @@ public class Logica {
         switch (boton.replaceAll(" ", "").toLowerCase()) {
             case "newgame":
                 principal.cambiarDeVista("ingresodatos");
-                System.out.println("1");
                 break;
             case "loadgame":     
                 cargarPartida();

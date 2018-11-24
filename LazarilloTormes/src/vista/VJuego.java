@@ -32,10 +32,8 @@ import trabajodi.Vista;
  * @author Guille
  */
 public class VJuego extends JPanel {
-
     private Vista vista;
     private Font fuente = new Font("Agency FB", Font.BOLD, 40);
-    private final int HGAP = 20, VGAP = 5;
     private ContrJuego controlador;
     private ArrayList<Carta> carta;
     private int contadorSeg, contMov, desactivadas;
@@ -43,7 +41,17 @@ public class VJuego extends JPanel {
     private JLabel lMovimientos, lReloj;
     private JButton bPausaPlay, bGuardar, bContinuar;
     private GridBagConstraints constrain;
-    private final String RUTA_PLAYPAUSE = "/img/playPause.png", RUTA_RELOJ = "/img/relojWh.png", RUTA_FLECHA = "/img/flechaRect.png", RUTA_GUARDAR = "/img/save.png", RUTA_FONDO = "/img/fondo2.gif";
+    private boolean victoria;
+    private final String 
+            RUTA_PLAYPAUSE = "/img/playPause.png", 
+            RUTA_RELOJ = "/img/relojWh.png", 
+            RUTA_FLECHA = "/img/flechaRect.png", 
+            RUTA_GUARDAR = "/img/save.png", 
+            RUTA_FONDO = "/img/fondo2.gif",
+            RUTA_VICTORIA="/img/victoria/1.gif";
+    private final int 
+            HGAP = 20, 
+            VGAP = 5;
 
 
     /**
@@ -66,7 +74,8 @@ public class VJuego extends JPanel {
     public void generar() {
         controlador.asignarControlador();//asignamos el controlador a la logica
         desactivadas = 0;
-
+        victoria=false;
+        
         this.setOpaque(true);
         this.setFocusable(true);
         this.requestFocus();
@@ -117,7 +126,6 @@ public class VJuego extends JPanel {
         contadorSeg = 0;
         ImageIcon imgReloj = new ImageIcon(this.getClass().getResource(RUTA_RELOJ));
         lReloj = new JLabel("00:" + contadorSeg, imgReloj, JLabel.CENTER);
-        System.out.println(imgReloj.getIconWidth());
 
         lReloj.setHorizontalTextPosition(SwingConstants.CENTER);
         lReloj.setVerticalTextPosition(SwingConstants.CENTER);
@@ -275,9 +283,13 @@ public class VJuego extends JPanel {
      * @param g paint
      */
     @Override
-    protected void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage((new ImageIcon(this.getClass().getResource(RUTA_FONDO))).getImage(), 0, 0, getWidth(), getHeight() + 5, this);
+        g.drawImage((new ImageIcon(this.getClass().getResource(RUTA_FONDO))).getImage(), 0, 0, getWidth(), getHeight(), this);//this ya que es un gif y si no ponemos this, no se animaria
+        if(victoria)
+        g.drawImage((new ImageIcon(this.getClass().getResource(RUTA_VICTORIA))).getImage(), 0, 0,getWidth(), getHeight(), this);//this ya que es un gif y si no ponemos this, no se animaria
+
+
     }
 
 
@@ -290,8 +302,11 @@ public class VJuego extends JPanel {
      * VIENE DE CONTROLADOR
      * VIENE DE CONTROLADOR
      */
-    
-    
+    public void setVictoria(boolean victoria) {
+        this.victoria = victoria;
+        repaint();
+    }
+
     /**
      * Empieza crea o pausa el contador del timepo
      * @param accion String a realizar
@@ -404,7 +419,6 @@ public class VJuego extends JPanel {
      * @param estado booleano, pone el estado de este boton
      */
     public void cambiarEstadoBoton(String boton, boolean estado) {
-        System.out.println(boton + "---->" + estado);
         switch (boton) {
             case "continuar":
                 bContinuar.setEnabled(estado);
@@ -480,8 +494,8 @@ public class VJuego extends JPanel {
      */
     public void generarGuardada() {
         controlador.asignarControlador();//se tiene que volver a generar
-        //desactivadas = 0;
-
+        victoria=false;
+        
         this.setOpaque(true);
         this.setFocusable(true);
         this.requestFocus();

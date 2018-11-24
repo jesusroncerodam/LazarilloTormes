@@ -34,10 +34,6 @@ public class ContrMenu implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         logica.gestionarMenu(e.getActionCommand());
-        //System.out.println(e.getActionCommand());
-//        System.out.println("");
-//        System.out.println(e);
-//       
     }
     public void cambiarVista(String vistaCambio){
         vista.cambiarVista(vistaCambio);

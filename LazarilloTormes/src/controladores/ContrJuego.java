@@ -60,14 +60,11 @@ public class ContrJuego extends MouseAdapter implements  KeyListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
-
-      //  System.out.println(e);
     }
 
 
     @Override   
     public void keyReleased(KeyEvent e) {
-     //   System.out.println(e);
     }
     
     /**
@@ -79,7 +76,13 @@ public class ContrJuego extends MouseAdapter implements  KeyListener{
         vista.gestionarContador(accion);
     }
 
-
+    /**
+     * Seter, cambia la variable booleana de victoria
+     * @param victoria booelan 
+     */
+    public void setVictoria(boolean victoria) {
+        vista.setVictoria(victoria);
+    }
     /**
      * Comunicacion de logica a vista, hace animar una imagen , que entre o que
      * salga
@@ -232,7 +235,7 @@ public class ContrJuego extends MouseAdapter implements  KeyListener{
         vista.bloquearUna(indice);
     }
     /**
-     * 
+     * Metodo se le llama desde la logica para cambiar de vista
      * @param vistaACambiar 
      */
     public void cambiarVista(String vistaACambiar){
