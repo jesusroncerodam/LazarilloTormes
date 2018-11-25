@@ -113,7 +113,7 @@ public class Carta extends JLabel {
      * Casigna el timer , si hay una animacion en progreso, la pausa y crea una
      * Esta hecho para que no entre en bucle cuando haces click en la misma
      * imagen mas de una vez mientras estaba apareciendo; Cuando asigna el timer
-     * dependiendo de el estado de sale, si esta en animacion entrar o anumacion 
+     * dependiendo de el estado de sale, si esta en animacion entrar o anumacion
      * salir, aumentara o disminuira el tamano de la imagen
      */
     private void empezar() {
@@ -153,7 +153,7 @@ public class Carta extends JLabel {
     private void ponerImagen() {
         if (altura > 0 && ancho > 0 && altura < imgVuelta.getIconHeight() && ancho < imgVuelta.getIconWidth()) {
             this.setIcon(cambiarTamano(new ImageIcon(this.getClass().getResource(VUELTA_IMAGEN)), ancho, altura));
-           } else {
+        } else {
             if (sale) {
                 setIcon(null);
             } else {
@@ -184,7 +184,7 @@ public class Carta extends JLabel {
      * carta no se podrá mover de nuevo (si la carta se bloquea significa que
      * encontro la pareja)
      */
-    public void bloquear() { 
+    public void bloquear() {
         bloquear = true;
         this.setIcon(imgCarta);
         repaint();
@@ -198,23 +198,22 @@ public class Carta extends JLabel {
     public String getUrl() {
         return url;
     }
-    public boolean getBloquear(){
+
+
+    public boolean getBloquear() {
         return bloquear;
     }
 
 
     /**
-     * Modifica el tamaño de las imagenes
-     *
-     * @param icono       se pasa por parametro el icono a reescalar
-     * @param anchoImagen establece el ancho de la imagen
-     * @param altoImagen  establece el alto de la imagen
-     * @return devuelve un ImageIcon que se asigna ya reescalado al original
+     * Modifica el tamaño de los iconos
+     * @param icono       objeto tipo ImageIcon que se pasa para cambiarle el
+     *                    tamaño
+     * @param anchoImagen int que indica el nuevo ancho
+     * @param altoImagen  int que indica el nuevo alto
+     * @return ImageIcon que se iguala al original para actualizar el tamaño
      */
-    public ImageIcon cambiarTamano(ImageIcon icono, int anchoImagen, int altoImagen) {
-        Image imagen = icono.getImage();
-        Image reescalada = imagen.getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH);
-        icono = new ImageIcon(reescalada);
-        return icono;
+    private ImageIcon cambiarTamano(ImageIcon icono, int anchoImagen, int altoImagen) {
+        return new ImageIcon(icono.getImage().getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH));
     }
 }
