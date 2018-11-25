@@ -75,27 +75,26 @@ public class VJuego extends JPanel {
         controlador.asignarControlador();//asignamos el controlador a la logica
         desactivadas = 0;
         victoria = false;
-
         this.setOpaque(true);
-
         constrain = new GridBagConstraints();
         constrain.weighty = 0.5;
         constrain.anchor = GridBagConstraints.CENTER;
-
         this.setLayout(new GridBagLayout());
-
         //asignamos los labels de tiempo y movimientos
         asignarLabels();
-
         //generamos los botones
         continuar();
         playPause();
         guardar();
-
         //generamos las cartas
         generarCartas(true);//pata que se deshordenen
-//        this.setFocusable(true);
 
+        /*
+         * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+         * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+         * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+         * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+         *///        this.setFocusable(true);
         this.addKeyListener(controlador);
         FocusManager.getCurrentManager().focusNextComponent(bPausaPlay);
         carta.get(0).requestFocus();
@@ -103,16 +102,6 @@ public class VJuego extends JPanel {
         System.out.println(FocusManager.getCurrentManager().getFocusOwner());
         FocusManager.getCurrentManager().focusNextComponent();
         System.out.println(FocusManager.getCurrentManager().getFocusOwner());
-
-    }
-
-
-    /**
-     * Devuelve las rutas de las imagenes
-     * @return
-     */
-    private String[] obtenerRutas() {
-        return controlador.obtenerRutas();
     }
 
 
@@ -144,6 +133,64 @@ public class VJuego extends JPanel {
         constrain.gridy = 0;
         this.add(lReloj, constrain);
         constrain.fill = GridBagConstraints.NONE;
+    }
+
+
+    /**
+     * Encargado de generar y asignar el JButon de PlayYpause
+     */
+    private void playPause() {
+        bPausaPlay = new JButton(new ImageIcon(this.getClass().getResource(RUTA_PLAYPAUSE)));
+        bPausaPlay.setContentAreaFilled(false);
+        bPausaPlay.setBorder(null);
+        constrain.gridx = 0;
+        constrain.gridy = 2;
+        constrain.fill = GridBagConstraints.HORIZONTAL;
+        constrain.weighty = 0.5;
+        this.add(bPausaPlay, constrain);
+
+        bPausaPlay.setActionCommand("playPause");
+        bPausaPlay.addKeyListener(controlador);
+        bPausaPlay.addMouseListener(controlador);
+        bPausaPlay.requestFocus();
+    }
+
+
+    /**
+     * Encargado de generar y asignar el JButon de continuar
+     */
+    private void continuar() {
+        bContinuar = new JButton(new ImageIcon(this.getClass().getResource(RUTA_FLECHA)));
+        bContinuar.setContentAreaFilled(false);
+        bContinuar.setBorder(null);
+        constrain.gridx = 2;
+        constrain.gridy = 2;
+        constrain.fill = GridBagConstraints.HORIZONTAL;
+        constrain.weighty = 0.5;
+        this.add(bContinuar, constrain);
+        cambiarEstadoBoton("continuar", false);
+        bContinuar.setActionCommand("continuar");
+        bContinuar.addKeyListener(controlador);
+        bContinuar.addMouseListener(controlador);
+    }
+
+
+    /**
+     * Encargado de generar y asignar el JButon de guardar
+     */
+    private void guardar() {
+        bGuardar = new JButton(new ImageIcon(this.getClass().getResource(RUTA_GUARDAR)));
+        bGuardar.setContentAreaFilled(false);
+        bGuardar.setBorder(null);
+        bGuardar.setActionCommand("guardar");
+        constrain.gridx = 1;
+        constrain.gridy = 2;
+        constrain.fill = GridBagConstraints.HORIZONTAL;
+        constrain.weighty = 0.5;
+        this.add(bGuardar, constrain);
+
+        bGuardar.addKeyListener(controlador);
+        bGuardar.addMouseListener(controlador);
     }
 
 
@@ -230,60 +277,11 @@ public class VJuego extends JPanel {
 
 
     /**
-     * Encargado de generar y asignar el JButon de PlayYpause
+     * Devuelve las rutas de las imagenes
+     * @return
      */
-    private void playPause() {
-        bPausaPlay = new JButton(new ImageIcon(this.getClass().getResource(RUTA_PLAYPAUSE)));
-        bPausaPlay.setContentAreaFilled(false);
-        bPausaPlay.setBorder(null);
-        constrain.gridx = 0;
-        constrain.gridy = 2;
-        constrain.fill = GridBagConstraints.HORIZONTAL;
-        constrain.weighty = 0.5;
-        this.add(bPausaPlay, constrain);
-
-        bPausaPlay.setActionCommand("playPause");
-        bPausaPlay.addKeyListener(controlador);
-        bPausaPlay.addMouseListener(controlador);
-        bPausaPlay.requestFocus();
-    }
-
-
-    /**
-     * Encargado de generar y asignar el JButon de continuar
-     */
-    private void continuar() {
-        bContinuar = new JButton(new ImageIcon(this.getClass().getResource(RUTA_FLECHA)));
-        bContinuar.setContentAreaFilled(false);
-        bContinuar.setBorder(null);
-        constrain.gridx = 2;
-        constrain.gridy = 2;
-        constrain.fill = GridBagConstraints.HORIZONTAL;
-        constrain.weighty = 0.5;
-        this.add(bContinuar, constrain);
-        cambiarEstadoBoton("continuar", false);
-        bContinuar.setActionCommand("continuar");
-        bContinuar.addKeyListener(controlador);
-        bContinuar.addMouseListener(controlador);
-    }
-
-
-    /**
-     * Encargado de generar y asignar el JButon de guardar
-     */
-    private void guardar() {
-        bGuardar = new JButton(new ImageIcon(this.getClass().getResource(RUTA_GUARDAR)));
-        bGuardar.setContentAreaFilled(false);
-        bGuardar.setBorder(null);
-        bGuardar.setActionCommand("guardar");
-        constrain.gridx = 1;
-        constrain.gridy = 2;
-        constrain.fill = GridBagConstraints.HORIZONTAL;
-        constrain.weighty = 0.5;
-        this.add(bGuardar, constrain);
-
-        bGuardar.addKeyListener(controlador);
-        bGuardar.addMouseListener(controlador);
+    private String[] obtenerRutas() {
+        return controlador.obtenerRutas();
     }
 
 
@@ -566,5 +564,4 @@ public class VJuego extends JPanel {
     public void cambiarVista(String vista) {
         vistaMain.cambiarVista(vista);
     }
-
 }

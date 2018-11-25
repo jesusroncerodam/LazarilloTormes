@@ -147,7 +147,6 @@ public class Vista {
      * Crea la vista de registro, que extiende de panel
      */
     public void crearRegistro() {
-        System.out.println("sjf");
         System.out.println("Has entrado en el registro");
         ventana.setSize(1200, 800);
         ventana.add(vIngreso);

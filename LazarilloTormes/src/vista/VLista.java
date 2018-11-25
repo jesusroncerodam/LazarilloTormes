@@ -38,7 +38,7 @@ public class VLista extends JPanel {
     private String[] datos;
     private Vista vistaMain;
     private ContrLista controlador;
-    private JButton atras;
+//    private JButton atras;
     private GridBagConstraints loc;
     private JPanel lista;
     private final int NUMERO_MINIMO_FILAS = 15;
@@ -187,11 +187,9 @@ public class VLista extends JPanel {
                 case 0:
                     dato.setHorizontalAlignment(SwingConstants.RIGHT);
                     break;
-
                 case 1:
                     dato.setHorizontalAlignment(SwingConstants.CENTER);
                     break;
-
                 case 4:
                     dato.setText("");
                     dato.setIcon((cambiarTamano(new ImageIcon(this.getClass().getResource("/img/relojWh.png")), 20, 20)));
@@ -228,6 +226,9 @@ public class VLista extends JPanel {
     }
 
 
+    /**
+     * Recoge las estadisticas almacenadas en el fichero
+     */
     public void recogerDatos() {
         datos = controlador.datosFichero();
     }
@@ -265,5 +266,4 @@ public class VLista extends JPanel {
     public void cambiarVista(String vista) {
         vistaMain.cambiarVista(vista);
     }
-
 }
