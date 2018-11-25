@@ -200,8 +200,8 @@ public class Vista {
                 crearPantallaDesarrolladores();
                 break;
             default:
-                System.out.print(vista);
-                throw new AssertionError();
+                System.out.print("Error en anadir vista, vista: "+vista);
+                principal();//lanzamos para que en caso de error tenga algo
         }
         ventana.setLocationRelativeTo(null);//centramos la pantalla
         ventana.repaint();
