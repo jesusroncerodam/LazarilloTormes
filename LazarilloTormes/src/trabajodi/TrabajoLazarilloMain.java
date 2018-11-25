@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package trabajodi;
 
 import java.util.Locale;
@@ -18,7 +13,7 @@ public class TrabajoLazarilloMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Locale.setDefault(Locale.ENGLISH);
-        Vista vista = new Vista(new Logica());
+        Locale.setDefault(Locale.ENGLISH);//Asignamos el lenguaje del programa a ingles para los dialogos modales
+        Vista vista = new Vista(new Logica());//creamos la vista , mandandole la logica
     }
 }

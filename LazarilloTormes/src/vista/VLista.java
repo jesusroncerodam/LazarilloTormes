@@ -34,12 +34,16 @@ public class VLista extends JPanel {
     private String[] datos;
     private Vista vistaMain;
     private ContrLista controlador;
-//    private JButton atras;
     private GridBagConstraints loc;
     private JPanel lista;
     private final int NUMERO_MINIMO_FILAS = 15;
 
-
+    /**
+    * Constructor, solo se asigna la logica y vista, el resto se genera 
+    * llamando al metodo generar
+    * @param logica logica 
+    * @param vista vista a la que refiere(padre)
+    */
     public VLista(Logica logica, Vista vista) {
         this.vistaMain = vista;
         controlador = new ContrLista(this, logica);

@@ -58,9 +58,10 @@ public class VIngreso extends JPanel {
     private final Border bordeDificultad = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.YELLOW, 3), BorderFactory.createRaisedBevelBorder());
 
     /**
-     * 
-     * @param logica
-     * @param vistaMain 
+     * Constructor, solo se asigna la logica y vista, el resto se genera 
+     * llamando al metodo generar
+     * @param logica logica 
+     * @param vista vista a la que refiere(padre)
      */
     public VIngreso(Logica logica, Vista vistaMain) {
         this.vistaMain = vistaMain;

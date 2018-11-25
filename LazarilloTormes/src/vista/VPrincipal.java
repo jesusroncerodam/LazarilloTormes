@@ -29,7 +29,12 @@ public class VPrincipal extends JPanel {
     private final Font FUENTE = new Font("Monospaced", Font.BOLD, 30);
     private final String RUTA_BOTON = "/img/boton.png";
 
-    
+    /**
+    * Constructor, solo se asigna la logica y vista, el resto se genera 
+    * llamando al metodo generar
+    * @param logica logica 
+    * @param vistaMain vista a la que refiere(padre)
+    */
     public VPrincipal(Logica logica, Vista vistaMain) {
         this.vistaMain = vistaMain;
         controlador = new ControladorPrincipal(logica, this);

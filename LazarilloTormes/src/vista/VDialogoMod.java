@@ -32,8 +32,9 @@ public class VDialogoMod extends JPanel {
             iconoTrinitarias = new ImageIcon(this.getClass().getResource("/img/logotrini.png"));
 
     /**
-     * 
-     * @param logica logica del juego
+     * Constructor, solo se asigna la logica y vista, el resto se genera 
+     * llamando al metodo generar
+     * @param logica logica 
      * @param vista vista a la que refiere(padre)
      */
     public VDialogoMod(Logica logica, Vista vista) {

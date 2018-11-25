@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package trabajodi;
 
 
@@ -17,7 +12,6 @@ import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.MouseEvent;
-import java.awt.event.TextEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -71,7 +65,6 @@ public class Logica {
             RUTA_IMAGENES = "/img/",
             ARCHIVO_PARTIDA_GUARDADA = "PartidaGuardada.obj",
             RUTA_TEMA = "cartas/tema";
-    ;
     private final boolean ELIMINAR_PARTIDA_GUARDADA = false;
 
 
@@ -94,6 +87,7 @@ public class Logica {
      * CONTROLADOR JUEGO
      * CONTROLADOR JUEGO
      */
+    
     /**
      * asinamos el controlador de Juego y incicializamos valores a un juego por
      * defecto
@@ -260,6 +254,7 @@ public class Logica {
      * CONTROLADOR MENU
      * CONTROLADOR MENU
      */
+    
     /**
      * Asigna el controlador del menu a la logica
      * @param menu COntrolador del menu
@@ -547,15 +542,8 @@ public class Logica {
                 System.err.println("\nOpcion no valida");
         }
     }
-
-
-    /*
-     *
-     *
-     *
-     *
-     *
-     */
+    
+    
     /**
      * Metodo encargado de gestionar los datos que se recogen de la
      * vista de Ingreso
@@ -663,6 +651,7 @@ public class Logica {
     /*
      * Gestion de guardar la partida
      */
+    
     /**
      * Metodo guarda la partida con los datos que existen en logica
      */

@@ -26,6 +26,7 @@ public class Sonido extends Thread{
     public Sonido(String sonido){
         this.sonido=sonido;
     }
+    
     /**
      * Creamos un hilo que repoduza la ruta del sonindo
      */
@@ -33,6 +34,7 @@ public class Sonido extends Thread{
     public void run(){
         repSonido();
     }
+    
     /**
      * Metodo encargado de la reproduccion del hilo
      */
