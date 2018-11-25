@@ -12,7 +12,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  *
- * @author Guille
+ * @author Guillermo Manso
  * @author Jesus Roncero
  */
 public class Sonido extends Thread{

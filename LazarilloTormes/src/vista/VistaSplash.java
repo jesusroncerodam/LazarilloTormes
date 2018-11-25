@@ -22,8 +22,8 @@ import lazarilloTormes.Vista;
 
 
 /**
- *
- * @author Guille
+ * @author Guillermo Manso
+ * @author Jesus Roncero
  */
 public class VistaSplash extends JPanel {
 

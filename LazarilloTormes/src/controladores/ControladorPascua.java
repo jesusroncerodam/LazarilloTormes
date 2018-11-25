@@ -10,8 +10,8 @@ import lazarilloTormes.LogicaPascua;
 
 
 /**
- *
- * @author Guille
+ * @author Guillermo Manso
+ * @author Jesus Roncero
  */
 public class ControladorPascua extends WindowAdapter implements ActionListener {
 

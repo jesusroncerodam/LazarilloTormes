@@ -4,8 +4,8 @@ import java.util.Locale;
 
 
 /**
- *
- * @author Guille
+ * @author Guillermo Manso
+ * @author Jesus Roncero
  */
 public class TrabajoLazarilloMain {
 

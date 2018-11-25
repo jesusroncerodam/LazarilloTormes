@@ -25,8 +25,8 @@ import javax.swing.JOptionPane;
 
 
 /**
- *
- * @author Guille
+ * @author Guillermo Manso
+ * @author Jesus Roncero
  */
 public class Vista {
 

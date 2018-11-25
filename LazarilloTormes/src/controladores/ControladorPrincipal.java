@@ -9,8 +9,8 @@ import vista.VPrincipal;
 
 
 /**
- *
- * @author Guille
+ * @author Guillermo Manso
+ * @author Jesus Roncero
  */
 public class ControladorPrincipal extends MouseAdapter {
 

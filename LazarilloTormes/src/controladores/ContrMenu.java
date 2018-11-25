@@ -8,8 +8,8 @@ import lazarilloTormes.Logica;
 
 
 /**
- *
- * @author Guille
+ * @author Guillermo Manso
+ * @author Jesus Roncero
  */
 public class ContrMenu implements ActionListener {
 

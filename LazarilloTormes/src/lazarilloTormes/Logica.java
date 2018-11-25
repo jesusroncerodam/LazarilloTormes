@@ -39,8 +39,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 /**
- *
- * @author Guille
+ * @author Guillermo Manso
+ * @author Jesus Roncero
  */
 public class Logica {
 
