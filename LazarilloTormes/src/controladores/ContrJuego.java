@@ -54,12 +54,14 @@ public class ContrJuego extends MouseAdapter implements  KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-       logica.juegokey(e.getKeyChar());
+       logica.juegokey(e.getKeyChar()); System.out.print(e.getKeyChar());
     }
 
 
     @Override
     public void keyPressed(KeyEvent e) {
+       
+
     }
 
 

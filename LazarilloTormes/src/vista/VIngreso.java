@@ -561,8 +561,8 @@ public class VIngreso extends JPanel {
 
 
     /**
-     * Manda el tema para el
-     * @return
+     * Manda el tema para que lo recoja la vista de estadisticas
+     * @return int
      */
     private int recogerTema() {
         if (tema1.getBorder() != null) {

@@ -79,7 +79,6 @@ public class VJuego extends JPanel {
         this.setOpaque(true);
         this.setFocusable(true);
         this.requestFocus();
-        this.addKeyListener(controlador);
 
         constrain = new GridBagConstraints();
         constrain.weighty = 0.5;
