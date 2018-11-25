@@ -245,7 +245,6 @@ public class Vista {
 
                 case "ingresodatos":
                     tiempo = 1;
-
                     vIngreso.generar();
                     cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
 

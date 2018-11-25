@@ -531,7 +531,7 @@ public class Logica {
      *
      */
     /**
-     * Metodo encargado de gestionar los datos que se regojen de la
+     * Metodo encargado de gestionar los datos que se recogen de la
      * vista de Ingreso
      * @param avatar     String ruta del avatar
      * @param tema       int 1,2 o 3, tema de la partida, de las cartas

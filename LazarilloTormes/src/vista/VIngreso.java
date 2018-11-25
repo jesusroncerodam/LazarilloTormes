@@ -85,7 +85,7 @@ public class VIngreso extends JPanel {
     /**
      * Es el encargado de generar todos los elementos de la vista
      */
-    private void generar() {
+    public void generar() {
         anadirDescripciones();
         controlador.mandarControlador();
         this.setOpaque(false);
