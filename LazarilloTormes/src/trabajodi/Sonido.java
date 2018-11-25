@@ -55,9 +55,9 @@ public class Sonido extends Thread{
                 }
             }
             soundLine.drain();//vamos vaciamndo los datos, en caso que el drain tenga datos, bloquea hasta que no tenga ningun dato
-            soundLine.close();//c
+            soundLine.close();//cerramos el flujo del sonido
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
-            System.err.println("Error: "+ex.getMessage());
+            System.err.println("Error al reproducir el sondido, error:  "+ex.getMessage());
         }
     }
 
