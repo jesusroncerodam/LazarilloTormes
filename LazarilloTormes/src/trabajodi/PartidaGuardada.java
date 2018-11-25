@@ -20,11 +20,11 @@ public class PartidaGuardada implements Serializable{
      * serializables
      * @param segundos int segundos
      * @param movimientos int cantidad de movimientos
-     * @param vuelta int, 
+     * @param vuelta int, carta que se dio la vuelta
      * @param rutaGuardada ArrayList de String, corresponde a las cartas qu
-     * @param cartaBloqueada
-     * @param nombre
-     * @param avatar 
+     * @param cartaBloqueada ArrayList de Boolean, carga 
+     * @param nombre String, nombre o nickname del jugador
+     * @param avatar String, ruta de la imagen del jugador
      */
     public PartidaGuardada(int segundos, int movimientos, int vuelta, ArrayList<String> rutaGuardada, ArrayList<Boolean> cartaBloqueada,String nombre,String avatar) {
         this.segundos = segundos;
@@ -35,7 +35,7 @@ public class PartidaGuardada implements Serializable{
         this.nombre=nombre;
         this.avatar=avatar;
     }
-
+    
     public int getSegundos() {
         return segundos;
     }

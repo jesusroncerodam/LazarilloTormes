@@ -14,7 +14,7 @@ import javax.swing.Timer;
 
 /**
  *
- * @author Guille
+ * @author Guillermo Manso
  * @author Jesus Roncero
  */
 public class HuevoPascua extends Thread{
