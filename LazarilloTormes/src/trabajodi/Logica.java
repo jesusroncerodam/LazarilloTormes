@@ -14,6 +14,7 @@ import controladores.ContrMenu;
 import controladores.ControladorPrincipal;
 import java.awt.Component;
 import java.awt.Desktop;
+import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.TextEvent;
@@ -525,6 +526,22 @@ public class Logica {
                 } catch (IOException | URISyntaxException e1) {
                     e1.printStackTrace();
                 }
+                break;
+            default:
+                System.err.println("\nOpcion no valida");
+        }
+    }
+
+
+    /**
+     * Escucha los actionevent que ocurren en la vista de DialogMod, de momento
+     * solo hay uno, el del boton de vuelta atras
+     * @param e evento que ocurre cuando pulsas el boton
+     */
+    public void vistaDialogoModActionListener(ActionEvent e) {
+        switch (e.getActionCommand()) {
+            case "botonAtras":
+                cDialogMod.cambiarVista("principal");
                 break;
             default:
                 System.err.println("\nOpcion no valida");

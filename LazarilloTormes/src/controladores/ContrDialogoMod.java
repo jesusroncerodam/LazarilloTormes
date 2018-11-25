@@ -6,14 +6,10 @@
 package controladores;
 
 
-import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import vista.VDialogoMod;
 import trabajodi.Logica;
 
@@ -34,32 +30,32 @@ public class ContrDialogoMod extends MouseAdapter implements ActionListener {
     }
 
 
-    public void mandarControlador() {
-        logica.asignarControladorDialogoMod(this);
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        logica.vistaDialogoModMouseListener(e);
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        switch (e.getActionCommand()) {
-            case "botonAtras":
-                cambiarVista("principal");
-                break;
-
-            default:
-                System.err.println("\nOpcion no valida");
-        }
+        logica.vistaDialogoModActionListener(e);
     }
 
 
-    public void cambiarVista(String vista) {
-        vDialog.cambiarDeVista(vista);
+    /**
+     * metodo encargado de llamar al metodo alojado en logica que se encarga de
+     * igualar el controlador local al que se le pasa por parametro
+     */
+    public void mandarControlador() {
+        logica.asignarControladorDialogoMod(this);
     }
 
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        logica.vistaDialogoModMouseListener(e);
+    /**
+     * Metodo utilizado para llamar al metodo encargado de cambiar de vista
+     * @param vistaDestino String con el nombre de la vista a la que vamos a cambiar
+     */
+    public void cambiarVista(String vistaDestino) {
+        vDialog.cambiarDeVista(vistaDestino);
     }
-    
 }

@@ -82,11 +82,12 @@ public class ContrIngreso extends MouseAdapter implements ItemListener {
 
 
     /**
-     * Metodo utilizado para
-     * @param vista
+     * Metodo utilizado para llamar al metodo encargado de cambiar de vista
+     * @param vistaDestino String con el nombre de la vista a la que vamos a
+     *                     cambiar
      */
-    public void cambiarVista(String vista) {
-        vistaIngreso.cambiarDeVista(vista);
+    public void cambiarVista(String vistaDestino) {
+        vistaIngreso.cambiarDeVista(vistaDestino);
     }
 
 
@@ -99,7 +100,14 @@ public class ContrIngreso extends MouseAdapter implements ItemListener {
     }
 
 
-    //recogerAvatar(), recogerTema(),recogerDificultad(),recogerNombre()
+    /**
+     * Metodo encargado de gestionar los datos que se recogen de la
+     * vista de Ingreso
+     * @param avatar     String ruta del avatar
+     * @param tema       int 1,2 o 3, tema de la partida, de las cartas
+     * @param dificultad int 1,2 o 3 dificultad, cantidad de cartas a mostrar
+     * @param nombre     String nombre del jugador
+     */
     public void mandarDatos(String avatar, int tema, int dificultad, String nombre) {
         logica.recogerDatos(avatar, tema, dificultad, nombre);
     }

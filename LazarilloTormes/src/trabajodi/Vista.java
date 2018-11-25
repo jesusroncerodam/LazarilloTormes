@@ -5,7 +5,6 @@
 package trabajodi;
 
 
-import vista.VCarga;
 import vista.VDialogoMod;
 import vista.VIngreso;
 import vista.VJuego;
@@ -34,7 +33,6 @@ public class Vista {
     private JFrame ventana;
     private Font fuente = new Font("Agency FB", Font.BOLD, 40);
     private EscuchaVentana escuchaVentana;
-    private VCarga vCarga;
     private VDialogoMod vDialogoMod;
     private VIngreso vIngreso;
     private VJuego vJuego;
@@ -56,7 +54,6 @@ public class Vista {
         generarVista();
 
         //creamos todas las vistas mandandole la logica
-        vCarga = new VCarga(logica);
         vPrincipal = new VPrincipal(logica, this);
         vDialogoMod = new VDialogoMod(logica, this);
         vIngreso = new VIngreso(logica, this);
@@ -229,9 +226,9 @@ public class Vista {
      * VIENE DE VISTAPRINCIPAL
      */
     public void cambiarVista(String vista) {
-        if(vista.equals("pascua")){
+        if (vista.equals("pascua")) {
             crearHuevoPascua();
-        }else{
+        } else {
             //eliminamos todas las vistas
             eliminarVistas();
             escuchaVentana.setPartidaOn(false);
@@ -275,7 +272,7 @@ public class Vista {
                     break;
 
                 default:
-                    System.out.println("error, elemento no esperado en cambiarVista"+ vista);
+                    System.out.println("error, elemento no esperado en cambiarVista" + vista);
             }
             anadirVista(vista, tiempo);
         }
@@ -300,12 +297,15 @@ public class Vista {
         vPrincipal.removeAll();
     }
 
-HuevoPascua pascua;
-    private void crearHuevoPascua(){
-       pascua= new HuevoPascua();
-       pascua.start();
+    HuevoPascua pascua;
+
+
+    private void crearHuevoPascua() {
+        pascua = new HuevoPascua();
+        pascua.start();
     }
-    
+
+
     /**
      * Creamos un SplashScreen de despedida, elimina la ventana principal y
      * muestra una imagen (gif) durante 2,5 segundos, mas tarde se ciera la app

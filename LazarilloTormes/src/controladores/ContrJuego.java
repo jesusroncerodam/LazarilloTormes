@@ -19,9 +19,9 @@ import trabajodi.Logica;
  *
  * @author Guille
  */
-public class ContrJuego extends MouseAdapter implements  KeyListener{
+public class ContrJuego extends MouseAdapter implements KeyListener {
 
-    private VJuego vista;
+    private VJuego vistaJuego;
     private Logica logica;
 
 
@@ -31,7 +31,7 @@ public class ContrJuego extends MouseAdapter implements  KeyListener{
      * @param logica logica a la que se refiere para comunicarse
      */
     public ContrJuego(VJuego vista, Logica logica) {
-        this.vista = vista;
+        this.vistaJuego = vista;
         this.logica = logica;
     }
 
@@ -54,7 +54,7 @@ public class ContrJuego extends MouseAdapter implements  KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-       logica.juegokey(e.getKeyChar()); System.out.print(e.getKeyChar());
+        logica.juegokey(e.getKeyChar());
     }
 
 
@@ -63,33 +63,37 @@ public class ContrJuego extends MouseAdapter implements  KeyListener{
     }
 
 
-    @Override   
+    @Override
     public void keyReleased(KeyEvent e) {
     }
-    
+
+
     /**
      * Comunicacion de logica a vista, manda una accion sobre el contador de
      * tiempo
      * @param accion
      */
     public void gestionarContador(String accion) {
-        vista.gestionarContador(accion);
+        vistaJuego.gestionarContador(accion);
     }
+
 
     /**
      * Seter, cambia la variable booleana de victoria
-     * @param victoria booelan 
+     * @param victoria booelan
      */
     public void setVictoria(boolean victoria) {
-        vista.setVictoria(victoria);
+        vistaJuego.setVictoria(victoria);
     }
+
+
     /**
      * Comunicacion de logica a vista, hace animar una imagen , que entre o que
      * salga
      * @param i indice a girar
      */
     public void girar(int i) {
-        vista.girar(i);
+        vistaJuego.girar(i);
     }
 
 
@@ -100,7 +104,7 @@ public class ContrJuego extends MouseAdapter implements  KeyListener{
      * @return indice de la carta, -1 en caso de que no tenga ninguna visible
      */
     public int algunaVisible() {
-        return vista.algunaVisible();
+        return vistaJuego.algunaVisible();
     }
 
 
@@ -111,7 +115,7 @@ public class ContrJuego extends MouseAdapter implements  KeyListener{
      * @return boolean true en caso de que sean la misma carta
      */
     public boolean mismaImagen(int i, int j) {
-        return vista.mismaImagen(i, j);
+        return vistaJuego.mismaImagen(i, j);
     }
 
 
@@ -122,7 +126,7 @@ public class ContrJuego extends MouseAdapter implements  KeyListener{
      * @param j indice de la carta a bloquear
      */
     public void bloquearImagenes(int i, int j) {
-        vista.bloquearImagenes(i, j);
+        vistaJuego.bloquearImagenes(i, j);
     }
 
 
@@ -131,7 +135,7 @@ public class ContrJuego extends MouseAdapter implements  KeyListener{
      * y lo muestra
      */
     public void movimiento() {
-        vista.movimiento();
+        vistaJuego.movimiento();
     }
 
 
@@ -140,7 +144,7 @@ public class ContrJuego extends MouseAdapter implements  KeyListener{
      * @return boolean false si es el fin del juego
      */
     public boolean isFin() {
-        return vista.isFin();
+        return vistaJuego.isFin();
     }
 
 
@@ -151,7 +155,7 @@ public class ContrJuego extends MouseAdapter implements  KeyListener{
      * @param estado boolean, estado a cambiar
      */
     public void cambiarEstadoBoton(String boton, boolean estado) {
-        vista.cambiarEstadoBoton(boton, estado);
+        vistaJuego.cambiarEstadoBoton(boton, estado);
     }
 
 
@@ -160,7 +164,7 @@ public class ContrJuego extends MouseAdapter implements  KeyListener{
      * @return int seguntos
      */
     public int getContadorSeg() {
-        return vista.getContadorSeg();
+        return vistaJuego.getContadorSeg();
     }
 
 
@@ -169,8 +173,9 @@ public class ContrJuego extends MouseAdapter implements  KeyListener{
      * @return int movimiento
      */
     public int getContMov() {
-        return vista.getContMov();
+        return vistaJuego.getContMov();
     }
+
 
     /**
      * Comuncicacion vista a logica, obtiene las rutas de las imagenes a cargar
@@ -179,67 +184,87 @@ public class ContrJuego extends MouseAdapter implements  KeyListener{
      */
     public String[] obtenerRutas() {
         return logica.obtenerRutasImg();
-    }    
-    
+    }
+
+
     /**
-     * Retona las rutas de las cartas, en orden mostradas, para poderlas 
+     * Retona las rutas de las cartas, en orden mostradas, para poderlas
      * almaenarlas en guardar partida.
      * @return ArrayList de string
      */
     public ArrayList<String> guardarUrlCarta() {
-        return vista.guardarUrlCarta();
+        return vistaJuego.guardarUrlCarta();
     }
+
+
     /**
      * Retona las cartas bloqueadas,es decir las cartas que igualaron,
-     * en orden mostrado, para poderlas almacenarlas 
+     * en orden mostrado, para poderlas almacenarlas
      * en guardar partida.
-     * @return 
+     * @return arraylist booleano de cartas bloqueadas
      */
     public ArrayList<Boolean> guardarBloquearCarta() {
-        return vista.guardarBloquearCarta();
+        return vistaJuego.guardarBloquearCarta();
     }
+
+
     /**
      * Metodo llama a la logica para que bloquee las cartas que fueron guardas,
      * parte de cargar partida
      */
-    public void bloquearCartas(){
+    public void bloquearCartas() {
         logica.bloquearCartas();
     }
+
+
     /**
-     * Metodo encargado de retornar el tiempo, en segundos parte de cargar partida
+     * Metodo encargado de retornar el tiempo, en segundos parte de cargar
+     * partida
      * @return int, segundos
      */
-    public int obtenerTiempo(){
+    public int obtenerTiempo() {
         return logica.obtenerTiempo();
     }
+
+
     /**
-     * Metodo encargado de retornar los movimientos ejecutados en la partida guardada,
-     * en el caso de que alguna carta estuviese volteada pero sin pareja, se cargaria esta
+     * Metodo encargado de retornar los movimientos ejecutados en la partida
+     * guardada,
+     * en el caso de que alguna carta estuviese volteada pero sin pareja, se
+     * cargaria esta
      * @return int, cantidad de movimientos
      */
-    public int obtenerMovimientos(){
+    public int obtenerMovimientos() {
         return logica.obtenerMovimientos();
     }
+
+
     /**
-     * Metodo encargado de ajustar las cartdas desactivasas , parte de cargar partida
-     * @return 
+     * Metodo encargado de ajustar las cartdas desactivasas , parte de cargar
+     * partida
+     * @return cartas desactivadas
      */
-    public int obtenerGuardadDesact(){
+    public int obtenerGuardadDesact() {
         return logica.obtenerGuardadDesact();
     }
+
+
     /**
      * Metodo encargado de bloquear las cartas que se guardaron
      * @param indice indice de la carta a bloquear
      */
-    public void bloquearUna(int indice){
-        vista.bloquearUna(indice);
+    public void bloquearUna(int indice) {
+        vistaJuego.bloquearUna(indice);
     }
+
+
     /**
      * Metodo se le llama desde la logica para cambiar de vista
-     * @param vistaACambiar 
+     * @param vistaDestino String que corresponde al nombre de la vista de
+     *                     destino
      */
-    public void cambiarVista(String vistaACambiar){
-        vista.cambiarVista(vistaACambiar);
+    public void cambiarVista(String vistaDestino) {
+        vistaJuego.cambiarVista(vistaDestino);
     }
-    
+
 }
