@@ -94,9 +94,9 @@ public class VJuego extends JPanel {
 
         //generamos las cartas
         generarCartas(true);//pata que se deshordenen
-        this.setFocusable(true);
-        this.requestFocus();
-        this.addKeyListener(controlador);
+//        this.setFocusable(true);
+      
+        this.addKeyListener(controlador);  this.requestFocus();
         this.revalidate();
     }
 
@@ -172,7 +172,7 @@ public class VJuego extends JPanel {
         for (int i = 0; i < carta.size(); i++) {//anadimos todas las cartas y les ponemos escuchador
             cartas.add(carta.get(i));
             carta.get(i).addMouseListener(controlador);
-            carta.get(i).addKeyListener(controlador);
+//            carta.get(i).addKeyListener(controlador);
         }
         constrain.gridx = 0; // El área de texto empieza en la columna 0.
         constrain.gridy = 1; // El área de texto empieza en la fila 1
@@ -235,6 +235,7 @@ public class VJuego extends JPanel {
         bPausaPlay.setActionCommand("playPause");
         bPausaPlay.addKeyListener(controlador);
         bPausaPlay.addMouseListener(controlador);
+        bPausaPlay.requestFocus();
     }
 
 
@@ -496,7 +497,7 @@ public class VJuego extends JPanel {
         
         this.setOpaque(true);
         this.setFocusable(true);
-        this.requestFocus();
+//        this.requestFocus();
         this.addKeyListener(controlador);
 
         constrain = new GridBagConstraints();
