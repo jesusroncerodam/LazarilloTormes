@@ -53,6 +53,10 @@ public class ContrMenu implements ActionListener {
     }
 
 
+    /**
+     * Comprueba si el sonido esta activado o no
+     * @return boolean activado o desactivado
+     */
     public boolean estadoSonido() {
         return vistaMenu.estadoSonido();
     }

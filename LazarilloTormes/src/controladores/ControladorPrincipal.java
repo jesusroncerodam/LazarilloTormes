@@ -8,7 +8,6 @@ package controladores;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import trabajodi.Logica;
 import vista.VPrincipal;

@@ -140,6 +140,11 @@ public class VIngreso extends JPanel {
 
     /**
      * Crea todo lo relacionado con los iconos de los avatares y el jlabel
+     * Añade los checkbox a un grupo para elegir solo uno
+     * Se les quita la opacidad
+     * Se les permite tener borde
+     * Se les asigna el borde correspondiente
+     * Se les asigna la imagen
      */
     private void crearAvatar() {
         labelAvatar = new JLabel("Avatar: ");
@@ -156,10 +161,8 @@ public class VIngreso extends JPanel {
         constrainPorDefecto();
         constrain.fill = GridBagConstraints.BASELINE;
         constrain.gridy = 1;
-
         constrain.gridx = 0;
         add(labelAvatar, constrain);
-
         constrain.gridx = 1;
         add(avatar1, constrain);
         constrain.gridx = 2;
@@ -170,12 +173,12 @@ public class VIngreso extends JPanel {
         avatar1.setOpaque(false);
         avatar2.setOpaque(false);
         avatar3.setOpaque(false);
-        avatar1.setBorderPainted(true);
-        avatar2.setBorderPainted(true);
-        avatar3.setBorderPainted(true);
         avatar1.setIcon(cambiarTamano(iconoAvatar1, ANCHOIMAGENES, ALTOIMAGENES));
         avatar2.setIcon(cambiarTamano(iconoAvatar2, ANCHOIMAGENES, ALTOIMAGENES));
         avatar3.setIcon(cambiarTamano(iconoAvatar3, ANCHOIMAGENES, ALTOIMAGENES));
+        avatar1.setBorderPainted(true);
+        avatar2.setBorderPainted(true);
+        avatar3.setBorderPainted(true);
         avatar1.setBorder(bordeAvatar);
         avatar2.setBorder(null);
         avatar3.setBorder(null);
@@ -184,6 +187,11 @@ public class VIngreso extends JPanel {
 
     /**
      * Crea todo lo relacionado con los temas
+     * Añade los checkbox a un grupo para elegir solo uno
+     * Se les quita la opacidad
+     * Se les permite tener borde
+     * Se les asigna el borde correspondiente
+     * Se les asigna la imagen
      */
     private void crearTema() {
         labelTema = new JLabel("Theme");
@@ -197,14 +205,9 @@ public class VIngreso extends JPanel {
         grupoTema.add(tema2);
         grupoTema.add(tema3);
 
-        /*
-         * COLOCAR TEMA
-         */
         constrain.gridy = 2;
-        //        le asigno la Y una sola vez 
         constrain.gridx = 0;
         add(labelTema, constrain);
-
         constrainPorDefecto();
         constrain.fill = GridBagConstraints.BASELINE;
         constrain.gridx = 1;
@@ -217,13 +220,12 @@ public class VIngreso extends JPanel {
         tema1.setOpaque(false);
         tema2.setOpaque(false);
         tema3.setOpaque(false);
-        tema1.setBorderPainted(true);
-        tema2.setBorderPainted(true);
-        tema3.setBorderPainted(true);
-
         tema1.setIcon(cambiarTamano(iconoTema1, ANCHOIMAGENES, ALTOIMAGENES));
         tema2.setIcon(cambiarTamano(iconoTema2, ANCHOIMAGENES, ALTOIMAGENES));
         tema3.setIcon(cambiarTamano(iconoTema3, ANCHOIMAGENES, ALTOIMAGENES));
+        tema1.setBorderPainted(true);
+        tema2.setBorderPainted(true);
+        tema3.setBorderPainted(true);
         tema1.setBorder(bordeTema);
         tema2.setBorder(null);
         tema3.setBorder(null);
@@ -232,6 +234,11 @@ public class VIngreso extends JPanel {
 
     /**
      * Crea todo lo relacionado con las dificultades
+     * Añade los checkbox a un grupo para elegir solo uno
+     * Se les quita la opacidad
+     * Se les permite tener borde
+     * Se les asigna el borde correspondiente
+     * Se les asigna la imagen
      */
     private void crearDificultad() {
         labelDificultad = new JLabel("Difficulty");
@@ -245,17 +252,12 @@ public class VIngreso extends JPanel {
         grupoDificultad.add(dificultad2);
         grupoDificultad.add(dificultad3);
 
-        /*
-         * COLOCAR DIFICULTAD
-         */
 //        constrain.insets = new Insets(0, 50, 0, 0);
         constrain.gridy = 3; //Le asigno la Y una unica vez
         constrain.gridx = 0;
         add(labelDificultad, constrain);
-
 //        constrainPorDefecto();
         constrain.fill = GridBagConstraints.BASELINE;
-
         constrain.gridx = 1;
         add(dificultad1, constrain);
         constrain.gridx = 2;
@@ -266,13 +268,12 @@ public class VIngreso extends JPanel {
         dificultad1.setOpaque(false);
         dificultad2.setOpaque(false);
         dificultad3.setOpaque(false);
-        dificultad1.setBorderPainted(true);
-        dificultad2.setBorderPainted(true);
-        dificultad3.setBorderPainted(true);
-
         dificultad1.setIcon(cambiarTamano(iconoDificultad1, ANCHOIMAGENES + 40, ALTOIMAGENES - 60));
         dificultad2.setIcon(cambiarTamano(iconoDificultad2, ANCHOIMAGENES + 40, ALTOIMAGENES - 60));
         dificultad3.setIcon(cambiarTamano(iconoDificultad3, ANCHOIMAGENES + 40, ALTOIMAGENES - 60));
+        dificultad1.setBorderPainted(true);
+        dificultad2.setBorderPainted(true);
+        dificultad3.setBorderPainted(true);
         dificultad1.setBorder(bordeDificultad);
         dificultad2.setBorder(null);
         dificultad3.setBorder(null);
@@ -289,18 +290,16 @@ public class VIngreso extends JPanel {
          * BOTONES
          */
         constrain.gridy = 4;
-
         constrain.gridx = 0;
         add(botonFlechaAtras, constrain);
         constrain.gridx = 3;
         add(botonFlechaSiguiente, constrain);
 
         botonFlechaAtras.setOpaque(false);
-        botonFlechaAtras.setContentAreaFilled(false);
-        botonFlechaAtras.setBorder(null);
-
         botonFlechaSiguiente.setOpaque(false);
+        botonFlechaAtras.setContentAreaFilled(false);
         botonFlechaSiguiente.setContentAreaFilled(false);
+        botonFlechaAtras.setBorder(null);
         botonFlechaSiguiente.setBorder(null);
     }
 
@@ -332,17 +331,13 @@ public class VIngreso extends JPanel {
         avatar1.setName("avatar1");
         avatar2.setName("avatar2");
         avatar3.setName("avatar3");
-
         tema1.setName("tema1");
         tema2.setName("tema2");
         tema3.setName("tema3");
-
         labelDificultad.setName("labelDificultad");
-
         dificultad1.setName("dificultad1");
         dificultad2.setName("dificultad2");
         dificultad3.setName("dificultad3");
-
         botonFlechaAtras.setName("botonFlechaAtras");
         botonFlechaSiguiente.setName("botonFlechaSiguiente");
 
@@ -358,7 +353,6 @@ public class VIngreso extends JPanel {
         dificultad1.addItemListener(controlador);
         dificultad2.addItemListener(controlador);
         dificultad3.addItemListener(controlador);
-
         botonFlechaAtras.addMouseListener(controlador);
         botonFlechaSiguiente.addMouseListener(controlador);
     }
@@ -369,9 +363,6 @@ public class VIngreso extends JPanel {
      * Asigna todas las constrain al valor inicial
      */
     private void constrainPorDefecto() {
-        /*
-         * POR DEFECTO
-         */
         constrain.anchor = GridBagConstraints.CENTER;
         constrain.weighty = 1.0; //para que se estiren las columnas
         constrain.weightx = 1.0; // El área de texto ocupa 1 filasa

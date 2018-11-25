@@ -266,5 +266,4 @@ public class ContrJuego extends MouseAdapter implements KeyListener {
     public void cambiarVista(String vistaDestino) {
         vistaJuego.cambiarVista(vistaDestino);
     }
-
 }
