@@ -302,7 +302,7 @@ public class Logica {
                 menu.cambiarVista("ingresodatos");
                 break;
             case "reset":
-                if (JOptionPane.showConfirmDialog(null, "You will reset statistics  ¿Are you sure?", "Do you want to reset?",
+                if (JOptionPane.showConfirmDialog(null, "You will reset statistics.  Are you sure?", "Do you want to reset?",
                         JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
                     eliminarFichero(FICHERO);
                 }
