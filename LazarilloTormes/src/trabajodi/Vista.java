@@ -75,6 +75,7 @@ public class Vista {
      */
     public void generarVista() {
         ventana = new JFrame("Memorion");
+        ventana.setIconImage(new ImageIcon(getClass().getResource("/img/icono.png")).getImage());
         ventana.setMaximumSize(new Dimension(1924, 1047));
         escuchaVentana = new EscuchaVentana(this);
         ventana.addWindowListener(escuchaVentana);
@@ -184,6 +185,7 @@ public class Vista {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
+                System.out.println("fsaf");
                 switch (vista) {
                     case "principal":
                         principal();
@@ -212,7 +214,7 @@ public class Vista {
                 ventana.setVisible(true);
             }
         };
-        timer.schedule(task, tiempo * 1000 + 200);
+        timer.schedule(task, tiempo * 1000 + 300);
     }
 
 
