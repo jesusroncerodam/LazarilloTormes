@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package trabajodi;
 
 import java.io.Serializable;
@@ -10,7 +5,8 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Guille
+ * @author Guillermo Manso
+ * @author Jesus Roncero
  */
 public class PartidaGuardada implements Serializable{
     //private static int numeroPartida;
@@ -19,6 +15,17 @@ public class PartidaGuardada implements Serializable{
     private ArrayList<Boolean> cartaBloqueada;
     private String nombre,avatar;
 
+    /**
+     * Constructor se le asignan todos los elementos a guardar estos han de ser 
+     * serializables
+     * @param segundos int segundos
+     * @param movimientos int cantidad de movimientos
+     * @param vuelta int, 
+     * @param rutaGuardada ArrayList de String, corresponde a las cartas qu
+     * @param cartaBloqueada
+     * @param nombre
+     * @param avatar 
+     */
     public PartidaGuardada(int segundos, int movimientos, int vuelta, ArrayList<String> rutaGuardada, ArrayList<Boolean> cartaBloqueada,String nombre,String avatar) {
         this.segundos = segundos;
         this.movimientos = movimientos;
