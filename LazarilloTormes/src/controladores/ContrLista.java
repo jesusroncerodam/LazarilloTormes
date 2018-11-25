@@ -44,8 +44,8 @@ public class ContrLista extends MouseAdapter {
 
 
     /**
-     *
-     * @return
+     * Recoge el fichero en un array
+     * @return array de string con el fichero
      */
     public String[] datosFichero() {
         asignarControlador();//solo se realiza una vez

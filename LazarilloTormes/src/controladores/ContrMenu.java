@@ -19,26 +19,41 @@ import trabajodi.Logica;
 public class ContrMenu implements ActionListener {
 
     private Logica logica;
-    private VMenu vista;
+    private VMenu vistaMenu;
 
 
     public ContrMenu(Logica logica, VMenu vista) {
         this.logica = logica;
-        this.vista = vista;
+        this.vistaMenu = vista;
     }
 
-    public void asignarMenuLogica(){
+
+    /**
+     * Metodo encargado de igualar en logica el controlador local con el
+     * original
+     */
+    public void asignarMenuLogica() {
         logica.asignarMenu(this);
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
         logica.gestionarMenu(e.getActionCommand());
     }
-    public void cambiarVista(String vistaCambio){
-        vista.cambiarVista(vistaCambio);
+
+
+    /**
+     * Metodo se le llama desde la logica para cambiar de vista
+     * @param vistaDestino String que corresponde al nombre de la vista de
+     *                     destino
+     */
+    public void cambiarVista(String vistaDestino) {
+        vistaMenu.cambiarVista(vistaDestino);
     }
-    public boolean estadoSonido(){
-        return vista.estadoSonido();
+
+
+    public boolean estadoSonido() {
+        return vistaMenu.estadoSonido();
     }
 }

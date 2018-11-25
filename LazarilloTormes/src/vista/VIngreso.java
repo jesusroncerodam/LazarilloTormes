@@ -12,7 +12,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.Insets;
 import java.awt.TextField;
 import java.util.Random;
@@ -55,7 +54,7 @@ public class VIngreso extends JPanel {
             iconoDificultad1 = new ImageIcon(this.getClass().getResource("/img/dificultad1.png")),
             iconoDificultad2 = new ImageIcon(this.getClass().getResource("/img/dificultad2.png")),
             iconoDificultad3 = new ImageIcon(this.getClass().getResource("/img/dificultad3.png")),
-            imagenFlecha = new ImageIcon(this.getClass().getResource("/img/atras.png")),
+            imagenFlecha = new ImageIcon(this.getClass().getResource("/img/botonAtrasVistaIngreso.png")),
             imagenAvanzar = new ImageIcon(this.getClass().getResource("/img/flechaRect.png")),
             fondoRegistro = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.jpg"));
 
@@ -114,7 +113,6 @@ public class VIngreso extends JPanel {
         labelNombre = new JLabel("Nickname: ");
         labelNombre.setFont(bakerville(TAMANOFUENTE));
         labelNombre.setForeground(Color.red);
-
         constrain.fill = GridBagConstraints.BASELINE;
         constrain.gridy = 0;
         constrain.gridx = 0;
@@ -129,18 +127,13 @@ public class VIngreso extends JPanel {
     private void crearCampoNombre() {
         campoNombre = new TextField("Nickname");
         campoNombre.setFont(bakerville(TAMANOFUENTE - 8));
-
-        constrain.gridwidth = 2;
-//        .NONE hace que el campo de texto no aparezca ocupando gran parte del cuadrante
-        constrain.fill = GridBagConstraints.BASELINE;
 //        constrain.anchor = GridBagConstraints.LINE_START;
-
+        constrain.gridwidth = 2;
+        constrain.fill = GridBagConstraints.BASELINE;
         constrain.gridy = 0;
         constrain.gridx = 1;
         add(campoNombre, constrain);
-
         campoNombre.setBackground(null);
-
         constrainPorDefecto();
     }
 
@@ -159,9 +152,7 @@ public class VIngreso extends JPanel {
         grupoAvatar.add(avatar1);
         grupoAvatar.add(avatar2);
         grupoAvatar.add(avatar3);
-        /*
-         * COLOCAR AVATAR
-         */
+
         constrainPorDefecto();
         constrain.fill = GridBagConstraints.BASELINE;
         constrain.gridy = 1;

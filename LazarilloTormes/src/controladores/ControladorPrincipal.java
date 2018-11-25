@@ -6,6 +6,7 @@
 package controladores;
 
 
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
@@ -17,15 +18,15 @@ import vista.VPrincipal;
  *
  * @author Guille
  */
-public class ControladorPrincipal implements MouseListener {
+public class ControladorPrincipal extends MouseAdapter {
 
     private Logica logica;
-    private VPrincipal vista;
+    private VPrincipal vistaPrincipal;
 
 
     public ControladorPrincipal(Logica logica, VPrincipal vista) {
         this.logica = logica;
-        this.vista = vista;
+        this.vistaPrincipal = vista;
         logica.asignarContrPrincipal(this);
     }
 
@@ -36,28 +37,12 @@ public class ControladorPrincipal implements MouseListener {
     }
 
 
-    @Override
-    public void mousePressed(MouseEvent e) {
+    /**
+     * Metodo se le llama desde la logica para cambiar de vista
+     * @param vistaDestino String que corresponde al nombre de la vista de
+     *                     destino
+     */
+    public void cambiarDeVista(String vistaDestino) {
+        vistaPrincipal.cambiarDeVista(vistaDestino);
     }
-
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
-
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-    }
-
-
-    public void cambiarDeVista(String cambioVista) {
-        vista.cambiarDeVista(cambioVista);
-    }
-
 }
