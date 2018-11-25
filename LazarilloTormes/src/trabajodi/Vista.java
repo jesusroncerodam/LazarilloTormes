@@ -83,9 +83,8 @@ public class Vista {
 
     /**
      * Método para generar la pantalla de carga, se le pasan las strings del
-     * logo
-     * y del fondo para crear las imagenes, así como el tiempo que queremos que
-     * dure la animación
+     * logo y del fondo para crear las imagenes, así como el tiempo que queremos
+     * que dure la animación
      * Metodo genera la pantalla Splash,
      * @param logo   Strig,ruta de la imagen que da vueltas
      * @param fondo  String, ruta de la imagen que es asignada en el fondo
@@ -107,8 +106,7 @@ public class Vista {
      * Método que finaliza la ejecución de la vista de carga, además,notificando
      * al hilo principal que estaba en "wait", duerme la ejecucion durante 0.5
      * segundos para no mostrar un cambio brusco, establece el splash a nulo
-     * para
-     * ahorrar espacio en memoria y elimina la ventana de carg.
+     * para ahorrar espacio en memoria y elimina la ventana de carg.
      */
     public void splashTermina() {
         ventana.remove(splash);//lo quitamos de la vusta para que no de errores
@@ -119,6 +117,10 @@ public class Vista {
     }
 
 
+    /**
+     * Establece el panel de juego en visible, le asigna el tamaño e inicia la
+     * partida
+     */
     public void iniciarJuego() {
         escuchaVentana.setPartidaOn(true);//cambiamos el escuchador para que muestre mensaje antews de salir
         vMenu.modoJuego();
@@ -128,6 +130,9 @@ public class Vista {
     }
 
 
+    /**
+     * Establece el panel principal en visible
+     */
     public void principal() {
         ventana.setSize(1200, 800);
         ventana.add(vPrincipal);
@@ -135,6 +140,9 @@ public class Vista {
     }
 
 
+    /**
+     * Establece el panel de estadisticas en visible
+     */
     public void iniciarLista() {
         ventana.setSize(1200, 800);
         ventana.add(vLista);
@@ -147,7 +155,6 @@ public class Vista {
      * Crea la vista de registro, que extiende de panel
      */
     public void crearRegistro() {
-        System.out.println("Has entrado en el registro");
         ventana.setSize(1200, 800);
         ventana.add(vIngreso);
         ventana.setVisible(true);
@@ -158,7 +165,6 @@ public class Vista {
      * Crea la vista para ver los desarrolladores
      */
     public void crearPantallaDesarrolladores() {
-        System.out.println("Has entrado en el registro");
         ventana.setSize(1000, 600);
         ventana.add(vDialogoMod);
         ventana.setVisible(true);
@@ -166,10 +172,10 @@ public class Vista {
 
 
     /**
-     *
-     *
-     *
-     *
+     * Segun el string que reciba, se ejecuta un metodo u otro, el timetask se
+     * utiliza para retrasar la ejecucion mientras se ejecuta la vistaSplash,
+     * por lo tanto cuando pasa ese tiempo entra en el case correspondiente y
+     * genera la vista que sea
      * @param vista
      * @param tiempo
      */
@@ -182,31 +188,24 @@ public class Vista {
                     case "principal":
                         principal();
                         break;
-
                     case "ingresodatos":
                         crearRegistro();
                         break;
-
                     case "juego":
                         iniciarJuego();
                         break;
-
                     case "juegoguardado":
                         iniciarJuego();
                         break;
-
                     case "lista":
                         iniciarLista();
                         break;
-
                     case "aboutus":
                         crearPantallaDesarrolladores();
                         break;
-
                     default:
                         System.out.print(vista);
                         throw new AssertionError();
-
                 }
                 ventana.setLocationRelativeTo(null);//centramos la pantalla
                 ventana.repaint();
@@ -238,38 +237,31 @@ public class Vista {
                     vPrincipal.generar();
                     cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                     break;
-
                 case "ingresodatos":
                     tiempo = 1;
                     vIngreso.generar();
                     cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
-
                     break;
-
                 case "juego":
                     tiempo = 1;
                     vJuego.generar();//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                     break;
-
                 case "juegoguardado":
                     tiempo = 1;
                     vJuego.generarGuardada();
                     cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                     break;
-
                 case "lista":
                     tiempo = 1;
                     vLista.generar();
                     cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                     break;
-
                 case "aboutus":
                     tiempo = 1;
                     vDialogoMod.generar();
                     cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                     break;
-
                 default:
                     System.out.println("error, elemento no esperado en cambiarVista" + vista);
             }
@@ -299,6 +291,9 @@ public class Vista {
     HuevoPascua pascua;
 
 
+    /**
+     * Crea el huevo de pascua
+     */
     private void crearHuevoPascua() {
         pascua = new HuevoPascua();
         pascua.start();
@@ -333,6 +328,10 @@ public class Vista {
     }
 
 
+    /**
+     * Se crea la clase para añadirle el adaptador de cierre de la ventana y
+     * poder poner la opcion de confirmar la salida
+     */
     class EscuchaVentana extends WindowAdapter {
 
         private boolean partidaOn = false;
@@ -360,7 +359,5 @@ public class Vista {
         public void setPartidaOn(boolean partidaOn) {
             this.partidaOn = partidaOn;
         }
-
     }
-
 }

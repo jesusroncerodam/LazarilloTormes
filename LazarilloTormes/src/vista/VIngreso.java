@@ -456,20 +456,6 @@ public class VIngreso extends JPanel {
 
 
     /**
-     * Proporciona un color aleatorio para el panel
-     * @return Devuelve un color
-     */
-    private Color colorAleatorio() {
-        Random aleatorio = new Random();
-        int red = aleatorio.nextInt(255);
-        int green = aleatorio.nextInt(255);
-        int blue = aleatorio.nextInt(255);
-        Color color = new Color(red, green, blue);
-        return color;
-    }
-
-
-    /**
      * Modifica el tamaño de los iconos
      * @param icono       objeto tipo ImageIcon que se pasa para cambiarle el
      *                    tamaño
@@ -492,7 +478,7 @@ public class VIngreso extends JPanel {
     /**
      * Retorna el texto del campo nombre para ver que nickname ha elegido el
      * usuario
-     * @return
+     * @return string, nombre escrito en el textfield
      */
     public String recogerNombre() {
         return campoNombre.getText();
@@ -523,7 +509,7 @@ public class VIngreso extends JPanel {
 
     /**
      * Manda el tema para que lo recoja la vista de estadisticas
-     * @return int
+     * @return int que corresponde al tema elegido
      */
     private int recogerTema() {
         if (tema1.getBorder() != null) {
@@ -542,7 +528,7 @@ public class VIngreso extends JPanel {
     /**
      * Retorna un int que indica que dificultad ha elegido el usuario, si no ha
      * elegido ninguna, se asigna la 1 de manera predeterminada
-     * @return
+     * @return int, corresponde a la dificultad elegida
      */
     private int recogerDificultad() {
         if (dificultad1.getBorder() != null) {

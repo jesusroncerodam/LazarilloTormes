@@ -40,6 +40,10 @@ public class VPrincipal extends JPanel {
     }
 
 
+    /**
+     * Es el metodo que se encarga de llamar a todos los metodos individuales de
+     * creacion de objetos
+     */
     public void generar() {
         this.setOpaque(false);
         this.setFocusable(true);
@@ -61,6 +65,9 @@ public class VPrincipal extends JPanel {
     }
 
 
+    /**
+     * Genera el boton de nueva partida
+     */
     private void btnPartida() {
         bNuevaPartida = new JButton("New Game", new ImageIcon(this.getClass().getResource(RUTA_BOTON)));
 
@@ -79,6 +86,9 @@ public class VPrincipal extends JPanel {
     }
 
 
+    /**
+     * Genera el boton de estadisticas
+     */
     private void btnEstadisticas() {
         bEstadisticas = new JButton("Stats", new ImageIcon(this.getClass().getResource(RUTA_BOTON)));
 
@@ -96,6 +106,9 @@ public class VPrincipal extends JPanel {
     }
 
 
+    /**
+     * Genera el boton de cargar la ultima partida guardada
+     */
     private void btnCargarPartida() {
         bCargarPartida = new JButton("Load game", new ImageIcon(this.getClass().getResource(RUTA_BOTON)));
 
@@ -113,6 +126,10 @@ public class VPrincipal extends JPanel {
     }
 
 
+    /**
+     * Genera el boton del dialogo modal, que contiene los datos de los
+     * desarrolladores
+     */
     private void btnDialogModal() {
         bDialogoModal = new JButton("About us", new ImageIcon(this.getClass().getResource(RUTA_BOTON)));
 
@@ -130,6 +147,9 @@ public class VPrincipal extends JPanel {
     }
 
 
+    /**
+     * Genera el boton que contiene el easter egg
+     */
     private void btnExtra() {
         JButton bExtrs = new JButton("");
 
@@ -144,6 +164,7 @@ public class VPrincipal extends JPanel {
     }//fondoPrinc.jpg
 
 
+    @Override
     public void paint(Graphics g) {
         g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), null);
         super.paint(g);//borramos la imagen anterior
@@ -156,6 +177,14 @@ public class VPrincipal extends JPanel {
      * CONTROLADOR VISTA PRINCIPAL
      * CONTROLADOR VISTA PRINCIPAL
      * CONTROLADOR VISTA PRINCIPAL
+     */
+    /**
+     * Es el metodo que se encarga de vincular la vista principal con el resto,
+     * es comun en todas las vistas
+     *
+     * le manda un string que viene de la logica e indica a que vista nos
+     * estamos moviendo
+     * @param vista String, es el nombre de la vista a la que vamos a cambiar
      */
     public void cambiarDeVista(String vista) {
         vistaMain.cambiarVista(vista);

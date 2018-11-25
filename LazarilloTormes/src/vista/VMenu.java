@@ -29,26 +29,28 @@ public class VMenu extends JMenuBar {
     private Vista vista;
     private ContrMenu controlador;
     private JMenu archivo,
-            submenu, 
+            submenu,
             partida,
             ajustes;
-    private final String PLAYPAUSE="/img/playPause.png",EQUIS="/img/equis.png",ATRAS="/img/back.png";
+    private final String PLAYPAUSE = "/img/playPause.png", EQUIS = "/img/equis.png", ATRAS = "/img/back.png";
     private JMenuItem pausaPlay, guardarPartida, cargarPartida;
     private JRadioButtonMenuItem sonido;
     private JMenuItem atras, salir;
+
 
     /**
      * Constructor, se le manda logica, y la vista principal,
      * se genera el menu por defecto al llamar al contructor
      * @param logica logigica
-     * @param vista vista principal
+     * @param vista  vista principal
      */
     public VMenu(Logica logica, Vista vista) {
         controlador = new ContrMenu(logica, this);
         this.vista = vista;
         generar();
-        
+
     }
+
 
     /**
      * Genera el menu por defecto
@@ -60,12 +62,13 @@ public class VMenu extends JMenuBar {
         ajustes();
     }
 
+
     /**
      * Generamos el Menu de la opion archivo
      */
     private void generarMenuArchivo() {
         archivo = new JMenu("Archive");
-        
+
         atras = new JMenuItem("Go back", new ImageIcon(ATRAS));
         atras.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
         atras.setActionCommand("atras");
@@ -83,6 +86,7 @@ public class VMenu extends JMenuBar {
         this.add(archivo);
     }
 
+
     /**
      * Generamo las opciones de nueva partida
      */
@@ -90,17 +94,17 @@ public class VMenu extends JMenuBar {
         partida = new JMenu("Game");
 
         submenu = new JMenu("New Game");
-            JMenuItem partidaRapida = new JMenuItem("Quick game");
-            partidaRapida.setActionCommand("partidarapida");
-            partidaRapida.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.ALT_MASK));
-            partidaRapida.addActionListener(controlador);
-            submenu.add(partidaRapida);
+        JMenuItem partidaRapida = new JMenuItem("Quick game");
+        partidaRapida.setActionCommand("partidarapida");
+        partidaRapida.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.ALT_MASK));
+        partidaRapida.addActionListener(controlador);
+        submenu.add(partidaRapida);
 
-            JMenuItem partidaPersonalizada = new JMenuItem("Custom game");
-            partidaPersonalizada.setActionCommand("partidapersonalizada");
-            partidaPersonalizada.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK));
-            partidaPersonalizada.addActionListener(controlador);
-            submenu.add(partidaPersonalizada);
+        JMenuItem partidaPersonalizada = new JMenuItem("Custom game");
+        partidaPersonalizada.setActionCommand("partidapersonalizada");
+        partidaPersonalizada.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK));
+        partidaPersonalizada.addActionListener(controlador);
+        submenu.add(partidaPersonalizada);
         partida.add(submenu);
         pausaPlay = new JMenuItem("Pause/Play", cambiarTamano(new ImageIcon(getClass().getResource(PLAYPAUSE)), 20, 20));
         pausaPlay.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK));
@@ -125,11 +129,11 @@ public class VMenu extends JMenuBar {
         this.add(partida);
     }
 
-   
+
     /**
-     * Creamos las opciones de ajustes 
+     * Creamos las opciones de ajustes
      */
-    private void ajustes(){
+    private void ajustes() {
         ajustes = new JMenu("Settings");
         sonido = new JRadioButtonMenuItem("Sound", true);
         sonido.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK));
@@ -139,62 +143,64 @@ public class VMenu extends JMenuBar {
         this.add(ajustes);
     }
 
+
     /**
      * Habilitamos o deshabilitamos las opciones del menu en funcion de si esta
-     * en el juego 
+     * en el juego
      */
-    public void modoJuego(){
+    public void modoJuego() {
         atras.setEnabled(false);
         salir.setVisible(true);
-        
+
         submenu.setEnabled(false);
         pausaPlay.setEnabled(true);
         guardarPartida.setEnabled(true);
-        cargarPartida.setEnabled(false); 
+        cargarPartida.setEnabled(false);
     }
-    
+
+
     /**
      * Habilitamos o deshabilitamos las opciones del menu en funcion de si esta
      * en el modo normal
      */
-    public void normal(){
+    public void normal() {
         atras.setEnabled(true);
         salir.setVisible(true);
-        
+
         submenu.setEnabled(true);
         pausaPlay.setEnabled(false);
         guardarPartida.setEnabled(false);
         cargarPartida.setEnabled(true);
-    } 
-    
+    }
+
+
     /**
      * Retornamos el estado de sonido
      * @return Boolean estado de sonido
      */
-    public boolean estadoSonido(){
+    public boolean estadoSonido() {
         return sonido.isSelected();
     }
+
 
     /**
      * Comunicacion hacia vista, para cambiar de vista
      * @param vistaCambia cadena de string a la que referencia en vista
      */
-    public void cambiarVista(String vistaCambia){
+    public void cambiarVista(String vistaCambia) {
         vista.cambiarVista(vistaCambia);
     }
-    
+
+
     /**
-     * Modifica el tamaño de las imagenes
-     *
-     * @param icono 
-     * @param anchoImagen
-     * @param altoImagen
-     * @return
+     * Modifica el tamaño de los iconos
+     * @param icono       objeto tipo ImageIcon que se pasa para cambiarle el
+     *                    tamaño
+     * @param anchoImagen int que indica el nuevo ancho
+     * @param altoImagen  int que indica el nuevo alto
+     * @return ImageIcon que se iguala al original para actualizar el tamaño
      */
-    public ImageIcon cambiarTamano(ImageIcon icono, int anchoImagen, int altoImagen) {
-        Image imagen = icono.getImage();
-        Image reescalada = imagen.getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH);
-        icono = new ImageIcon(reescalada);
-        return icono;
+    private ImageIcon cambiarTamano(ImageIcon icono, int anchoImagen, int altoImagen) {
+        return new ImageIcon(icono.getImage().getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH));
     }
 }
