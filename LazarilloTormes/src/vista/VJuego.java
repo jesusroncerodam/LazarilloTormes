@@ -85,19 +85,11 @@ public class VJuego extends JPanel {
         //generamos las cartas
         generarCartas(true);//pata que se deshordenen
 
-        /*
-         * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-         * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-         * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-         * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-         *///        this.setFocusable(true);
+
         this.addKeyListener(controlador);
-        FocusManager.getCurrentManager().focusNextComponent(bPausaPlay);
-        carta.get(0).requestFocus();
-        System.out.println("\n\n");
-        System.out.println(FocusManager.getCurrentManager().getFocusOwner());
-        FocusManager.getCurrentManager().focusNextComponent();
-        System.out.println(FocusManager.getCurrentManager().getFocusOwner());
+        FocusManager.getCurrentManager().focusNextComponent(this);
+        this.requestFocus();
+        //System.out.println(FocusManager.getCurrentManager().getFocusOwner());
     }
 
 

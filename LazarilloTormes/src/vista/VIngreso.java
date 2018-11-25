@@ -494,7 +494,6 @@ public class VIngreso extends JPanel {
      */
     private String recogerAvatar() {
         if (avatar1.getBorder() != null) {
-            System.out.println("------>" + ((ImageIcon) avatar1.getIcon()).getDescription());
             return iconoAvatar1.getDescription();//((ImageIcon) iconoAvatar1.getIcon()).getDescription();
         }
         if (avatar2.getBorder() != null) {

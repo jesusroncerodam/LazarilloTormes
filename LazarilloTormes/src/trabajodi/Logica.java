@@ -294,10 +294,11 @@ public class Logica {
             case "sonido":
                 sonido = menu.estadoSonido();
                 break;
-            case "partidarapida"://Partida Rapida /////////////////////////////////////////////////////////////////////////////////////////////////////
-                guardarPartida();
+            case "partidarapida"://Partida Rapida 
+                recogerDatos("/img/avatar1.jpg", 2, 2, "Gamer");
+                menu.cambiarVista("juego");
                 break;
-            case "partidapersonalizada"://Partida Personalizada////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            case "partidapersonalizada"://Partida Personalizada
                 menu.cambiarVista("ingresodatos");
                 break;
             case "reset":

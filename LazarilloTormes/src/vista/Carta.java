@@ -1,5 +1,5 @@
 /**
- * JLabel que se muesta , cada carta, gestina cuando se muee
+ * JLabel que se muesta , cada carta, gestina cuando se mueve
  */
 package vista;
 
@@ -43,7 +43,6 @@ public class Carta extends JLabel {
         imgVuelta = new ImageIcon(this.getClass().getResource(VUELTA_IMAGEN));
         this.setSize(imgVuelta.getIconWidth(), imgVuelta.getIconHeight());//la imagen de "imgVuelta" da las dimensiones
         this.setIcon(imgVuelta);//asignamos como icono la imagen de imgVuelta
-        System.out.println(url);
         imgCarta = new ImageIcon(this.getClass().getResource(url));//cambiarTamano(new ImageIcon(this.getClass().getResource(url)), imgVuelta.getIconWidth(), imgVuelta.getIconHeight());//asignamos un tamaño a la carta, para que esta se vea con las mismas 
 
         //asignamios datos
