@@ -184,14 +184,8 @@ public class VDialogoMod extends JPanel {
 
     /*
      * Añade los elementos a la vista
-     *
-     * loc.ipadx = 50;
-     * loc.anchor = GridBagConstraints.LINE_START;
      */
     public void defectoConstrain() {
-        /*
-         * POR DEFECTO
-         */
         constrain.anchor = GridBagConstraints.CENTER;
         constrain.weighty = 1.0; //para que se estiren las columnas
         constrain.weightx = 1.0; // El área de texto ocupa 1 filasa
