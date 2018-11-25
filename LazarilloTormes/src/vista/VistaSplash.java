@@ -18,7 +18,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
-import trabajodi.Vista;
+import lazarilloTormes.Vista;
 
 
 /**

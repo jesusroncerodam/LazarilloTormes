@@ -4,7 +4,7 @@ package controladores;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import vista.VLista;
-import trabajodi.Logica;
+import lazarilloTormes.Logica;
 
 
 /**

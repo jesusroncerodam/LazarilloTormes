@@ -18,8 +18,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-import trabajodi.Logica;
-import trabajodi.Vista;
+import lazarilloTormes.Logica;
+import lazarilloTormes.Vista;
 
 
 /**

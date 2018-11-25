@@ -6,7 +6,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import vista.VIngreso;
-import trabajodi.Logica;
+import lazarilloTormes.Logica;
 
 
 /**

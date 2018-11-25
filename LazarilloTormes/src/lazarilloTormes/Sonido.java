@@ -1,4 +1,4 @@
-package trabajodi;
+package lazarilloTormes;
 
 import java.io.IOException;
 import java.net.URL;

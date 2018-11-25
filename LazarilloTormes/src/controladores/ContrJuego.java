@@ -7,7 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import vista.VJuego;
-import trabajodi.Logica;
+import lazarilloTormes.Logica;
 
 
 /**

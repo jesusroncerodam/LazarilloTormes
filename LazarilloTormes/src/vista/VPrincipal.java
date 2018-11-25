@@ -10,8 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import trabajodi.Logica;
-import trabajodi.Vista;
+import lazarilloTormes.Logica;
+import lazarilloTormes.Vista;
 
 
 /**

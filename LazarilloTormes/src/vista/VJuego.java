@@ -19,8 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
-import trabajodi.Logica;
-import trabajodi.Vista;
+import lazarilloTormes.Logica;
+import lazarilloTormes.Vista;
 
 
 /**

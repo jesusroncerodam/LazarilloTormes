@@ -11,8 +11,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.KeyStroke;
-import trabajodi.Logica;
-import trabajodi.Vista;
+import lazarilloTormes.Logica;
+import lazarilloTormes.Vista;
 
 
 /**

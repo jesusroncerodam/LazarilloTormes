@@ -4,7 +4,7 @@ package controladores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import vista.VMenu;
-import trabajodi.Logica;
+import lazarilloTormes.Logica;
 
 
 /**

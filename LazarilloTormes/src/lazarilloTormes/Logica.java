@@ -1,4 +1,4 @@
-package trabajodi;
+package lazarilloTormes;
 
 
 import controladores.ContrDialogoMod;

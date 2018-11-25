@@ -2,7 +2,7 @@
  * Explicacion diagrma: los objetos (vistas)(JPnalel) se van añadiendo al
  * Jframe (ventana) para despues eliminarlos o no segun lo que se quiera hacer
  */
-package trabajodi;
+package lazarilloTormes;
 
 
 import vista.VDialogoMod;

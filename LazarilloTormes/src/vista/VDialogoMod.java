@@ -11,8 +11,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import trabajodi.Logica;
-import trabajodi.Vista;
+import lazarilloTormes.Logica;
+import lazarilloTormes.Vista;
 
 
 /**
