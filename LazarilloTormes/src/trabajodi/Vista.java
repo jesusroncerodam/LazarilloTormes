@@ -224,35 +224,35 @@ public class Vista {
             //eliminamos todas las vistas
             eliminarVistas();
             escuchaVentana.setPartidaOn(false);
-            int tiempo = 10;
+            int tiempo = 3;
             switch (vista) {
                 case "principal":
-                    tiempo = 3;
+                    tiempo = 2;
                     vPrincipal.generar();
                     cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                     break;
                 case "ingresodatos":
-                    tiempo = 3;
+                    tiempo = 2;
                     vIngreso.generar();
                     cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                     break;
                 case "juego":
-                    tiempo = 3;
+                    tiempo = 2;
                     vJuego.generar();
                     cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                     break;
                 case "juegoguardado":
-                    tiempo = 3;
+                    tiempo = 2;
                     vJuego.generarGuardada();
                     cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                     break;
                 case "lista":
-                    tiempo = 3;
+                    tiempo = 2;
                     vLista.generar();
                     cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                     break;
                 case "aboutus":
-                    tiempo = 3;
+                    tiempo = 2;
                     vDialogoMod.generar();
                     cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                     break;
