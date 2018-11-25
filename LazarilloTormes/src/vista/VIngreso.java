@@ -36,44 +36,32 @@ public class VIngreso extends JPanel {
 
     private Vista vistaMain;
     private ContrIngreso controlador;
-
-    //SIN CONTROLADOR
     private JLabel labelNombre, labelAvatar, labelTema, labelDificultad;
-
-    //CON CONTROLADOR
     private TextField campoNombre;
-
-    private JCheckBox avatar1, avatar2, avatar3;
-    private JCheckBox tema1, tema2, tema3;
-    private JCheckBox dificultad1, dificultad2, dificultad3;
-
+    private JCheckBox avatar1, avatar2, avatar3,
+            tema1, tema2, tema3,
+            dificultad1, dificultad2, dificultad3;
     private JButton botonFlechaAtras, botonFlechaSiguiente;
-
     private GridBagConstraints constrain;
 //    private GridBagLayout gridLayout;
+    private final int ALTOIMAGENES = 150, ANCHOIMAGENES = 120, TAMANOFUENTE = 24;
 
-    private final int ALTOIMAGENES = 150, ANCHOIMAGENES = 120;
-
-    private ImageIcon iconoAvatar1 = new ImageIcon(this.getClass().getResource("/img/avatar1.jpg"));
-    private ImageIcon iconoAvatar2 = new ImageIcon(this.getClass().getResource("/img/avatar2.jpg"));
-    private ImageIcon iconoAvatar3 = new ImageIcon(this.getClass().getResource("/img/avatar3.jpg"));
-
-    private ImageIcon iconoTema1 = new ImageIcon(this.getClass().getResource("/img/tema1.jpg"));
-    private ImageIcon iconoTema2 = new ImageIcon(this.getClass().getResource("/img/tema2.jpg"));
-    private ImageIcon iconoTema3 = new ImageIcon(this.getClass().getResource("/img/tema3.jpg"));
-
-    private ImageIcon iconoDificultad1 = new ImageIcon(this.getClass().getResource("/img/dificultad1.png"));
-    private ImageIcon iconoDificultad2 = new ImageIcon(this.getClass().getResource("/img/dificultad2.png"));
-    private ImageIcon iconoDificultad3 = new ImageIcon(this.getClass().getResource("/img/dificultad3.png"));
-
-    private ImageIcon imagenFlecha = new ImageIcon(this.getClass().getResource("/img/atras.png"));
-    private ImageIcon imagenAvanzar = new ImageIcon(this.getClass().getResource("/img/flechaRect.png"));
-    private ImageIcon fondoRegistro = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.jpg"));
+    private ImageIcon iconoAvatar1 = new ImageIcon(this.getClass().getResource("/img/avatar1.jpg")),
+            iconoAvatar2 = new ImageIcon(this.getClass().getResource("/img/avatar2.jpg")),
+            iconoAvatar3 = new ImageIcon(this.getClass().getResource("/img/avatar3.jpg")),
+            iconoTema1 = new ImageIcon(this.getClass().getResource("/img/tema1.jpg")),
+            iconoTema2 = new ImageIcon(this.getClass().getResource("/img/tema2.jpg")),
+            iconoTema3 = new ImageIcon(this.getClass().getResource("/img/tema3.jpg")),
+            iconoDificultad1 = new ImageIcon(this.getClass().getResource("/img/dificultad1.png")),
+            iconoDificultad2 = new ImageIcon(this.getClass().getResource("/img/dificultad2.png")),
+            iconoDificultad3 = new ImageIcon(this.getClass().getResource("/img/dificultad3.png")),
+            imagenFlecha = new ImageIcon(this.getClass().getResource("/img/atras.png")),
+            imagenAvanzar = new ImageIcon(this.getClass().getResource("/img/flechaRect.png")),
+            fondoRegistro = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.jpg"));
 
     private final Border bordeAvatar = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.ORANGE, 5), BorderFactory.createRaisedBevelBorder());
     private final Border bordeTema = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.RED, 5), BorderFactory.createRaisedBevelBorder());
     private final Border bordeDificultad = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.YELLOW, 3), BorderFactory.createRaisedBevelBorder());
-    private int TAMANOFUENTE = 24;
 
 
     public VIngreso(Logica logica, Vista vistaMain) {
@@ -88,13 +76,16 @@ public class VIngreso extends JPanel {
      *                     fuente
      * @return font Devuelve una fuente
      */
-    public Font bakerville(int tamanofuente) {
+    private Font bakerville(int tamanofuente) {
         Font fuente = new Font("Baskerville Old Face", Font.BOLD, tamanofuente);
         return fuente;
     }
 
 
-    public void generar() {
+    /**
+     * Es el encargado de generar todos los elementos de la vista
+     */
+    private void generar() {
         anadirDescripciones();
         controlador.mandarControlador();
         this.setOpaque(false);
@@ -102,15 +93,7 @@ public class VIngreso extends JPanel {
 //        setPreferredSize(new Dimension(2, 2));
         constrain = new GridBagConstraints();
         this.setLayout(new GridBagLayout());
-        constrainPorDefecto();
-        crearElementos();
-        anadirescuchadores();
-        setVisible(true);
-        System.out.println("ERwtrewtrewtwerte" + ((ImageIcon) avatar1.getIcon()).getDescription());
-    }
 
-
-    public void crearElementos() {
         constrainPorDefecto();
         crearLabelNombre();
         crearCampoNombre();
@@ -118,13 +101,16 @@ public class VIngreso extends JPanel {
         crearTema();
         crearDificultad();
         crearBotones();
+
+        anadirescuchadores();
+        setVisible(true);
     }
 
 
     /**
      * Crea el label del nombre
      */
-    public void crearLabelNombre() {
+    private void crearLabelNombre() {
         labelNombre = new JLabel("Nickname: ");
         labelNombre.setFont(bakerville(TAMANOFUENTE));
         labelNombre.setForeground(Color.red);
@@ -140,7 +126,7 @@ public class VIngreso extends JPanel {
     /**
      * Crea todo lo relacionado con el campo de texto del nombre
      */
-    public void crearCampoNombre() {
+    private void crearCampoNombre() {
         campoNombre = new TextField("Nickname");
         campoNombre.setFont(bakerville(TAMANOFUENTE - 8));
 
@@ -162,7 +148,7 @@ public class VIngreso extends JPanel {
     /**
      * Crea todo lo relacionado con los iconos de los avatares y el jlabel
      */
-    public void crearAvatar() {
+    private void crearAvatar() {
         labelAvatar = new JLabel("Avatar: ");
         labelAvatar.setFont(bakerville(TAMANOFUENTE));
         labelAvatar.setForeground(Color.red);
@@ -208,7 +194,7 @@ public class VIngreso extends JPanel {
     /**
      * Crea todo lo relacionado con los temas
      */
-    public void crearTema() {
+    private void crearTema() {
         labelTema = new JLabel("Theme");
         labelTema.setFont(bakerville(TAMANOFUENTE));
         labelTema.setForeground(Color.red);
@@ -256,7 +242,7 @@ public class VIngreso extends JPanel {
     /**
      * Crea todo lo relacionado con las dificultades
      */
-    public void crearDificultad() {
+    private void crearDificultad() {
         labelDificultad = new JLabel("Difficulty");
         labelDificultad.setFont(bakerville(TAMANOFUENTE));
         labelDificultad.setForeground(Color.red);
@@ -305,7 +291,7 @@ public class VIngreso extends JPanel {
     /**
      * Crea todo lo relacionado con los botones
      */
-    public void crearBotones() {
+    private void crearBotones() {
         botonFlechaAtras = new JButton(cambiarTamano(imagenFlecha, 100, 100));
         botonFlechaSiguiente = new JButton(cambiarTamano(imagenAvanzar, 100, 90));
         /*
@@ -332,15 +318,13 @@ public class VIngreso extends JPanel {
      * Añade las descripciones para guardar las imágenes y que se muestren en la
      * pantalla de las estadsticas
      */
-    public void anadirDescripciones() {
+    private void anadirDescripciones() {
         iconoAvatar1.setDescription("/img/avatar1.jpg");
         iconoAvatar2.setDescription("/img/avatar2.jpg");
         iconoAvatar3.setDescription("/img/avatar3.jpg");
-
 //        iconoTema1.setDescription("/img/tema1.jpg");
 //        iconoTema2.setDescription("/img/tema2.jpg");
 //        iconoTema3.setDescription("/img/tema3.jpg");
-//
 //        iconoDificultad1.setDescription("/img/dificultad1.jpg");
 //        iconoDificultad2.setDescription("/img/dificultad2.jpg");
 //        iconoDificultad3.setDescription("/img/dificultad3.jpg");
@@ -350,7 +334,7 @@ public class VIngreso extends JPanel {
     /**
      * Añade todos los escuchadores para relacionarlos con el controlador
      */
-    public void anadirescuchadores() {
+    private void anadirescuchadores() {
         labelAvatar.setName("avatar");
         campoNombre.setName("campoNombre");
 
@@ -378,11 +362,9 @@ public class VIngreso extends JPanel {
         avatar1.addItemListener(controlador);
         avatar2.addItemListener(controlador);
         avatar3.addItemListener(controlador);
-
         tema1.addItemListener(controlador);
         tema2.addItemListener(controlador);
         tema3.addItemListener(controlador);
-
         dificultad1.addItemListener(controlador);
         dificultad2.addItemListener(controlador);
         dificultad3.addItemListener(controlador);
@@ -394,12 +376,9 @@ public class VIngreso extends JPanel {
 
 
     /*
-     * Añade los elementos a la vista
-     *
-     * loc.ipadx = 50;
-     * loc.anchor = GridBagConstraints.LINE_START;
+     * Asigna todas las constrain al valor inicial
      */
-    public void constrainPorDefecto() {
+    private void constrainPorDefecto() {
         /*
          * POR DEFECTO
          */
@@ -415,9 +394,9 @@ public class VIngreso extends JPanel {
     /**
      * Asigna el borde a los avatares para después comprobar que avatar ha
      * elegido el usuario
-     * @param avatar
+     * @param avatar int que devuelve el avatar elegido
      */
-    public void asignarBordeAvatar(int avatar) {
+    private void asignarBordeAvatar(int avatar) {
         avatar1.setBorder(null);
         avatar2.setBorder(null);
         avatar3.setBorder(null);
@@ -440,9 +419,9 @@ public class VIngreso extends JPanel {
     /**
      * Asigna el borde a los temas para después comprobar que tema ha
      * elegido el usuario
-     * @param tema
+     * @param tema int que devuelve el tema elegido
      */
-    public void asignarBordeTema(int tema) {
+    private void asignarBordeTema(int tema) {
         tema1.setBorder(null);
         tema2.setBorder(null);
         tema3.setBorder(null);
@@ -465,9 +444,9 @@ public class VIngreso extends JPanel {
     /**
      * Asigna el borde a la dificultad para despues comrpobar que dificultad ha
      * elegido el usuario
-     * @param dificultad
+     * @param dificultad int que devuelve la dificultad elegida
      */
-    public void asignarBordeDificultad(int dificultad) {
+    private void asignarBordeDificultad(int dificultad) {
         dificultad1.setBorder(null);
         dificultad2.setBorder(null);
         dificultad3.setBorder(null);
@@ -499,7 +478,7 @@ public class VIngreso extends JPanel {
      * Proporciona un color aleatorio para el panel
      * @return Devuelve un color
      */
-    public Color colorAleatorio() {
+    private Color colorAleatorio() {
         Random aleatorio = new Random();
         int red = aleatorio.nextInt(255);
         int green = aleatorio.nextInt(255);
@@ -510,32 +489,15 @@ public class VIngreso extends JPanel {
 
 
     /**
-     * Modifica el tamaño de las imagenes
-     *
-     * @param icono
-     * @param anchoImagen
-     * @param altoImagen
-     * @return
+     * Modifica el tamaño de los iconos
+     * @param icono       objeto tipo ImageIcon que se pasa para cambiarle el
+     *                    tamaño
+     * @param anchoImagen int que indica el nuevo ancho
+     * @param altoImagen  int que indica el nuevo alto
+     * @return ImageIcon que se igual al original para actualizar el tamaño
      */
-    public ImageIcon cambiarTamano(ImageIcon icono, int anchoImagen, int altoImagen) {
-        Image imagen = icono.getImage();
-        Image reescalada = imagen.getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH);
-        icono = new ImageIcon(reescalada);
-        return icono;
-    }
-
-
-    /**
-     * Modifica el tamaño de las imagenes
-     *
-     * @param icono
-     * @param anchoImagen
-     * @param altoImagen
-     * @return
-     */
-    public Image cambiarTamano(Image icono, int anchoImagen, int altoImagen) {
-        Image reescalada = icono.getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH);
-        return reescalada;
+    private ImageIcon cambiarTamano(ImageIcon icono, int anchoImagen, int altoImagen) {
+        return new ImageIcon(icono.getImage().getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH));
     }
 
 
@@ -638,7 +600,7 @@ public class VIngreso extends JPanel {
     }
 
 
-      /**
+    /**
      * Es el metodo que se encarga de vincular la vista principal con el resto,
      * es comun en todas las vistas
      *

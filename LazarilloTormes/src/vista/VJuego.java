@@ -107,6 +107,10 @@ public class VJuego extends JPanel {
     }
 
 
+    /**
+     * Devuelve las rutas de las imagenes
+     * @return
+     */
     private String[] obtenerRutas() {
         return controlador.obtenerRutas();
     }
@@ -551,7 +555,7 @@ public class VJuego extends JPanel {
     }
 
 
-      /**
+    /**
      * Es el metodo que se encarga de vincular la vista principal con el resto,
      * es comun en todas las vistas
      *

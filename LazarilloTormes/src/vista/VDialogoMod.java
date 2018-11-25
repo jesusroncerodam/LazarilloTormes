@@ -45,6 +45,9 @@ public class VDialogoMod extends JPanel {
     }
 
 
+    /**
+     * Es el encargado de generar todos los elementos de la vista
+     */
     public void generar() {
         controlador.mandarControlador();
         setOpaque(false);

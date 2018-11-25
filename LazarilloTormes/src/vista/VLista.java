@@ -36,7 +36,7 @@ public class VLista extends JPanel {
     private final String[] NOMBRE_COLUMNAS = {"Nº", "Image", "Name", "Mov.", "Time"};
     private final Color COLOR_LETRAS = Color.white;
     private String[] datos;
-    private Vista vista;
+    private Vista vistaMain;
     private ContrLista controlador;
     private JButton atras;
     private GridBagConstraints loc;
@@ -45,13 +45,13 @@ public class VLista extends JPanel {
 
 
     public VLista(Logica logica, Vista vista) {
-        this.vista = vista;
+        this.vistaMain = vista;
         controlador = new ContrLista(this, logica);
     }
 
 
     /**
-     * Generamos la vista, creando una tabal con un JScrollPane
+     * Generamos la vista, creando una tabla con un JScrollPane
      */
     public void generar() {
         this.setOpaque(false);
@@ -204,6 +204,9 @@ public class VLista extends JPanel {
     }
 
 
+    /**
+     * Crea el boton de vuelta a la vista principal
+     */
     private void crearBoton() {
         JButton bAtras = new JButton(new ImageIcon(this.getClass().getResource("/img/atras.png")));
         bAtras.setContentAreaFilled(false);
@@ -227,23 +230,23 @@ public class VLista extends JPanel {
 
     public void recogerDatos() {
         datos = controlador.datosFichero();
-        System.out.println("dsakgnsfldkgndkflsngkdsl------------------"+datos);
     }
 
 
     /**
      * Modifica el tamaño de los iconos
-     *
-     * @param icono
-     * @param anchoImagen
-     * @param altoImagen
-     * @return
+     * @param icono       objeto tipo ImageIcon que se pasa para cambiarle el
+     *                    tamaño
+     * @param anchoImagen int que indica el nuevo ancho
+     * @param altoImagen  int que indica el nuevo alto
+     * @return ImageIcon que se igual al original para actualizar el tamaño
      */
     private ImageIcon cambiarTamano(ImageIcon icono, int anchoImagen, int altoImagen) {
         return new ImageIcon(icono.getImage().getScaledInstance(anchoImagen, altoImagen, java.awt.Image.SCALE_SMOOTH));
     }
 
 
+    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Image img = new ImageIcon(this.getClass().getResource("/img/fondoEstadisticas.jpg")).getImage();
@@ -251,9 +254,16 @@ public class VLista extends JPanel {
     }
 
 
-    public void cambiarVista(String vistaACambiar) {
-        this.removeAll();
-        vista.cambiarVista(vistaACambiar);
+    /**
+     * Es el metodo que se encarga de vincular la vista principal con el resto,
+     * es comun en todas las vistas
+     *
+     * le manda un string que viene de la logica e indica a que vista nos
+     * estamos moviendo
+     * @param vista String, es el nombre de la vista a la que vamos a cambiar
+     */
+    public void cambiarVista(String vista) {
+        vistaMain.cambiarVista(vista);
     }
 
 }
