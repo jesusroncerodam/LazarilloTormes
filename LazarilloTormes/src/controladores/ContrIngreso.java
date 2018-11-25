@@ -6,15 +6,10 @@
 package controladores;
 
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.TextEvent;
-import java.awt.event.TextListener;
-import javax.swing.JCheckBox;
 import vista.VIngreso;
 import trabajodi.Logica;
 
@@ -23,7 +18,7 @@ import trabajodi.Logica;
  *
  * @author Guille
  */
-public class ContrIngreso extends MouseAdapter implements TextListener, ItemListener {
+public class ContrIngreso extends MouseAdapter implements ItemListener {
 
     private VIngreso vistaIngreso;
     private Logica logica;
@@ -47,12 +42,6 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
     @Override
     public void mouseClicked(MouseEvent e) {
         logica.vistaIngresoMouseListener(e);
-    }
-
-
-    @Override
-    public void textValueChanged(TextEvent e) {
-        logica.vistaIngresoEscuchadorTexto(e);
     }
 
 
@@ -101,6 +90,10 @@ public class ContrIngreso extends MouseAdapter implements TextListener, ItemList
     }
 
 
+    /**
+     * Metodo que llama a otro metodo encargado de recoger los datos de nombre,
+     * avatar elegido, tema elegido, y dificultad elegido
+     */
     public void mandarRecogerDatos() {
         vistaIngreso.mandarDatos();
     }

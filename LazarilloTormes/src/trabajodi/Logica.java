@@ -273,7 +273,6 @@ public class Logica {
      * @param accion String con la accion correspondiente
      */
     public void gestionarMenu(String accion) {
-
         switch (accion) {
             case "cargar":
                 if (cargarPartida()) {
@@ -396,7 +395,6 @@ public class Logica {
         } catch (Exception ex) {
             System.out.println("Mensaje de la excepción: " + ex.getMessage());
         }
-
     }
 
 
@@ -413,7 +411,7 @@ public class Logica {
             return lineas.toArray(new String[lineas.size()]);
         }
         try {
-            FileReader f = new FileReader(new File(FICHERO).getAbsolutePath());  
+            FileReader f = new FileReader(new File(FICHERO).getAbsolutePath());
             BufferedReader b = new BufferedReader(f);
             b.readLine();//ignoramos la 1º linea
             while ((linea = b.readLine()) != null) {
@@ -438,11 +436,20 @@ public class Logica {
      * CONTROLADOR VISTA INGRESO
      * CONTROLADOR VISTA INGRESO
      */
+    /**
+     * Metodo que iguala el controlador local con el original
+     * @param ingreso Controlador que se pasa para igualarlo
+     */
     public void asignarControladorIngreso(ContrIngreso ingreso) {
         this.cIngreso = ingreso;
     }
 
 
+    /**
+     * Metodo encargado de escuchar los clicks del raton y ver el lugar en el
+     * que se esta pulsando
+     * @param e evento que ve que objeto es
+     */
     public void vistaIngresoMouseListener(MouseEvent e) {
         switch (e.getComponent().getName()) {
             case "botonFlechaAtras":
@@ -472,7 +479,7 @@ public class Logica {
     /**
      * Le asigna la ruta a una variable string y se la pasa por parametro al
      * metodo que asigna la foto
-     * @return
+     * @return String, es el path de la imagen elegida en ruta absoluta
      */
     public String cogerImagenSistema() {
         JFileChooser archivoSeleccionado = new JFileChooser();
@@ -487,7 +494,6 @@ public class Logica {
         } else if (resultado == JFileChooser.CANCEL_OPTION) {
             System.out.println("No has seleccionado ningun archivo");
         }
-
         return path;
     }
 
@@ -501,12 +507,16 @@ public class Logica {
      * CONTROLADOR VISTA DIALOGMOD
      * CONTROLADOR VISTA DIALOGMOD
      */
-
     public void asignarControladorDialogoMod(ContrDialogoMod cDialogo) {
         this.cDialogMod = cDialogo;
     }
 
 
+    /**
+     * Escucha los clicks del raton y ejecuta la accion del lugar que estas
+     * pulsando
+     * @param e evento encargado de ver que componente es
+     */
     public void vistaDialogoModMouseListener(MouseEvent e) {
         switch (e.getComponent().getName()) {
             case "iconoTrinitarias":
@@ -516,7 +526,6 @@ public class Logica {
                     e1.printStackTrace();
                 }
                 break;
-
             default:
                 System.err.println("\nOpcion no valida");
         }
@@ -549,14 +558,13 @@ public class Logica {
 
         //añadimos las images
         cargarRutas(tema);
-
     }
 
 
     /**
      * Metodo gestiona que el nombre no sea muy grande y que no sea el
      * de por defecto
-     * @param nombre String nombre
+     * @param nombre String nombre elegido por el usuario
      */
     private String gestionarNombre(String nombre) {
         if (nombre.toLowerCase().equals("nickname")) {
@@ -573,7 +581,7 @@ public class Logica {
      * Metodo encargado de crear un Array de String con respecto a la dificultad
      * correspondiente, por cada nivel de dificultad suma 2 cartas, empezando
      * por un minimo de 2 cartas
-     * @param dificultad
+     * @param dificultad int que asigna la dificultad
      */
     private void cartasSegunDificultad(int dificultad) {
         int cartas = 2;
@@ -600,6 +608,11 @@ public class Logica {
     }
 
 
+    /**
+     * Metodo que escucha los CheckBox de avatar, tema y dificultad, y llama a
+     * los metodos para asignarle el borde
+     * @param e
+     */
     public void vistaIngresoItemChange(ItemEvent e) {
         int avatar = 1, tema = 1, dificultad = 1;
         if (((JCheckBox) e.getSource()).isSelected()) {
@@ -630,23 +643,9 @@ public class Logica {
     }
 
 
-    public void vistaIngresoEscuchadorTexto(TextEvent e) {
-//        switch (e.) {
-//            case "campoNombre":
-//                System.out.print("añksljfñlaskjfsñ");
-//
-//                break;
-//
-//            default:
-//                System.err.println("\nOpcion no valida");
-//        }
-    }
-
-
     /*
      * Gestion de guardar la partida
      */
-
     /**
      * Metodo guarda la partida con los datos que existen en logica
      */
@@ -776,7 +775,6 @@ public class Logica {
      * Vista Lista
      * Vista Lista
      */
-
     /**
      * Metodo asigna el controlador de Vlista
      * @param lista Controlador de VLista
@@ -841,7 +839,7 @@ public class Logica {
                 principal.cambiarDeVista("pascua");
                 break;
             default:
-                System.out.println("Error en principalClick "+boton);
+                System.out.println("Error en principalClick " + boton);
         }
     }
 

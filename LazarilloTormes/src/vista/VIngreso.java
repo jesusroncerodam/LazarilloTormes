@@ -357,7 +357,6 @@ public class VIngreso extends JPanel {
 
 //        Escuchadores
         labelAvatar.addMouseListener(controlador);
-        campoNombre.addTextListener(controlador);
 
         avatar1.addItemListener(controlador);
         avatar2.addItemListener(controlador);
@@ -396,7 +395,7 @@ public class VIngreso extends JPanel {
      * elegido el usuario
      * @param avatar int que devuelve el avatar elegido
      */
-    private void asignarBordeAvatar(int avatar) {
+    public void asignarBordeAvatar(int avatar) {
         avatar1.setBorder(null);
         avatar2.setBorder(null);
         avatar3.setBorder(null);
@@ -421,7 +420,7 @@ public class VIngreso extends JPanel {
      * elegido el usuario
      * @param tema int que devuelve el tema elegido
      */
-    private void asignarBordeTema(int tema) {
+    public void asignarBordeTema(int tema) {
         tema1.setBorder(null);
         tema2.setBorder(null);
         tema3.setBorder(null);
@@ -446,7 +445,7 @@ public class VIngreso extends JPanel {
      * elegido el usuario
      * @param dificultad int que devuelve la dificultad elegida
      */
-    private void asignarBordeDificultad(int dificultad) {
+    public void asignarBordeDificultad(int dificultad) {
         dificultad1.setBorder(null);
         dificultad2.setBorder(null);
         dificultad3.setBorder(null);
