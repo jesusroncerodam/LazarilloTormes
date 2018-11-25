@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controladores;
 
 
@@ -23,7 +18,11 @@ public class ControladorPascua extends WindowAdapter implements ActionListener {
     private HuevoPascua vistaHuevoPascua;
     private LogicaPascua logica;
 
-
+    
+    /**
+     * Construcyor de Controlador del juego se asigna la vista 
+     * @param vista  vista a la que se refiere, para poder comunicarse con ella
+     */
     public ControladorPascua(HuevoPascua vista) {
         this.vistaHuevoPascua = vista;
         logica = new LogicaPascua(this);

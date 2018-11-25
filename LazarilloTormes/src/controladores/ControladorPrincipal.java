@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controladores;
 
 
@@ -23,6 +18,11 @@ public class ControladorPrincipal extends MouseAdapter {
     private VPrincipal vistaPrincipal;
 
 
+    /**
+     * Construcyor de Controlador del principal
+     * @param vista  vista a la que se refiere, para poder comunicarse con ella
+     * @param logica logica a la que se refiere para comunicarse
+     */
     public ControladorPrincipal(Logica logica, VPrincipal vista) {
         this.logica = logica;
         this.vistaPrincipal = vista;

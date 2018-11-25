@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controladores;
 
 
@@ -21,7 +16,11 @@ public class ContrLista extends MouseAdapter {
     private VLista vistaLista;
     private Logica logica;
 
-
+    /**
+     * Construcyor de Controlador
+     * @param vista  vista a la que se refiere, para poder comunicarse con ella
+     * @param logica logica a la que se refiere para comunicarse
+     */
     public ContrLista(VLista vista, Logica logica) {
         this.vistaLista = vista;
         this.logica = logica;

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controladores;
 
 
@@ -22,6 +17,11 @@ public class ContrMenu implements ActionListener {
     private VMenu vistaMenu;
 
 
+    /**
+     * Construcyor de Controlador del Menu
+     * @param vista  vista a la que se refiere, para poder comunicarse con ella
+     * @param logica logica a la que se refiere para comunicarse
+     */
     public ContrMenu(Logica logica, VMenu vista) {
         this.logica = logica;
         this.vistaMenu = vista;
