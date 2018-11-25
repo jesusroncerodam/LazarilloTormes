@@ -103,7 +103,7 @@ public class Logica {
     /**
      * Encargado de gestionar las acciones de de mouseListener del controlador
      * del juego, aqui se gestionaran toda la logica
-     * @param componente
+     * @param componente componente 
      */
     public void juegoClick(Component componente) {
         //si se ejecuta laguna accion  comienza el contador
@@ -623,7 +623,7 @@ public class Logica {
     /**
      * Metodo que escucha los CheckBox de avatar, tema y dificultad, y llama a
      * los metodos para asignarle el borde
-     * @param e
+     * @param e ItemEvent que localiza que evento ocurre
      */
     public void vistaIngresoItemChange(ItemEvent e) {
         int avatar = 1, tema = 1, dificultad = 1;
@@ -688,7 +688,7 @@ public class Logica {
     /**
      * Metodo carga la partida y guarda los datos que coge el juego, el resto de
      * datos los recogera en funcion los pida y los necesite
-     * @return
+     * @return booleano si hay partida o no
      */
     public boolean cargarPartida() {
         partidaGuardada = null;
@@ -867,7 +867,7 @@ public class Logica {
     /**
      * Encargado de Hestionar el sonido, se elije un sonido aleatorio entre 1 y
      * 3 de la accion
-     * @param accion
+     * @param accion string que retorna que accion se ejecuta
      */
     public void crearSonido(String accion) {
         if (sonido) {//mientras que el sonido este habilitado

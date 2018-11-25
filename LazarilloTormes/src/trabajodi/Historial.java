@@ -44,7 +44,7 @@ public class Historial implements Comparable<Historial>{
     
     /**
      * Sobreescrito, retorna valores intercalados por ; 
-     * la cadena seria-> movimientos;tiempo;url;nombre
+     * la cadena seria -  movimientos;tiempo;url;nombre
      * @return String de valores
      */
     @Override

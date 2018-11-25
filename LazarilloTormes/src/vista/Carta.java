@@ -36,7 +36,7 @@ public class Carta extends JLabel {
 
     /**
      * Constructor de la Carta se le manda la localizacion de la carta
-     * @param url
+     * @param url string con la cadena de la ruta de la imagen
      */
     public Carta(String url) {
         this.setBorder(borde);//ponemos un borde
@@ -57,7 +57,7 @@ public class Carta extends JLabel {
     /**
      * Pintamos el fondo , el fondo siempre estará pero dentra una imagen encima
      * o no , dependiendo del estado en el que se encuentre
-     * @param g
+     * @param g grafics 
      */
     public void paint(Graphics g) {
         //imagen de fondo, la carta

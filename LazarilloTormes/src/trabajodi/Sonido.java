@@ -21,7 +21,7 @@ public class Sonido extends Thread{
     
     /**
      * Asignamos la ruta del sonido
-     * @param sonido 
+     * @param sonido  se le pasa un string con el nombre del sonicdo
      */
     public Sonido(String sonido){
         this.sonido=sonido;

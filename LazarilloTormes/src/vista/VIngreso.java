@@ -61,7 +61,7 @@ public class VIngreso extends JPanel {
      * Constructor, solo se asigna la logica y vista, el resto se genera 
      * llamando al metodo generar
      * @param logica logica 
-     * @param vista vista a la que refiere(padre)
+     * @param vistaMain vista a la que refiere(padre)
      */
     public VIngreso(Logica logica, Vista vistaMain) {
         this.vistaMain = vistaMain;
@@ -557,7 +557,7 @@ public class VIngreso extends JPanel {
      *
      * Es llamado desde el controladorIngreso por el método
      * establecerImagenElegida
-     * @param imagenElegida
+     * @param imagenElegida string con la imagen elegida del sistema
      */
     public void establecerImagenElegida(String imagenElegida) {
         ImageIcon icono = new ImageIcon(imagenElegida);

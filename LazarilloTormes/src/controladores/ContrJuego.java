@@ -66,7 +66,7 @@ public class ContrJuego extends MouseAdapter implements KeyListener {
     /**
      * Comunicacion de logica a vista, manda una accion sobre el contador de
      * tiempo
-     * @param accion
+     * @param accion string con el nombre de la accion
      */
     public void gestionarContador(String accion) {
         vistaJuego.gestionarContador(accion);

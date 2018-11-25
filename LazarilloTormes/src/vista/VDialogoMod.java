@@ -147,7 +147,7 @@ public class VDialogoMod extends JPanel {
     /**
      * El null se utiliza ya que el ImageObserver se utiliza para comprobar si
      * la imagen ha cambiado, cosa que en este caso no se necesita
-     * @param g
+     * @param g graphics
      */
     @Override
     public void paint(Graphics g) {
