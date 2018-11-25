@@ -200,7 +200,7 @@ public class VistaSplash extends JPanel {
      * Encargado de crear y empezar la anumacion,
      * empieza a girar la imagen y añade valores al contador
      */
-    public synchronized void empezarAnimaciones() {
+    public void empezarAnimaciones() {
         timerImg = new Timer(tiempo / 5, new ActionListener() {//tiempo/5 para que sea respectivo junto al tiempo
             @Override
             public void actionPerformed(ActionEvent e) {

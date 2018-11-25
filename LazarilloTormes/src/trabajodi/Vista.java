@@ -40,6 +40,7 @@ public class Vista {
     private VMenu vMenu;
     private VPrincipal vPrincipal;
     private VistaSplash splash;
+    private boolean primeraVez;
     private final String IMAGEN_DESPEDIDA = "/img/despedida.gif";
 
 
@@ -65,7 +66,7 @@ public class Vista {
         ventana.setVisible(true);
         //temporal
         ventana.setJMenuBar(vMenu);
-
+        primeraVez=true;
         cambiarVista("principal");
     }
 
@@ -185,7 +186,6 @@ public class Vista {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                System.out.println("fsaf");
                 switch (vista) {
                     case "principal":
                         principal();
@@ -214,7 +214,13 @@ public class Vista {
                 ventana.setVisible(true);
             }
         };
-        timer.schedule(task, tiempo * 1000 + 300);
+        tiempo=(tiempo * 1000 + 650);
+        if(primeraVez){
+            tiempo+=300;
+            primeraVez=false;
+        }
+        timer.schedule(task,tiempo );
+        
     }
 
 
@@ -246,7 +252,7 @@ public class Vista {
                     break;
                 case "juego":
                     tiempo = 1;
-                    vJuego.generar();//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    vJuego.generar();
                     cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                     break;
                 case "juegoguardado":
