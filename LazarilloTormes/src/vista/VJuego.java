@@ -77,8 +77,6 @@ public class VJuego extends JPanel {
         victoria=false;
         
         this.setOpaque(true);
-        this.setFocusable(true);
-        this.requestFocus();
 
         constrain = new GridBagConstraints();
         constrain.weighty = 0.5;
@@ -99,6 +97,7 @@ public class VJuego extends JPanel {
         this.setFocusable(true);
         this.requestFocus();
         this.addKeyListener(controlador);
+        this.revalidate();
     }
 
 
@@ -160,11 +159,11 @@ public class VJuego extends JPanel {
         JPanel cartas = new JPanel();//creamos el panel donde estarán las cartas
         cartas.setOpaque(false);//fondo transparente para que se vea el fondo
 
-        int cuadrado = (int) Math.sqrt(carta.size());//la raiz da lugar a unas fulas respectivas 
+        int cuadrado = (int) Math.sqrt(carta.size());//la raiz da lugar a unas filas respectivas 
         cartas.setLayout(new GridLayout(cuadrado, cuadrado, HGAP, VGAP));//asignamos un layout a las cartas
 
         if (deshordenar) {
-            Collections.shuffle(carta);//deshordenamos las cartas asi estan colocadas de manera aleatoria
+            Collections.shuffle(carta);//desordenamos las cartas asi estan colocadas de manera aleatoria
         }
         for (int i = 0; i < carta.size(); i++) {//asignamos el indice al nombre de las cartas
             carta.get(i).setName("" + i);
