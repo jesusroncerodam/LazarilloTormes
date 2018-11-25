@@ -31,9 +31,9 @@ public class VPrincipal extends JPanel {
     private JButton bNuevaPartida, bEstadisticas, bCargarPartida, bDialogoModal;
     private ImageIcon fondo = new ImageIcon(this.getClass().getResource("/img/fondoPrinc.jpg"));
     private final Font FUENTE = new Font("Monospaced", Font.BOLD, 30);
-    private final String RUTA_BOTON = "/img/botonn.png";
+    private final String RUTA_BOTON = "/img/boton.png";
 
-
+    
     public VPrincipal(Logica logica, Vista vistaMain) {
         this.vistaMain = vistaMain;
         controlador = new ControladorPrincipal(logica, this);

@@ -56,9 +56,9 @@ public class VJuego extends JPanel {
 
     /**
      * Constructor, solo se asigna la logica, el resto se genera llamando al
-     * metodo
-     * generar
-     * @param logica
+     * metodo generar
+     * @param logica logica del juego
+     * @param vista vista a la que refiere(padre)
      */
     public VJuego(Logica logica, Vista vista) {
         this.vistaMain = vista;
