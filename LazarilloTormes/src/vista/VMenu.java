@@ -37,7 +37,12 @@ public class VMenu extends JMenuBar {
     private JRadioButtonMenuItem sonido;
     private JMenuItem atras, salir;
 
-
+    /**
+     * Constructor, se le manda logica, y la vista principal,
+     * se genera el menu por defecto al llamar al contructor
+     * @param logica logigica
+     * @param vista vista principal
+     */
     public VMenu(Logica logica, Vista vista) {
         controlador = new ContrMenu(logica, this);
         this.vista = vista;
@@ -45,15 +50,19 @@ public class VMenu extends JMenuBar {
         
     }
 
-
-    public void generar() {
+    /**
+     * Genera el menu por defecto
+     */
+    private void generar() {
         controlador.asignarMenuLogica();
         generarMenuArchivo();
         generarPartida();
         ajustes();
     }
 
-
+    /**
+     * Generamos el Menu de la opion archivo
+     */
     private void generarMenuArchivo() {
         archivo = new JMenu("Archive");
         
@@ -67,28 +76,34 @@ public class VMenu extends JMenuBar {
         archivo.addSeparator();
 
         salir = new JMenuItem("Exit", new ImageIcon(EQUIS));
+        salir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK));
         salir.setActionCommand("salir");
         salir.addActionListener(controlador);
         archivo.add(salir);
         this.add(archivo);
     }
 
-
+    /**
+     * Generamo las opciones de nueva partida
+     */
     private void generarPartida() {
         partida = new JMenu("Game");
 
         submenu = new JMenu("New Game");
             JMenuItem partidaRapida = new JMenuItem("Quick game");
             partidaRapida.setActionCommand("partidarapida");
+            partidaRapida.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.ALT_MASK));
             partidaRapida.addActionListener(controlador);
             submenu.add(partidaRapida);
 
             JMenuItem partidaPersonalizada = new JMenuItem("Custom game");
             partidaPersonalizada.setActionCommand("partidapersonalizada");
+            partidaPersonalizada.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK));
             partidaPersonalizada.addActionListener(controlador);
             submenu.add(partidaPersonalizada);
         partida.add(submenu);
-        pausaPlay = new JMenuItem("Pause/Play", cambiarTamano(new ImageIcon(getClass().getResource(PLAYPAUSE)), 20, 20));//poner imahgen en pequeño 20px
+        pausaPlay = new JMenuItem("Pause/Play", cambiarTamano(new ImageIcon(getClass().getResource(PLAYPAUSE)), 20, 20));
+        pausaPlay.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK));
         pausaPlay.setActionCommand("pausaplay");
         pausaPlay.addActionListener(controlador);
         partida.add(pausaPlay);
@@ -111,16 +126,23 @@ public class VMenu extends JMenuBar {
     }
 
    
-
+    /**
+     * Creamos las opciones de ajustes 
+     */
     private void ajustes(){
         ajustes = new JMenu("Settings");
         sonido = new JRadioButtonMenuItem("Sound", true);
+        sonido.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK));
         sonido.setActionCommand("sonido");
         sonido.addActionListener(controlador);
         ajustes.add(sonido);
         this.add(ajustes);
     }
 
+    /**
+     * Habilitamos o deshabilitamos las opciones del menu en funcion de si esta
+     * en el juego 
+     */
     public void modoJuego(){
         atras.setEnabled(false);
         salir.setVisible(true);
@@ -128,9 +150,13 @@ public class VMenu extends JMenuBar {
         submenu.setEnabled(false);
         pausaPlay.setEnabled(true);
         guardarPartida.setEnabled(true);
-        cargarPartida.setEnabled(false);
-        
+        cargarPartida.setEnabled(false); 
     }
+    
+    /**
+     * Habilitamos o deshabilitamos las opciones del menu en funcion de si esta
+     * en el modo normal
+     */
     public void normal(){
         atras.setEnabled(true);
         salir.setVisible(true);
@@ -140,18 +166,27 @@ public class VMenu extends JMenuBar {
         guardarPartida.setEnabled(false);
         cargarPartida.setEnabled(true);
     } 
+    
+    /**
+     * Retornamos el estado de sonido
+     * @return Boolean estado de sonido
+     */
     public boolean estadoSonido(){
         return sonido.isSelected();
     }
 
+    /**
+     * Comunicacion hacia vista, para cambiar de vista
+     * @param vistaCambia cadena de string a la que referencia en vista
+     */
     public void cambiarVista(String vistaCambia){
-        System.out.println(vistaCambia);
         vista.cambiarVista(vistaCambia);
     }
+    
     /**
      * Modifica el tamaño de las imagenes
      *
-     * @param icono
+     * @param icono 
      * @param anchoImagen
      * @param altoImagen
      * @return

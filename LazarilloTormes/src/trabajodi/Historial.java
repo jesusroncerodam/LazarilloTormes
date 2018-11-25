@@ -13,7 +13,14 @@ public class Historial implements Comparable<Historial>{
     private String nombre, url;
     private int tiempo, movimientos;
 
-
+    /**
+     * Constructor de historial, implementa Comparable para así ordenar primero
+     * por tiempo y despues  por movimientos
+     * @param movimientos int, cantidad de movimientos
+     * @param tiempo int, cantidad de segundos
+     * @param url string, ruta de la imagen del avatar
+     * @param nombre string, nombtre o nickname del jugador
+     */
     public Historial(int movimientos, int tiempo, String url, String nombre) {
         this.nombre = nombre;
         this.url = url;
@@ -51,8 +58,8 @@ public class Historial implements Comparable<Historial>{
 
     /**
      * Ordenamos primero por tiempo y en caso de empate por movimientos
-     * @param e
-     * @return 
+     * @param e Historial, a comparar
+     * @return int 1 0 o -1 en funcion del caso
      */
     @Override
     public int compareTo(Historial e) {

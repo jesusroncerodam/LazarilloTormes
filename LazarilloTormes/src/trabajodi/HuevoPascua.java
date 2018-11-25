@@ -33,6 +33,9 @@ public class HuevoPascua extends Thread{
     private boolean salir;
     private Timer cambiarfondo,timerMover;
     
+    /**
+     * Constructor, genera los elementos, asi como el jframe y los controladores
+     */
     public HuevoPascua() {
         salir=false;
         controlador= new ControladorPascua(this);
@@ -45,9 +48,18 @@ public class HuevoPascua extends Thread{
         ventana.setVisible(true);
         
     }
+    
+    /**
+     * Generamos el hilo , llamado a generar
+     */
+    @Override
     public void run(){
         generar();
     }
+    
+    /**
+     * Generamos todo el contenido de la Vista, y sus animaciones
+     */
     private void generar(){
         etiqueta = new JLabel();
         
@@ -65,6 +77,10 @@ public class HuevoPascua extends Thread{
         fondo();
     }
     
+    /**
+     * Metodo que duerme la ejecucion del hilo, mientra que salir sea falso
+     * @param segundos int, milisegundos 1s=1000milisegundos
+     */
     private void dormir(int segundos){
         if(!salir)
             try {
@@ -74,6 +90,11 @@ public class HuevoPascua extends Thread{
             }
     }
     
+    /**
+     * Generamos la etiqueta con la imagen correspondiente  y con un 
+     * ImageObserver para que en caso de ser un gif, cambie
+     * @param imagen String, ruta de la imagen
+     */
     private void generarImagen(String imagen){
         ImageIcon imageIcon = new ImageIcon(new ImageIcon(this.getClass().getResource(imagen)).getImage().getScaledInstance(ventana.getWidth(), ventana.getHeight(), Image.SCALE_DEFAULT));
         etiqueta.setIcon(imageIcon);
@@ -82,7 +103,9 @@ public class HuevoPascua extends Thread{
         etiqueta.updateUI();
     }
     
-    
+    /**
+     * Generamos los botones y los ajustamos en funcion del tamaño de la ventana
+     */
     private void generarJuego(){
         int x=10;
         int separacion=ventana.getWidth()/boton.length;
@@ -105,15 +128,23 @@ public class HuevoPascua extends Thread{
         mover();
     }
     
+    /**
+     *  Creamos un timer para que animar la caida de los globos, el globo que se
+     *  mueve es aleatorio junto con la cantidad de pixeles que se mueve
+     */
     private void mover(){
         timerMover=new Timer(1, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int i=((int) (Math.random() * boton.length) ) ;
-                int suma=((int) (Math.random() * 4) +1);
-                boton[i].setLocation(boton[i].getLocation().x, boton[i].getLocation().y+suma);
-                if(boton[i].getLocation().y>=ventana.getHeight()){
-                    boton[i].setLocation(boton[i].getLocation().x,0);
+                if(!salir){
+                    int i=((int) (Math.random() * boton.length) ) ;
+                    int suma=((int) (Math.random() * 4) +1);
+                    boton[i].setLocation(boton[i].getLocation().x, boton[i].getLocation().y+suma);
+                    if(boton[i].getLocation().y>=ventana.getHeight()){
+                        boton[i].setLocation(boton[i].getLocation().x,0);
+                    }
+                }else{
+                    timerMover.stop();
                 }
             }
         });
@@ -129,19 +160,33 @@ public class HuevoPascua extends Thread{
         cambiarfondo=new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                 if(((int) (Math.random() * 11)+1 )==4 ){
-                    generarImagen(IMAGEN3);
+                if(!salir){
+                    if(((int) (Math.random() * 11)+1 )==4 ){
+                       generarImagen(IMAGEN3);
+                   }else{
+                       generarImagen(IMAGEN4);
+                   }
                 }else{
-                    generarImagen(IMAGEN4);
+                    cambiarfondo.stop();
                 }
             }
         });
         cambiarfondo.start();
         cambiarfondo.setRepeats(true);
     }
+    
+    /**
+     * Metodo llamado por el controlador, mueve el globo a la posicion 0
+     * @param indice int, indice del boton a mover
+     */
     public void subirBoton(int indice){
         boton[indice].setLocation(boton[indice].getLocation().x, 0);
     }
+    
+    /**
+     * Metodo ejecutado cuando se cierra la ventana, activa salir, y en caso de 
+     * tener algun timer activo, lo para
+     */
     public void cerrarVista(){
         if(timerMover!=null)
             timerMover.stop();
@@ -151,7 +196,6 @@ public class HuevoPascua extends Thread{
         etiqueta.removeAll();
         ventana.removeAll();
         ventana.dispose();
-        //ventana.dispose();
     }
 
     
