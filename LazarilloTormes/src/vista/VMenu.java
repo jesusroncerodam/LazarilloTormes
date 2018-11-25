@@ -29,7 +29,7 @@ public class VMenu extends JMenuBar {
             partida,
             ajustes;
     private final String PLAYPAUSE = "/img/playPause.png", EQUIS = "/img/equis.png", ATRAS = "/img/back.png";
-    private JMenuItem pausaPlay, guardarPartida, cargarPartida;
+    private JMenuItem pausaPlay, guardarPartida, cargarPartida,estadisticas;
     private JRadioButtonMenuItem sonido;
     private JMenuItem atras, salir;
 
@@ -136,6 +136,13 @@ public class VMenu extends JMenuBar {
         sonido.setActionCommand("sonido");
         sonido.addActionListener(controlador);
         ajustes.add(sonido);
+        
+        estadisticas= new JMenuItem("Reset statistics");
+        estadisticas.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.ALT_MASK, true));
+        estadisticas.setActionCommand("reset");
+        estadisticas.addActionListener(controlador);
+        ajustes.add(estadisticas);
+
         this.add(ajustes);
     }
 
@@ -152,6 +159,9 @@ public class VMenu extends JMenuBar {
         pausaPlay.setEnabled(true);
         guardarPartida.setEnabled(true);
         cargarPartida.setEnabled(false);
+        
+        sonido.setEnabled(true);
+        estadisticas.setEnabled(true);
     }
 
 
@@ -167,6 +177,9 @@ public class VMenu extends JMenuBar {
         pausaPlay.setEnabled(false);
         guardarPartida.setEnabled(false);
         cargarPartida.setEnabled(true);
+        
+        sonido.setEnabled(true);
+        estadisticas.setEnabled(true);
     }
 
 

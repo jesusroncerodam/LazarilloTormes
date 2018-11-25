@@ -42,6 +42,7 @@ public class Vista {
     private VistaSplash splash;
     private boolean primeraVez;
     private final String IMAGEN_DESPEDIDA = "/img/despedida.gif";
+    private String vista;
 
 
     /**
@@ -116,6 +117,7 @@ public class Vista {
         ventana.repaint();
         vMenu.setVisible(true);
         vMenu.normal();
+        anadirVista();
     }
 
 
@@ -174,53 +176,36 @@ public class Vista {
 
 
     /**
-     * Segun el string que reciba, se ejecuta un metodo u otro, el timetask se
-     * utiliza para retrasar la ejecucion mientras se ejecuta la vistaSplash,
-     * por lo tanto cuando pasa ese tiempo entra en el case correspondiente y
-     * genera la vista que sea
-     * @param vista
-     * @param tiempo
+     * Segun  el vista tenga, se ejecuta un metodo u otro, lo llama la la vista 
+     * splash al terminar la visualizacion de esta
      */
-    private void anadirVista(String vista, int tiempo) {
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                switch (vista) {
-                    case "principal":
-                        principal();
-                        break;
-                    case "ingresodatos":
-                        crearRegistro();
-                        break;
-                    case "juego":
-                        iniciarJuego();
-                        break;
-                    case "juegoguardado":
-                        iniciarJuego();
-                        break;
-                    case "lista":
-                        iniciarLista();
-                        break;
-                    case "aboutus":
-                        crearPantallaDesarrolladores();
-                        break;
-                    default:
-                        System.out.print(vista);
-                        throw new AssertionError();
-                }
-                ventana.setLocationRelativeTo(null);//centramos la pantalla
-                ventana.repaint();
-                ventana.setVisible(true);
-            }
-        };
-        tiempo=(tiempo * 1000 + 650);
-        if(primeraVez){
-            tiempo+=300;
-            primeraVez=false;
+    private void anadirVista() {
+        switch (vista) {
+            case "principal":
+                principal();
+                break;
+            case "ingresodatos":
+                crearRegistro();
+                break;
+            case "juego":
+                iniciarJuego();
+                break;
+            case "juegoguardado":
+                iniciarJuego();
+                break;
+            case "lista":
+                iniciarLista();
+                break;
+            case "aboutus":
+                crearPantallaDesarrolladores();
+                break;
+            default:
+                System.out.print(vista);
+                throw new AssertionError();
         }
-        timer.schedule(task,tiempo );
-        
+        ventana.setLocationRelativeTo(null);//centramos la pantalla
+        ventana.repaint();
+        ventana.setVisible(true);
     }
 
 
@@ -235,6 +220,7 @@ public class Vista {
         if (vista.equals("pascua")) {
             crearHuevoPascua();
         } else {
+            this.vista=vista;
             //eliminamos todas las vistas
             eliminarVistas();
             escuchaVentana.setPartidaOn(false);
@@ -261,7 +247,7 @@ public class Vista {
                     cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                     break;
                 case "lista":
-                    tiempo = 1;
+                    tiempo = 2;
                     vLista.generar();
                     cargarSplash("/img/logotrini.png", "/img/carga.jpg", tiempo);
                     break;
@@ -273,7 +259,6 @@ public class Vista {
                 default:
                     System.out.println("error, elemento no esperado en cambiarVista" + vista);
             }
-            anadirVista(vista, tiempo);
         }
     }
 
