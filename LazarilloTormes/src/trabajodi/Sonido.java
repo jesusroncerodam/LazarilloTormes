@@ -5,9 +5,7 @@
  */
 package trabajodi;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -29,15 +27,12 @@ public class Sonido extends Thread{
     }
     public void run(){
         repSonido(sonido);
-        System.out.println("Este proceso ha terminado:"+this.getName());
     }
     
     public void repSonido(String sonido){
-       
         int BUFFER_SIZE = 64*1024;  // 64 KB
         try {
            SourceDataLine soundLine = null;
-            System.out.println(sonido);
            URL url= this.getClass().getResource(sonido);
            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
            AudioFormat audioFormat = audioInputStream.getFormat();
