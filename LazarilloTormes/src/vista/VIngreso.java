@@ -7,10 +7,7 @@ package vista;
 
 
 import controladores.ContrIngreso;
-import java.awt.Checkbox;
-import java.awt.CheckboxGroup;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -26,10 +23,8 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import trabajodi.Logica;
-import trabajodi.Metodos;
 import trabajodi.Vista;
 
 
@@ -41,7 +36,6 @@ public class VIngreso extends JPanel {
 
     private Vista vistaMain;
     private ContrIngreso controlador;
-    private Metodos metodo = new Metodos();
 
     //SIN CONTROLADOR
     private JLabel labelNombre, labelAvatar, labelTema, labelDificultad;
@@ -123,25 +117,7 @@ public class VIngreso extends JPanel {
         crearAvatar();
         crearTema();
         crearDificultad();
-        botonFlechaAtras = new JButton(cambiarTamano(imagenFlecha, 100, 100));
-        botonFlechaSiguiente = new JButton(cambiarTamano(imagenAvanzar, 100, 90));
-        /*
-         * BOTONES
-         */
-        constrain.gridy = 4;
-
-        constrain.gridx = 0;
-        add(botonFlechaAtras, constrain);
-        constrain.gridx = 3;
-        add(botonFlechaSiguiente, constrain);
-
-        botonFlechaAtras.setOpaque(false);
-        botonFlechaAtras.setContentAreaFilled(false);
-        botonFlechaAtras.setBorder(null);
-
-        botonFlechaSiguiente.setOpaque(false);
-        botonFlechaSiguiente.setContentAreaFilled(false);
-        botonFlechaSiguiente.setBorder(null);
+        crearBotones();
     }
 
 
@@ -154,11 +130,9 @@ public class VIngreso extends JPanel {
         labelNombre.setForeground(Color.red);
 
         constrain.fill = GridBagConstraints.BASELINE;
-
         constrain.gridy = 0;
         constrain.gridx = 0;
         add(labelNombre, constrain);
-
         constrainPorDefecto();
     }
 
@@ -170,8 +144,6 @@ public class VIngreso extends JPanel {
         campoNombre = new TextField("Nickname");
         campoNombre.setFont(bakerville(TAMANOFUENTE - 8));
 
-//        constrain.weighty = 0.0;
-//        constrain.weightx = 0.0;
         constrain.gridwidth = 2;
 //        .NONE hace que el campo de texto no aparezca ocupando gran parte del cuadrante
         constrain.fill = GridBagConstraints.BASELINE;
@@ -331,6 +303,32 @@ public class VIngreso extends JPanel {
 
 
     /**
+     * Crea todo lo relacionado con los botones
+     */
+    public void crearBotones() {
+        botonFlechaAtras = new JButton(cambiarTamano(imagenFlecha, 100, 100));
+        botonFlechaSiguiente = new JButton(cambiarTamano(imagenAvanzar, 100, 90));
+        /*
+         * BOTONES
+         */
+        constrain.gridy = 4;
+
+        constrain.gridx = 0;
+        add(botonFlechaAtras, constrain);
+        constrain.gridx = 3;
+        add(botonFlechaSiguiente, constrain);
+
+        botonFlechaAtras.setOpaque(false);
+        botonFlechaAtras.setContentAreaFilled(false);
+        botonFlechaAtras.setBorder(null);
+
+        botonFlechaSiguiente.setOpaque(false);
+        botonFlechaSiguiente.setContentAreaFilled(false);
+        botonFlechaSiguiente.setBorder(null);
+    }
+
+
+    /**
      * Añade las descripciones para guardar las imágenes y que se muestren en la
      * pantalla de las estadsticas
      */
@@ -414,6 +412,11 @@ public class VIngreso extends JPanel {
     }
 
 
+    /**
+     * Asigna el borde a los avatares para después comprobar que avatar ha
+     * elegido el usuario
+     * @param avatar
+     */
     public void asignarBordeAvatar(int avatar) {
         avatar1.setBorder(null);
         avatar2.setBorder(null);
@@ -434,6 +437,11 @@ public class VIngreso extends JPanel {
     }
 
 
+    /**
+     * Asigna el borde a los temas para después comprobar que tema ha
+     * elegido el usuario
+     * @param tema
+     */
     public void asignarBordeTema(int tema) {
         tema1.setBorder(null);
         tema2.setBorder(null);
@@ -454,6 +462,11 @@ public class VIngreso extends JPanel {
     }
 
 
+    /**
+     * Asigna el borde a la dificultad para despues comrpobar que dificultad ha
+     * elegido el usuario
+     * @param dificultad
+     */
     public void asignarBordeDificultad(int dificultad) {
         dificultad1.setBorder(null);
         dificultad2.setBorder(null);
@@ -533,7 +546,12 @@ public class VIngreso extends JPanel {
      * GETTERS Y SETTERS
      * GETTERS Y SETTERS
      */
-    public String getTextoCampoNombre() {
+    /**
+     * Retorna el texto del campo nombre para ver que nickname ha elegido el
+     * usuario
+     * @return
+     */
+    public String recogerNombre() {
         return campoNombre.getText();
     }
 
@@ -578,6 +596,11 @@ public class VIngreso extends JPanel {
     }
 
 
+    /**
+     * Retorna un int que indica que dificultad ha elegido el usuario, si no ha
+     * elegido ninguna, se asigna la 1 de manera predeterminada
+     * @return
+     */
     private int recogerDificultad() {
         if (dificultad1.getBorder() != null) {
             return 1;
@@ -592,11 +615,9 @@ public class VIngreso extends JPanel {
     }
 
 
-    public String recogerNombre() {
-        return campoNombre.getText();
-    }
-
-
+    /**
+     * Le manda todos los datos recogidos a estadisticas
+     */
     public void mandarDatos() {
         controlador.mandarDatos(recogerAvatar(), recogerTema(), recogerDificultad(), recogerNombre());
     }
@@ -617,36 +638,15 @@ public class VIngreso extends JPanel {
     }
 
 
+      /**
+     * Es el metodo que se encarga de vincular la vista principal con el resto,
+     * es comun en todas las vistas
+     *
+     * le manda un string que viene de la logica e indica a que vista nos
+     * estamos moviendo
+     * @param vista String, es el nombre de la vista a la que vamos a cambiar
+     */
     public void cambiarDeVista(String vista) {
         vistaMain.cambiarVista(vista);
     }
-
 }
-
-//        constrain = new GridBagConstraints();
-//        constrain.gridx = 1;
-//        constrain.gridy = 1;
-//        constrain.fill = GridBagConstraints.HORIZONTAL;
-//        constrain.weighty = 0.5;
-//        JLabel mainPanel = new JLabel(fondo) {
-//            @Override
-//            public Dimension getPreferredSize() {
-//                Dimension size = super.getPreferredSize();
-//                Dimension lmPrefSize = getLayout().preferredLayoutSize(this);
-//                size.width = Math.max(size.width, lmPrefSize.width);
-//                size.height = Math.max(size.height, lmPrefSize.height);
-//                return size;
-//            }
-//        };
-//        mainPanel.setLayout(new GridBagLayout());
-//        GridBagConstraints gbc = new GridBagConstraints();
-//        gbc.insets = new Insets(10, 10, 10, 10);
-//        gbc.weightx = 1.0;
-//        gbc.anchor = GridBagConstraints.WEST;
-//        gbc.gridwidth = GridBagConstraints.REMAINDER;
-//
-//        // Let's put a filler bottom component that will push the rest to the top
-//        gbc.weighty = 1.0;
-//        mainPanel.add(Box.createGlue(), gbc);
-//        add(mainPanel);
-//        pack();

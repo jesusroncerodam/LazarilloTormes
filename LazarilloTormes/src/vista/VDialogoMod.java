@@ -17,7 +17,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import trabajodi.Logica;
-import trabajodi.Metodos;
 import trabajodi.Vista;
 
 
@@ -59,10 +58,13 @@ public class VDialogoMod extends JPanel {
         crearLogoTrini();
         generarBoton();
 
-        anadirControladores();
+        anadirEscuchadores();
     }
 
 
+    /**
+     * Crea el label de los desarrolladores
+     */
     public void crearLableDesarrolladores() {
         labelDesarrolladores = new JLabel("Desarrolladores");
         labelDesarrolladores.setFont(bakerville(70));
@@ -77,6 +79,9 @@ public class VDialogoMod extends JPanel {
     }
 
 
+    /**
+     * Crea el label del nombre de Guille
+     */
     public void crearLableNombreGuille() {
         labelNombreGuille = new JLabel("Guillermo Manso García");
         labelNombreGuille.setFont(bakerville(30));
@@ -92,6 +97,9 @@ public class VDialogoMod extends JPanel {
     }
 
 
+    /**
+     * Crea el label del nombre de Jesus
+     */
     public void crearLableNombreJesus() {
         labelNombreJesus = new JLabel("Jesús Roncero García");
         labelNombreJesus.setFont(bakerville(30));
@@ -106,6 +114,9 @@ public class VDialogoMod extends JPanel {
     }
 
 
+    /**
+     * Crea el label del logo trini con la imagen dentro
+     */
     private void crearLogoTrini() {
         labelLogoTrini = new JLabel(iconoTrinitarias);
 
@@ -120,6 +131,9 @@ public class VDialogoMod extends JPanel {
     }
 
 
+    /**
+     * Genera el boton de vuelta atrás
+     */
     private void generarBoton() {
         botonFlechaAtras = new JButton();
 //        flecha = metodo.imagenEspejo("/img/flecha.png");
@@ -152,7 +166,10 @@ public class VDialogoMod extends JPanel {
     }
 
 
-    public void anadirControladores() {
+    /**
+     * Asigna todos los escuchadores
+     */
+    public void anadirEscuchadores() {
         botonFlechaAtras.setActionCommand("botonAtras");
         labelLogoTrini.setName("iconoTrinitarias");
 
@@ -161,6 +178,14 @@ public class VDialogoMod extends JPanel {
     }
 
 
+    /**
+     * Es el metodo que se encarga de vincular la vista principal con el resto,
+     * es comun en todas las vistas
+     *
+     * le manda un string que viene de la logica e indica a que vista nos
+     * estamos moviendo
+     * @param vista String, es el nombre de la vista a la que vamos a cambiar
+     */
     public void cambiarDeVista(String vista) {
         vistaMain.cambiarVista(vista);
     }
@@ -195,38 +220,4 @@ public class VDialogoMod extends JPanel {
         Font fuente = new Font("Baskerville Old Face", Font.BOLD, tamanofuente);
         return fuente;
     }
-
 }
-
-//
-// BufferedImage imagee;
-//    int grados = 0;
-//
-//
-//    @Override
-//    public void paint(Graphics g) {
-//
-//        AffineTransform affineTransform = new AffineTransform();
-//        //rotate the image by 45 degrees 
-//        affineTransform.rotate(Math.toRadians(grados), 100, 100);
-//        Graphics2D g2d = (Graphics2D) g;
-//        g2d.drawImage(flecha.getImage(), affineTransform, null);
-//        g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), null);
-//
-//        super.paint(g2d); //To change body of generated methods, choose Tools | Templates.
-//    }
-//   Timer timer;
-//
-//
-//    public void girar() {
-//        timer = new Timer(500, new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                grados += 10;
-//                System.out.println("e");
-//                repaint();
-//            }
-//        });
-//        timer.start();
-//        timer.setRepeats(true);
-//    }

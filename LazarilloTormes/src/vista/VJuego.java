@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
+import javax.swing.FocusManager;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -32,7 +33,8 @@ import trabajodi.Vista;
  * @author Guille
  */
 public class VJuego extends JPanel {
-    private Vista vista;
+
+    private Vista vistaMain;
     private Font fuente = new Font("Agency FB", Font.BOLD, 40);
     private ContrJuego controlador;
     private ArrayList<Carta> carta;
@@ -42,15 +44,13 @@ public class VJuego extends JPanel {
     private JButton bPausaPlay, bGuardar, bContinuar;
     private GridBagConstraints constrain;
     private boolean victoria;
-    private final String 
-            RUTA_PLAYPAUSE = "/img/playPause.png", 
-            RUTA_RELOJ = "/img/relojWh.png", 
-            RUTA_FLECHA = "/img/flechaRect.png", 
-            RUTA_GUARDAR = "/img/save.png", 
+    private final String RUTA_PLAYPAUSE = "/img/playPause.png",
+            RUTA_RELOJ = "/img/relojWh.png",
+            RUTA_FLECHA = "/img/flechaRect.png",
+            RUTA_GUARDAR = "/img/save.png",
             RUTA_FONDO = "/img/fondoJuego.gif",
-            RUTA_VICTORIA="/img/victoria/1.gif";
-    private final int 
-            HGAP = 20, 
+            RUTA_VICTORIA = "/img/victoria/1.gif";
+    private final int HGAP = 20,
             VGAP = 5;
 
 
@@ -61,7 +61,7 @@ public class VJuego extends JPanel {
      * @param logica
      */
     public VJuego(Logica logica, Vista vista) {
-        this.vista = vista;
+        this.vistaMain = vista;
         controlador = new ContrJuego(this, logica);
     }
 
@@ -74,8 +74,8 @@ public class VJuego extends JPanel {
     public void generar() {
         controlador.asignarControlador();//asignamos el controlador a la logica
         desactivadas = 0;
-        victoria=false;
-        
+        victoria = false;
+
         this.setOpaque(true);
 
         constrain = new GridBagConstraints();
@@ -88,16 +88,22 @@ public class VJuego extends JPanel {
         asignarLabels();
 
         //generamos los botones
+        continuar();
         playPause();
         guardar();
-        continuar();
 
         //generamos las cartas
         generarCartas(true);//pata que se deshordenen
 //        this.setFocusable(true);
-      
-        this.addKeyListener(controlador);  this.requestFocus();
-        this.revalidate();
+
+        this.addKeyListener(controlador);
+        FocusManager.getCurrentManager().focusNextComponent(bPausaPlay);
+        carta.get(0).requestFocus();
+        System.out.println("\n\n");
+        System.out.println(FocusManager.getCurrentManager().getFocusOwner());
+        FocusManager.getCurrentManager().focusNextComponent();
+        System.out.println(FocusManager.getCurrentManager().getFocusOwner());
+
     }
 
 
@@ -172,7 +178,6 @@ public class VJuego extends JPanel {
         for (int i = 0; i < carta.size(); i++) {//anadimos todas las cartas y les ponemos escuchador
             cartas.add(carta.get(i));
             carta.get(i).addMouseListener(controlador);
-//            carta.get(i).addKeyListener(controlador);
         }
         constrain.gridx = 0; // El área de texto empieza en la columna 0.
         constrain.gridy = 1; // El área de texto empieza en la fila 1
@@ -197,6 +202,7 @@ public class VJuego extends JPanel {
             }
         });
     }
+
 
     /**
      * Ajusta el tiempo en minutos, y segundos
@@ -285,9 +291,9 @@ public class VJuego extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage((new ImageIcon(this.getClass().getResource(RUTA_FONDO))).getImage(), 0, 0, getWidth(), getHeight(), this);//this ya que es un gif y si no ponemos this, no se animaria
-        if(victoria)
-        g.drawImage((new ImageIcon(this.getClass().getResource(RUTA_VICTORIA))).getImage(), 0, 0,getWidth(), getHeight(), this);//this ya que es un gif y si no ponemos this, no se animaria
-
+        if (victoria) {
+            g.drawImage((new ImageIcon(this.getClass().getResource(RUTA_VICTORIA))).getImage(), 0, 0, getWidth(), getHeight(), this);//this ya que es un gif y si no ponemos this, no se animaria
+        }
 
     }
 
@@ -305,6 +311,7 @@ public class VJuego extends JPanel {
         this.victoria = victoria;
         repaint();
     }
+
 
     /**
      * Empieza crea o pausa el contador del timepo
@@ -433,6 +440,7 @@ public class VJuego extends JPanel {
         }
     }
 
+
     /**
      * Retorna los segundos actuales, en el momento que se le llama
      * @return int segundos
@@ -441,6 +449,7 @@ public class VJuego extends JPanel {
         return contadorSeg;
     }
 
+
     /**
      * Retorna los movimientos actuales, en el momento que se le llama
      * @return int movimientos
@@ -448,6 +457,7 @@ public class VJuego extends JPanel {
     public int getContMov() {
         return contMov;
     }
+
 
     /**
      * Retorna las rutas de las imagenes en orden de colocacion
@@ -462,6 +472,7 @@ public class VJuego extends JPanel {
         return rutaGuardada;
     }
 
+
     /**
      * Retorna las cartas que han sido bloqueadas
      * @return ArrayList de Boolean
@@ -475,17 +486,19 @@ public class VJuego extends JPanel {
         return estadoCarta;
     }
 
+
     /**
      * Recive un arrayList booleano y bloquea los indices que sean true
      * @param bloqueadas arrayList booleano
      */
     public void cargarBloquear(ArrayList<Boolean> bloqueadas) {
         for (int i = 0; i < carta.size(); i++) {
-            if (bloqueadas.get(i)){ //si bloquear es true lo bloqueamos
+            if (bloqueadas.get(i)) { //si bloquear es true lo bloqueamos
                 carta.get(i).bloquear();
             }
         }
     }
+
 
     /**
      * Metodo encargado de generar las partida Guardada, llama a todoss
@@ -493,8 +506,8 @@ public class VJuego extends JPanel {
      */
     public void generarGuardada() {
         controlador.asignarControlador();//se tiene que volver a generar
-        victoria=false;
-        
+        victoria = false;
+
         this.setOpaque(true);
         this.setFocusable(true);
 //        this.requestFocus();
@@ -527,8 +540,9 @@ public class VJuego extends JPanel {
         ponerTiempo();
     }
 
+
     /**
-     * Metodo llamado desde controlador, que bloqeua una carta, usado en logica 
+     * Metodo llamado desde controlador, que bloqeua una carta, usado en logica
      * para asignar las cartas bloqueadas
      * @param indice int indice del array a bloquear
      */
@@ -536,12 +550,17 @@ public class VJuego extends JPanel {
         carta.get(indice).bloquear();
     }
 
-    /**
-     * Metodo encargado de llamar a vista pera cambiar de vista
-     * @param vistaACambiar 
+
+      /**
+     * Es el metodo que se encarga de vincular la vista principal con el resto,
+     * es comun en todas las vistas
+     *
+     * le manda un string que viene de la logica e indica a que vista nos
+     * estamos moviendo
+     * @param vista String, es el nombre de la vista a la que vamos a cambiar
      */
-    public void cambiarVista(String vistaACambiar) {
-        vista.cambiarVista(vistaACambiar);
+    public void cambiarVista(String vista) {
+        vistaMain.cambiarVista(vista);
     }
 
 }

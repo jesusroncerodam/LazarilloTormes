@@ -60,8 +60,6 @@ public class ContrJuego extends MouseAdapter implements  KeyListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
-       
-
     }
 
 
