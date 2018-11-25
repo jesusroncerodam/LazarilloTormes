@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vista;
 
 
@@ -22,7 +17,8 @@ import trabajodi.Vista;
 
 /**
  *
- * @author Guille
+ * @author Guillermo Manso
+ * @author Jesus Roncero
  */
 public class VDialogoMod extends JPanel {
 
@@ -35,7 +31,11 @@ public class VDialogoMod extends JPanel {
             fondo = new ImageIcon(this.getClass().getResource("/img/fondoRegistro.gif")),
             iconoTrinitarias = new ImageIcon(this.getClass().getResource("/img/logotrini.png"));
 
-
+    /**
+     * 
+     * @param logica logica del juego
+     * @param vista vista a la que refiere(padre)
+     */
     public VDialogoMod(Logica logica, Vista vista) {
         this.vistaMain = vista;
         controlador = new ContrDialogoMod(this, logica);

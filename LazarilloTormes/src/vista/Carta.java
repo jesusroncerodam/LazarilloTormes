@@ -6,7 +6,6 @@ package vista;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
@@ -18,7 +17,8 @@ import javax.swing.border.Border;
 
 /**
  *
- * @author Guille
+ * @author Guillermo Manso
+ * @author Jesus Roncero
  */
 public class Carta extends JLabel {
 
